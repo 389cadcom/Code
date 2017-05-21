@@ -1,0 +1,11 @@
+$color: red;
+body{
+	color: $color;
+	
+	div{
+		margin: 0;
+	}
+	p{
+		margin-bottom:10px;
+	}
+}

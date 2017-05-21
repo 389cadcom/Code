@@ -1,0 +1,17 @@
+$color: red;
+body{
+	color: $color;
+	display: flex;
+	box-sizing: border-box;
+}
+.tips{
+	display: flex;
+	margin: 0 auto;
+	&:before, &:after{
+		content: " ";
+		display: table;
+	}
+	&:after{
+		clear: both;
+	}
+}
