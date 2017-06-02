@@ -28,31 +28,4 @@ http://blog.csdn.net/u011127019/article/details/52263347
 
 
 /**VSCode整理*/
-
-auto-close-tag - Version :0.4.1								//自动关闭标签
-auto-rename-tag - Version :0.0.11							//自动重命名标签
-beautify - Version :1.0.2									//格式化代码的工具
-bootstrap-3-snippets - Version :0.0.9						//bootstrap3代码生成工具
-code-settings-sync - Version :2.7.0							//设置同步
-debugger-for-chrome - Version :3.1.1
-docthis - Version :0.4.4
-html-snippets - Version :0.1.0
-JavaScriptSnippets - Version :1.4.0
-jquerysnippets - Version :0.0.1
-npm-intellisense - Version :1.3.0
-open-in-browser - Version :1.0.0
-output-colorizer - Version :0.1.1
-path-intellisense - Version :1.4.2
-project-manager - Version :0.16.0
-theme-atom-one-dark - Version :0.0.1
-vetur - Version :0.6.10										//Vue高亮
-vscode-caniuse - Version :0.5.0
-vscode-csscomb - Version :4.0.1
-vscode-eclipse-keybindings - Version :0.9.3
-vscode-gulp - Version :0.0.4
-vscode-html-css - Version :0.1.4
-vscode-icons - Version :7.7.0								//文件图标
-vscode-javascript-snippet-pack - Version :0.1.5
-vscode-JS-CSS-HTML-formatter - Version :0.2.3				//格式化
-vscode-scss - Version :0.6.2
-vscode-todo-parser - Version :1.8.10
+ext install vscode-codemetrics    //代码重构
