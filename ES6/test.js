@@ -19,11 +19,12 @@ for (var n of Symb) {
 
 
 var arr = [1, 2, 3, 2, 4, 5]
+var arr1 = [1,3,6,7];
 
 let set = new Set(arr);
-// console.log(set)
-set = new Set([...set].map(item => item * 2));
-// console.log(set)
+let set1 = new Set(arr1);
+console.log(new Set([...set].filter(x=>!set1.has(x))))
+
 
 
 var map = new Map([
@@ -34,7 +35,7 @@ var map = new Map([
 ])
 
 for (let [key, val] of map.entries()) {
-    console.log(key, val)
+    //console.log(key, val)
 }
 
 let map0 = new Map([[1,'a'],[2,'b'],[3,'c']])
@@ -45,5 +46,5 @@ map0 = new Map(
 );
 
 map.forEach(function(value, key, map) {
-  console.log("Key: %s, Value: %s", key, value);
+//   console.log("Key: %s, Value: %s", key, value);
 });
