@@ -1,45 +1,51 @@
-/**
- * Promise
- * @authors Your Name (you@example.org)
- * @date    2017-05-09 17:38:21
- * @version $Id$
- */
-//创建Promise
-var isPromise = false
-var promise = new Promise(function(resolve, reject) {
-    // 进行一些异步或耗时操作
-    if (isPromise ) {
-        resolve("Stuff worked!");		//返回成功内容
-    } else {
-        reject("It broke");				//返回失败内容
-    }
-});
+let fetch = require('node-fetch');
 
-//绑定处理程序
-promise.then(function(result) {
-    console.log(result); 				// 打印成功内容
-}, function(err) {
-    console.log(err); 					// 打印失败内容
-});
+function* gen() {
+	let url = 'https://api.github.com/users/github';
+	let result = yield fetch(url);
+	console.log(result)
+}
 
+/*var g = gen();
+var result = g.next();
 
-//Promise  提供一种信息机制，将回调代码掌控权拿回到自己的手
-setTimeout(function(){
-	console.log('Yay');
-	setTimeout(function(){
-		console.log('Whee Ya!')
-	}, 1000)
-}, 1000)
+result.value.then(data=>{
+	return data.json()
+}).then(data=>{
+	g.next(data)
+})*/
 
-//Promise
-var wait1000 = function(){
-	return new Promise(function(resolve, reject){
-		setTimeout(resolve, 1000)
+var fs = require('fs');
+var readFile = function(filename){
+	return new Promise((resolve, reject)=>{
+		fs.readFile(filename, (error, data)=>{
+			if(error) reject(error);
+			resolve(data)
+		})
 	})
 }
-wait1000().then(function(){
-	console.log('Yay');
-	return wait1000()
-}).then(function(){
-	console.log('Whee Ya!')
+
+function* gen(){
+	var f1 = yield readFile('./src/module.js');
+	console.log(f1.toString())
+}
+
+var g = gen();
+var r = g.next()
+r.value.then(res=>{
+	return Promise.resolve(res);
+}).then(data=>{
+	g.next(data)
 })
+
+
+//ES7 async需babel转码
+/*var asyncFile = async function(){
+	var f1 = await readFile('./src/module.js');
+	console.log(f1.toString())
+}
+
+var r1 = asyncFile();
+
+console.log(r1)
+*/
