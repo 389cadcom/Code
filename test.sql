@@ -1,50 +1,137 @@
+USE `db_admin`;
 
-SHOW DATABASES;
+DROP TABLE IF EXISTS `tb_admin`;
 
-CREATE DATABASE db_admin;
+CREATE TABLE `tb_admin` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `users` VARCHAR(30) CHARACTER SET gbk NOT NULL,
+  `pwd` VARCHAR(30) CHARACTER SET gbk NOT NULL,
+  `createtime` DATETIME NOT NULL,
+  `email` VARCHAR(40) CHARACTER SET gbk DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MYISAM DEFAULT CHARSET=utf8;
 
-DROP DATABASE db_admin;
+SHOW TABLES;
 
-USE db_admin;
 
-SHOW INDEX FROM tb_admin;
-
-DESC tb_admin;
-
-#显示数据库 db_admin 中所有表的信息
+#查看数据库的表消息
 SHOW TABLE STATUS FROM db_admin;
 
-SHOW COLUMNS FROM tb_admin [FROM db_admin];
+#查看表内容like 
+SHOW TABLE STATUS LIKE 'tb_root';	
+
+#重命名表名
+RENAME TABLE tb_root TO tb_roots;
+
+ALTER TABLE tb_roots RENAME TO tb_root;
+
+#查看表结构
+DESC tb_root;  
+
+SHOW COLUMNS FROM tb_root;
+
+#添加字段、删除
+ALTER TABLE tb_root ADD singin INT AFTER users;
+
+ALTER TABLE tb_root DROP singin;
+
+#修改字段modify, change, alter
+ALTER TABLE tb_root MODIFY email VARCHAR(40);
+
+ALTER TABLE tb_root CHANGE id userid INT;
+
+#设置默认值
+ALTER TABLE tb_root ALTER email SET DEFAULT 'lonves@qq.com'
+
+ALTER TABLE tb_root ALTER email DROP DEFAULT;
+
+#新增主键
+ALTER TABLE tb_root ADD PRIMARY KEY primary_name (userid);
+
+ALTER TABLE tb_root DROP PRIMARY KEY;
+
+#普通索引、唯一索引
+ALTER TABLE tb_root ADD INDEX index_name (userid, users);
+
+ALTER TABLE tb_root DROP INDEX emp_name2;
+
+ALTER TABLE tb_root ADD UNIQUE unique_name2(userid);
+
+#全文索引
+ALTER TABLE tb_root ADD FULLTEXT fulltext_name(users);
+
+SHOW INDEX FROM tb_root;
 
 
-CREATE TABLE tb_admin(
-    id INT(6) AUTO_INCREMENT PRIMARY KEY,
+
+BEGIN;
+INSERT  INTO `tb_admin`(`id`,`users`,`pwd`,`createtime`,`email`) VALUES 
+	(1,'张三','*6BB4837EB74329105EE4568DDA7DC','2017-07-12 00:00:00','389cadcom@163.com'),
+	(2,'李四','*6BB4837EB74329105EE4568DDA7DC','2017-07-12 00:00:00','389cadcom@163.com'),
+	(3,'王五','*6BB4837EB74329105EE4568DDA7DC','2017-07-12 00:00:00','389cadcom@163.com'),
+	(4,'赵六','*6BB4837EB74329105EE4568DDA7DC','2017-07-12 00:00:00','389cadcom@163.com'),
+	(5,'田七','*6BB4837EB74329105EE4568DDA7DC','2017-07-12 00:00:00','389cadcom@163.com'),
+	(6,'王八','*6BB4837EB74329105EE4568DDA7DC','2017-07-12 00:00:00','389cadcom@163.com'),
+	(7,'林九','e10adc3949ba59abbe56e057f20f88','2017-07-12 00:00:00','389cadcom@163.com');
+COMMIT;
+
+SELECT * FROM `tb_admin`;
+
+UPDATE tb_admin SET users = '赵十' WHERE id = 10;
+
+INSERT INTO tb_admin (users, pwd, createtime, email) VALUES 
+	('张三','e10adc3949ba59abbe56e057f20f88','2017-07-12 00:00:00','389cadcom@163.com'),
+	('田七','e10adc3949ba59abbe56e057f20f88','2017-07-12 00:00:00','389cadcom@163.com'),
+	('赵六','*6BB4837EB74329105EE4568DDA7DC','2017-07-12 00:00:00','389cadcom@163.com');
+
+
+SELECT users, SUM(singin) AS  singin FROM tb_admin GROUP BY users ORDER BY id ;
+
+#总数 with rollup
+SELECT COALESCE(users, '总数'), SUM(singin) AS singin_count FROM  tb_admin GROUP BY users WITH ROLLUP;
+
+#like  正则REGEXP 
+SELECT id, users FROM tb_admin WHERE users LIKE '赵%'
+
+SELECT id, users FROM tb_admin WHERE users REGEXP '^赵'
+
+SELECT users FROM tb_admin
+UNION
+SELECT * FROM tb_root;
+
+#表联合
+SELECT a.`id`, a.`singin`, b.`users` FROM tb_admin a LEFT JOIN tb_root b ON a.`users` = b.`users` ORDER BY a.`id`
+
+
+#临时表
+CREATE TEMPORARY TABLE tb_temp (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     users VARCHAR(30) NOT NULL,
     pwd VARCHAR(30) NOT NULL,
-    createtime DATETIME NOT NULL
-);
+    email VARCHAR(40) DEFAULT 'lonves@qq.com'
+)
 
-#重命表
-RENAME tb_admin TO tb_root;
+INSERT INTO tb_temp (users, pwd) VALUES 
+    ('张三', MD5(123)),
+    ('李四', MD5(123)),
+    ('王五', MD5(123));
 
-#衙命名字段
-ALTER TABLE tb_admin CHANGE USER users VARCHAR(30);
+SELECT * FROM tb_temp;
 
-#添加字段，修改字段类型
-ALTER TABLE tb_admin ADD email VARCHAR(40) NOT NULL, CHANGE USER  MODIFY users VARCHAR(40) NOT NULL;
+SHOW TABLES
 
-#删除某一字段
-ALTER TABLE tb_admin DROP createtime;
+#查看创建表信息--复制表
+SHOW CREATE TABLE tb_root;
 
-#删除索引
-ALTER TABLE tb_admin DROP PRIMARY KEY;
+CREATE TABLE `tb_clone` (
+  `uid` INT(11) NOT NULL,
+  `uname` VARCHAR(30) CHARACTER SET gbk NOT NULL,
+  `upwd` VARCHAR(30) CHARACTER SET gbk NOT NULL,
+  `email` VARCHAR(40) DEFAULT 'lonves@qq.com',
+  PRIMARY KEY (`uid`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8
 
-INSERT INTO tb_admin (users, PASSWORD, createtime) VALUES  ('Li', '123456', '2017-07-11');
+INSERT INTO tb_clone (uid, uname, upwd) SELECT id, users, pwd FROM tb_admin;
 
-INSERT INTO tb_admin (users, PASSWORD, createtime) VALUES  ('Wu', '123456', '2017-06-11');
-
-UPDATE tb_admin SET users = 'Zhao' WHERE id=2;
-
-SELECT * FROM tb_admin  ORDER BY createtime ASC;
-
+SELECT * FROM tb_clone;
 
