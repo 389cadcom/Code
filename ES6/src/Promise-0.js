@@ -6,14 +6,14 @@ function* gen() {
 	console.log(result)
 }
 
-/*var g = gen();
+/* var g = gen();
 var result = g.next();
-
+//console.dir(result);
 result.value.then(data=>{
 	return data.json()
 }).then(data=>{
 	g.next(data)
-})*/
+}) */
 
 var fs = require('fs');
 var readFile = function(filename){
@@ -24,10 +24,9 @@ var readFile = function(filename){
 		})
 	})
 }
-
 function* gen(){
 	var f1 = yield readFile('./src/module.js');
-	console.log(f1.toString())
+	//console.log(f1.toString())
 }
 
 var g = gen();

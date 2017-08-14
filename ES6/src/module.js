@@ -1,4 +1,4 @@
-'use strict';
+/* 'use strict';
 
 //export 输出变量，还可以输出方法或类
 
@@ -42,4 +42,4 @@ export default {
 }
 
 import M from './method'
-M.method1
+M.method1 */

@@ -1,0 +1,25 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [{
+            "type": "npm",
+            "script": "build",
+            "problemMatcher": []
+        },{
+            "taskName": "sass Task",
+            "type": "shell",
+            "command": "sass style.scss style.css --style expanded",
+            "group": "build",
+            "problemMatcher": [
+                "$node-sass"
+            ]
+        }, {
+            "taskName": "gulp Task",
+            "type": "shell",
+            "command": "gulp",
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

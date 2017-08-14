@@ -1,22 +1,11 @@
 /**
- * 
  * @authors lonves (lonves@qq.com)
  * @date    2017-02-13 15:13:07
  * 
  * 1.都为resolve, 返回值组成一个数组，传递给p的回调函数
  * 2.其中一个reject, 则第一个reject返回的值，传给p的回调函数
  */
-//Iterator
-var students = {};
-students[Symbol.iterator] = function(){
-	let i = 0;
-	return {
-		next(){
-			return {value: i++, done: i>10}
-		}
-	}
-}
-
+ 
 //Iterator与Generator函数返回Iterator
 var students ={
 	//* [Symbol.iterator]() {
@@ -33,8 +22,6 @@ while(!s.done){
 	console.log(s.value);
 	s = iterator.next();
 }
-
-
 
 //Promise与Generator结合使用
 function getPromise(){
@@ -54,9 +41,7 @@ var g = function* (){
 
 var run = function(generator){
 	var it = generator();
-
 	var i = 0;
-
 
 	function go(result){				
 		console.log(i++, result)				//{ value: Promise { 'foo' }, done: false }
