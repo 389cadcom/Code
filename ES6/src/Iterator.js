@@ -9,23 +9,23 @@ students[Symbol.iterator] = function(){
 	}
 }
 
-
 var makeIterator = function(arr){
-    let nextIndex = 0;
+    let index = 0;
     return {
         next(){
-           return  nextIndex < arr.length ?
-                {value: arr[nextIndex++]}:
+           return  index < arr.length ?
+                {value: arr[index++]}:
                 {done: true}
         }
     }
 }
 var it = makeIterator(['a', 'b', 'c']);
-for(let i=0; i<5; i++){
-    console.log(it.next());
+for(let i=0; i<4; i++){
+    //console.log(it.next());
 }
+var arr = ['red', 'blue', 'yellow'];
+console.dir(arr.keys())
 
-var arr = ['a', 'b', 'c'];
-var iter = arr[Symbol.iterator]();
-
-console.log(iter.next());
+for (let pair of arr.keys()) {
+console.log(pair);
+}

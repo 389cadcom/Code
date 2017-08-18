@@ -16,8 +16,37 @@ class People{
 	}
 }
 
+//子类
+class LiLei extends People {
+	constructor(name, age){
+		super(name);
+		this.age = age;
+	}
+	getSup(){
+		console.log(super.name)
+	}
+}
+
+var obj = Object.assign(LiLei.prototype, {
+	toString(){
+		console.log('tostring')
+	},
+	toValue(){
+		console.log('toValue')
+	}
+})
+
 var p = new People('tom');
 // p.name = 'perty';
+var l = new LiLei('LiLei', 34);
+l.getSup()
+
+console.log(l.hasOwnProperty('age'))							//定义在this本身
+console.log(l.__proto__.hasOwnProperty('toValue'))				//原型对象
+
+var keys = Object.keys(LiLei)						//类定义方法不可枚举
+console.log(keys)
+
 
 //通过闭包来实现私有属性。
 var Animate = (function(){
