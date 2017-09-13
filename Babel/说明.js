@@ -83,7 +83,10 @@ babel-preset-stage-0
 
 //preset-es2015 -es2016 -es2017 -latest, preset-react
 
-//stage-0, stage-1, stage-2, stage-3
+/*
+  五个阶段: 展示、征求、草案、候选、定案
+  stage-0, stage-1, stage-2, stage-3, stage-4
+*/
 
 Stage 0：
 Function Bind Syntax：函数的绑定运算符

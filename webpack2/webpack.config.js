@@ -16,9 +16,9 @@ const config = {
     },
     module: {
         loaders: [
-            //			{ test:/\.css$/, loader: 'style!css' },
-            //			{ test:/\.scss$/, loader: 'style-loader!css-loader!sass-loader' },
-            //			{ test:/\.scss$/, loader: ExtractTextPlugin.extract({fallback:'style-loader',use:'css-loader!sass-loader'}) },
+            //{ test:/\.css$/, loader: 'style!css' },
+            //{ test:/\.scss$/, loader: 'style-loader!css-loader!sass-loader' },
+            //{ test:/\.scss$/, loader: ExtractTextPlugin.extract({fallback:'style-loader',use:'css-loader!sass-loader'}) },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
