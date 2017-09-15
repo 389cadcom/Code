@@ -1,0 +1,25 @@
+[
+  {
+    "title": "JS Components",
+    "list": [
+      {
+        "path": "/toast",
+        "name": "Toast",
+        "icon": "toast",
+        "title": "Toast demo"
+      },
+      {
+        "path": "/indicator",
+        "name": "Indicator",
+        "icon": "indicator",
+        "title": "Indicator demo"
+      },
+      {
+        "path": "/index-list",
+        "name": "IndexList",
+        "icon": "alphabet",
+        "title": "IndexList demo"
+      }
+    ]
+  }
+]  

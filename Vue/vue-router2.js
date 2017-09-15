@@ -1,19 +1,27 @@
 /*
- 1.路由配置				routes: []
+ 1.配置					routes: []
  2.嵌套路由				children: []
  3.动态路由				path: 'user/:id'
- 4.具名路由和视图		name:'home' 
- 5.编程式导航			this.$route.push(), this.$route.replace()
- 6.重定向和别名			redirect: '/'  redirect:{name: ''}   alias: '/index'
- 7.滚动行为				scrollBehavior
- 8.懒加载				{ path:'', component: resolve=>require(['./index.vue']), resolve }
+ 4.命名路由				name:'home'							   <router-view></router-view>
+ 5.命名视图				components: { default:Home, b:Edit }   <router-view name=""></router-view>
+ 6.编程式导航			this.$route.push(), this.$route.replace()
+ 7.重定向和别名			redirect: '/'  redirect:{name: ''}   alias: '/index'
+ 8.滚动行为				scrollBehavior
+ 9.懒加载				{ path:'', component: resolve=>require(['./index.vue']), resolve }
 */
-//routes:
-{path: '', name:'', redirect:'', alias:'', meta:{checkAuth:}, component: Home, components: { default:Home, b:Edit } }  
+//routes: options参数 props
+{path: '', name:'', redirect:'', alias:'', meta:{checkAuth:}, component: Home |  components: { default:Home, b:Edit } }  
 
-//links
-:to = { path:'', name:'',  params:{id:12}, query:{args:123}, replace, append:true }
-router.push({ name:'home', query: {} })
+
+//router-link属性  :to, tag, active-class, replace, exact
+
+<router-link tag="li" to="/home#hash"><a>Home</a></router-link>
+<router-link tag="li" :to="{path:'/'}"><a>Home</a></router-link>
+
+:to = { path:'', name:'', activeClass: 'active',  params:{id:12}, query:{args:123}, replace, append:true }
+
+
+//router-view
 
 
 //路由匹配
@@ -28,13 +36,13 @@ router.push({ name:'home', query: {} })
 
 /**
 route对象
-   $route.name
-   $route.params
-   $route.query
-   $route.path
+   $route.name					名称
+   $route.params				参数 user/:name
+   $route.query					查找条件  query:{arg:123}
+   $route.path					路径
    $route.fullPath
    $route.hash
-   $route.meta
+   $route.meta					元信息
    $route.matched
 
    //router-link
@@ -42,8 +50,6 @@ route对象
    :to = {path: '/detail/' + this.$route.params.id}
 */
 
-<router-link tag="li" to="/"><a>Home</a></router-link>
-<router-link tag="li" :to="{path:'/'}"><a>Home</a></router-link>
 
 //路由切换侦听
 watch: {
@@ -84,7 +90,7 @@ var router = new VueRouter({
 	mode: 'history',
 	linkActiveClass: 'active',
 	routes: [
-		{ path: '/index', component: index },
+		{ path: '/index', component: index, props: {name: 'message'} },
 		{ path: '/index', 
 		  components: {
 			default: nav,
@@ -93,23 +99,28 @@ var router = new VueRouter({
 	]
 })
 
-
-//路由全局钩子
-beforeEach, afterEach
-
-//单个路由独享钩子
-beforeEnter, afterEnter
-
-//组件内钩子
-beforeRouteEnter, beforeRouteUpdate, beforeRouteLeave
-
-
-
 //router配置:
 mode,
 base,
 linkActiveClass,
-scrollBehavior,
+scrollBehavior,			//to, from, savedPosition
+
+//scrollBehavior
+if(savedPosition){
+	return savedPosition;
+}else{
+	if(to.hash){
+		return { selector: to.hash};
+
+		if (to.hash === '#anchor2') {
+			return { offset: { y: -5} }			//偏移坐标
+		}
+	}
+	if (to.matched.some(record => record.meta.scrollToTop)) {
+		return {x:0, y:100 }
+	}
+
+}
 
 
 //router实例：
