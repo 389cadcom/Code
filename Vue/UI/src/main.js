@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './router/route.js'             
 import App from './App.vue'
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
+//import MintUI from 'mint-ui'
+//import 'mint-ui/lib/style.css'
 
 //注册fastclick
 document.addEventListener('DOMContentLoaded', function(){
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
 }, false)
 
 Vue.use(VueRouter)
-Vue.use(MintUI);
+//Vue.use(MintUI);
 
 const router = new VueRouter({
     base: __dirname,
@@ -44,6 +44,7 @@ router.afterEach(to=>{
     }
 })
 
+console.log(process.env.NODE_ENV)
 
 /*
 new Vue({

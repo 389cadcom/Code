@@ -4,6 +4,7 @@
 //预设presets  --> plugins的组合				http://babeljs.io/docs/plugins/
 env, es2015, es2016, es2017, latest, react		//latest  --> babel-preset-env代替
 
+
 //{paresets: ['es2015']}
 
 check-es2015-constants					// 检验const常量是否被重新赋值
@@ -74,6 +75,3 @@ exclude					排除哪些文件
 useBuiltIns				是否对 babel-polyfill 进行分解，只引入所需的部分
 */
 
-
-
-/*********************************Babel 插件(plugins)************************************/

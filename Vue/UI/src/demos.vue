@@ -1,6 +1,6 @@
 <template>
 <section class="page-demo">
-	<div v-for="nav,i in navs" :key="i">
+	<div class="item" v-for="nav,i in navs" :key="i">
 		<div class="page-title">{{nav.title}}</div>
 		<mt-cell v-for="item,i in nav.list" :key='i' :to='item.path' is-link>
 			<div slot="title">
@@ -13,7 +13,11 @@
 </template>
 
 <script>
+//import Vue from 'vue';
 import {navs} from './router/route.js';
+import {Cell} from 'mint-ui';
+
+Vue.component(Cell.name, Cell);
 
 export default {
 	data(){
@@ -46,14 +50,15 @@ export default {
         font-size: 18px;
       }
    }
-  .page-title {
+  @at-root{
+  	.page-title {
       font-size: 20px;
-      margin: 20px auto;
+      margin: 20px 0;
       text-align: center;
       display: block;
       line-height: 1;
     }
-
+  }
     .page-part {
       margin-bottom: 15px;
     }

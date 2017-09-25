@@ -9,6 +9,18 @@
         "title": "Toast demo"
       },
       {
+        "path": "/message-box",
+        "name": "messagebox",
+        "icon": "message-box",
+        "title": "Messagebox demo"
+      },
+      {
+        "path": "/popup",
+        "name": "popup",
+        "icon": "popup",
+        "title": "Popup demo"
+      },
+      {
         "path": "/indicator",
         "name": "Indicator",
         "icon": "indicator",
@@ -19,6 +31,119 @@
         "name": "IndexList",
         "icon": "alphabet",
         "title": "IndexList demo"
+      },
+      {
+        "path": "/infinite-scroll",
+        "name": "InfiniteScroll",
+        "icon": "infinite-scroll",
+        "title": "InfiniteScroll demo无限加载"
+      },
+      {
+        "path": "/push-up",
+        "name": "Loadmore push-up",
+        "icon": "pull-up",
+        "title": "Loadmore demo"
+      },
+      {
+        "path": "/push-down",
+        "name": "Loadmore push-down",
+        "icon": "pull-down",
+        "title": "Loadmore demo"
+      },
+      {
+        "path": "/action-sheet",
+        "name": "ActionSheet",
+        "icon": "action-sheet",
+        "title": "action-sheet"
+      },
+      {
+        "path": "/lazyload",
+        "name": "Lazyload",
+        "icon": "lazyload",
+        "title": "Lazyload"
+      },
+      {
+        "path": "/swipe",
+        "name": "Swipe",
+        "icon": "swipe",
+        "title": "Swipe demo"
+      },
+      {
+        "path": "/picker",
+        "name": "picker",
+        "icon": "picker",
+        "title": "Picker demo"
+      },
+      {
+        "path": "/picker-datetime",
+        "name": "datetime-picker",
+        "icon": "time",
+        "title": "Datetime demo"
+      },
+      {
+        "path": "/progress",
+        "name": "Progress",
+        "icon": "progress",
+        "title": "Progress demo"
+      }
+    ]
+  },
+  {
+    "title": "CSS Components",
+    "list": [
+      {
+        "path": "/header",
+        "name": "Header",
+        "icon": "header",
+        "title": "Header demo"
+      },
+      {
+        "path": "/navbar",
+        "name": "Navbar",
+        "icon": "navbar",
+        "title": "Navbar demo"
+      },
+      {
+        "path": "/cell",
+        "name": "Cell",
+        "icon": "cell",
+        "title": "Cell demo"
+      },
+      {
+        "path": "/cell-swipe",
+        "name": "CellSwipe",
+        "icon": "cell",
+        "title": "CellSwipe demo"
+      },
+      {
+        "path": "/spinner",
+        "name": "Sinner",
+        "icon": "spinner",
+        "title": "Sinner demo"
+      },
+      {
+        "path": "/search",
+        "name": "Search",
+        "icon": "searchbar",
+        "title": "Search demo"
+      },
+      {
+        "path": "/switch",
+        "name": "Switch",
+        "icon": "switch",
+        "title": "Switch demo"
+      },
+      {
+        "path": "/checklist",
+        "name": "Check",
+        "icon": "checklist",
+        "title": "Check demo"
+      },
+      {
+        "path": "/field",
+        "name": "Field",
+        "icon": "field",
+        "title": "Field demo"
       }
     ]
   }

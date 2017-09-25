@@ -4,12 +4,12 @@
  * @Date: 2017-08-17 09:46:48 
  */
 
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var autoprefixer = require('gulp-autoprefixer');
-var useref = require('gulp-useref');
-var connect = require('gulp-connect');
+var gulp            = require('gulp');
+var concat          = require('gulp-concat');
+var uglify          = require('gulp-uglify');
+var autoprefixer    = require('gulp-autoprefixer');
+var useref          = require('gulp-useref');
+var connect         = require('gulp-connect');
 var proxyMiddleware = require('http-proxy-middleware');
 // 定义环境变量，若为 dev，则代理src目录； 若为prod，则代理dist目录
 var env = 'prod'

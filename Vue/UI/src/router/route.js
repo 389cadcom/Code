@@ -6,9 +6,12 @@ import NavConfig from './nav.config.json';
 const registerRoute = (config) => {
     let routes = [];
     config.map(nav => {
+        var dir = 'view'
+        if(nav.title == 'CSS Components'){
+            dir = 'view-css'
+        }
         nav.list.map(page => {
             //console.log(`../view/${page.path}`)
-            
             routes.push({
                 name: page.name,
                 path: page.path,
@@ -16,14 +19,16 @@ const registerRoute = (config) => {
                   title: page.title,
                   description: page.desc
                 },
-                component: require(`../view${page.path}`)
+                component: require(`../${dir}${page.path}`)
             })
         })
+        console.log(nav.title)
     });
     return {routes, navs: config}
 };
 
 const router = registerRoute(NavConfig);
+
 //主页
 router.routes.push({
     path: '/',

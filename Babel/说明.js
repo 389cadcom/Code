@@ -4,6 +4,7 @@ options: {
 		['es2015'], {modules: false}
 	]
 }
+
 query: {
 	"presets": [
 		["env", { "modules": false }]

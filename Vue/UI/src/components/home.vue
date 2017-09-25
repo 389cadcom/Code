@@ -1,6 +1,5 @@
 <template>
 <div class="app">
-	<img src="../assets/img/vue.png"/>
     <div>Demo App2</div>
     <h1>{{ msg }}</h1>
     <br>

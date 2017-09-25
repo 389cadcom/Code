@@ -9,9 +9,9 @@
 
 <script>
 export default {
-	computed:{
-		visible(){
-			var isExist = ['/', '/header', '/search'].indexOf(this.$route.path)<0;
+	computed: {
+		visible() {
+			var isExist = ['/', '/header', '/search'].indexOf(this.$route.path) < 0;
 			return isExist;
 		}
 	}
@@ -19,14 +19,23 @@ export default {
 </script>
 <style lang="scss">
 /*@import './assets/font/iconfont.css';*/
-html, body {
+
+
+/*@import 'path$/mint-ui/lib/style.css';*/
+
+html,
+body {
 	background-color: #fafafa;
 	-webkit-overflow-scrolling: touch;
 	user-select: none;
+	margin: 0;
 }
+
 a {
 	color: inherit;
+	text-decoration: none;
 }
+
 .page-back {
 	display: inline-block;
 	position: absolute;
@@ -39,6 +48,14 @@ a {
 		font-size: 24px;
 		line-height: 40px;
 	}
+}
+
+ul {
+	padding-left: 10px;
+}
+
+.page-wrapper button:not(:last-child) {
+	margin-bottom: 10px;
 }
 </style>
 
