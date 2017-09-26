@@ -3,3 +3,36 @@
   "plugins": ["transform-runtime"],
   "comments": false
 }
+
+//不编译import export bootstrap4
+{
+  "presets": [ "env", { "modules": false, "loose": true } ],
+  "plugins": [ "transform-es2015-modules-strip" ]
+}
+
+//配置参数 options
+{
+  "presets": ["env", options]
+}
+/*
+targets.node		支持到哪个版本的 node
+targets.browsers	支持到哪个版本的浏览器
+loose			启动宽松模式，配合 webpack 的 loader 使用
+modules			使用何种模块加载机制
+debug			开启调试模式
+include			包含哪些文件
+exclude			排除哪些文件
+useBuiltIns		是否对 babel-polyfill 进行分解，只引入所需的部分
+*/
+
+//配置参数
+{
+  "plugins": ['transfrom-runtime', options ]
+}
+
+/*
+helpers: boolean	默认true，使用babel的helper函数；
+polyfill: boolean	默认true，使用babel的polyfill，但是不能完全取代babel-polyfill；
+regenerator: boolean	默认true，使用babel的regenerator；
+moduleName: string	默认babel-runtime，使用对应module处理。
+*/
