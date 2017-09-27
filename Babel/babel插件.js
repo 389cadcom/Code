@@ -38,7 +38,7 @@ transform-async-to-generator			// 把async函数转化成generator函数
 
 
 /*
-	Stage-X(0/1/2/3/4) 征求、展求、草案、定稿
+	Stage-X(0/1/2/3/4) 五个阶段: 展示、征求、草案、候选、定案
 
 	何转换都是尚未被批准为发布Javascript的语言
 */
@@ -71,7 +71,8 @@ transform-function-bind					// 编译bind运算符，即::
 
 
 {
-	"presets": [ ["env", { "modules":false }], "stage-2"]
+	"presets": [ ["env", { "modules":false }], "stage-2"],
+	"plugins": [ "transform-runtime" ]
 }
 
 
@@ -82,13 +83,15 @@ transform-function-bind					// 编译bind运算符，即::
 //全局对象上的方法Object.assign, Array.from
 
 
-babel-polyfill			//为当前环境提供一个垫片
 
-babel-runtime			//提供工具函数，减少重复代码	_extend()， classCallCheck()工具函数
+//插件说明:
+babel-plugin-transform-es2015-modules-strip	//禁用导入、导出插件
+
+babel-plugin-transfrom-runtime				//
+
+babel-plugin-add-module-exports
+
 /*
 注：
-启用babel-plugin-transfrom-runtime，Babel就会使用babel-runtime工具函数，还会自动引用babel-polyfill
+启用插件babel-plugin-transfrom-runtime，Babel就会使用babel-runtime工具函数，还会自动引用babel-polyfill
 */
-
-babel-register			//改写require命令
-//用 import 代替require，import的优点在于可以引入所需方法或者变量，而不需要加载整个模块，提高了性能
