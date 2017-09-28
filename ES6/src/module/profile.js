@@ -2,7 +2,7 @@ let firstName = "yu";
 let lastName  = "feng";
 let year      = 1984;
 
-let def = 'babel-node -> module;';
+let def = 'default;';
 
 
 export {firstName, lastName, year};

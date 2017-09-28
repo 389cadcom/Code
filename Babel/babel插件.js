@@ -85,7 +85,7 @@ transform-function-bind					// 编译bind运算符，即::
 
 
 //插件说明:
-babel-plugin-transform-es2015-modules-strip	//禁用导入、导出插件
+babel-plugin-transform-es2015-modules-strip	//禁用导入、导出模块
 
 babel-plugin-transfrom-runtime				//
 
