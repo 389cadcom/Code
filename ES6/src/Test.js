@@ -13,21 +13,8 @@ async function test() {
   
 test().then(() => console.log('done')); */
 
-var obj = {
-    x: 1,
-    y: 2,
-    z: 3
-}
-console.log();
+var obj = {name: 123}
+obj.sex = 'male';
+Object.defineProperty(obj, 'key', {value: 'key'})
 
-var set = new Set(Object.keys(obj));
-
-var map = new Map([['name', 'li']])
-
-var a = ['a']
-map.set(a, 555);
-console.log(map.get(a))
-
-
-
-console.log(JSON.stringify(map))
+console.log(Object.getOwnPropertyDescriptor(obj, 'key'));
