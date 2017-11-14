@@ -11,7 +11,7 @@ rimraf node_modules
 */
 
 
-//基于babel6.x转换ES6
+//默认只转换语法，不转换新的API
 
 1.babel-core							//核心API，调用Babel的API进行转码，就要使用babel-core模块
 
@@ -21,9 +21,10 @@ rimraf node_modules
 
 4.babel-polyfill						//为当前环境提供一个垫片
 
-5.babel-runtime							//提取模块复用工具函数，提供工具函数，减少重复代码	_extend()， classCallCheck()工具函数
+5.babel-runtime	(_extend, callback)     //提取模块复用工具函数,提供工具函数,减少重复代码	_extend()， classCallCheck()工具函数
+//babel-plugins-transform-runtime
 
-6.babel-register						//改写require命令, 用 import 代替require，import的优点可以引入所需方法或者变量，不需要加载整个模块，提高了性能
+6.babel-register						//改写require命令, 用import代替require，import的优点可以引入所需方法或者变量，不需要加载整个模块，提高了性能
 
 
 
@@ -32,7 +33,7 @@ babel es6.js  --preset es2015
 
 babel es6.js -o es5.js			//--out-file
 
-babel src -d lib			//--out-dir 
+babel src -d lib				//--out-dir 
 
 
 //执行脚本 node  babel-node

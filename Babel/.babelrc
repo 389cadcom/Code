@@ -4,7 +4,7 @@
   "comments": false
 }
 
-//不编译import export bootstrap4
+//不编译import export      -- bootstrap4
 {
   "presets": [ "env", { "modules": false, "loose": true } ],
   "plugins": [ "transform-es2015-modules-strip" ]
@@ -18,7 +18,7 @@
 targets.node		支持到哪个版本的 node
 targets.browsers	支持到哪个版本的浏览器
 loose			启动宽松模式，配合 webpack 的 loader 使用
-modules			使用何种模块加载机制
+modules			使用何种模块加载机制   "amd" | "umd" | "systemjs" | "commonjs" | false, defaults to "commonjs".
 debug			开启调试模式
 include			包含哪些文件
 exclude			排除哪些文件

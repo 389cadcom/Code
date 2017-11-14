@@ -1,3 +1,19 @@
+//17-11-14
+模块介绍：
+babel-loader
+babel-core
+babel-preset-env
+babel-preset-stage-2
+babel-plugin-transform-runtime
+babel-register
+babel-polyfill
+
+//plugins
+transform-modules-strip				//module: false, 去除import, export声明
+transform-remove-strict-mode		// 'use strict'		
+
+
+/*-------------------------------基本内容----------------------*/
 //解析，转换和生成
 {   presets: [],   plugins: [] }
 
@@ -5,6 +21,7 @@
 
 //预设presets  --> plugins的组合				http://babeljs.io/docs/plugins/
 env, es2015, es2016, es2017, latest, react		//latest  --> babel-preset-env代替
+
 
 //es2015
 check-es2015-constants					// 检验const常量是否被重新赋值
@@ -38,9 +55,9 @@ transform-async-to-generator			// 把async函数转化成generator函数
 
 
 /*
-	Stage-X(0/1/2/3/4) 五个阶段: 展示、征求、草案、候选、定案
+  Stage-X(0/1/2/3/4) 五个阶段: 展示、征求、草案、候选、定案
 
-	何转换都是尚未被批准为发布Javascript的语言
+  何转换都是尚未被批准为发布Javascript的语言
 */
 
 //stage-4:
