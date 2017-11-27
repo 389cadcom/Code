@@ -1,11 +1,11 @@
 //17-11-14
-模块介绍：
+//模块介绍：
 babel-loader
 babel-core
 babel-preset-env
 babel-preset-stage-2
 babel-plugin-transform-runtime
-babel-register
+babel-register					//
 babel-polyfill
 
 //plugins
@@ -57,7 +57,6 @@ transform-async-to-generator			// 把async函数转化成generator函数
 /*
   Stage-X(0/1/2/3/4) 五个阶段: 展示、征求、草案、候选、定案
 
-  何转换都是尚未被批准为发布Javascript的语言
 */
 
 //stage-4:

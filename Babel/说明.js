@@ -37,9 +37,7 @@ babel src -d lib				//--out-dir
 
 
 //执行脚本 node  babel-node
-node  test.js
-
-babel-node test.js
+node  test.js, babel-node test.js
 
 //babel-node	REPL环境
 Modules aren't supported in the REPL
