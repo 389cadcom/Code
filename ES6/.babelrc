@@ -1,8 +1,3 @@
 {
-  "presets": [
-      ["es2015", {"module": false }]
-  ],
-  "plugins": [
-      "transform-es2015-modules-strip"
-  ]
+  "presets": ["es2015", "es2017"]
 }

@@ -2,7 +2,7 @@
  * 类数组添加Iterator接口，直接引用数组iterator接口
  * 普通对象部属则无效
  * 
- * [...str] 使用扩展运算符转为数组
+ * [...str] 使用扩展运算符转为数组, Array.from()
  */
 var obj = {
     0:'a',
@@ -12,7 +12,6 @@ var obj = {
     [Symbol.iterator]:[][Symbol.iterator]
 }
 // obj[Symbol.iterator] = [][Symbol.iterator];
-
 for(var item of obj){
     console.log(item);
 }
@@ -38,6 +37,7 @@ class RangIterator{
     }
 }
 let rang = new RangIterator(0, 3);
+
 
 /**
  * 给对象值添加Iterator接口
@@ -67,8 +67,7 @@ let obj1 = {
 }
 
 /*
- *Generator自定义为对象创建Iterator接口
- *遍历键值
+ *Generator自定义为对象创建Iterator接口, 遍历键值
 */
 function* entries(){
     let keys = Object.keys(this);

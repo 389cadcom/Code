@@ -1,7 +1,7 @@
 //ES6加载
-import def, {firstName, lastName, year} from './profile.js';
+import def, * as pro from './profile.js';
 
-console.log(firstName, lastName, year, def)
+console.log(pro, def)
 
 // module Person from './profile.js';
 

@@ -1,23 +1,3 @@
-//自定义Interator接口
-let Symb = {
-    [Symbol.iterator]() {
-        let pre = 0,
-            cur = 1;
-        return {
-            next() {
-                [pre, cur] = [cur, pre + cur];
-                return { done: false, value: cur }
-            }
-        }
-    }
-}
-for (var n of Symb) {
-    // truncate the sequence at 1000
-    if (n > 10) break;
-
-}
-
-
 var arr = [1, 2, 3, 2, 4, 5]
 var arr1 = [1,3,6,7];
 
@@ -30,6 +10,15 @@ console.log(new Set([...temp, ...set1]))
 let set2 = new Set(Array.from(set1, val=>val*2));
 
 console.log(set2)
+
+//对象不存在引用， 那么WeakSet对象会没有引用的对象占用的内存回收
+var ws = new WeakSet();
+let obj = {}, arr = [];
+wsset.add(obj).add(arr);
+setTimeout(function() {
+    console.log(ws);
+}, 10000);
+
 
 var map = new Map([
     [1, 'Li'],

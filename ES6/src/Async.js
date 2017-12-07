@@ -19,3 +19,4 @@ async function getTitle(url) {
 getTitle('https://tc39.github.io/ecma262/').then(v=>{
   console.log(v)
 })
+

@@ -1,5 +1,5 @@
 {
-  "presets": ["es2015", "stage-2"],
+  "presets": ["es2015", "stage-2"],	//"presets": ["env", options]
   "plugins": ["transform-runtime"],
   "comments": false
 }
@@ -10,10 +10,7 @@
   "plugins": [ "transform-es2015-modules-strip" ]
 }
 
-//配置参数 options
-{
-  "presets": ["env", options]
-}
+
 /*
 targets.node		支持到哪个版本的 node
 targets.browsers	支持到哪个版本的浏览器
