@@ -1,15 +1,12 @@
-//17-11-14
-//模块介绍：
-babel-loader
-babel-core
-babel-preset-env
-babel-preset-stage-2
-babel-plugin-transform-runtime
-babel-register					//
-babel-polyfill
+//注：
+//启用插件babel-plugin-transfrom-runtime，Babel就会使用babel-runtime工具函数，还会自动引用babel-polyfill
+
+babel-runtime					//手动添加require("babel-runtime")
+babel-plugin-transform-runtime	//工具自动添加,主要的功能是为api提供沙箱的垫片方案
+babel-polyfill					//通过改写全局prototype的方式实现, require('babel-polyfill')
 
 //plugins
-transform-modules-strip				//module: false, 去除import, export声明
+transform-modules-strip				//module: false, 去除import, export声明 ==> BS4
 transform-remove-strict-mode		// 'use strict'		
 
 
@@ -106,8 +103,3 @@ babel-plugin-transform-es2015-modules-strip	//禁用导入、导出模块
 babel-plugin-transfrom-runtime				//
 
 babel-plugin-add-module-exports
-
-/*
-注：
-启用插件babel-plugin-transfrom-runtime，Babel就会使用babel-runtime工具函数，还会自动引用babel-polyfill
-*/

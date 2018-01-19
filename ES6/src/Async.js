@@ -2,6 +2,7 @@
 /*
 1.async函数返回一个Promise对象
 2.async函数内部抛出错误，会导致返回的Promise对象变为reject状态
+3.await等特是Promise对象，不必写then()方法，直执返回值
  */
 
 fetch('https://tc39.github.io/ecma262/').then(response=>{

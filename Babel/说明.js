@@ -12,7 +12,6 @@ rimraf node_modules
 
 
 //默认只转换语法，不转换新的API
-
 1.babel-core							//核心API，调用Babel的API进行转码，就要使用babel-core模块
 
 2.babel-node							//REPL环境、直接执行行脚本  如：babel-node src/test.js
@@ -48,3 +47,7 @@ babel-node module.js;
 
 //注：
 编译后的JS程序有时需依赖polyfill模块，需引入require('babel-polyfill');
+
+babel-polyfill则是通过改写全局prototype的方式实现，比较适合单独运行的项目。
+开启babel-polyfill的方式，可以直接在代码中require，或者在webpack的entry中添加，
+也可以在babel的env中设置useBuildins为true来开启。
