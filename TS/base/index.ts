@@ -1,6 +1,12 @@
-import { User } from './user';
+/* import User from '../class/User';
 
-const user = new User(1, 'Snow')
+let user:User = new User(1, 'jack');
+user.say() */
 
-user.say();
-User.print()
+import Hello from './Decorator';
+
+let jack:Hello = new Hello();
+jack.name = "jack";
+console.log(jack.id);
+ 
+//jack.changeName('');

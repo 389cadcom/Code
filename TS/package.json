@@ -1,10 +1,14 @@
 {
   "name": "ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "nodemon参数  --ext  exec",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --ext ts --watch server --exec \"npm run clean && npm run tsc && npm run server\"",
+    "server": "cross-env NODE_ENV=development node ./dist/app.js",
+    "clean": "rm -rf ./dist",
+    "tsc": "tsc",
+    "build": "npm run clean && npm run tsc"
   },
   "author": "",
   "license": "ISC"
