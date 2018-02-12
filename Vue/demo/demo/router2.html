@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>渲染多个实例</title>
+	<script src="../node_modules/vue/dist/vue.min.js"></script>
+	<script src="../node_modules/vue-router/dist/vue-router.min.js"></script>
+</head>
+<style>
+.app{margin-right: 1em; float: left; width: 30%;}
+.app ul{ padding: 0; margin: 0;}
+.app li{list-style: none; display: inline-block; padding: 0; margin: 0; padding-right: 1em;}
+</style>
+<body style="padding-top: 100px;">
+<div class="app">
+	<ul>
+		<router-link tag="li" to="/"><a>home</a></router-link>
+		<router-link tag="li" to="/edit"><a>edit</a></router-link>
+		<router-link tag="li" to="/news"><a>news</a></router-link>
+		<router-link tag="li" :to="{name:'params', params: {id:123}, query: {args:'args'} }"><a>params</a></router-link>
+	</ul>
+	<p>1.$route.path: {{ $route.path }}</p>
+	<p>命名视图</p>
+	<router-view></router-view>
+	<router-view name="edit"></router-view>
+</div>	
+
+<div class="app">
+	<ul>
+		<router-link tag="li" to="/"><a>home</a></router-link>
+		<router-link tag="li" to="/edit"><a>edit</a></router-link>
+		<router-link tag="li" to="/news/123"><a>news</a></router-link>
+	</ul>
+	<p>2.$route.path: {{ $route.path }}</p>
+	<router-view></router-view>
+</div>
+</body>
+<script>
+const Home = { template: '<div>组件: home</div>' }
+const Edit = { template: '<div>组件: Edit</div>' }
+const News = { template: '<div>组件: news</div>' }
+
+var router = new VueRouter({
+	routes: [
+		{ path: '/', component: Home },
+		{ path: '/edit', component: Edit },
+		{ path: '/news/:id', component: News,
+		  children: [
+		  	{path: '', component: News}
+		  ]
+		},
+		{ path: '/params/:id', name:'params', components: {
+			default: News,
+			edit: Edit
+		} },
+	],
+	scrollBehavior(to, from, savedPosition){
+		console.log(to, from, savedPosition)
+	}
+})
+
+//使用基础 Vue 构造器, 创建一个子类, 参数是包含组件选项的对象
+var Base = Vue.extend({
+	router
+})
+
+//渲染多个实例
+var arr = [].slice.call(document.querySelectorAll('.app'));
+arr.forEach(item=>{
+	new Base({
+		el: item
+	})
+})
+</script>
+
+</html>

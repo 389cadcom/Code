@@ -2,7 +2,7 @@
  * @Author: Lonves 
  * @Date: 2017-11-08 14:17:48 
  * @Last Modified by: lonves.zheng
- * @Last Modified time: 2018-01-18 15:25:35
+ * @Last Modified time: 2018-02-07 12:41:47
  * 
  * apply, call, bind, name, length, arguments, prototype
  */

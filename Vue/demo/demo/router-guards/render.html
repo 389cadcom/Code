@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<title>el, render, template, $mount解析</title>
+</head>
+<body>
+<div id="app" class="root">
+	<my-component></my-component>
+</div>
+</body>
+<script>
+var res = Vue.compile('<div>{{txt}}</div>');
+
+Vue.component('myComponent', {
+	template: '<div>{{txt}}</div>',
+	data(){
+		return {txt: '123'}
+	}
+})
+var vm = new Vue({
+    data: {
+        msg: 'hello',
+        txt: 'Hi'
+    },
+    render: res.render,
+/*    template: `							//含 render 函数，template 选项将被忽略
+    	<div id='app'><p>{{msg}}</p></div>
+    `*/
+    //staticRenderFns: compile.staticRenderFns
+}).$mount('#app');
+</script>
+</html>

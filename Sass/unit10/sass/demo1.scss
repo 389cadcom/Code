@@ -1,0 +1,60 @@
+ /*!if运算*/
+ $screenWidth:410;
+ body{
+    color:if($screenWidth > 768,blue,red);
+ }
+ @if ($screenWidth >768){
+    body{
+        color:red;
+    }
+ }
+ @else if ($screenWidth >400){
+    span{
+        color:red;
+    }
+ }
+ @else{
+    p{
+        color:blue;
+    }
+ }
+
+ /*!for*/
+@for $i from 1 through 5 {  //through(1<=i<=5)  to(1<i<5)
+     .span#{$i} {
+         width:20px * $i;
+     }
+ }
+
+ /*!while*/
+// $j:6;
+// @while $j > 0{
+//     .p#{$j}{
+//          width:20% * $j;
+//     }
+//     $j:$j -3;/*步长*/
+// }
+
+/*!  each */
+$k:1;
+@each $c in blue,red,green{
+    .div#{$k}{
+        color:$c;
+    }
+    $k:$k+1;
+}
+
+/*!List*/
+
+@each $key,$color in(default ,blue),(info,green),(danger,red){
+    .text-#{$key}{
+        color:$color;
+    }
+}
+
+/*!Map*/
+@each $key,$value in(default:blue,info:green,danger:red){
+    .label-#{$key}{
+        color:$value;
+    }
+}

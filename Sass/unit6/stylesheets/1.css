@@ -1,0 +1,40 @@
+@charset "UTF-8";
+/*导入原生 css*/
+@import url(css.css);
+@import "http://sss/xx";
+@import url(css.css);
+/*导入标准scc*/
+/* line 2, ../sass/_part1.scss */
+header {
+  font-family: 微软雅黑;
+}
+
+/*map多值运用*/
+/*类引用*/
+/* line 17, ../sass/1.scss */
+body {
+  /*全局*/
+  color: red;
+  font-size: 14px;
+  padding: 6px 7px 8px 9px;
+  padding-left: 6px;
+}
+
+/* line 25, ../sass/1.scss */
+footer {
+  color: red;
+  background-color: red;
+  border-color: blue;
+}
+
+/* line 31, ../sass/1.scss */
+.container {
+  width: 66px;
+  height: 66px;
+}
+
+/* - 和 _*/
+/* line 39, ../sass/1.scss */
+.text-color {
+  color: green;
+}

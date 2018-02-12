@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/*!颜色函数*/
+/*!自定义函数(要放在前面)*/
+/* line 17, ../sass/demo1.scss */
+body {
+  color: #ff00c8;
+  background: rgba(255, 0, 200, 0.5);
+  width: 100%;
+  height: 100%;
+}
+/* line 23, ../sass/demo1.scss */
+body p {
+  /*！加深变亮 */
+  color: #fb00c5;
+  background: #ff05c9;
+  /*！*/
+  z-index: 3;
+  z-index: 3;
+  width: 10px;
+}
+
+/*!debug warn error*/

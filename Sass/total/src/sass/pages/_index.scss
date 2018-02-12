@@ -1,0 +1,29 @@
+.index{
+    padding-bottom:30px;
+    %col6-cell{ /*公共部分，继承*/
+        width:span(6);
+        text-align:left;
+        display: table-cell;
+        vertical-align:middle;
+
+
+        @include breakpoint($screen-xs){
+           width: span(12);
+           display:block;
+        }
+
+    }
+    .hero-image{
+        @extend %col6-cell;
+        @extend %fill-img;
+    }
+    .introduction{
+        @extend %col6-cell;
+        padding-left:20px;
+        font-size:24px;
+        text-align:center;
+        line-height:36px;
+        color:#699;
+
+    }
+}

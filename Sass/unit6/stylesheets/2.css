@@ -1,0 +1,93 @@
+@charset "UTF-8";
+/* line 1, ../sass/2.scss */
+body {
+  background: red;
+}
+/* line 3, ../sass/2.scss */
+body header {
+  background: blue;
+}
+/* line 7, ../sass/2.scss */
+body footer {
+  background-size: 100% 50%;
+  background-color: red;
+}
+/* line 13, ../sass/2.scss */
+body a {
+  color: blue;
+}
+/* line 15, ../sass/2.scss */
+body a:hover {
+  color: red;
+}
+/* line 19, ../sass/2.scss */
+body a.content {
+  color: green;
+}
+/* line 24, ../sass/2.scss */
+.container {
+  width: 1104px;
+}
+/* line 30, ../sass/2.scss */
+.container {
+  /*跳出嵌套*/
+  background: lightgreen;
+}
+
+/* line 35, ../sass/2.scss */
+.text-info {
+  color: red;
+}
+/* line 37, ../sass/2.scss */
+nav .text-info {
+  /*跳出，nav下的.text-info*/
+  color: blue;
+}
+
+/*继承*/
+/*单继承与继承*/
+/* line 45, ../sass/2.scss */
+.text-info {
+  /*占位选择器%，公共的样式，谁继承，谁才生成*/
+  background: red;
+}
+
+/* line 48, ../sass/2.scss */
+.small, .text-info {
+  font-size: 12px;
+}
+
+/* line 51, ../sass/2.scss */
+.text-info {
+  color: lightblue;
+}
+
+/*链继承*/
+/* line 57, ../sass/2.scss */
+.one, .two, .three {
+  border: 1px solid red;
+}
+
+/* line 60, ../sass/2.scss */
+.two, .three {
+  color: red;
+}
+
+/* line 64, ../sass/2.scss */
+.three {
+  border-radius: 4px;
+}
+
+/*继承交叉合并*/
+/* line 70, ../sass/2.scss */
+a span, a div .content, div a .content {
+  font-size: blod;
+}
+
+/*继承的作用域*/
+@media screen and (max-width: 600px) {
+  /* line 79, ../sass/2.scss */
+  .two2, .text {
+    color: red;
+  }
+}

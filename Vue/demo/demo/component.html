@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js" ></script>
+</head>
+<style>
+fieldset{margin-bottom: 15px;}	
+</style>
+<body>
+<div id="App">
+	<!--TODO 2-->
+	<fieldset>
+		<legend>全局定义组件 Vue.component</legend>
+		<my-component></my-component>
+		<my-component :a = 'hi' :num='1'>
+			默认slot名的内容
+			<header slot="header"><p>页头内容</p></header>
+			<footer slot="footer"><p>页尾内容</p></footer>
+		</my-component>
+	</fieldset>
+	<fieldset>
+		<legend>局部定义组件 components</legend>
+		<p>总计：{{ total }}</p>
+		<child></child>
+		<child @increment="incTotal"></child>
+		<child @increment="incTotal"></child>
+	</fieldset>
+</div>
+
+<template id="tmpl">
+<div class="">	
+	<p>{{msg}} {{a}} Number: {{ num }} <button>$emit</button></p>
+	<slot>默认slot分发内容</slot>
+	<slot name="header"><p>默认具名header内容</p></slot>
+	<slot name="footer"><p>默认具名footer内容</p></slot>
+</div>	
+</template>
+
+<script>
+//全局组件
+Vue.component('my-component', {
+	template: '#tmpl',
+	data(){
+		return { msg: 'Hello World!' }
+	},
+	props: ['a', 'num'],
+	methods:{
+		increment: function(){
+			console.log((this.num))
+		}
+	}
+})
+
+var data = { count: 0 }					//共享了同一个 data
+new Vue({
+	el: '#App',
+	data: {
+		hi: 'Hi!',						
+		total: 0
+	},
+	components: {						//局部组件
+		'child': {
+			template: '<button @click="increment">{{count}}</button>',
+			data(){
+				return { count:0 }		//每个组件返回全新的 data 对象
+			},
+			methods: {
+				increment: function(){
+					this.count++;
+					this.$emit('increment', this.count)		//组件派发事件名称,传参
+				}
+			}
+		}
+	},
+	methods: {
+		incTotal: function(args){
+			console.log(args)
+			this.total++
+		}
+	}
+})
+</script>
+
+<div id="is">
+	<p>动态组件  -- 使用保留的 component元素, 动态地绑定到它is特性; 避免重新渲染 keep-alive</p>
+	<button @click="changeVeiw">切换</button>
+	<component ref='profile' :is="currentView"></component>
+</div>
+<hr>
+<script>
+var index = 0;	
+var home = new Vue({
+	el: '#is',
+	data: {
+		currentView: 'home'
+	},
+	components: {
+		home: { template: '<p>home</p>', data(){return {page:'home data'} }},
+		edit: { template: '<p>edit</p>'},
+		news: { template: '<p>news</p>'},
+	},
+	methods: {
+		changeVeiw: function(){
+			var arr = ['home', 'edit', 'news'];
+			/*var index = Math.floor(Math.random()*3);*/
+			index++;
+			if(index == 3){
+				index = 0;
+			}
+			console.log(index);
+			this.currentView = arr[index];
+		}
+	}
+})
+</script>
+<fieldset>
+	<legend>使用template</legend>	
+	<h4>使用template, 模板内容替换挂载元素内容(注：Render)</h4>
+	<p>Vue 选项中的 render 函数若存在，则 Vue 构造函数不会从 template 选项或通过 el 选项指定的挂载元素中提取出的 HTML 模板编译 render 函数。</p>
+	<div id="demo">
+		<p>Root</p>
+	</div>
+</fieldset>
+<script>
+var vm = new Vue({
+  el: '#demo',
+  template: `
+    <div id="demo">
+        <h2>Basic</h2>
+        <my-component >
+        	默认slot名的内容
+        	<p slot="header">修改具名slot--header内容</p>
+        </my-component>
+    </div>
+  `
+})
+</script>
+</body>
+</html>

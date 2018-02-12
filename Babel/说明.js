@@ -51,3 +51,7 @@ babel-node module.js;
 babel-polyfill则是通过改写全局prototype的方式实现，比较适合单独运行的项目。
 开启babel-polyfill的方式，可以直接在代码中require，或者在webpack的entry中添加，
 也可以在babel的env中设置useBuildins为true来开启。
+
+
+//ES7
+babel --optional es7.decorators foo.js > foo.es5.js

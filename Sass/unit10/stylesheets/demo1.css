@@ -1,0 +1,86 @@
+@charset "UTF-8";
+/*!if运算*/
+/* line 3, ../sass/demo1.scss */
+body {
+  color: red;
+}
+
+/* line 12, ../sass/demo1.scss */
+span {
+  color: red;
+}
+
+/*!for*/
+/* line 24, ../sass/demo1.scss */
+.span1 {
+  width: 20px;
+}
+
+/* line 24, ../sass/demo1.scss */
+.span2 {
+  width: 40px;
+}
+
+/* line 24, ../sass/demo1.scss */
+.span3 {
+  width: 60px;
+}
+
+/* line 24, ../sass/demo1.scss */
+.span4 {
+  width: 80px;
+}
+
+/* line 24, ../sass/demo1.scss */
+.span5 {
+  width: 100px;
+}
+
+/*!while*/
+/*!  each */
+/* line 41, ../sass/demo1.scss */
+.div1 {
+  color: blue;
+}
+
+/* line 41, ../sass/demo1.scss */
+.div2 {
+  color: red;
+}
+
+/* line 41, ../sass/demo1.scss */
+.div3 {
+  color: green;
+}
+
+/*!List*/
+/* line 50, ../sass/demo1.scss */
+.text-default {
+  color: blue;
+}
+
+/* line 50, ../sass/demo1.scss */
+.text-info {
+  color: green;
+}
+
+/* line 50, ../sass/demo1.scss */
+.text-danger {
+  color: red;
+}
+
+/*!Map*/
+/* line 57, ../sass/demo1.scss */
+.label-default {
+  color: blue;
+}
+
+/* line 57, ../sass/demo1.scss */
+.label-info {
+  color: green;
+}
+
+/* line 57, ../sass/demo1.scss */
+.label-danger {
+  color: red;
+}

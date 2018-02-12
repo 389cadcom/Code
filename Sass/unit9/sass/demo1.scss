@@ -1,0 +1,37 @@
+/*!颜色函数*/
+// body{
+//     color:rgb(255,0,200);
+//     background:rgba(255,0,200,0.5);
+//     width:100%;
+//     height:100%;
+// }
+
+/*!自定义函数(要放在前面)*/
+@function double($width){
+    @if $width > 3px{
+            @warn '$width not > 3px';
+        }
+    @return $width * 2;
+}
+
+body{
+    $color:rgb(255,0,200);
+    color:$color;
+    background:rgba($color,0.5);
+    width:100%;
+    height:100%;
+    p{/*！加深变亮 */
+        color:darken($color,0.8);
+        background:lighten($color,0.9);
+        /*！*/
+        z-index:str-length('aaa');
+        z-index:str-index('abcde','c');
+        width:double(5px);
+    }
+}
+
+
+/*!debug warn error*/
+@debug 'this is a debug test';
+@warn 'Warn';
+// @error 'Error';

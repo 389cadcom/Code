@@ -11,3 +11,9 @@ declare namespace Models {
   }
 }
 */
+/*
+declare module "*.scss" {
+   const content: any
+   export default content
+}
+*/

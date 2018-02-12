@@ -1,0 +1,19 @@
+.install{
+  text-align: center;
+  h2{
+    font-size: 48px;
+    color: #699;
+    font-weight: 300;
+     @include breakpoint($screen-xs){
+        font-size:24px;
+    }
+  }
+  .list-columns{
+    li{
+      @include span(6);
+      list-style-position: inside;/*属性设置在何处放置列表项标记。
+      inside  列表项目标记放置在文本以内，且环绕文本根据标记对齐。*/
+      @extend %fill-img;
+    }
+  }
+}

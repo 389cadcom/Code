@@ -1,0 +1,85 @@
+body{
+    background:red;
+    header{
+        background:blue;
+    }
+
+    footer{
+        background:{
+            size:100% 50%;
+            color:red;
+        }
+    }
+    a{
+        color:blue;
+        &:hover{
+            color:red;
+        }
+
+        &.content{
+            color:green;
+        }
+    }
+
+    @at-root .container{
+        width:1104px;
+    }
+
+    @media screen and(max-width:600px){
+        @at-root (without : media rule){
+            .container{/*跳出嵌套*/
+                background:lightgreen;
+            }
+        }
+    }
+    @at-root .text-info{
+        color:red;
+        @at-root nav &{/*跳出，nav下的.text-info*/
+            color:blue;
+        }
+    }
+}
+
+/*继承*/
+/*单继承与继承*/
+%alert{ /*占位选择器%，公共的样式，谁继承，谁才生成*/
+    background:red;
+}
+.small{
+    font-size:12px;
+}
+.text-info{
+    @extend %alert,.small;
+    color:lightblue;
+}
+
+/*链继承*/
+.one{
+    border:1px solid red;
+}
+.two{
+    @extend .one;
+    color:red;
+}
+.three{
+    @extend .two;
+    border-radius:4px;
+}
+/*继承交叉合并*/
+
+a span{
+    font-size:blod;
+}
+div .content{
+    @extend span;
+}
+
+/*继承的作用域*/
+@media screen and(max-width:600px){
+    .two2{
+        color:red;
+    }
+    .text{
+        @extend .two2;
+    }
+}

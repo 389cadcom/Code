@@ -1,0 +1,76 @@
+@charset "UTF-8";
+/*数字类型*/
+/* line 6, ../sass/demo1.scss */
+p {
+  font-size: 14px;
+}
+
+/*字符串类型*/
+/* line 15, ../sass/demo1.scss */
+.container {
+  font-size: 12px;
+}
+
+/*Bool类型*/
+/*Null类型*/
+/* line 25, ../sass/demo1.scss */
+body {
+  color: red;
+}
+
+/*颜色类型*/
+/* line 35, ../sass/demo1.scss */
+body {
+  color: rgba(255, 255, 0, 0.5);
+}
+
+/*!list map 常用*/
+/* line 42, ../sass/demo1.scss */
+.alert-success {
+  background-color: #dff8d8;
+  border: 1px solid #d6e9c6;
+}
+
+/*运算*/
+/* line 52, ../sass/demo1.scss */
+span {
+  width: 25px;
+}
+
+/* line 55, ../sass/demo1.scss */
+a:hover {
+  cursor: e-resize;
+}
+
+/* line 58, ../sass/demo1.scss */
+a:before {
+  cursor: "Abc";
+}
+
+/* line 61, ../sass/demo1.scss */
+a:before {
+  cursor: Abc;
+}
+
+/* line 64, ../sass/demo1.scss */
+p {
+  padding: 7px auto;
+}
+
+/* line 68, ../sass/demo1.scss */
+p:before {
+  content: "hello,sass 3";
+}
+
+/*!除法
+    1.运算符用空格分开
+    2.两个数单位一样
+    3.至少前面一个已经有
+*/
+/* line 76, ../sass/demo1.scss */
+p {
+  font: 20px /20px;
+  width: 7.5px;
+  width: 8px;
+  height: 50px;
+}

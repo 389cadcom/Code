@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example-4">
+  <input type="radio" id="one" value="One" v-model="picked">
+  <label for="one">One</label>
+  <br>
+  <input type="radio" id="two" value="Two" v-model="picked">
+  <label for="two">Two</label>
+  <br>
+  <span>Picked: {{ picked }}</span>
+  <ul>
+  	<li v-for="(val, key,i) in obj">{{i}}.{{key}}:{{val}}</li>
+  </ul>
+</div>
+<br>
+<div id="example-5">
+	<label for="one">绑定值:true-vaule</label>
+  	<input type="checkbox" v-model="toggle" :true-value="'a'" :false-value="'b'" >
+  <br>
+  <p>toggle: {{ toggle }}</p>
+	<label for="one">数组:</label>
+	<input type="checkbox" v-model="checked" value="A" >
+	<input type="checkbox" v-model="checked" value="B" >
+  <br>
+  <p>checked: {{ checked }}</p>
+</div>
+<script>
+new Vue({
+  el: '#example-4',
+  data: {
+    picked: 'One',
+    obj: {a:1, b:2, c:3}
+  }
+})
+new Vue({
+  el: '#example-5',
+  data: {
+    toggle: 'a',
+    checked: true
+  }
+})
+</script>
+<h3>在自定义标签上面使用v-for，得到的数据要想传递到组件内部要使用props</h3>
+<div id="todo-list-example">
+	<input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="Add a todo">
+	<ul>
+		<todo-item v-for="(todo,index) in todos" data="string" :title-val="todo" @remove="todos.splice(index,1)"></todo-item>
+	    <!--<li is="todo-item" v-for="(todo,index) in todos" :title="todo" @remove="todos.splice(index,1)"></li>-->
+	</ul>
+</div>
+
+<script>
+Vue.component('todo-item',{
+	template: `<li>{{titleVal}}, {{data}}<button v-on:click="dispatch">X</button></li>`,
+	props: ['titleVal', 'data'],
+	methods: {
+		dispatch: function(){
+			this.$emit('remove')
+		}
+	}
+})
+new Vue({
+	el: "#todo-list-example",
+	data: {
+	    newTodoText: '',
+	    todos: [
+	        'Do the dishes',
+	        'Take out the trash',
+	        'Mow the lawn'
+	    ]
+	},
+	methods: {
+	    addNewTodo: function(){
+	        this.todos.push(this.newTodoText);
+	        this.newTodoText = '';
+	    }
+	}
+})
+</script>
+
+</body>
+</html>

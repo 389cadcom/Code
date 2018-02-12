@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<style type="text/css">
+[v-cloak]{display: none;}
+#app li {
+  animation: flip-in 1s 0s ease-in-out both;
+}
+@keyframes flip-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+</style>
+<body>
+<div id="app" v-cloak>
+	<button @click="startCount">倒计时</button>
+	<p data-count='60' v-count-down:foo.bar="60" v-if="show"></p>
+	
+</div>	
+</body>
+<script src="../node_modules/vue/dist/vue.min.js"></script>
+<script>
+Vue.directive('count-down', (el, binding)=>{
+    var count = el.getAttribute('data-count');
+    if(this.timer){
+    	clearInterval(this.timer);
+    	this.timer = null;
+    }
+    this.timer = setInterval(()=>{
+    	el.innerHTML = count--;
+    	el.setAttribute('data-count', count);
+    }, 1000)
+})
+var app = new Vue({
+  el: '#app',
+  data () {
+    return {
+      show: false, // 是否显示倒计时
+      timer: null // 定时器
+    }
+  },
+  methods: {
+    startCount: function (){
+      this.show = true
+    }
+  },
+  directives: {
+    /*'count-down': {
+      bind: function (el, binding, vnode){
+      	console.log(binding, vnode)
+        var count = el.getAttribute('data-count');
+        if(this.timer){
+        	clearInterval(this.timer);
+        	this.timer = null;
+        }
+        this.timer = setInterval(()=>{
+        	el.innerHTML = count--;
+        	el.setAttribute('data-count', count);
+        }, 1000)
+      }
+    }*/
+  }
+})
+</script>
+</html>

@@ -1,0 +1,24 @@
+// scss栅格布局
+
+@function buildContainer($num: 5) {
+    $map: (defaultValue: 0);    //定义一个map
+    $rate: percentage(1 / $num); // percentage 求出百分比
+    @for $i from 1 through 5 {
+        $tempMap: (col#{$i} : $rate * $i);
+        $map: map-merge($map, $tempMap);//合并map
+    }
+    $map: map-remove($map, defaultValue);//去除默认
+
+    @return $map;
+
+}
+@mixin buildContainer($num: 5) {
+    $map: buildContainer($num);
+    @each $key, $val in $map {
+        .#{$key} {
+            width: $val;
+        }
+    }
+}
+
+@include buildContainer();  //10

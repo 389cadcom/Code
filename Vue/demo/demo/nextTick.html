@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>深入理解响应</title>
+	<script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+<div id="div1">
+	<div class="container">
+		<h2>Vue.nextTick</h2>
+        <p>我对于nextTick的理解是在所有触发的变化更新完毕，在渲染到DOM之前，做的事。</p>
+		<ul>
+			<li v-for='item in items'>{{ item }}</li>
+		</ul>
+	</div>
+
+</div>
+<script type="text/javascript">
+new Vue({
+	el:"#div1",
+	data:function (){
+		return{
+			items:[]
+		}
+	},
+	created:function () {
+		for(var i = 0;i < 30;i++) {
+			this.items.push(i+1)
+		}
+		//this.$nextTick(function () {
+			var arr = [].slice.call(document.querySelectorAll('li'));
+			arr.forEach(function (item,index) {
+				item.style.borderBottom = '1px solid red';
+			})
+		//})
+	}
+})
+</script>
+</body>
+</html>

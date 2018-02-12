@@ -1,0 +1,32 @@
+$border-radius:5px;
+$bg-colors:(success:#dff8d8,info:#d9edf7,warning:#fcf8e3,danger:#f2dede);
+$border-color:#d6e9c6,#bce8f1,#faebcc,#ebccd1;
+
+.alert{
+    padding:15px;
+    margin-bottom:20px;
+    border:1px solid red;
+    border-radius:4px;
+}
+.alert-success{
+    background-color:map-get($bg-colors,success);
+    border:1px solid nth($border-color,1);
+}
+.alert-info{
+    background-color:map-get($bg-colors,info);
+    border:1px solid nth($border-color,2);
+}
+.alert-warning{
+    background-color:map-get($bg-colors,warning);
+    border:1px solid nth($border-color,3);
+}
+.alert-danger{
+    background-color:map-get($bg-colors,danger);
+    border:1px solid nth($border-color,4);
+}
+ a{
+    color:blue;
+    .content{
+        color:green;
+    }
+}

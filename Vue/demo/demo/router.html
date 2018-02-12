@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
+<script src="../node_modules/vue/dist/vue.min.js"></script>
+<script src="../node_modules/vue-router/dist/vue-router.min.js"></script>
+<script src="../node_modules/axios/dist/axios.min.js"></script>
+</head>
+<style>
+[v-cloak] {
+    display: none;
+}
+
+.child-view {
+    position: absolute;
+    width: 100%;
+    transition: all .8s cubic-bezier(.55, 0, .1, 1);
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+    opacity: 0;
+    transform: translate(20px, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+    opacity: 0;
+    transform: translate(-20px, 0);
+}
+</style>
+
+<body>
+<div id="app" class="container">
+	<div class="col-sm-12">
+		<my-component></my-component>
+		<hr/>
+		<h3>局部组件 components中定义:</h3>
+		<error></error>
+		<hr/>
+	</div>
+    <div class="col-sm-3">
+        <div class="list-group">
+            <router-link class="list-group-item" to="/home">home</router-link>
+            <router-link class="list-group-item" to="/user/foo">Tab</router-link>
+            <a class="list-group-item" title="无链接">{{msg }}</a>
+        </div>
+    </div>
+    <div class="col-sm-9" v-cloak>
+        <router-view name="title">{{$route.name }}</router-view>
+        <router-view></router-view>
+    </div>
+</div>
+
+<template id="error"><h4>Error</h4> </template>
+
+<template id="home">
+<div>
+    <h3>axios多线程加载：</h3>
+    <h3>{{ msg }}</h3>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th v-for="col in gridColumns"> {{col}} </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="row in gridData">
+                <td v-for="col in gridColumns"> {{ row[col] }} </td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</template>
+
+<template id="user">
+<div class="user">
+    <h2>Tab <small>params.userid:</small> {{ $route.params.userid }}</h2>
+    <ul class="nav nav-tabs">
+        <li @click="goback"> <a>返回</a> </li>
+        <router-link tag="li" to="/user/foo">
+            <a>/user/foo</a>
+        </router-link>
+        <!--<router-link tag="li" exact to="/user/foo"><a>/user/foo</a></router-link>-->
+        <router-link tag="li" to="/user/boo/profile">
+            <a>/user/boo/profile</a>
+        </router-link>
+        <router-link tag="li" to="/user/boo/posts">
+            <a>/user/boo/posts</a>
+        </router-link>
+        <router-link tag="li" :to="{name:'bar', params:{id:123}}">
+            <a>命名路由</a>
+        </router-link>
+    </ul>
+    <transition :name="transitionName" mode="out-in">
+        <keep-alive>
+            <router-view class="child-view"></router-view>
+        </keep-alive>
+    </transition>
+</div>
+</template>
+
+<hr>
+<!--另一个实例-->
+<div id="mount-point"></div>
+</body>
+
+<script src="router.js"></script>
+
+</html>

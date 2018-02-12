@@ -1,0 +1,33 @@
+/*!公共部分（头，菜单，低）*/
+.alert{
+  @include padding-leader(0.5); /*左右padding设置*/
+  @include padding-trailer(0.5);/*上下padding删除*/
+  background: $alert-background-color;
+  color: $alert-color;
+  p{
+    margin:0;
+    @include padding-trailer(0);/*上下padding删除*/
+  }
+   a{
+    text-decoration: none;
+    font-weight: 600;
+    color: #e6e6e6;
+
+    &:hover, &:focus{
+      text-decoration: underline;
+    }
+  }
+
+   ul{
+    margin: 0;
+    li{
+      list-style: none;
+      display: inline-block;
+      margin-right: 32px;
+    }
+  }
+  &.stickers{
+    background: #036;
+  }
+
+}

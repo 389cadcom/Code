@@ -1,0 +1,24 @@
+/*!整个变量定义*/
+/*! Global */
+$global-font-family: "source-sans-pro","Helvetica Neue",Helvetica,Arial,sans-serif !default;
+$susy-box-sizing: border-box;
+$susy-columns: 12;
+$susy-gutters: .25;
+$container-width: 90%;/*最大宽度*/
+
+/*! Global */
+$global-font-family: "source-sans-pro","Helvetica Neue",Helvetica,Arial,sans-serif !default;
+
+
+/*! Alert */
+$alert-background-color: #C6538C !default;
+$alert-color: hsla(0, 100%, 100%, 0.75) !default;
+
+/*! Pop-Stripe */
+$pop-stripe-colors: red orange yellow green indigo blue purple black;
+
+
+/*!Media query*/
+$screen-xs: max-width 768px;
+$screen-sm: 768px;
+

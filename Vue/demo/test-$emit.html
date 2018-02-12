@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+<div id="app1">
+	<button @click="start">倒计时</button>
+	<div data-count="60" v-count-down="60" v-if="show">60</div>
+</div>
+<script>
+new Vue({
+	el:'#app1',
+	data(){					
+		return {
+			msg: 'Hi',
+			show: false,
+			//timer: null
+		}
+	},
+	methods: {
+		start(){
+			this.show = true;
+		}
+	},
+	directives: {
+		//bind, update
+		'count-down': function(el, binding, vNode){
+			var count = el.getAttribute('data-count');
+			console.log(count)
+			if(this.timer){
+				clearInterval(this.timer);
+				this.timer = null;
+			}
+			this.timer = setInterval(()=>{
+				if(count == 0){
+					clearInterval(this.timer);
+					this.timer = null;
+					return false;
+				}
+				count--;
+				el.innerHTML = count;
+				//el.setAttribute('data-count', count);
+			}, 1000)
+		}
+	}
+})
+</script>
+<p>父子组件侦听通信</p>
+<div id="app2">
+	<p>{{msg}}</p>
+	<my-input @input='handler'></my-input>
+</div>
+<script>
+Vue.component('my-input', {
+	/*data(){
+		return {text: 'placeholder'}
+	},*/
+	props: {
+		text: String
+	},
+	template: "<input type='text' @change='update' v-model='text' />",
+	methods: {
+		update: function(){
+			console.log(this.text)
+			this.$emit('update', this.text)
+		}
+	}
+})
+new Vue({
+	el:'#app2',
+	template: `<section><p>{{msg}}</p><my-input :text="msg" @update='handler'></my-input></section>`,
+	data: {
+		msg: 'placeholder'
+	},
+	methods: {
+		handler(val){
+			this.msg = val;
+		}
+	}
+})
+</script>
+<div id="app3">
+	<p>{{msg}}</p>
+	<my-input1 v-bind:msg.sync="msg" :msg="msg"/>
+	
+	<!--<my-input1 :foo="bar" @update:foo="val => bar = val"></my-input1>-->
+</div>
+<script>
+Vue.component('my-input1', {
+	props: ['msg'],
+	data(){
+		return {text: this.msg}
+	},
+	template: '<input type="text" @change="update" v-model="text"/>',
+	methods: {
+		update(){
+			console.log(this.text)
+			this.$emit('update:msg', this.text);	//TODO 
+		}
+	}
+})
+new Vue({
+	el: '#app3',
+	data: {
+		msg: 'holder'
+	}
+})
+</script>
+<hr />
+<div id="app4">
+	<com-a></com-a>
+	<com-b></com-b>
+	<!--<button @click="update">动态组件</button>-->
+	<!--<component :is='a' />-->
+</div>
+<script>
+var bus = new Vue()			//创建空的 Vue 实例作为事件总线，通过订阅/发布模式传递数据
+Vue.component('com-a', {
+	data(){
+		return {
+			msg:''
+		}
+	},
+	template: "<div><p>component A</p><input type='text' @change='handler' v-model='msg'/></div>",
+	created(){
+		var vm = this;
+		bus.$on('change-b', function(val){
+			console.log(val)
+			vm.msg = val;
+		})
+	},
+	methods: {
+		handler(){
+			console.log(this.msg)
+			bus.$emit('change-a', this.msg)
+		}
+	}
+})
+Vue.component('com-b', {
+	data(){
+		return {
+			msg:''
+		}
+	},
+	template: "<div><p>component B</p><input type='text' @change='handler' v-model='msg'/></div>",
+	created(){
+		var vm = this;
+		bus.$on('change-a', function(val){
+			vm.msg = val;
+		})
+	},
+	methods: {
+		handler(){
+			console.log(this.msg)
+			bus.$emit('change-b', this.msg)
+		}
+	}
+})
+new Vue({
+	el:'#app4',
+	methods: {
+	}
+})
+</script>
+<hr />
+<div id="app6">
+	<my-component inline-template>
+		<div class="">
+			<div>内联模板实例 {{message}}</div>
+			<div>内联模板实例--{{msg}}</div>
+		</div>
+	</my-component>
+</div>
+<script>
+Vue.component('myComponent', {
+	template:`
+		<div>
+			<com-a @change-a="changeA" />
+			<com-b :message="msg" @change-b="changeB" />
+		</div>
+	`,
+	data(){
+		return {
+			msg: '初始化'
+		}
+	},
+	methods: {
+		changeA(val){
+			this.msg = val;
+		},
+		changeB(val){
+			console.log(val)
+		}
+	}
+})
+Vue.component('com-a', {
+	data(){
+		return {
+			msg:''
+		}
+	},
+	template: "<div>组件a:<input type='text' @change='handler' v-model='msg'/></div>",
+	methods: {
+		handler(){
+			this.$emit('change-a', this.msg)
+		}
+	}
+})
+Vue.component('com-b', {
+	/*data(){
+		return {
+			msg:''
+		}
+	},*/
+	props:['message'],
+	computed:{
+		msg(){
+			console.log(this.message)
+			return this.message;
+		}
+	},
+	created(){
+		console.log(this.message)
+	},
+	template: "<div>组件b:<input type='text' @change='handler' v-model='msg'/></div>",
+	methods: {
+		handler(){
+			this.$emit('change-b', this.msg)
+		}
+	}
+})
+new Vue({
+	el:'#app6',
+	data: {
+		message:'父级内容--message'
+	}
+})
+</script>
+</body>
+</html>

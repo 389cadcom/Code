@@ -1,0 +1,110 @@
+@import './base/varible/global';
+/*
+ * 变量、嵌套、导入、@mixin(@include)、@extend
+ * 运算、语句、颜色函数
+ * 
+ * 特殊变量--当属性使用, 复杂属性值   
+ * 
+ * @mixin  可以带参数，可以当函数使用
+ * @extend 不带参数， 合并提取共用代码
+ */
+
+@import './base/mixin/css3';
+$bg: #f30;
+$bg: #ccc !default;
+$fontSize:  		12px !default;
+$lineHeight:        1.5 !default;
+
+
+body{
+	font: #{$fontSize} / #{$lineHeight};
+	background: $bg;
+	
+	$bg: #fff !global;
+	
+	p{
+		padding: 0;
+		box-sizing: border-box;
+		box-shadow: 1px 0 2px rgba(0,0,0,.06);
+		@extend %clearfix;
+	}
+}
+@media print{
+	.parent{
+		color: #f30;
+		.child{
+			color: red;
+		}
+		@at-root(without: media){
+			p{
+				color: blue;
+			}
+		}
+	}
+}
+
+@include max-screen(767px){
+	body{
+		font-size: 12px;
+	}
+}
+
+
+btn{
+	color: $bg;
+	background: $primaryColor;
+	@include box-sizing;
+}
+
+%ellipsis{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	color: #00;
+}
+.success{
+	color: $primaryColor;
+	@extend %ellipsis;
+	
+	&:hover{
+		color: darken($primaryColor, 10%);
+	}
+}
+.error{
+	color: $errorColor;
+	@extend %ellipsis;
+	
+	&:hover{
+		color: lighten($errorColor, 10%);
+	}
+}
+
+//控制语句@if, @else, 三目运算
+//@each, @while, @for $i from to, @for $i from throuth
+//nth($variable, $i), length($list)
+
+$head: (h1:2e, h2:1.5em, h3:1em);
+$width: 800px;
+@each $h, $size in $head{
+	#{$h}{
+		font-size: $size;
+		width: if($width > 800px, 800px, 600px);
+	}
+} 
+
+$icon-list: success, info, error, search, safe;
+@for $i from 1 through length($icon-list){
+	.#{nth($icon-list, $i)}-icon{
+		background-position-y: ($i - 1)* -60px;
+		
+		&.icon-#{$i - 1}{
+			color: red;
+		}
+	}
+}
+
+$i: 6;
+ @while $i > 0 {
+  .item-#{$i} { width: 2em * $i; }
+  $i: $i - 2;
+}

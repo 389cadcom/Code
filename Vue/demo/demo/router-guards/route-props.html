@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>通过路由传Props, 路径正则匹配</title>
+	<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app"></div>	
+</body>
+<script>
+//通过路由给组件传Props
+var Hello = { 
+	template: `
+		<div>
+			<p>Hello, {{name}}</p>
+			<p>组件获取路由信息:params:{{JSON.stringify($route.params)}}</p>
+			<p>组件获取路由信息:hash:{{ $route.hash }}</p>
+			<p>组件获取路由信息:query:{{ $route.query }}</p>
+		</div>
+	`,
+	props: ['name']
+}
+
+function getPropsFn (route) {
+  const now = new Date()
+  return {
+    name: (now.getFullYear() + parseInt(route.params.years)) + '!'
+  }
+}
+
+const router = new VueRouter({
+//mode: 'history',
+  routes: [
+    { path: '/', component: Hello }, // No props, no nothing
+    { path: '/hello/:name', component: Hello, props: true }, // props:['name']
+    //
+    { path: '/static/:foo?', component: Hello,  props: { name: 'world' }},
+    //只能为数字
+    { path: '/params-with-regex/:id(\\d+)', component: Hello,  props: { name: 'world' }},
+    { path: '/dynamic/:years', component: Hello, props: getPropsFn } // custom logic for mapping between route and props
+  ]
+})
+
+new Vue({
+  router,
+  template: `
+    <div id="app">
+      <h1>Route props</h1>
+      <ul>
+        <li><router-link to="/" active-class='active'>/</router-link></li>
+        <li><router-link to="/hello/you#lonves">/hello/you</router-link></li>
+        <li><router-link :to="{path:'/static#lonve', query:{ foo: 'bar', baz: 'qux' }}">/static</router-link></li>
+        <li><router-link :to="{path:'/static/foo'}">/static-reg</router-link></li>
+        <li><router-link to="/params-with-regex/123">/params-with-regex</router-link></li>
+        <li><router-link to="/dynamic/1">/dynamic/1</router-link></li>
+      </ul>
+      <router-view class="view"></router-view>
+    </div>
+  `,
+  watch:{
+  	'$route': function(){
+  		var json = this.$route;
+		//json = JSON.stringify(json);
+  		//console.log(json)
+  	}
+  }
+}).$mount('#app')
+
+</script>
+</html>

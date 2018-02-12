@@ -1,0 +1,15 @@
+.page-header{
+  h1{
+    color: #808c99;
+    font-weight: 300;
+    font-size: 96px;
+    line-height: 1.125;
+    letter-spacing: -2px;
+    margin: 0;
+    margin-bottom:24px;
+
+    @include breakpoint($screen-xs){
+        font-size:32px;
+    }
+  }
+}

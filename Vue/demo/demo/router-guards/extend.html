@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<hr>
+<div id="demo"></div>
+<hr>
+
+<div id="teml"></div>
+</body>
+<script>
+var App = Vue.extend({
+	template: '<div>Vue.extend</div>'
+});
+new App().$mount('#app');
+
+//模板将被渲染为文档之外的的元素，必须使用原生 DOM API 把它插入文档中。
+var Demo = Vue.extend({
+	template: '<div>使用原生 DOM API 把它插入文档中, demo.$el</div>'
+});
+var demo = new Demo().$mount();
+document.getElementById("demo").appendChild(demo.$el);
+
+//template
+var vm = new Vue({
+	template: '<div>使用原生 DOM API 把它插入文档中</div>'
+}).$mount();
+document.getElementById("teml").appendChild(vm.$el);
+
+</script>
+</html>

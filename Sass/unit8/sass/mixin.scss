@@ -1,0 +1,33 @@
+/*!混入*/
+@mixin cont($color: red,$fontSize: 14px){
+    color:$color;
+    color:$fontSize;
+}
+body{
+    @include cont(#0f0);
+}
+
+/*!多值参数传递*/
+@mixin box-shadow($shadow...){
+    -moz-box-shadow:$shadow;
+    -webkit-box-shadow:$shadow;
+    box-shadow:$shadow;
+}
+.shadow{
+    @include box-shadow(0px 4px 4px #555,2px 6px 6px #636363);
+}
+
+/*!
+ * only(限定某种设备)
+    screen 是媒体类型里的一种
+    and 被称为关键字，其他关键字还包括 not(排除某种设备)
+    (min-width: 400px) 就是媒体特性，其被放置在一对圆括号中
+ */
+@mixin style-for-iphone{
+    @media only screen and(min-device-width:320px) and(max-device-width:568px){
+        @content;
+    }
+}
+@include style-for-iphone{
+    font-size:16px;
+}

@@ -1,0 +1,53 @@
+
+.contentinfo{
+  font-size: 12px;
+  text-align: left;
+  color: #808c99;
+  ul{
+    display: table;
+    padding: 0;
+    li{
+      list-style: none;/*此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。*/
+      display: table-cell;/*此元素会作为一个表格单元格显示（类似 <td> 和 <th>）*/
+      vertical-align: middle;
+    }
+  }
+  p{
+    padding-bottom: 4.5px;
+    margin: 0;
+  }
+  a{
+    color: #484c55;
+    text-decoration: none;
+    &:visited{
+      color: #b37399;
+    }
+  }
+
+
+  .contentinfo-legal{
+    width: span(6);
+
+    @extend %moblie-style;
+  }
+  .contentinfo-tools{
+    width: span(4.5);
+    li{
+      padding-right: 24px;
+    }
+
+    @extend %moblie-style;
+  }
+  .contentinfo-social{
+    width: span(1.5);
+
+    @extend %moblie-style;
+  }
+
+  %moblie-style{
+    @include breakpoint($screen-xs){
+      display:list-item;/* 此元素会作为列表显示。*/
+      width:span(12);
+    }
+  }
+}

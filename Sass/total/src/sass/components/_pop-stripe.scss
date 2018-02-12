@@ -1,0 +1,20 @@
+@function stripes($position, $colors) {
+  $colors: if(type-of($colors) != 'list', compact($colors), $colors);
+  /* 不是list中的颜色，转换为颜色，否则直接用color */
+  $gradient: compact();//存放
+  $len: length($colors);
+  $width: percentage(1 / $len);/*  百分比 */
+
+  @for $i from 1 through $len{
+    $current-color: nth($colors, $i);
+    $temp: $current-color ($width * ($i - 1)), $current-color ($width * $i);
+    $gradient: join($gradient, $temp, comma);
+  }
+  @return linear-gradient($position, $gradient);
+    /* p拼接到gradient中，分隔符 */
+  }
+
+.pop-stripe{
+  height: .25em;
+  @include background-image(stripes(left, $pop-stripe-colors));/* 传一个防方向，一个颜色 */
+}

@@ -1,0 +1,81 @@
+/*数字类型*/
+$n1:1.2;
+$n2:12;
+$n3:14px;
+
+p{
+    font-size:$n3;
+}
+
+/*字符串类型*/
+$s1:container;
+$s2:'container';
+$s3:"container";
+
+.#{$s3}{
+    font-size:12px;
+}
+/*Bool类型*/
+$bt:true;
+$bf:false;
+
+/*Null类型*/
+$null:null;
+
+body{
+    @if $null == null{
+        color:red;
+    }
+}
+/*颜色类型*/
+$c1:blue;
+$c2:#fff;
+$c3:rgba(255,255,0,0.5);
+
+body{
+    color:$c3;
+}
+
+/*!list map 常用*/
+$bg-colors:(success:#dff8d8,danger:#f2dede);
+$border-color:#d6e9c6,#ebccd1;
+.alert-success{
+    background-color:map-get($bg-colors,success);
+    border:1px solid nth($border-color,1);
+}
+
+/*运算*/
+
+$width1:10px;
+$width2:15px;
+
+span{
+    width:$width1 + $width2;
+}
+a:hover{
+    cursor:e + -resize;
+}
+a:before{
+    cursor:"A" + bc;
+}
+a:before{
+    cursor:A + 'bc';
+}
+p{
+    padding: 4px + 3px auto;
+}
+$version:3;
+p:before{
+    content:'hello,sass #{$version}';
+}
+/*!除法
+    1.运算符用空格分开
+    2.两个数单位一样
+    3.至少前面一个已经有
+*/
+p{
+    font:20px /20px;
+    width:$width2/2;
+    width:round($width2/2);
+    height:(100px / 2);
+}

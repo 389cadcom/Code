@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js" ></script>
+</head>
+<body>
+<div id="app">
+	{{active}}
+	<ul>
+		<li v-for="i in 5">{{i}}</li>
+	</ul>
+</div>
+</body>
+<script>
+var vm =new Vue({
+	el: '#app',
+	data: {
+		active: 1
+	}
+})
+
+var arr = [1,2,3,4]
+for(var i in arr){
+	console.log(i, arr[i])
+}
+</script>
+</html>

@@ -1,0 +1,42 @@
+/*导入原生 css*/
+@import "css.css";
+@import "http://sss/xx";
+@import url(css.css);
+
+/*导入标准scc*/
+@import "part1";
+//
+//@import "_part1.scss";
+
+
+$font-size:14px;
+$font-size:12px !default;
+$paddings:6px 7px 8px 9px ;
+$maps:(color:red, borderColor:blue);    /*map多值运用*/
+$className:container;/*类引用*/
+body{
+    $color:red !global;/*全局*/
+    color:$color;
+    font-size:$font-size;
+    padding:$paddings;
+    padding-left:nth($paddings,1)/*索引，1开始*/
+}
+
+footer{
+    color:$color;
+    background-color: map-get($maps,color);
+    border-color:map-get($maps,borderColor);
+}
+
+.#{$className}{
+    width:66px;
+    height:66px;
+}
+
+/* - 和 _*/
+$text-info:green;
+//$text_info:blue;
+.text-color{
+    //color:$text-info;
+    color:$text_info;
+}
