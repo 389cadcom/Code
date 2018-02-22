@@ -5,19 +5,27 @@
  */
 
 //Generator    yield 返回{done: , value: }
-function* gen(){
-    yield 1;
-    yield 2;
-    return "end";
+function fn(a,b){
+  return a + b
 }
-let g = gen();
 
-var iter = g.next()
-console.log(iter)
-while(!iter.done){
-    iter = g.next();
-    console.log(iter)
+function* gen(x) {
+  let y = yield fn(x,100) + 3;
+  yield y;
+  //console.log(y)
+  return 200
 }
+
+//第二次next(), 代码由上次暂停处开始执行，此时 yield 表达式的值并不是使用刚刚计算的结果，而是使用 g.next 的参数
+/* var g = gen(1);
+console.log(g.next())           //执行第一个yield并返回
+console.log(g.next(2))          //重置第一个yield值, 使用上次执行的值==>g.next(g.next().value)
+console.log(g.next()) */
+
+/* for(let v of g){
+    console.log(v);
+} */
+
 
 //Generator函数传参
 function* foo(x) {

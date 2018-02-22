@@ -1,3 +1,12 @@
+//简写
+toString = Object.prototype.toString,
+hasOwn   = Object.prototype.hasOwnProperty,
+push     = Array.prototype.push,
+slice    = Array.prototype.slice,
+trim     = String.prototype.trim,
+indexOf  = Array.prototype.indexOf
+
+
 //1.变量赋值
 let variable = variable0 || "var";
 
@@ -101,7 +110,7 @@ with({
   }
 }
 
-//数组对象去重
+//14.数组对象去重
 function removeRepeat(arr, field){
     var s = [], result = {}, reSet = {}
     for(var v of arr){
@@ -123,7 +132,7 @@ function removeRepeat(arr, field){
     return arr
 }
 
-//input propertychange
+//15.input propertychange
 $('#filter').bind('input propertychange', function() {
 	var filter = $(this).val();
 	if (filter == "") {
@@ -140,7 +149,7 @@ $('#filter').bind('input propertychange', function() {
 	}
 });
 
-//数组中图片按顺序显示
+//16.数组中图片按顺序显示
 function loadImage(imgList,callback){
 	if(!$.isArray(imgList) || !$.isFunction(callback)) return ;
 	var imageData = [] ;
@@ -163,4 +172,55 @@ function loadImage(imgList,callback){
 function sleep(milli){
 	var start = Date.now();
 	while(Date.now() < start + milli);
+}
+
+
+//简单实现合并对象, 不定个参数   TODO: Object.assgin({})
+funtion merge(root){
+  for(var i=1; i<arguments.length; i++){
+    for(var key in arguments[i]){
+      if(!root.hasOwnProperty(key)){		
+        root[key]=argument[i][key];
+      }
+    }
+  }
+  return root;
+}
+var merged=merge({name:'shokc'},{city:"shenzhen", name:'shokc'})
+
+
+
+function type(o){
+    var s = Object.prototype.toString.call(o);
+    //console.log(s.match(/\[object (.*?)\]/))
+    return s.match(/\[object (.*?)\]/)[1].toLowerCase();        //正则匹配
+}
+
+//在type函数基础上，加上专门判断某种类型数据
+[
+	'Null',
+	'Undefined',
+	'Object',
+	'Array',
+	'String',
+	'Number',
+	'Date',
+	'Boolean',
+	'Function',
+	'RegExp',
+	'Error'
+].forEach( t => {
+	type['is'+ t] = function(o){
+		return type(o) === t.toLowercase();
+	}
+})
+
+//class2type
+var class2type = {}, toString = Object.prototype.toString;	//({}).toString
+"Boolean Number String Array Date RegExp Object Error".split(" ").forEach(function(item, i){
+	class2type["[object "+ item +"]"] = item.toLowerCase();
+})
+
+function isType(obj){
+	return obj == null ? String(obj) : class2type[toString.call(obj)];
 }

@@ -1,4 +1,3 @@
-
 1.带snippets	一般是代码提示类扩展；
 3.带support		一般是代码语言支持；
 5.带Format	 	一般是代码格式化整理扩展；
@@ -44,9 +43,12 @@ http://blog.csdn.net/u011127019/article/details/52263347
 按ctrl+p输入'>sync'    //ctrl+shift+p
 upload: shift+alt+u, downland: shift+alt+d
 
+6.插件位置：
+C:\Users\ 你的用户名\.vscode\extensions
 
 
-7. lang  -> configure language   "locale":"zh-CN"
+7. 语言设置： lang  -> configure language   "locale":"zh-CN"		//en-Us
+
 
 
 /**VSCode整理*/

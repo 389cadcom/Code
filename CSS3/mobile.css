@@ -1,0 +1,167 @@
+@charset "utf-8";
+/*
+6px		0.375em		37.5%
+10px	0.625em 	62.5%
+12px 	0.75em		75%	
+16px	1em			100% 	
+18px	1.125em		112.5% 
+24px	1.5em		150%
+*/
+.txt-xxs{font-size:.625rem}
+.txt-xs{font-size:.75rem}
+.txt-s{font-size:.8125rem}
+.txt-m{font-size:.875rem}
+.txt-l{font-size:.9375rem}
+.txt-xl{font-size:1rem}
+.txt-xxl{font-size:1.125rem}
+.txt-ls{font-size:1.5rem}
+
+.icon-font{}
+
+.icon-vip, .icon-male, .icon-female, .icon-video{}
+.icon-like, .icon-liked{}
+
+.iconimg-xxs,.iconimg-xxs img {
+    width: 12px;
+    height: 12px
+}
+.iconimg-xs, .iconimg-xs img{width: 16px; height:16px;}
+.iconimg-s,.iconimg-s img{width: 24px; height: 24px}
+.iconimg-m{width: 36px; height: 36px}
+
+
+html,body,div,span,applet,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,
+acronym,address,big,cite,code,del,dfn,em,
+img,ins,kbd,q,s,samp,small,strike,strong,
+sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,
+li,fieldset,form,label,legend,table,caption,
+tbody,tfoot,thead,tr,th,td,article,aside,canvas,
+details,figcaption,figure,footer,header,hgroup,
+menu,nav,section,summary,time,mark,audio,video {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	border: 0;
+}
+
+html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6 {
+	-webkit-text-size-adjust: none;
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+	display: block;
+	block;clear: all;
+}
+
+html{
+	font-size: 62.5%;		
+}
+body {
+	min-width: 320px;
+	background: #f8f8f8;
+	color: #1a1a1a;
+	font: 16px/1.5 'XinGothic-SinaWeibo','Microsoft Yahei','helvetica','arial';
+	font-size: 1.6rem;
+	
+	-webkit-text-size-adjust: none;
+	-webkit-text-size-adjust: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+}
+
+form {
+	display: inline;
+}
+
+ul,ol {
+	list-style: none;
+}
+
+a {
+	color: #000;
+	border: none;
+	outline: 0 none;
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;		/*去掉android产生边框(使用input)*/
+	-webkit-touch-callout: none;					/*ios长按不触发系统默认菜单*/
+}
+
+a:hover {
+	color: #1c5aa2;
+	text-decoration: none;
+}
+
+img {
+	border: 0;
+	vertical-align: middle;
+	-ms-interpolation-mode: bicubic;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+button,input,select,textarea {
+	outline: 0;
+	vertical-align: middle;
+	font-size: 100%;
+	font-family: 'Microsoft Yahei','helvetica','arial';
+}
+
+textarea {
+	resize: none;
+}
+
+button,input[type="button"],input[type="reset"],input[type="submit"] {
+	cursor: pointer;
+	-webkit-appearance: button;
+	-moz-appearance: button;
+	border: none;
+	outline: 0 none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-input-placeholder {
+    color: #CCC
+}
+
+input:focus:-moz-placeholder,input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+button::-moz-focus-inner,input::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+header,footer,article,section,nav,menu,hgroup {
+	clear: all;
+	display: block;
+}
+
+.fl{float:left}
+.fr{float:right}
+.hide{display:none}
+.show{display:block}
+.ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.ellipsis-2{
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.break{word-wrap:break-word; word-break:break-all}
+
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2){
+
+}

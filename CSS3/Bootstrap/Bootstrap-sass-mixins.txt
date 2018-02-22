@@ -1,0 +1,37 @@
+|-- Utilities                     //各种工具混入
+    |-- hide-text                 //隐藏text
+    |-- opacity                   //设置透明度
+    |-- image                     //响应式图片混入、视网膜混入（根据屏幕显示不同分辨率图片）
+    |-- labels                    //label变化混入(移动到labels背景会变色，下面出现的“变化”意思相同)  
+    |-- reset-filter              //清除ie9以下背景倾斜
+    |-- resize                    //使对象变得可调整大小
+    |-- responsive-visibility     //响应式可见和不可见（用于responsive-utilityies）
+    |-- size                      //设置大小
+    |-- tab-focus                 //针对webkit内核添加选中轮廓
+    |-- reset-text                //重置text(用于清除各种text属性)
+    |-- text-emphasis             //text强调样式
+    |-- text-overflow             //text溢出样式
+    |-- vendor-prefixes           //增对个浏览器内核为属性添加前缀的混入都在这里
+
+|-- Components                    //针对各组件的混入
+    |-- alerts                    //alerts变化混入
+    |-- buttons                   //按钮的变化、设置按钮大小
+    |-- panels                    //panel变化
+    |-- pagination                //pagination设置大小
+    |-- list-group                //list-group-item变化
+    |-- nav-divider               //水平分隔（用于dropdowns和nav list）
+    |-- forms                     //定义了form验证时的各种样式（错误，警告等）
+    |-- progress-bar              //progress-bar变化
+    |-- table-row                 //table-row变化
+
+|-- Skins                         //皮肤混入（主要是修改bootstrap的主题皮肤）
+    |-- background-variant        //背景变化
+    |-- border-radius             //border圆角
+    |-- gradients                 //渐变效果
+
+|-- Layout                        //布局相关
+    |-- clearfix                  //清除浮动
+    |-- center-block              //block居中
+    |-- nav-vertical-align        //nav垂直排列的间隔 
+    |-- grid-framework            //用于构建网格系统的框架（供下面的grid调用） 
+    |-- grid                      //构建网格系统

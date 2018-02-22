@@ -1,0 +1,40 @@
+核心配置项
+
+|-- Colors                      //定义了灰度和徽章的颜色
+|-- Scaffolding                 //脚手架，一些全局样式
+|-- Typography                  //排版样式
+|-- Iconography                 //图标配置
+|-- Components                  //各组件的padding，border等公共设置
+|-- Z-index master list         //各组件的z-index排列顺序
+|-- Media queries breakpoints   //响应式布局中媒体的大中小划分点
+|-- Grid system                 //栅格系统
+|-- Container sizes             //container在不同尺寸屏幕中的最大宽度
+|-- Form states and alerts      //Form和alerts的状态配置
+
+组件配置
+
+|-- tables                   //表格相关
+|-- buttons                  //按钮相关
+|-- forms                    //表单相关
+|-- dropdowns                //点击下拉菜单组件
+|-- navbar                   //导航条
+|-- navs                     //导航
+|-- pagination               //分页页码
+|-- pager                    //上一页下一页分页
+|-- jumbotron                //超大屏
+|-- tooltip                  //工具提示
+|-- popovers                 //弹出框
+|-- labels                   //标签
+|-- modals                   //模态框
+|-- alerts                   //警告
+|-- progress-bars            //进度条
+|-- list-group               //列表组
+|-- panels                   //面板(容器)
+|-- thumbnails               //缩略图
+|-- wells                    //一种会引起内容凹陷显示或插图效果的容器
+|-- badges                   //徽章
+|-- breadcrumbs              //面包屑
+|-- carousel                 //轮播
+|-- close                    //关闭按钮
+|-- type                     //排版相关
+|-- code                     //代码相关

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		html,body,ul {margin: 0;padding: 0;}
+		body {perspective: 2000px;overflow: hidden;text-align: center;}
+		ul {
+			position: relative;
+			width: 200px;
+			height: 200px;
+			margin: 70px auto 60px auto;
+			-webkit-transition: preserve-3d;
+			-moz-transition: preserve-3d;
+			-ms-transition: preserve-3d;
+			transition: 2s ease-out;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			cursor: pointer;
+		}
+		ul li {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			list-style: none;
+			color: #fff;
+			font-size: 24px;
+			text-align: center;
+			line-height: 200px;
+		}
+
+		li:nth-child(1) {
+			background: rgba(145, 41, 55, 0.9);
+			-webkit-transform: translateZ(100px);
+			-moz-transform: translateZ(100px);
+			-ms-transform: translateZ(100px);
+			-o-transform: translateZ(100px);
+			transform: translateZ(100px);
+		}
+
+		li:nth-child(2) {
+			background: rgba(54, 49, 46, 0.9);
+			-webkit-transform: rotateY(90deg) translateZ(100px);
+			-moz-transform: rotateY(90deg) translateZ(100px);
+			-ms-transform: rotateY(90deg) translateZ(100px);
+			-o-transform: rotateY(90deg) translateZ(100px);
+			transform: rotateY(90deg) translateZ(100px);
+		}
+
+		li:nth-child(3) {
+			background: rgba(149, 121, 123, 0.9);
+			-webkit-transform: translateZ(-100px);
+			-moz-transform: translateZ(-100px);
+			-ms-transform: translateZ(-100px);
+			-o-transform: translateZ(-100px);
+			transform: translateZ(-100px);
+		}
+
+		li:nth-child(4) {
+			background: rgba(102, 99, 79, 0.9);
+			-webkit-transform: rotateY(-90deg) translateZ(100px);
+			-moz-transform: rotateY(-90deg) translateZ(100px);
+			-ms-transform: rotateY(-90deg) translateZ(100px);
+			-o-transform: rotateY(-90deg) translateZ(100px);
+			transform: rotateY(-90deg) translateZ(100px);
+			
+		}
+
+		li:nth-child(5) {
+			background: rgba(197, 113, 84, 0.9);
+			-webkit-transform: rotateX(90deg) translateZ(100px);
+			-moz-transform: rotateX(90deg) translateZ(100px);
+			-ms-transform: rotateX(90deg) translateZ(100px);
+			-o-transform: rotateX(90deg) translateZ(100px);
+			transform: rotateX(90deg) translateZ(100px);
+		}
+
+		li:nth-child(6) {
+			background: rgba(219, 184, 143, 0.9);
+			-webkit-transform: rotateX(-90deg) translateZ(100px);
+			-moz-transform: rotateX(-90deg) translateZ(100px);
+			-ms-transform: rotateX(-90deg) translateZ(100px);
+			-o-transform: rotateX(-90deg) translateZ(100px);
+			transform: rotateX(-90deg) translateZ(100px);
+		}
+        .btn{
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            color: #fff;
+            background: #666;
+           
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+	</style>
+</head>
+
+<body>
+	<ul id="box">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+    </ul>
+    <button class="btn" id="rightBtn">向右展开详情</button>
+    <button class="btn" id="leftBtn">向左展开详情</button>
+    <button class="btn" id="topBtn">向上展开详情</button>
+    <button class="btn" id="downBtn">向下展开详情</button>
+	<script>
+	
+        var box = document.getElementById('box');
+        var degX = 0;
+        var degY = 0;
+		
+		document.getElementById('rightBtn').onclick = function(){
+            degY += 90;
+			box.style.cssText = "transform: rotateY("+degY+"deg)";
+        }
+        
+        document.getElementById('leftBtn').onclick = function(){
+			degY -= 90;
+			box.style.cssText = "transform: rotateY("+degY+"deg)";
+        }
+        
+        document.getElementById('topBtn').onclick = function(){
+			degX += 90;
+			box.style.cssText = "transform: rotateX("+degX+"deg)";
+        }
+        
+        document.getElementById('downBtn').onclick = function(){
+			degX -= 90;
+			box.style.cssText = "transform: rotateX("+degX+"deg)";
+		}
+
+	</script>
+</body>
+
+</html>
