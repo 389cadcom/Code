@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 let ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
@@ -21,15 +22,6 @@ module.exports = {
             camelCase: true
           }
         }]
-        /* use: ExtractTextPlugin.extract({
-          use: [{
-            loader: 'css-loader',
-            options: {
-              minimize: true,
-              camelCase: true
-            }
-          }]
-        }) */
       }
     ]
 	},
@@ -49,6 +41,9 @@ module.exports = {
     jquery: 'jQuery' 
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      jq: 'jquery'
+    }),
     new ExtractTextPlugin('common.[contenthash:8].css')
   ]
 }
