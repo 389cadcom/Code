@@ -47,3 +47,12 @@ historyApiFallback: {
 alias:
 react$ 只会命中以 react 结尾的导入语句
 //即只会把 import 'react' 关键字替换成 import '/path/to/react.min.js'
+
+
+4.第三方库、样式引用
+1).JS中导入
+	import jquery from 'jquery'
+	import 'vux/src/styles/1px.less'
+
+2).样式中引用
+	@import '../../node_modules/weui/src/style/icon/weui-font.less';

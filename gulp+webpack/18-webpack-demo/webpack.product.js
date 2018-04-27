@@ -1,10 +1,13 @@
 const path = require('path')
 const webpack = require('webpack')
-let ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin  = require('html-webpack-plugin')
+const CopyWebpackPlugin  = require('copy-webpack-plugin')
 
 module.exports = {
 	entry: {
-		app: './src/main.js'
+		bundle: './src/main.js'
 	},
 	output: {
 		filename: '[name].js',
@@ -23,6 +26,13 @@ module.exports = {
               camelCase: true
             }
           }]
+        })
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader']
         })
       },
       {
@@ -60,15 +70,34 @@ module.exports = {
     ]
 	},
 	resolve: {
-    alias: { },
-		extensions: ['.json', '.js', '.jsx', '.css']
-	},
+    alias: {
+      '@': path.resolve('src'),
+      'weui': 'weui/src/style/',
+      'components': path.resolve(__dirname,'../src/components'),
+    },
+		extensions: ['.json', '.js', '.css','.less']
+  },
+  //TODO
+  resolveLoader: {
+    modules: ["node_modules"],
+  },
   externals: {
     jquery: 'jQuery' 
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new webpack.ProvidePlugin({
       jq: 'jquery'
+    }),
+    //TODO 
+    /* new CopyWebpackPlugin([{
+      form: 'static/js/jquery.js',
+      to: 'dist/static/js/'
+    }]), */
+    new HtmlWebpackPlugin({
+      title: 'Output Management',
+      template: 'index.html',
+      filename: 'index.html'
     }),
     new ExtractTextPlugin('style.css'),
     new webpack.optimize.UglifyJsPlugin({
@@ -78,8 +107,8 @@ module.exports = {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin('common'),
-    new webpack.LoaderOptionsPlugin({
+    /* new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }) */
   ]
 }

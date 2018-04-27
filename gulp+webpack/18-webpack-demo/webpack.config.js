@@ -1,8 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
-let ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = {
+const config = {
 	entry: {
 		app: './src/main.js'
 	},
@@ -22,6 +23,37 @@ module.exports = {
             camelCase: true
           }
         }]
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        /* test: /\.ts/,
+        use: 'ts-loader' */
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader:'file-loader',
+        options: {
+          name: 'images/[name].[ext]?[hash]'
+        } 
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: ['vue-style-loader', 'css-loader', 'sass-loader']
+        }
       }
     ]
 	},
@@ -29,11 +61,11 @@ module.exports = {
     alias: {
       jquery: path.resolve(__dirname, 'res/jquery.js')
     },
-		extensions: ['.json', '.js', '.jsx', '.css']
+		extensions: ['.json', '.js', '.jsx', '.css', '.less']
 	},
 	devtool: 'source-map',
 	devServer: {
-    open: true,
+    // open: true,
     hot: true
   },
   externals: {
@@ -41,9 +73,17 @@ module.exports = {
     jquery: 'jQuery' 
   },
   plugins: [
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       jq: 'jquery'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Output Management',
+      template: 'index.html',
+      filename: 'index.html'
     }),
     new ExtractTextPlugin('common.[contenthash:8].css')
   ]
 }
+
+module.exports = config;

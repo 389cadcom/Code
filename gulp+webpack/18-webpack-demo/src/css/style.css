@@ -1,4 +1,10 @@
+/* @import '../../node_modules/weui/src/style/icon/weui-font.less'; */
+
 body{
     background: #f0f0f0;
     color: orange;
+}
+.wraper{
+    color: red;
+    background: url('/static/images/logo.png')
 }
