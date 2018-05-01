@@ -15,12 +15,15 @@ babel-polyfill
 
 
 //webpack
-id			  Chunk 的唯一标识，从0开始
-name		  Chunk 的名称， filename: '[name]/entry.js'
-hash		  Chunk 的唯一标识的 Hash 值，本次编译的一个hash版本
-chunkhash	  Chunk 内容的 Hash 值
-			  //当前chunk的一个hash版本,在同一次编译中，每一个chunk的hash都是不一样的, 但是两次编译中，如果某个chunk根本没有发生变化
-[hash:8]	  //默认20位
+[id]			模块标识符(module identifier)
+[name]			模块名称 [hash:8]	  //默认20位
+[query]			模块的 query，例如，文件名 ? 后面的字符串
+[hash]			模块标识符(module identifier)的 hash, 本次编译的一个hash版本
+[chunkhash]		chunk 内容的 hash(没改动则没有变化---设置线上缓存)
+
+//当前chunk的一个hash版本,在同一次编译中，每一个chunk的hash都是不一样的,
+//如果页面的文件没有发生改变，那么chunk的hash也不会发生改变，因此未改变的文件会在缓存中读取
+
 contenthash   //ExtractTextWebpackPlugin, 文件内容算出的8位 hash
 
 //plugins
