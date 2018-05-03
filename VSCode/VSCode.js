@@ -4,6 +4,10 @@
 2.带viewer		一般是代码运行预览类扩展；
 4.带document	一般是参考文档类扩展；
 
+svg view
+
+svg --> svg language support
+
 
 /*
 "terminal.integrated.shell.windows": "D:\\Program Files\\cmder\\cmder.exe"
@@ -20,24 +24,21 @@ ctrl+shift+p webpack create webpack创建
 
 Alt + 点击					多行编辑
 
+Ctrl + F					查找及查找下一个
+
 project Manager				项目切换 Shift + Alt + E
 */
+Ement
+http://www.iteye.com/news/27580
 
 tab
-1. ! 生成html
-
-Ement
-http://blog.csdn.net/u011127019/article/details/52263347
+1.! 生成html
 
 2.cmd设置： terminal.integrated.shell.windows
 
-3.将自动高亮的变量、字符一次性替换：
+3.将自动高亮的变量、字符一次性替换： //双击变量，右键‘更改所有匹配项’。
 
-//双击变量，右键‘更改所有匹配项’。
-
-
-4.跳转到定义处：Ctrl+ 点击
-
+4.跳转到定义处及导入文件：Ctrl+ 点击
 
 5.同步设置：
 按ctrl+p输入'>sync'    //ctrl+shift+p
@@ -46,8 +47,16 @@ upload: shift+alt+u, downland: shift+alt+d
 6.插件位置：
 C:\Users\ 你的用户名\.vscode\extensions
 
-
 7. 语言设置： lang  -> configure language   "locale":"zh-CN"		//en-Us
+
+8.自定义代码段  文件 -> 首选项 -> 用户代码片段
+
+Ement生成：
+db		-> display:block;
+dn		-> display:none;
+w10		-> width: 10px;
+w5p		-> width: 5%;
+pl10	-> padding-left:10px;
 
 
 
