@@ -1,8 +1,0 @@
-body{
-  background: red;
-  display: flex;
-}
-.list-item{
-  flex: 1;
-  box-sizing: border-box;
-}
