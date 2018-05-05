@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 
 Vue.config.productionTip = false
+import '../../assets/style.css'
+import '../../assets/style.less'
 
 /* eslint-disable no-new */
 new Vue({

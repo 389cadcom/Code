@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <a href="./print.html">
+    <a href="./main.html">
       <img src="../../assets/logo.png">
     </a>
-    <p class="main">main页面</p>
+    <p class="print">print内容</p>
   </div>
 </template>
 
@@ -20,5 +20,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.main{color: red}
+.print{color: orange}
 </style>

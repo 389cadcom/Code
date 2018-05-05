@@ -83,17 +83,28 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.ModuleConcatenationPlugin(),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks (module) {
+      name: 'common',
+      minChunks (module, count) {
         // any required modules inside node_modules are extracted to vendor
+        //node_modules所需的模块会被提出到公共文件
+        var c = (
+          module.resource &&
+          /\.js$/.test(module.resource) &&
+          module.resource.indexOf(
+            path.join(__dirname, '../node_modules')
+          ) === 0 || /\.(css|less|scss)$/.test(module.resource) && count>=2
+        )
+        console.log(module.resource, count, c);
+
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
           module.resource.indexOf(
             path.join(__dirname, '../node_modules')
-          ) === 0
+          ) === 0 || /\.(css|less|scss)$/.test(module.resource) && count>=2
         )
-      }
+      },
+      // minChunks: 2
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
