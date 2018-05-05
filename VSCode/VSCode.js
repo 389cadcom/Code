@@ -47,7 +47,7 @@ upload: shift+alt+u, downland: shift+alt+d
 6.插件位置：
 C:\Users\ 你的用户名\.vscode\extensions
 
-7. 语言设置： lang  -> configure language   "locale":"zh-CN"		//en-Us
+7. 语言设置：命令 lang  -> configure language   "locale":"zh-CN"		//en-Us
 
 8.自定义代码段  文件 -> 首选项 -> 用户代码片段
 

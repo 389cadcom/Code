@@ -1,5 +1,4 @@
-// import _ from 'lodash'
-import {cube, square} from './js/maths';
+import 
 import './css/style.css'
 
 var num = cube(8);

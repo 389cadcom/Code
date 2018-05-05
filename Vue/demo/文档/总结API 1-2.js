@@ -8,6 +8,9 @@
 :class="{'checked':addr.is_default==1, 'hide':i>=3}"
 
 
+:style="{ color: activeColor, fontSize: fontSize + 'px' }"
+
+
 //vue-cli webpack配置
 编译的文件要放在一个HTTP服务器, file:///访问，资源加载失败，可设置webpack资源配置(publicPath改为相对路径)，改变webpack配置，会出现引用缓存文件，热启动没有效果
 
