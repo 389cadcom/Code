@@ -10,10 +10,9 @@ export default {
       }
   },
   created () {
-      console.log('data is create');
   },
   mounted () {
-      console.log('el is created!');
+
   }
 }
 </script>

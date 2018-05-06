@@ -4,21 +4,21 @@ var CleanWebpackPlugin = require('clean-webpack-plugin')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var extractCSS = new ExtractTextPlugin('static/css/common.css')
-var extractVue = new ExtractTextPlugin('static/css/style.css')
+var extractCSS = new ExtractTextPlugin('static/css/normal.css')
+var extractVue = new ExtractTextPlugin('static/css/vue-style.css')
 
 var utils = {
 	assetsPath(_path) {
 		const assetsRoot =
 			process.env.NODE_ENV === 'production' ? 'static' : 'static'
-
 		return path.posix.join(assetsRoot, _path)
 	}
 }
 
 module.exports = {
 	entry: {
-		build: './src/main.js'
+        build: './src/main.js',
+        common: ['jquery']
 	},
 	output: {
 		path: path.resolve(__dirname, './dist'),
@@ -71,19 +71,20 @@ module.exports = {
 	resolve: {
 		alias: {
 			vue$: 'vue/dist/vue.esm.js',
-			'@': path.resolve(__dirname, 'src')
+            '@': path.resolve(__dirname, 'src'),
+            jquery: path.resolve(__dirname, 'static/js/jquery.js')
 		},
 		extensions: ['.js', '.vue', '.json']
 	},
-	devServer: {
-		historyApiFallback: true,
-		noInfo: true,
-		overlay: true
-	},
-	performance: {
-		hints: false
-	},
-	devtool: '#eval-source-map'
+	/* externals: {
+		jquery: 'jQuery'
+	}, */
+	plugins: [
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery'
+		})
+	]
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -95,19 +96,18 @@ if (process.env.NODE_ENV === 'production') {
 				NODE_ENV: '"production"'
 			}
 		}),
-		new CopyWebpackPlugin([
-			{
+		/* new CopyWebpackPlugin([{
 				from: path.resolve(__dirname, 'static'),
 				to: 'static',
 				ignore: ['.*']
 			}
-		]),
-		new webpack.optimize.UglifyJsPlugin({
+		]), */
+		/* new webpack.optimize.UglifyJsPlugin({
 			sourceMap: true,
 			compress: {
 				warnings: false
 			}
-		}),
+		}), */
 		new HtmlWebpackPlugin({
 			template: 'index.html',
 			filename: path.resolve(__dirname, './dist/index.html')
@@ -115,7 +115,13 @@ if (process.env.NODE_ENV === 'production') {
 		//new ExtractTextPlugin('style.css'),
 		extractCSS,
 		extractVue,
-		new webpack.optimize.CommonsChunkPlugin('common'),
+		new webpack.optimize.CommonsChunkPlugin({
+            names: ['common', 'runtime'],
+            filename: '[name].js',
+            minChunks: function(module, count){
+                console.log(module.resource, count);
+            }
+		}),
 		new webpack.LoaderOptionsPlugin({
 			minimize: true
 		})

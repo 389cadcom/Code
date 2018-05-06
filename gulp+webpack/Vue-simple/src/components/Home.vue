@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import log from '../assets/js/utils';
 export default {
   data(){
       return {
@@ -10,10 +11,10 @@ export default {
       }
   },
   created () {
-      console.log('data is create');
+      log('this is home')
   },
   mounted () {
-      console.log('el is created!');
+    //   console.log('el is created!');
   }
 }
 </script>
