@@ -57,13 +57,17 @@ var extractSass = new ExtractTextPlugin('style/[name].css')
 
 
 3.jquery第三方插件		//Externals用来告诉 Webpack 要构建的代码中使用了哪些不用被打包的模块
-a.script方式引入，全局$可用，eslint会报错('$' is not defined)
-b.script方式引入，添加externals:{jquery: 'jQuery'} 配置，要使用时import $ from 'jquery'
+
+a).cdn方式引入，全局$可用，eslint会报错('$' is not defined) //注意: 不能放在</body>之后
+
+b).cdn方式引入，import $ from 'jquery' | require('jquery')
+  //umd方式引入第三方插件 $.fn.green  ,jquery未被识别
   externals: {
 	jquery: 'jQuery'		//把导入语句里的 jquery 替换成运行环境里的全局变量 jQuery, JSON中引入module.exports = jQuery;
   }
 
-c.配置 alias，import 引入后再使用
+//若入引入本地文件，则不能定义externals(排除定义的库打包入build.js)
+c).配置别名：alias， --> 引入：import $ from jquery
     resolve: {
 		alias: {
 			vue$: 'vue/dist/vue.esm.js',
@@ -77,6 +81,13 @@ d.在c的基础上，配置 plugins，无需 import 全局可用
 			jQuery: 'jquery'
 		})
 	]
+e).分离打包第三方库 webpack.optimize.CommonsChunkPlugin
+	//entry中定义入口，不打包的库
+    entry: {   
+		common: ['jquery']
+	}
+	
+
 /*
 引入bootstrap.min.js文件：
 在main.js中import引入
