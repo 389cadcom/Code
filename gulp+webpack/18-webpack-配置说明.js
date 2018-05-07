@@ -13,8 +13,17 @@ babel-polyfill
 2.压缩(UglifyJsPlugin), 
 3.路径(output.publicPath), css-loader--minimize和autoprefixer参数
 
-
 //webpack
+webpack				//#最基本的启动webpack命令
+webpack -w 			//#提供watch方法，实时进行打包更新watch
+webpack -p			//#对打包后的文件进行压缩
+webpack -d			//#提供SourceMaps，方便调试
+webpack --colors	//#输出结果带彩色，比如：会用红色显示耗时较长的步骤
+webpack --profile	//#输出性能数据，可以看到每一步的耗时
+webpack --display-modules //#默认情况下 node_modules 下的模块会被隐藏，加上这个参数可以显示这些被隐藏的模块
+webpack --display-error-details //#显示编译出错信息
+
+
 [id]			模块标识符(module identifier)
 [name]			模块名称 [hash:8]	  //默认20位
 [query]			模块的 query，例如，文件名 ? 后面的字符串
