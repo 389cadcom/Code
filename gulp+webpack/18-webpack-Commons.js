@@ -1,7 +1,7 @@
-//1.Èë¿ÚÐèÃ÷È·Ö¸¶¨µÚÈý·½¿â chunk£¬ÈôÃ»Ö¸Ã÷ÔòºÏ²¢µ½µÚÒ»¸öchunk name --> utils
+//1.å…¥å£éœ€æ˜Žç¡®æŒ‡å®šç¬¬ä¸‰æ–¹åº“ chunkï¼Œè‹¥æ²¡æŒ‡æ˜Žåˆ™åˆå¹¶åˆ°ç¬¬ä¸€ä¸ªchunk name --> utils
 entry: {
   vendor: ['jquery']
-},
+}
 plugins: [
   new webpack.optimize.CommonsChunkPlugin({
     name: ['utils', 'vendor', 'runtime'],
@@ -9,7 +9,7 @@ plugins: [
   }),
 ]
 
-//2.Í¨¹ýÒÀÀµ·½Ê½£¬µÈ¼ÛµÚÒ»ÖÖ·½Ê½£¬Êý×é·Ö¿ªÐ´·¨
+//2.é€šè¿‡ä¾èµ–æ–¹å¼ï¼Œç­‰ä»·ç¬¬ä¸€ç§æ–¹å¼ï¼Œæ•°ç»„åˆ†å¼€å†™æ³•
 plugins: [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'utils',
@@ -27,22 +27,22 @@ plugins: [
   }),
 ]
 
-//3.²»ÐèÒªÖ¸¶¨µÚÈý·½¿âÄÚÈÝ£¬ ÕýÔòÅÐ¶ÏÒýÈënode_modulesµÄµÚÈý·½¿â
+//3.ä¸éœ€è¦æŒ‡å®šç¬¬ä¸‰æ–¹åº“å†…å®¹ï¼Œ æ­£åˆ™åˆ¤æ–­å¼•å…¥node_modulesçš„ç¬¬ä¸‰æ–¹åº“
 plugins: [
-  //1.ÏÈ°ÑËùÓÐÈë¿ÚÄ£¿é³éÈ¡¹«¹²ÄÚÈÝ
-  //´Ófirst.jsºÍsecond.jsÖÐ³éÈ¡commons chunk
+  //1.å…ˆæŠŠæ‰€æœ‰å…¥å£æ¨¡å—æŠ½å–å…¬å…±å†…å®¹
+  //ä»Žfirst.jså’Œsecond.jsä¸­æŠ½å–commons chunk
   new webpack.optimize.CommonsChunkPlugin({
     name: 'common',
     filename: '[name].js',
     chunks: ['first', 'second']
   }),
-  //2.ÔÙ³éÈ¡µÚÈý·½Ä£¿é
+  //2.å†æŠ½å–ç¬¬ä¸‰æ–¹æ¨¡å—
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     filename: '[name].js',
-    //ÕýÔòÅÐ¶ÏÓÐÄÄÐ©Ä£¿é»á±»¼ÓÈëµ½vendorÖÐ
+    //æ­£åˆ™åˆ¤æ–­æœ‰å“ªäº›æ¨¡å—ä¼šè¢«åŠ å…¥åˆ°vendorä¸­
     minChunks: function (module, count) {
-      console.log(module.resource, `ÒýÓÃ´ÎÊý${count}`);
+      console.log(module.resource, `å¼•ç”¨æ¬¡æ•°${count}`);
       return (
         module.resource &&
         /\.js$/.test(module.resource) &&
@@ -50,20 +50,20 @@ plugins: [
       )
     }
   }),
-  //3.×îºó³é³öwebpackÔËÐÐµÄÎÄ¼þÒÀÀµÄÚÈÝ
+  //3.æœ€åŽæŠ½å‡ºwebpackè¿è¡Œçš„æ–‡ä»¶ä¾èµ–å†…å®¹
   new webpack.optimize.CommonsChunkPlugin({
     name: 'runtime',
     filename: '[name].js'
   }),
 ]
 
-//4.minChunksº¯Êý£¬ÕýÔòÅÐ¶Ï×Ô¶¨ÒåµÄÒýÈëÂß¼­ÎÄ¼þ-->´ò°ü³É¹¤¾ßÄ£¿é
+//4.minChunkså‡½æ•°ï¼Œæ­£åˆ™åˆ¤æ–­è‡ªå®šä¹‰çš„å¼•å…¥é€»è¾‘æ–‡ä»¶-->æ‰“åŒ…æˆå·¥å…·æ¨¡å—
 plugins: [
-  //³éÈ¡µÚÈý·½¿âÄÚÈÝ
+  //æŠ½å–ç¬¬ä¸‰æ–¹åº“å†…å®¹
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor'
   }),
-  //¶¨Òå³éÈ¡--Âß¼­¹«¹²´úÂëÄ£¿é
+  //å®šä¹‰æŠ½å–--é€»è¾‘å…¬å…±ä»£ç æ¨¡å—
   new webpack.optimize.CommonsChunkPlugin({
     name: 'utils',
     minChunks: function (module, count) {
@@ -75,9 +75,29 @@ plugins: [
       )
     }
   }),
-  //³éÈ¡ÔËÐÐÊ±ËùÐèµÄÎÄ¼þmanifest--> runtime
+  //æŠ½å–è¿è¡Œæ—¶æ‰€éœ€çš„æ–‡ä»¶manifest--> runtime
   new webpack.optimize.CommonsChunkPlugin({
     name: "manifest",
     minChunks: Infinity
+  })
+]
+
+//5.å¤šé¡µé¢æŠ½å–å…¬å…±å¼•å…¥æ ·å¼
+plugins: [
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'common',
+    minChunks(module, count) {
+      // any required modules inside node_modules are extracted to vendor
+      //node_modulesæ‰€éœ€çš„æ¨¡å—ä¼šè¢«æå‡ºåˆ°å…¬å…±æ–‡ä»¶
+      console.log(module.resource, count);
+
+      return (
+        module.resource &&
+        /\.js$/.test(module.resource) &&
+        module.resource.indexOf(
+          path.join(__dirname, '../node_modules')
+        ) === 0 || /\.(css|less|scss)$/.test(module.resource) && count >= 2
+      )
+    }
   })
 ]

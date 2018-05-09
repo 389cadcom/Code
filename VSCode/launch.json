@@ -21,3 +21,8 @@
     }
   ]
 }
+
+//2018-5-9 debugger
+//TODO .vue文件无法打断点，只能在js文件打断点？？
+
+//vue-tool  调试vue内容
