@@ -87,14 +87,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       minChunks (module, count) {
         // any required modules inside node_modules are extracted to vendor
         //node_modules所需的模块会被提出到公共文件
-        var c = (
-          module.resource &&
-          /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0 || /\.(css|less|scss)$/.test(module.resource) && count>=2
-        )
-        console.log(module.resource, count, c);
+        console.log(module.resource, count);
 
         return (
           module.resource &&

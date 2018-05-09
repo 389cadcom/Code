@@ -107,6 +107,9 @@ new webpack.LoaderOptionsPlugin({
 	}
 })
 
+//ExtractTextWebpackPlugin
+
+
 //8.webpack-dev-server
 devServer: {
 	// --告诉服务器从哪里提供内容。这只有在您想要提供静态文件时才需要。例如图片？？
