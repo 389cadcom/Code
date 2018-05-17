@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>意见反馈</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="res/css/layer.css"/>
+    <style type="text/css">
+        .text{
+            color:#f50;
+            text-align: center;
+        }
+        .text p{
+            text-align: justify;
+            display: inline-block;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title></title>
+    <link href="res/css/browser.css" rel="stylesheet"/>
+</head>
+<body>
+<form id="feedBackForm">
+    <header>
+        <!--<a href="javascript:history.go(-1)" class="">取消</a>-->
+
+        <h1>反馈</h1>
+        <a href="javascript:void(0)" id="submitBtn" class="disabled">提交</a>
+        <!--<input type="submit" value="提交" id="submitBtn" class="submit disabled"/>-->
+    </header>
+    <div class="fb-panel">
+        <textarea cols="30" id="contentInput" name="content" rows="10" maxlength="1000"
+                  placeholder="嗨，小主！用的不爽尽情喷，每条反馈我们都会很认真地阅读，会尽快联系您哦~"></textarea>
+
+        <h3>选择问题所属模块</h3>
+
+        <div class="radio-panel">
+            <div class="radio">
+                <input type="radio" id="r1" name="feedback_type" value="1" checked="checked">
+                <label for="r1">体验</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="r2" name="feedback_type" value="2">
+                <label for="r2">外貌</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="r3" name="feedback_type" value="3">
+                <label for="r3">主页</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="r4" name="feedback_type" value="4">
+                <label for="r4">其他</label>
+            </div>
+        </div>
+        <input id="contactInput" type="text" name="qq" placeholder="联系方式(QQ,Tel,Email均可)" maxlength="20">
+
+        <div class="pics" id="uploadImgs">
+            <div class="file">
+                <input type="file" id="photo" name="photo" accept="image/*">
+            </div>
+            <p class="file-tip">说不清，道不明，来个截图吧</p>
+        </div>
+        <div style="clear:both;margin:0.6rem 0 1.2rem;">
+            <div name="progressOuterDiv" style="display:none; float:left; width:85%; height: 7px;overflow: hidden; background-color:
+            #f5f5f5;	border-radius: 4px;	-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);margin-top: 11px;">
+                <div name="percentDiv"
+                     style="width: 0%;float: left;height: 100%;color: #fff;text-align: center;background-color: #428bca;-webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);-webkit-transition: width .6s ease;	transition: width .6s ease;">
+                </div>
+            </div>
+            <span name="percentSpan" style="display:none;float:left;">0</span>
+        </div>
+    </div>
+    <input type="hidden" class="input" name="phone_model"/>
+    <input type="hidden" class="input" name="version_name"/>
+    <input type="hidden" class="input" name="phone_number"/>
+</form>
+<iframe name="browser" style="display: none;"></iframe>
+</body>
+<script type="text/javascript" src="res/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="res/js/layer.m.js"></script>
+<script type="text/javascript" src="res/js/h5upload.js"></script>
+<script>
+    $(function () {
+        var area = $('#contentInput').val();
+        $('#submitBtn').toggleClass('disabled', $.trim(area) == '');
+
+        $('#contentInput,#contactInput').on('keyup', function () {
+            var area = $('#contentInput').val();
+
+            $('#submitBtn').toggleClass('disabled', !area);
+        });
+
+        $('#uploadImgs').delegate('#photo', 'change', function () {
+            if (!this.value.match(/.jpg|.jpeg|.gif|.png|.bmp|.JPG|.GIF|.PNG/i)) {//检查格式，并提示
+                var t = '对不起，请上传以下格式的图片：<br>jpg,jpeg,gif,png,bmp';
+                top.layer.open({
+                    content: '<div style="color:#f50;">' + t + '</div>',
+                    btn: ['确定'],
+                    shade: 0.2,
+                    shadeClose: false,
+                    yes: function (index) {
+                        top.layer.close(index);
+                    }
+                });
+                $('#photo').remove();//清理文件input
+                $('#uploadImgs .file').show().append('<input type="file" id="photo" name="photo" accept="image/png, image/x-png, image/gif, image/jpeg">');
+                return false;
+            }
+            $("#uploadImgs .pic").remove();//展示图片
+            var html = '<div class="pic">' +
+                    '<a href="javascript:;" class="close"></a>'
+            '</div>';
+            if (this.files && this.files[0]) {
+                var img = $('<img />'), reader = new FileReader();
+                reader.onload = function (evt) {
+                    img.attr('src', evt.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+                $('.file').before(html).hide();
+                $("#uploadImgs .pic").append(img)
+            }
+        });
+
+        $('#uploadImgs').delegate('.close', 'click', function (e) {//删除图片
+            $(this).parent().remove();//删除图片
+            $('#photo').remove();//清理文件input
+            $('#uploadImgs .file').show().append('<input type="file" id="photo" name="photo" accept="image/png,image/x-png, image/gif, image/jpeg">');
+        });
+        $('#submitBtn').on('click', function () {
+            var area = $('#contentInput').val();
+            if (!area) {
+                $('#submitBtn').addClass('disabled');
+                return false;
+            }
+            $('#submitBtn').toggleClass('disabled', !area);
+
+            var qqcheck = $('#contactInput').val();
+            if (qqcheck != null && qqcheck != undefined && qqcheck != "") {
+
+                if (/[\u4e00-\u9fa5]/.test(qqcheck)) {
+                    alert("中文字符！请重新输入联系方式");
+                    return false;
+                    $('#submitBtn').toggleClass('disabled', /[\u4e00-\u9fa5]/.test(qqcheck));
+                } else if (/[~!！#￥$%^……&*《》【】<>‘’''""“”{}()（）+=,，。:;；：]/.test(qqcheck)) {
+                    alert('非法字符！请重新输入联系方式');
+                    return false;
+                    $('#submitBtn').toggleClass('disabled', /[~!！#￥$%^……&*《》【】<>‘’''""“”{}()（）+=,，。:;；：]/.test(qqcheck));
+                }
+
+                var p =/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+                var pt=/^1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+                var pq = /^[1-9]\d{4,10}$/;
+                var pe= /^0\d{2,3}-?\d{7,8}$/;
+                if(!pq.test(qqcheck) && !pt.test(qqcheck) && !p.test(qqcheck) && !pe.test(qqcheck)){
+                    alert('请输入正确的联系方式');
+                    return false;
+                    $('#submitBtn').toggleClass('disabled', !pq.test(qqcheck) && !pt.test(qqcheck) && !p.test(qqcheck) && !pe.test(qqcheck));
+                }
+
+            }
+
+            H5Uploader('feedBackForm', 'photo', '/feedback/saveFeedback.do', '');
+        });
+    });
+
+//    function setFeedbackParams(versionName,phoneModel,phoneNumber){
+    function setFeedbackParams(versionName,phoneModel){
+        $("input[name='version_name']").val(versionName);
+        $("input[name='phone_model']").val(phoneModel);
+//        $("input[name='phone_number']").val(phoneNumber);
+    }
+</script>
+</html>

@@ -185,6 +185,9 @@ range
 each, map, filter, some, every, reduce, reduceRight
 find, where, findWhere, (matcher), reject
 
+arr.map(Number)		//等价于
+arr.map(item => Number(item))
+
 invoke, contains, pluck, max, min
 sortBy, groupBy, indexBy, countBy
 shuffle, sample, toArray, size, partition

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+<!--
+	application/x-www-form-urlencoded
+	application/form-data
+	application/json
+	
+	var fd = new FormData($('#form')[0])
+-->
+<form enctype="multipart/form-data">
+	<input type="file" name="photo" id="photo" value="" />
+</form>
+</body>
+<script src="http://unpkg.com/jquery"></script>
+<script type="text/javascript">
+$('#photo').on('change', function(){
+	var file = this.files[0]
+	var size = parseInt((file.size)/1024); //计算图片大小，默认是B，转换成KB  
+	console.log(file)
+	
+	var reader = new FileReader()
+	reader.readAsDataURL(file)
+//	reader.readAsBinaryString(file)
+	reader.onload = function(){
+		//console.log(this.result)
+	}
+	console.log(getObjectURL(file))
+})
+
+//取得该文件的url 
+function getObjectURL(file) { 
+　　var url = null ; 
+　　if (window.createObjectURL!=undefined) { 
+　　　　url = window.createObjectURL(file) ; 
+　　} else if (window.URL!=undefined) { 
+　　　　url = window.URL.createObjectURL(file) ; 
+　　} else if (window.webkitURL!=undefined) { 
+　　　　url = window.webkitURL.createObjectURL(file) ; 
+　　} 
+　　return url ; 
+} 
+</script>
+</html>

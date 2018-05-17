@@ -108,7 +108,17 @@ new webpack.LoaderOptionsPlugin({
 })
 
 //ExtractTextWebpackPlugin
-
+ExtractTextPlugin.extract({
+	use: [],
+	fallback: 'style-loader'
+})
+new ExtractTextPlugin({
+	filename: utils.assetsPath('css/[name].css'),
+	allChunks: true				//将所有额外的chunk都压缩成一个文件
+})
+//FixMe: 
+1.@import url('../asserts/style.css')		//只能抽取到当前chunk
+2.import '../assert/style.css'				//通过CommonsChunkPlugin设置导出到公共样式中，/\.(css|less|scss)$/.test(module.resource) && count>=2
 
 //8.webpack-dev-server
 devServer: {
