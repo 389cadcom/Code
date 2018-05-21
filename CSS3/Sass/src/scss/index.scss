@@ -1,0 +1,7 @@
+$fontSize: 16px !default;
+$namespace: 'weui-';
+
+.#{$namespace}icon{
+    font-size: $fontSize;
+    color: #61749B;
+}

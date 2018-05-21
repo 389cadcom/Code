@@ -1,0 +1,21 @@
+@import 'base/_mixin.scss';
+
+$color: orange;
+$map: 10 20 30;
+
+body{
+	color: $color;
+}
+.box{
+	@extend %ellipse;
+}
+
+h1{
+	@extend %ellipsis;
+}
+p{
+	@include ellipsis-multi;
+}
+.arrow{
+	@include caret(10px);
+}
