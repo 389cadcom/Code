@@ -1,34 +1,33 @@
 @import 'base/_mixin.scss';
 
-
 $color: #333;
 $map: 10px 20px 30px;
 
-body{
+body {
 	color: $color;
 }
-.box{
+.box {
 	@extend %ellipse;
 }
 
-h1{
+h1 {
 	@extend %ellipsis;
 }
-p{
+p {
 	@include ellipsis-multi;
 }
-.arrow{
+.arrow {
 	@include arrow(left);
 }
-.caret{
+.caret {
 	@include caret(8px);
 }
-.box1{
+.box1 {
 	@extend %ellipsis;
 }
 
 @for $i from 1 through 3 {
-	h#{$i}{
+	h#{$i} {
 		padding: 10px;
 	}
 }

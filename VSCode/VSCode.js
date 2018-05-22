@@ -26,6 +26,8 @@ Alt + 点击					多行编辑
 
 Ctrl + F					查找及查找下一个
 
+Ctrl + Shift + B		    运行生成任务
+
 project Manager				项目切换 Shift + Alt + E
 */
 Ement
