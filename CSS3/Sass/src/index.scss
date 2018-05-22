@@ -1,7 +1,8 @@
 @import 'base/_mixin.scss';
 
-$color: orange;
-$map: 10 20 30;
+
+$color: #333;
+$map: 10px 20px 30px;
 
 body{
 	color: $color;
@@ -17,5 +18,17 @@ p{
 	@include ellipsis-multi;
 }
 .arrow{
-	@include caret(10px);
+	@include arrow(left);
+}
+.caret{
+	@include caret(8px);
+}
+.box1{
+	@extend %ellipsis;
+}
+
+@for $i from 1 through 3 {
+	h#{$i}{
+		padding: 10px;
+	}
 }
