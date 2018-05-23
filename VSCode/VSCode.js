@@ -24,6 +24,8 @@ ctrl+shift+p webpack create webpack创建
 
 Alt + 点击					多行编辑
 
+Shift + Alt + 点击			拖选多行编辑
+
 Ctrl + F					查找及查找下一个
 
 Ctrl + Shift + B		    运行生成任务
