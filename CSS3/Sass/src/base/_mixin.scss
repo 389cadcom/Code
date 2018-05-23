@@ -1,35 +1,35 @@
-//文本省略
-@mixin ellipsis{
+//文本缩略--单行父级或当前需设宽度
+@mixin ellipsis {
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;	
+	white-space: nowrap;
 }
-%ellipsis{
+%ellipsis {
 	@include ellipsis;
 }
-@mixin ellipsis-multi($line:2){
-    display: -webkit-box;
+@mixin ellipsis-multi($line: 2) {
+	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: $line;
 	overflow: hidden;
 }
 
 //三角形 --上 右 下 左
-.arrow-wrap{
-	width:0; 
-	height:0;
-	border-width:50px;
-	border-style:solid;
-	border-color:black  blue  orange  yellow;
+.arrow-wrap {
+	width: 0;
+	height: 0;
+	border-width: 50px;
+	border-style: solid;
+	border-color: black blue orange yellow;
 }
 //三角形
-@mixin arrow($dir:right, $color:orange, $width:8px){
-    width: 0;
-    height: 0;
-    border-width: $width;
-    border-style: solid;
-    border-color: transparent;
-    border-#{$dir}-color: $color;
+@mixin arrow($dir: right, $color: orange, $width: 8px) {
+	width: 0;
+	height: 0;
+	border-width: $width;
+	border-style: solid;
+	border-color: transparent;
+	border-#{$dir}-color: $color;
 }
 //$fill--填充的边 与实际箭头方向相反
 /*
@@ -40,46 +40,52 @@ TODO 空心三角
     border-width: 8px;
 }
 */
-@mixin caret($width:5px, $border:1px, $borderColor:#f00, $bgColor:#fff, $fill:left){
+@mixin caret(
+	$width: 5px,
+	$border: 1px,
+	$borderColor: #f00,
+	$bgColor: #fff,
+	$fill: left
+) {
 	$width1: $width - $border;
-    position: relative;
-    display: inline-block;
-    width: $width*2;
-    height: $width*2;
-	&:before, &:after{
+	position: relative;
+	display: inline-block;
+	width: $width * 2;
+	height: $width * 2;
+	&:before,
+	&:after {
 		content: '';
-        position: absolute;
-        border-style: solid;
-        border-color: transparent;
+		position: absolute;
+		border-style: solid;
+		border-color: transparent;
 	}
-    &:before{
-        top: 0;
-        left: 0;
-        border-width: $width;
-        border-#{$fill}-color: $borderColor;
-    }
-    &:after{
-        @if($fill==top){
-            left: $border;
-        }
-        @if($fill==bottom){
-            left: $border;
-        }
-        @if($fill==left){
-            top: $border;
-        }
-        @if($fill==right){
-            top: $border;
-        }
-        #{$fill}: 0;
-        border-width: $width1;
-        border-#{$fill}-color: $bgColor;
-    }
+	&:before {
+		top: 0;
+		left: 0;
+		border-width: $width;
+		border-#{$fill}-color: $borderColor;
+	}
+	&:after {
+		@if ($fill==top) {
+			left: $border;
+		}
+		@if ($fill==bottom) {
+			left: $border;
+		}
+		@if ($fill==left) {
+			top: $border;
+		}
+		@if ($fill==right) {
+			top: $border;
+		}
+		#{$fill}: 0;
+		border-width: $width1;
+		border-#{$fill}-color: $bgColor;
+	}
 }
-
-%ellipse{
-    width: 200px;
-    height: 100px;
-    background: #f00;
-    border-radius: 100px / 50px;
+%ellipse {
+	width: 200px;
+	height: 100px;
+	background: #f00;
+	border-radius: 100px / 50px;
 }

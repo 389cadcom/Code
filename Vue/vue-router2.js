@@ -19,7 +19,7 @@
 <router-link tag="li" :to="{path:'/'}"><a>Home</a></router-link>
 
 :to = { path:'', name:'', activeClass: 'active',  params:{id:12}, query:{args:123}, replace, append:true }
-
+:to = { name: '',  params:{id:12, uid: 1}}
 
 //router-view
 

@@ -8,6 +8,7 @@ body {
 }
 .box {
 	@extend %ellipse;
+	display: flex;
 }
 
 h1 {
