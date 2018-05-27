@@ -27,3 +27,31 @@ vstyle
 vclass
 
 vanim			生成transition过渡
+
+
+//Template
+vfor				v-for      directive
+vmodel				Semantic   v-model     directive
+vmodel-num			Semantic   v-model     number  directive
+von					v-on       click       handler with arguments
+vel-props			Component  element     with    props
+vsrc	           Image      src         binding
+vstyle				Inline     style       binding
+vstyle-obj			Inline     style       binding with objects
+vclass				Class      binding
+vclass-obj			 Class      binding     with    objects
+vclass-obj-mult	Multiple   conditional class   bindings
+vanim	          Transition component   with    JS   hooks
+vnuxtl	         Nuxt       Routing Link
+
+//scripte
+vdata			Component data as a function
+vmethod			Vue method
+vcomputed		Vue computed property
+vwatcher		Vue watcher with new and old value args
+vprops			Props with type and default
+vimport			Import one component into another
+vimport-c		Import one component into another within the export statement
+vimport-export	Import one component into another and use it within the export statement
+vfilter			Vue filter
+vmixin			Create a Vue Mixin

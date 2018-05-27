@@ -1,0 +1,36 @@
+// $icon-sprite-dimensions: ture;
+$icon-sprite-base-class: '.icon';
+$icon-layout: smart;
+$icon-repeat: repeat-x;
+
+@import "compass/utilities/sprites";
+@import "icon/*.png";
+// @include all-icon-sprites;
+
+
+/*
+@import图片方式:
+<map>-sprite-height($name)    单个尺寸
+<map>-sprite-width($name)
+<map>-sprite-base-class
+<map>-layout
+*/
+
+.icon{
+  width: icon-sprite-width(clock);
+  height: icon-sprite-height(clock);
+}
+
+.clock{
+  @include icon-sprite(clock);
+}
+.camera{
+  @include icon-sprite(camera);
+}
+.delete{
+  @include icon-sprite(delete);
+}
+.collection{
+  @include icon-sprite(delete);
+}
+
