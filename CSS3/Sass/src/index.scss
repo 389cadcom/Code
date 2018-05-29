@@ -1,28 +1,21 @@
-@import 'base/_mixin.scss';
+// @import 'base/reset';
+@import 'base/space';
+// @import 'base/mixin';
 
-$color: #333;
-$map: 10px 20px 30px;
-$direction: left;
+.flexbox{
+	display: flex;
+	align-content: flex-start;
+	align-items: center;
+}
 
 /* .arrow {
 	@include arrow(left);
 }
+*/
 .caret {
 	@include caret(8px);
 }
- */
-.box {
-	@extend %ellipse;
-	display: flex;
-	top: if($direction==left, 1px, 0);
-	@if ($direction == left) {
-		left: 10px;
-	} @else {
-		left: 0;
-	}
-}
-
-//鎺у埗璇彞
+//控制语句
 @for $i from 1 through 3 {
 	h#{$i} {
 		padding: 10px;
@@ -54,7 +47,7 @@ $type: 4;
 	$type: $type - 1;
 }
 
-//sprite鍥剧墖
+//sprite图片
 $list: phone lock food;
 @mixin sprite {
 	@each $ico in $list {
@@ -114,7 +107,7 @@ div{
 	background: map-get(map-get($theme-color, primary), bgcolor);
 }
 
-//$map瀹氫箟 閬嶅巻
+//$map定义 遍历
 $social-colors: (
     facebook: #3b5998,
     github: #171515,
@@ -139,13 +132,13 @@ $social-colors: (
 
 
 $types: facebook google twitter;
-//each鍘嗛亶
+//each历遍
 @each $type in $types {
 	.btn-#{$type}{
 		color: colors($type)
 	}
 }
-//for鍘嗛亶
+//for历遍
 $keys: map-keys($social-colors);
 @for $i from 1 through length($keys){
 	$color: nth($keys, $i);
@@ -154,7 +147,7 @@ $keys: map-keys($social-colors);
 	}
 }
 
-//濯掍粙鏌ヨ
+//媒介查询
 @mixin maxMedia($size){
 	@media only screen and (max-width:$size) {
 		@content;

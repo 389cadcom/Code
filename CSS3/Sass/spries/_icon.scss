@@ -2,7 +2,7 @@
 
 @mixin icon($sprites, $name, $wap:false){
   background: $sprites no-repeat;
-	$width: image-width(sprite-file($sprites, $name));
+  $width: image-width(sprite-file($sprites, $name));
   $height: image-height(sprite-file($sprites, $name));
 
   @if $wap {
@@ -31,6 +31,7 @@
 
 //生成雪碧
 $setting: sprite-map('icon/*.png', $spacing:10px, $layout: 'vertical');
+
 $list: clock, delete, collection, camera, activity, accessory, notes;
 
 %icon{

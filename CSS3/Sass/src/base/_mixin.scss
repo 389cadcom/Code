@@ -40,13 +40,7 @@ TODO 空心三角
     border-width: 8px;
 }
 */
-@mixin caret(
-	$width: 5px,
-	$border: 1px,
-	$borderColor: #f00,
-	$bgColor: #fff,
-	$fill: left
-) {
+@mixin caret( $width: 5px, $border: 1px, $borderColor: #f00, $bgColor: #fff, $fill: left ) {
 	$width1: $width - $border;
 	position: relative;
 	display: inline-block;
@@ -66,16 +60,10 @@ TODO 空心三角
 		border-#{$fill}-color: $borderColor;
 	}
 	&:after {
-		@if ($fill==top) {
+		@if ($fill==top) or ($fill==bottom) {
 			left: $border;
 		}
-		@if ($fill==bottom) {
-			left: $border;
-		}
-		@if ($fill==left) {
-			top: $border;
-		}
-		@if ($fill==right) {
+		@if ($fill==left) or ($fill==right) {
 			top: $border;
 		}
 		#{$fill}: 0;
@@ -83,44 +71,28 @@ TODO 空心三角
 		border-#{$fill}-color: $bgColor;
 	}
 }
-%ellipse {
-	width: 200px;
-	height: 100px;
-	background: #f00;
-	border-radius: 100px / 50px;
-}
 
-
-//1px line
-@mixin setLine($direction:bottom, $color:#c7c7c7){
+// 1px line
+@mixin setLine($direction: bottom, $color: #c7c7c7) {
 	position: absolute;
-	content: " ";
+	content: ' ';
 	#{$direction}: 0px;
 	border-#{$direction}: 1px solid $color;
-	@if $direction == top {
-			transform: scaleY(.5);
-			left: 0;
-			right: 0;
+	@if ($direction == top) or ($direction == bottom) {
+		transform: scaleY(0.5);
+		left: 0;
+		right: 0;
 	}
-	@if $direction == bottom {
-			transform: scaleY(.5);
-			left: 0;
-			right: 0;
-	}
-	@if $direction == left {
-			transform: scaleX(.5);
-			top: 0;
-			bottom: 0;
-	}
-	@if $direction == right {
-			transform: scaleX(.5);
-			top: 0;
-			bottom: 0;
+
+	@if ($direction == left) or ($direction == right) {
+		transform: scaleX(0.5);
+		top: 0;
+		bottom: 0;
 	}
 }
-@mixin setAllLine($color: #c7c7c7){
+@mixin setAllLine($color: #c7c7c7) {
 	position: absolute;
-	content: " ";
+	content: ' ';
 	width: 200%;
 	height: 200%;
 	transform: scale(0.5);
