@@ -1,0 +1,25 @@
+﻿@mixin setLine($direction:bottom, $color:#c7c7c7){
+    position: absolute;
+    content: " ";
+    #{$direction}: 0px;
+    border-#{$direction}: 1px solid $color;
+    @if ($direction == top) or ($direction == bottom)  {
+        transform: scaleY(.5);
+        left: 0;
+        right: 0;
+    }
+    @if ($direction == left) or ($direction == right) {
+        transform: scaleX(.5);
+        top: 0;
+        bottom: 0;
+    }
+}
+@mixin setAllLine($color: #c7c7c7){
+	position: absolute;
+	content: " ";
+	width: 200%;
+	height: 200%;
+	transform: scale(0.5);
+	transform-origin: 0 0;
+	border: 1px solid $color;
+}

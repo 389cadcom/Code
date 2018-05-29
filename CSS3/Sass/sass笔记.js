@@ -29,7 +29,7 @@ top: if($direction==left, 1px, 0);
 
 @if $bool {	}
 @else { }
-//@if not
+//@if not()  or and表示 非，或，与
 
 @for $i from 1 through 4 { }
 @for $i from 1 $i to 4 {}
