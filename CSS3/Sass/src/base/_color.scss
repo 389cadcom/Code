@@ -1,0 +1,25 @@
+$orange: #ffa600;
+$grey: #f3f3f3;
+$blue: #82d2e5;
+
+$link-primary: $orange;
+$link-secondary: $blue;
+$link-tertiary: $grey;
+
+$radius-button: 5px;
+$radius-tab: 5px;
+
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: Arial, Helvetica, sans-serif; 
+
+$color-primary: $orange; 
+$color-secondary: $blue; 
+$color-tertiary: $grey;
+
+
+@function black($opacity) {
+	@return rgba(0, 0, 0, $opacity);
+}
+@function white($opacity) {
+	@return rgba(255, 255, 255, $opacity);
+}

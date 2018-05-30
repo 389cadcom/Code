@@ -1,6 +1,10 @@
 //sass -i	进入sass shell编辑环境
 //live sass compile
 
+//插值、默认参数、rest参数、Each...in、Map、@extend
+
+//type-of: string, boolean, number, null, color, list, map
+
 compass create project
 
 compass compile  --output-style compressed
@@ -14,15 +18,14 @@ sass -t expanded --watch src/index.scss
 //运算符前后需空隔, 不然编译会报错
 
 .header {
-	@at-root #{&}-top{
-
-	}
-	.page & {
-	
-	}
+  @at-root #{&}-top{ }
+  .page & { }
 }
 
-@content;	//处理media内容
+@content;	//处理media, keyframes内容
+@include tablet {
+	p{font-size:12px;}
+}
 
 //三目运算
 top: if($direction==left, 1px, 0);
@@ -88,3 +91,7 @@ rgba()	    十六进制和透明度转为rgba颜色
 
 lighten, darken
 lighten($baseColor,10%)
+
+
+//随机
+unique-id()
