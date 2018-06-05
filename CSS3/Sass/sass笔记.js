@@ -6,6 +6,7 @@
 //type-of: string, boolean, number, null, color, list, map
 
 compass create project
+compass init
 
 compass compile  --output-style compressed
 compass watch
@@ -22,7 +23,12 @@ sass -t expanded --watch src/index.scss
   .page & { }
 }
 
-@content;	//处理media, keyframes内容
+//处理media, keyframes内容 @content
+@mixin tablet {
+  @media (max-width:767px){
+	@content;
+  }
+}
 @include tablet {
 	p{font-size:12px;}
 }
@@ -32,7 +38,7 @@ top: if($direction==left, 1px, 0);
 
 @if $bool {	}
 @else { }
-//@if not()  or and表示 非，或，与
+//@if not()  or and表示 非，或，与  type-of
 
 @for $i from 1 through 4 { }
 @for $i from 1 $i to 4 {}
@@ -42,17 +48,17 @@ $type: 4;
 	$type: $type-1
 }
 
-$list: phone lock food;
-
-@each $var in $list{}
-@each $key, $value in $map{}
-
 
 //字符与数据函数，三目函数
 quote, unquote
 
 percentage, 
 random, round, ceil, floor, max, min
+
+str-length, str-insert($str, $t, index), str-index, str_slice, 
+to_upper_case, to_lower_case
+//随机
+unique-id()
 
 //列表函数     separator  comma(逗号)和space(空格)
 length($list)
@@ -61,6 +67,7 @@ index($list, value)
 
 join(list1,list1, list2, [$separator]),
 append($list, val, [$separator])
+
 
 //map函数
 map-get(map, key)
@@ -89,9 +96,7 @@ $social-colors: (
 rgb()		三种rgb转为十六进制颜色
 rgba()	    十六进制和透明度转为rgba颜色
 
-lighten, darken
+lighten, darken			//加深、减淡 10% ~ 30%
 lighten($baseColor,10%)
 
 
-//随机
-unique-id()

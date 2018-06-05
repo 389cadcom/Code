@@ -18,7 +18,9 @@
 <router-link tag="li" to="/home#hash"><a>Home</a></router-link>
 <router-link tag="li" :to="{path:'/'}"><a>Home</a></router-link>
 
-:to = { path:'', name:'', activeClass: 'active',  params:{id:12}, query:{args:123}, replace, append:true }
+<router-link :to="{ path: '/abc'}" replace append></router-link>
+
+:to = { path:'', name:'', activeClass: 'active',  params:{id:12}, query:{args:123}}
 :to = { name: '',  params:{id:12, uid: 1}}
 
 //router-view
@@ -55,6 +57,13 @@ route对象
 watch: {
   '$route': 'fetchData'
 },
+beforeRouteEnter (to, from, next) {		//beforeRouteUpdate, beforeRouteLeave
+  next(vm => {
+    // 通过 `vm` 访问组件实例
+  })
+
+  //next(false)
+}
 
 
 new Vue({
