@@ -1,54 +1,55 @@
-//注：
-//启用插件babel-plugin-transfrom-runtime，Babel就会使用babel-runtime工具函数，还会自动引用babel-polyfill
-
-babel-runtime					//手动添加require("babel-runtime")
+//启用插件babel-plugin-transfrom-runtime，Babel就会使用babel-runtime工具函数
 babel-plugin-transform-runtime	//工具自动添加,主要的功能是为api提供沙箱的垫片方案
-babel-polyfill					//通过改写全局prototype的方式实现, require('babel-polyfill')
+//babel-runtime --> core-js中提取, 使用require('babel-runtime/core-js/promise')
+
+babel-runtime/core-js/set
+babel-runtime/core-js/object/assign
+babel-runtime/core-js/promise
+
+
+babel-polyfill					//通过改写全局prototype的方式实现, require('babel-polyfill') import 'babel-polyfill'   script引入
+
 
 //plugins
-transform-modules-strip				//module: false, 去除import, export声明 ==> BS4
+transform-modules-strip					//module: false, 去除import, export声明 ==> BS4
 transform-remove-strict-mode		// 'use strict'		
 
 
-/*-------------------------------基本内容----------------------*/
-//解析，转换和生成
-{   presets: [],   plugins: [] }
+//babel-preset-es2015		20个插件
 
-//{presets: ['es2015']}
+transform-es2015-template-literals      // => es2015模板
+transform-es2015-literals								// => 编译整数(8进制/16进制)和unicode
+transform-es2015-function-name          // => 函数name属性
+transform-es2015-arrow-functions        // => 箭头函数
+transform-es2015-block-scoped-functions // => 函数块级作用域
+transform-es2015-classes                // => class类
+transform-es2015-object-super           // => super提供了调用prototype的方式
+transform-es2015-shorthand-properties   // => 对象属性的快捷定义，如obj = {      x, y }
+transform-es2015-computed-properties    // => 对象中括号属性，如obj   = {['x]: 1}
+transform-es2015-for-of                 // => 对象for          of遍历
+transform-es2015-sticky-regex						// => 正则添加sticky属性
+transform-es2015-unicode-regex					// => 正则添加unicode模式
+check-es2015-constants                  // => const常量
+transform-es2015-spread                 // => 对象扩展运算符属性，如...foobar
+transform-es2015-parameters             // => 函数参数默认值及扩展运算符
+transform-es2015-destructuring          // => 赋值解构
+transform-es2015-block-scoping          // => let和const块级作用域
+transform-es2015-typeof-symbol          // => symbol特性
+transform-es2015-modules-commonjs       // => commonjs模块加载
+transform-regenerator                   // => generator特性
 
-//预设presets  --> plugins的组合				http://babeljs.io/docs/plugins/
-env, es2015, es2016, es2017, latest, react		//latest  --> babel-preset-env代替
-
-
-//es2015
-check-es2015-constants					// 检验const常量是否被重新赋值
-transform-es2015-arrow-functions		// 编译箭头函数
-transform-es2015-block-scoped-functions	// 函数声明在作用域内
-transform-es2015-block-scoping			// 编译const和let
-transform-es2015-classes				// 编译class
-transform-es2015-computed-properties	// 编译计算对象属性
-transform-es2015-destructuring			// 编译解构赋值
-transform-es2015-duplicate-keys			// 编译对象中重复的key，其实是转换成计算对象属性
-transform-es2015-for-of					// 编译for...of
-transform-es2015-function-name			// 将function.name语义应用于所有的function
-transform-es2015-literals				// 编译整数(8进制/16进制)和unicode
-transform-es2015-modules-commonjs		// 将modules编译成commonjs
-transform-es2015-object-super			// 编译super
-transform-es2015-parameters				// 编译参数，包括默认参数，不定参数和解构参数
-transform-es2015-shorthand-properties	// 编译属性缩写
-transform-es2015-spread					// 编译展开运算符
-transform-es2015-sticky-regex			// 正则添加sticky属性
-transform-es2015-template-literals		// 编译模版字符串
-transform-es2015-typeof-symbol			// 编译Symbol类型
-transform-es2015-unicode-regex			// 正则添加unicode模式
-transform-regenerator					// 编译generator函数
 
 //es2016	--es7
-transform-exponentiation-operator		// 编译幂运算符
+transform-exponentiation-operator						//编译幂运算符
+
 
 //es2017	--es8
-syntax-trailing-function-commas			// function最后一个参数允许使用逗号
-transform-async-to-generator			// 把async函数转化成generator函数
+syntax-trailing-function-commas							//function最后一个参数允许使用逗号
+transform-async-to-generator								//把async函数转化成generator函数
+transform-decorators-legacy									//ES7 装饰器
+
+
+//es2018  --es9
 
 
 /*
@@ -100,6 +101,12 @@ transform-function-bind					// 编译bind运算符，即::
 //插件说明:
 babel-plugin-transform-es2015-modules-strip	//禁用导入、导出模块
 
-babel-plugin-transfrom-runtime				//
-
 babel-plugin-add-module-exports
+
+
+babel-plugin-transfrom-runtime				
+
+
+
+//babel-polyfill 直接在原型链上增加方法 (新的API及对象prototype上的方法)
+

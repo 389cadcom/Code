@@ -7,8 +7,9 @@ var options = {
 
 删除 node_modules
 rimraf node_modules
-
 */
+
+ //匿名对象---对象里的属性拼在一起，组成对象变量名
 
 
 //默认只转换语法，不转换新的API

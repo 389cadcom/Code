@@ -110,6 +110,11 @@ with({
   }
 }
 
+//非数字或者数字字符串的内容变成 0呢
+!!+0
+~~0
+
+
 //14.数组对象去重
 function removeRepeat(arr, field){
     var s = [], result = {}, reSet = {}
