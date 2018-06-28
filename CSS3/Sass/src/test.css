@@ -1,2 +1,0 @@
-p { position: relative; }
-p::after { position: absolute; left: 50%; top: 50%; width: 200px; height: 200px; margin: -100px 0 0 -100px; }

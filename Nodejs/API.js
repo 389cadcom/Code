@@ -1,6 +1,6 @@
-//Buffer
-Buffer.from()
-
+//Buffer缓存区
+Buffer.from, alloc, write, slice, concat, compare
+ //创建缓冲区，写入缓冲区
 
 //util
 inherit, inspect, log, _extend
@@ -9,7 +9,7 @@ inherit, inspect, log, _extend
 parse, format, resolve, resolveObject
 
 
-//querystring	-->解析URL参数内容
+//querystring	-->解析URL参数内容   //encodeURI, decodeURI
 parse(url, '=', '&'), stringify(obj, '=', '&'), decode, encode, escape
 
 
@@ -40,12 +40,27 @@ fs:
 
 	readFile(url, encoding, cb), writeFile(url, data, cb)
 
+	open, close, mkdir, readdir, rmdir
+
+	read, write, unlink, 
+
+//例:
+	fs.read(fd, buf, 0, buf.length, 0, (err, bytes)=>{}
+	fs.open('./res/note.txt', 'a', (err, fd)=>{
+    fs.writeFile(fd, 'node.js\r\n', (err)=>{
+        console.log(err);
+    })
+  })
 
 http:		
-	createServer, get -> request
+	createServer -> get, post请求
 
 	//Request: url, method, headers
+	params = url.parse(req.url, true).query
 
 	//Response: writeHead, write, end
 
+	//req.data, req.end事件
+
 express
+  req.params, req.query, req.body,

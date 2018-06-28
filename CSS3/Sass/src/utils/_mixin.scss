@@ -1,11 +1,12 @@
 //文本缩略--单行父级或当前需设宽度
-@mixin ellipsis {
+%ellipsis {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-%ellipsis {
-	@include ellipsis;
+@mixin ellipsis($width:100%){
+	@extend %ellipsis;
+	width: $width;
 }
 @mixin ellipsis-multi($line: 2) {
 	display: -webkit-box;
@@ -14,14 +15,6 @@
 	overflow: hidden;
 }
 
-//三角形 --上 右 下 左
-.arrow-wrap {
-	width: 0;
-	height: 0;
-	border-width: 50px;
-	border-style: solid;
-	border-color: black blue orange yellow;
-}
 //三角形
 @mixin arrow($dir: right, $color: orange, $width: 8px) {
 	width: 0;
@@ -32,22 +25,14 @@
 	border-#{$dir}-color: $color;
 }
 //$fill--填充的边 与实际箭头方向相反
-/*
-TODO 空心三角 
-.arrow:after {
-    top: 2px;
-    left: 1px;
-    border-width: 8px;
-}
-*/
+
 @mixin caret( $width: 5px, $border: 1px, $borderColor: #f00, $bgColor: #fff, $fill: left ) {
 	$width1: $width - $border;
 	position: relative;
 	display: inline-block;
 	width: $width * 2;
 	height: $width * 2;
-	&:before,
-	&:after {
+	&:before, &:after {
 		content: '';
 		position: absolute;
 		border-style: solid;
@@ -72,8 +57,8 @@ TODO 空心三角
 	}
 }
 
-// 1px line
-@mixin setLine($direction: bottom, $color: #c7c7c7) {
+// 1像素线条
+@mixin setOneLine($direction: bottom, $color: #c7c7c7) {
 	position: absolute;
 	content: ' ';
 	#{$direction}: 0px;
@@ -98,4 +83,14 @@ TODO 空心三角
 	transform: scale(0.5);
 	transform-origin: 0 0;
 	border: 1px solid $color;
+}
+
+@mixin table($bordeCcolor:gray){
+	width: 100%;
+	margin-bottom: 10px;
+	border-spacing: 0;
+	border-collapse: collapse;
+	& th, & td{
+		border: 1px solid $bordeCcolor;
+	} 
 }

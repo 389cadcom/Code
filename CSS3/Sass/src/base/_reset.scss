@@ -1,13 +1,14 @@
 html{-webkit-text-size-adjust: 100%; height: 100%;}
-body{ height: 100%; padding: 0; font-size: .75rem; font-family: Microsoft YaHei,Arial,Helvetica; background: #f4f4f4;}
-form, img, table, td { border:0;}
+body{ height: 100%; padding: 0; font-size: .75rem; font-family: Microsoft YaHei,Arial,Helvetica;}
 ul, ol, li { list-style:none;}
 h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
-input, textarea, img { outline: none; vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
-a {color:#3c3f46; text-decoration:none;}
-em,i{font-style:normal;}
+h1,h2,h3,h4,h5,h6,p,figure,form,blockquote { margin:0; }
+input, textarea, button, select { outline: none; vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
 table { border-collapse: collapse; border-spacing: 0 }
 hr { margin: 10px 0; border: 0; border-top: 1px solid #eee; }
+form, img, table, td { border:0;}
+a {color:#3c3f46; text-decoration:none;}
+em,i{font-style:normal;}
 
 .fl{float: left;}
 .fr{float: right;}
@@ -24,6 +25,7 @@ hr { margin: 10px 0; border: 0; border-top: 1px solid #eee; }
 .collapse.in{display: block;}
 .collapsing{position: relative; height: 0; overflow: hidden; transition: height .35s ease;}
 
+//375为基准
 @media only screen and (min-width: 320px) and (max-width:360px) {
   html { font-size:14px }
 }

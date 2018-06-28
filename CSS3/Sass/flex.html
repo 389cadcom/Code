@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<style>
+body{ margin:0; font-style: italic; font-family: sans; }
+.container{ display: flex; flex-direction: column; }
+.container > *{ text-align: center; min-height: 100px;}
+main{ background: #ccc;  }
+.left-aside{ background: skyblue;  }
+.right-aside{ background: tomato;}
+header,footer{ background: #888; }
+
+.wraper{display: flex; }
+.left-aside,.right-aside{flex: 0 0 5rem;}
+
+main{flex: 1 1 5rem;}
+
+/*PC排版定义*/
+@media all and (min-width: 768px){
+/*   .container{flex-flow: row wrap;}
+  header,footer{flex: 0 0 100%;}
+  header{order: 0;}
+  footer{order: 4;}
+  .left-aside{order: 1;}
+  .right-aside{order: 3;}
+  .left-aside,.right-aside{flex: 0 0 10em;}
+  main{order: 2; flex: 1;} */
+}
+@media (max-width:767px){
+  .wraper{flex-direction: column;}
+  main{order: -1}
+}
+</style>
+<body>
+<div class="container">
+  <header>#header</header>
+  <div class="wraper">
+    <aside class="left-aside">#aside1</aside>
+    <main>#main</main>
+    <aside class="right-aside">#aside2</aside>
+  </div>
+  <footer>#footer</footer>
+</div>
+<style>
+.grid{display: flex; flex-flow: row wrap; margin-top: 10px;}
+.row{display: flex; flex: 0 100%; flex-flow: row wrap;}
+.col{box-sizing: border-box; padding: 5px; flex: 0 0 100%;}
+div[class^='col'] div{background:#ddd}
+
+@media (min-width:768px){
+
+.col-10{flex:0 0 100%;}
+.col-9{flex:0 0 90%;}
+.col-8{flex:0 0 80%;}
+.col-7{flex:0 0 70%;}
+.col-6{flex:0 0 60%;}
+.col-5{flex:1 1 50%;}
+.col-4{flex:0 0 40%;}
+.col-3{flex:0 0 30%;}
+.col-2{flex:0 0 20%;}
+.col-1{flex:0  10%;}
+  
+}
+</style>
+<div class="grid">
+  <div class="row">
+    <div class="col"><div>full</div></div>
+  </div>
+  <div class="row">
+    <div class="col col-2"><div>2/10</div></div>
+    <div class="col col-8"><div>8/10</div></div>
+  </div>
+  <div class="row">
+    <div class="col col-5"><div>5/10</div></div>
+    <div class="col col-5"><div>5/10</div></div>
+  </div>
+</div>
+</body>
+</html>

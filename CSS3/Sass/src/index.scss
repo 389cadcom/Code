@@ -1,11 +1,27 @@
 // @import 'base/reset';
 // @import 'base/space';
-// @import 'utils/mixin';
+@import 'utils/mixin';
 
-$color: red;
+.box, .ellipsis{
+	@include ellipsis;
+}
+
+//三角形 --上 右 下 左
+.arrow-wrap {
+	width: 0;
+	height: 0;
+	border-width: 50px;
+	border-style: solid;
+	border-color: black blue orange yellow;
+}
+
+.table{
+	@include table;
+}
+
 .flexbox{
 	display: flex;
-	align-content: flex-start;
-	align-items: center;
-	color: $color;
+	justify-content: space-between;
+	align-items: flex-end;
+	flex-direction: column-reverse;
 }
