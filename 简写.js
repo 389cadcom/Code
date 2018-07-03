@@ -44,6 +44,9 @@ Array.from({length:4})
 
 ~~!location.href.indexOf('http')
 
+//11.indexOf等于-1;
+!!~location.href.indexOf('http')
+
 //6.位运算 NOT 实质上是对数字求负,然后减 1; 逆运算就是数字加1后再求负
 ~true = -2
 ~false = -1
@@ -74,8 +77,7 @@ var rate = 1;
 //10.十进制指数
 1000 = 1e3
  
-//11.indexOf等于-1;
-!!~location.href.indexOf('http')
+
 
 //12.柯里化
 let add = a => b => a + b
