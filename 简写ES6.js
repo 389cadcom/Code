@@ -1,3 +1,5 @@
+//JSON.string(obj, null, 2) 格式化缩进
+
 //1.异步、解构、Promise
 var [user, account] = await Promise.all([
 	fetch('/user'),

@@ -1,5 +1,6 @@
 import humps from 'humps'
 
+//样式转为Object
 function styleToObject (style) {
   return style.split(';')
     .map(s => s.trim() )
@@ -15,6 +16,7 @@ function styleToObject (style) {
     }, {})
 }
 
+//class转为对象
 function classToObject (cls) {
   return cls.split(/\s+/)
     .reduce((acc, c) => {
@@ -24,6 +26,7 @@ function classToObject (cls) {
     }, {})
 }
 
+//参数转为数组
 function combineClassObjects (...objs) {
   return objs.reduce((acc, obj) => {
     if (Array.isArray(obj)) {
