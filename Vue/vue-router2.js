@@ -1,8 +1,8 @@
 /*
- 1.配置					routes: []
+ 1.配置						routes: []
  2.嵌套路由				children: []
  3.动态路由				path: 'user/:id'
- 4.命名路由				name:'home'							   <router-view></router-view>
+ 4.命名路由				name:'home'														 <router-view></router-view>
  5.命名视图				components: { default:Home, b:Edit }   <router-view name=""></router-view>
  6.编程式导航			this.$route.push(), this.$route.replace()
  7.重定向和别名			redirect: '/'  redirect:{name: ''}   alias: '/index'
