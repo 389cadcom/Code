@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+</head>
+<style>
+.wrap{display: flex;}
+</style>
+<body>
+<div id="app">
+	{{msg}} config.productionTip
+	<div class="wrap">
+		<ul>
+			<li>extends: {{extend}}</li>
+			<li>mixins: {{mix1}}</li>
+			<li>data: {{msg}}</li>
+		</ul>
+	</div>
+	
+	<div class="wrap">
+		<ol>
+			<li>Vue.extend</li>
+			<li>Vue.component</li>
+			<li>Vue.compile</li>
+			<li>Vue.use</li>
+			<li>Vue.mixins</li>
+			<li>Vue.filter</li>
+			<li>Vue.directive</li>
+		</ol>
+		<ol>
+			<li>Vue.version</li>
+			<li>Vue.set</li>
+			<li>Vue.delete</li>
+			<li>Vue.nextTick</li>
+		</ol>
+		<ul>
+			<b>资源/组合</b>
+			<li>components</li>
+			<li>extends</li>
+			<li>mixins</li>
+			<li>filters</li>
+			<li>directives</li>
+		</ul>
+		<ul>
+			<b>选项/数据</b>
+			<li>data</li>
+			<li>props</li>
+			<li>propsData</li>
+			<li>computed</li>
+			<li>watch</li>
+			<li>methods</li>
+		</ul>
+		<ul>
+			<b>选项/DOM</b>
+			<li>el</li>
+			<li>render</li>
+			<li>template</li>
+			<li>renderError</li>
+		</ul>
+		<ul>
+			<b>生命周期</b>
+			<li>created</li>
+			<li>mounted</li>
+			<li>updated</li>
+			<li>activated</li>
+			<li>deactivated</li>
+			<li>destroyed</li>
+		</ul>
+		<ul>
+			<b>内置组件</b>
+			<li>component</li>
+			<li>transition</li>
+			<li>transition-group</li>
+			<li>keep-alive</li>
+			<li>slot</li>
+		</ul>
+	</div>
+	<div class="wrap">
+		<ul>
+			<b>实例属性</b>
+			<li>$el, $data</li>
+			<li>$attrs, $props</li>
+			<li>vue.$root</li>
+			<li>vue.$parent</li>
+			<li>vue.$children</li>
+			<li>vue.$refs</li>
+			<li>vue.$slots</li>
+		</ul>
+	</div>
+</div>
+</body>
+<script>
+Vue.config.productionTip = false;
+var extend = {
+	data: {
+		extend: 'extend'
+	},
+	
+	created(){
+		console.log('extend created')
+	}
+}
+var mixin1 = {
+	data: {
+		mix1: 'mix1'
+	},
+	created(){
+		console.log('mix1 created')
+	}
+}
+
+new Vue({
+	el: '#app',
+	extends: extend,
+	mixins: [mixin1],
+	data: {
+		msg: 'Vue2.5.16'
+	},
+	created(){
+		console.log('vue created')
+	}
+})
+</script>
+</html>
