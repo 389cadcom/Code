@@ -1,3 +1,6 @@
+new webpack.IgnorePlugin(/\.\/src\/jquery.js/)		
+//忽略打包文件(路径为require中加载的路径), 使用script引入
+
 //1.
 new CopyWebpackPlugin([{
     from: __dirname + '/src/public',

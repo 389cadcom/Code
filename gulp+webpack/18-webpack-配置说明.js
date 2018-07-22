@@ -4,14 +4,13 @@ babel-loader, babel-core
 babel-preset-es2015, babel-preset-env
 
 babel-plugin-transform-runtime, babel-runtime
-
 babel-polyfill
 
 
 //cross-env	开发、生产环境
 1.sourcemap, 热更新(HotModuleReplacementPlugin)
 2.压缩(UglifyJsPlugin), 
-3.路径(output.publicPath), css-loader--minimize和autoprefixer参数
+3.路径(output.publicPath), css-loader		//minimize和autoprefixer参数
 
 //webpack
 webpack				//#最基本的启动webpack命令
@@ -32,11 +31,16 @@ webpack --display-error-details //#显示编译出错信息
 
 //当前chunk的一个hash版本,在同一次编译中，每一个chunk的hash都是不一样的,
 //如果页面的文件没有发生改变，那么chunk的hash也不会发生改变，因此未改变的文件会在缓存中读取
-
 contenthash   //ExtractTextWebpackPlugin, 文件内容算出的8位 hash
 
-//plugins
-1.webpack.optimize.CommonsChunkPlugin  //需配置多入口(entry)--对象方式
+js		-- chunkhash				//根据js里的不同内容进行生成
+img		-- hash							//每一个资源本身有自己的hash
+css		-- contenthash			//extract插件的contenthash
+//[name].[chunkhash:5]
+//publicPath: 'http://cdn.example.com/assets/[hash]'
+
+
+一.webpack.optimize.CommonsChunkPlugin  //需配置多入口(entry)--对象方式
 
 //字符串方式-- 默认会把所有入口节点的公共代码提取出来
 CommonsChunkPlugin('common.js')
@@ -50,41 +54,42 @@ CommonsChunkPlugin({
 	//filename: 'common.js',
 	chunks: ['main', 'print', 'user']
 })
-2.extract-text-webpack-plugin
 
+二.extract-text-webpack-plugin
 ExtractTextPlugin.extract({		//options: loader|object
-	use: 'css-loader',
 	fallback: 'style-loader',
+	use: 'css-loader',
 	publicPath: ''
 })
 new ExtractTextPlugin({			//options: filename|object
 	filename: 'style.css',
 	allChunks: true
 })	
+//提取多个样式
 var extractVue = new ExtractTextPlugin('style/[name].css')
 var extractSass = new ExtractTextPlugin('style/[name].css')
 
 
-3.jquery第三方插件		//Externals用来告诉 Webpack 要构建的代码中使用了哪些不用被打包的模块
+三.jquery第三方插件		//externals用来告诉 Webpack 要构建的代码中使用了哪些不用被打包的模块
 
 a).cdn方式引入，全局$可用，eslint会报错('$' is not defined) //注意: 不能放在</body>之后
 
 b).cdn方式引入，import $ from 'jquery' | require('jquery')
-  //umd方式引入第三方插件 $.fn.green  ,jquery未被识别
-  externals: {
-	jquery: 'jQuery'		//把导入语句里的 jquery 替换成运行环境里的全局变量 jQuery, JSON中引入module.exports = jQuery;
-  }
+//umd方式引入第三方插件 $.fn.green  ,jquery未被识别
+externals: {
+	jquery: 'jQuery'		//把导入语句里的 jquery 替换成运行环境里的全局变量 jQuery, webpackJsonp中引入module.exports = jQuery;
+}
 
 //若入引入本地文件，则不能定义externals(排除定义的库打包入build.js)
 c).配置别名：alias， --> 引入：import $ from jquery
     resolve: {
 		alias: {
 			vue$: 'vue/dist/vue.esm.js',
-			jquery: path.resove(__dirname, '/static/js/jquery')
+			jquery: path.resolve(__dirname, '/static/js/jquery')
 		}
 	}
-d.在c的基础上，配置 plugins，无需 import 全局可用
-    plugins: [
+d.在c的基础上，配置 plugins，无需 import 全局即可用(碰到使用$, jQuery自动引入require('jquery')--alias指定路径)
+  plugins: [
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery'
@@ -92,7 +97,7 @@ d.在c的基础上，配置 plugins，无需 import 全局可用
 	]
 e).分离打包第三方库 webpack.optimize.CommonsChunkPlugin
 	//entry中定义入口，不打包的库
-    entry: {   
+  entry: {   
 		common: ['jquery']
 	}
 	
