@@ -1,81 +1,51 @@
-1、可以去深入学习3D加速、rem、flex和svg。
-2、css3动画。
-3、canvas，把API整体看一遍，多练习。
-4、学习自动化工具，gulp、grunt。
-
-
 Flex自适应布局:
-http://qianduanblog.com/post/css-learning-16-css3-flex-responsive-design.html
+
+//网格布局 -- 百分比布局
+
+//圣杯布局
+flex-direction: column;
+
+//固定底栏 -- 首尾高度固定，中间flex:1
+flex-direction: column;
+min-height: 100vh;
+
+//流式布局 
+flex-wrap: wrap;
+
+flex: 0 0 25%
 
 
-减去设置宽度及margin, padding, 剩余大小再按box-flex设置
-旧Flex:
-display:box;  box-align, box-pack, box-direction:reverse, box-orient:horizontal/vertical
-	      box-flex,  box-flex-group, box-flex-ordinal
-
-start, center, end, stretch
-start, center, end, justify
 
 
-新Flex:
+//新Flex:
 display:flex; 
 	flex-direction:		伸缩流方向
-	flex-wrap: 		伸缩换行
+	flex-wrap: 				伸缩换行
 	flex-flow:
 
 	justify-content: center | space-between | space-around 
-
 	align-items: flex-start | flex-end | center | stretch   
 	align-self:
-	
 	align-content:		堆栈伸缩行
-
 	flex-group: 0 | 1;  /*left{width:100px; flex-group:0;}; right{width:auto; flex-group:1;}*/
 
 
-//新版
-.flexcontainer{
-   display:-webkit-flex;
-   align-items: stretch | flex-start | center | flex-end;
-   align-content: ;
-   justify-content: flex-start | center | flex-end;
-   
-   flex-direction:row | column;
-   flex-wrap: nowrap | wrap;	--->  flex-flow: row wrap;
-}
-.flexitem{
-   order:;
-   flex-grow: ;
-   flex-shrink:;
-   flex-basic:;
-   -webkit-flex:1;
-}
+//旧Flex:
+display:box;  box-align, box-pack, box-direction:reverse, box-orient:horizontal/vertical
+	      box-flex,  box-flex-group, box-flex-ordinal
 
-//旧版
-.box{
-   display:-webkit-box;
-}
-
-
-
-动画：
+//动画：
 transform: translate(0,10px)/translate(10px); rotate, scale, skew;
-
 
 3D:
 perspective, 
-
 backface-visibility
 
-
 transition:transform 3s ease 5s;   
-
 //transition-property, duration, timing-function, delay
-
 
 //延迟播放：先高度-->再背景，宽度
 transition:background 1s linear 1s, height 1s linear 0, width 1s linear 1s;
-
 @-webkit-keyframes firstAnimal{}
 @keyframes firstAnimal{
   from{}
@@ -83,7 +53,6 @@ transition:background 1s linear 1s, height 1s linear 0, width 1s linear 1s;
 }
 
 //animation: name duration delay timing-function iteration-count direction
-
 animation: move 2s 0.5s 1 linear;
 animation: move 2s 0.5s 1 forwards liear;
 
@@ -97,9 +66,9 @@ animation-fill-mode:
 animation-play-state:	running | paused;
 
 
-渐变：gradient
+//渐变：gradient
 
-background-image:linear-gradient(#fff, #ddd);
+background-image:linear-gradient(to bottom, #fff, #ddd);
 
 background-origin:  ;
 background-clip:   ;     //text
