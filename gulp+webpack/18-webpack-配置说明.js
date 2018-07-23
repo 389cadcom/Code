@@ -2,10 +2,15 @@
 Babel(preset, plugin): 
 babel-loader, babel-core
 babel-preset-es2015, babel-preset-env
-
 babel-plugin-transform-runtime, babel-runtime
 babel-polyfill
 
+/*
+babel7
+
+@babel/core @babel/preset-env
+babel-loader@last
+*/
 
 //cross-env	开发、生产环境
 1.sourcemap, 热更新(HotModuleReplacementPlugin)
@@ -21,6 +26,10 @@ webpack --colors	//#输出结果带彩色，比如：会用红色显示耗时较长的步骤
 webpack --profile	//#输出性能数据，可以看到每一步的耗时
 webpack --display-modules //#默认情况下 node_modules 下的模块会被隐藏，加上这个参数可以显示这些被隐藏的模块
 webpack --display-error-details //#显示编译出错信息
+
+--progerss：				会出现打包过程，有百分比进度条
+--display-modules： 会把所有打包的模块列出来
+--display-reasons： 会把打包的原因列出来
 
 
 [id]			模块标识符(module identifier)
