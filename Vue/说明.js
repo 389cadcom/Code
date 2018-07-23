@@ -2,6 +2,7 @@ Vue.mixin, Vue.filter, Vue.directive, Vue.exend, Vue.component, Vue.compile
 
 Vue.use, Vue.nextTick, Vue.set, Vue.delete, 
 
+
 //Vue.use   js
 export default {
 	install(Vue){
@@ -37,3 +38,9 @@ new Vue({
 		}
 	}
 })
+
+//webpack config
+npm run build --report			//查看打包文件体积
+
+//compression-webpack-plugin
+productionGzip: true				//生成.gz的gzip文件

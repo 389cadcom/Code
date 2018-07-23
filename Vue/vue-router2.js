@@ -23,6 +23,12 @@
 :to = { path:'', name:'', activeClass: 'active',  params:{id:12}, query:{args:123}}
 :to = { name: '',  params:{id:12, uid: 1}}
 
+
+this.$router.push('home')																						// 字符串
+this.$router.push({ path: 'home' })																	// 对象
+this.$router.push({ name: 'user', params: { userId: 123 }})					// 命名的路由
+this.$router.push({ path: 'register', query: { plan: 'private' }})	// 带查询参数 
+
 //router-view
 
 
@@ -53,10 +59,26 @@ route对象
 */
 
 
-//路由切换侦听
+//路由回退、切换问题处理
+1.
+addAddress(){
+	this.$router.replace('/me/address-add')
+}
+2.
 watch: {
-  '$route': 'fetchData'
-},
+	//TODO 路由回退问题
+	'$route'(to, from) {
+		if(to.path == '/me' && from.path == '/me/address-add'){
+			this.$router.push('/me/address');
+		}
+	}
+}
+3.
+save(){
+	vm.$router.replace('/me/address');
+}
+
+
 beforeRouteEnter (to, from, next) {		//beforeRouteUpdate, beforeRouteLeave
   next(vm => {
     // 通过 `vm` 访问组件实例
