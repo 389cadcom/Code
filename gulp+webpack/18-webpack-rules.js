@@ -1,17 +1,84 @@
-1.rules
-use: ['style-loader', 'css-loader'] //先使用 css-loader 读取 CSS 文件，再交给 style-loader 把 CSS 内容注入到JS里
+//7.25 webpack4  
+//css-loader@1.0.0  extract-text-webpack-plugin@last ==>  4.0 beta
+//optimize-css-assets-webpack-plugin
+//提取压缩样式   
+rules: [
+	{
+		test: /\.css$/,
+		use: ExtractTextPlugin.extract({
+			fallback: 'style-loader',
+			use: [{
+				loader: 'css-loader',
+				options: {										//TODO 4.x无法压缩
+					minimize: true
+				}
+			}]
+		}),
+		//MiniExtractPlugin
+		use: [ MiniExtractPlugin.loader, 'css-loader' ]
+	}
+]
+//压缩配置
+plugins: [
+	optimization: {
+		minimizer: [
+			new OptimizeCssAssetsPlugin()
+		]
+	}
+]
 
+//webpack3  
+//css-loader@0.28.0  extract-text-webpack-plugin@3.0.2
+
+1.ExtractTextPlugin
+//ExtractTextPlugin.extract(options: loader | object)		--> fallback, use, publicPath
+//new ExtractTextPlugin(options: String | object)				--> filename, allChunks
+
+//数组，对象
 use: ExtractTextPlugin.extract({
-	use: [{
+	use: [{																				  //use: ['css-loader?minimize', 'sass-loader']
 		loader: 'css-loader',
-		fallback: 'vue-loader',
 		options: {
 			minimize:true,
 			camelCase: true
 		}
+	},{
+		loader: 'sass-loader',												//3.对象型式
+		options: { 
+			sourceMap: true
+		}
 	}]
 })
-
+rules: [
+	{
+		test: /\.css$/,
+		use: ExtractTextPlugin.extract({
+			fallback: 'style-loader',
+			use: 'css-loader'														//1.字符型式
+		})
+	},
+  {
+		test:/\.scss$/,
+		use: ExtractTextPlugin.extract({
+			fallback: 'style-loader',
+			use: ['css-loader', 'sass-loader']					//2.数组型式
+		})
+	}
+]
+//3.数组->对象(配置--loader, options)
+{
+	test: /\.css$/,
+	//use: ['style-loader', 'css-loader?minimize'], //1.字符型式
+	use: [
+		{ loader: 'style-loader' },										//2.对象型式
+		{
+			loader: 'css-loader',
+			options: {
+				modules: true
+			}
+		}
+	]
+}
 
 
 2.devServer		//默认实时预览--socket刷新网页

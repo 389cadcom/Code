@@ -49,7 +49,7 @@ css		-- contenthash			//extract插件的contenthash
 //publicPath: 'http://cdn.example.com/assets/[hash]'
 
 
-一.webpack.optimize.CommonsChunkPlugin  //需配置多入口(entry)--对象方式
+一.webpack.optimize.CommonsChunkPlugin  //需配置多入口(entry)--对象方式  splitChunks, runtimeChunk
 
 //字符串方式-- 默认会把所有入口节点的公共代码提取出来
 CommonsChunkPlugin('common.js')
