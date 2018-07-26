@@ -107,7 +107,7 @@ let merge  = require('webpack-merge')
 let PAGE_PATH  = path.resolve(__dirname, '../src/pages')
 
 exports.entries = function(){
-  var entryFiles = glob.sync(PAGE_PATH + '/*/*.js')
+  var entryFiles = glob.sync(PAGE_PATH + '/*/*.js')			//fs.readdirSync()
   var map = {}
   entryFiles.forEach(filePath => {
     var filename  = filePath.substring(filePath.lastIndexOf('\/')+1, filePath.lastIndexOf('.'));
