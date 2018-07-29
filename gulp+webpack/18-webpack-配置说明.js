@@ -7,17 +7,16 @@ babel-polyfill
 
 /*
 babel7
-
 @babel/core @babel/preset-env
 babel-loader@last
 */
 
-//cross-env	开发、生产环境
+//cross-env	开发、生产环境  process.env.NODE_ENV
 1.sourcemap, 热更新(HotModuleReplacementPlugin)
-2.压缩(UglifyJsPlugin), 
-3.路径(output.publicPath), css-loader		//minimize和autoprefixer参数
+2.压缩(UglifyJsPlugin),													//mode: "production"
+3.路径(output.publicPath), css-loader@0.28.0		//minimize和autoprefixer参数
 
-//webpack
+//webpack  --config webpack.config.js  --color --progress 
 webpack				//#最基本的启动webpack命令
 webpack -w 			//#提供watch方法，实时进行打包更新watch
 webpack -p			//#对打包后的文件进行压缩
@@ -32,10 +31,10 @@ webpack --display-error-details //#显示编译出错信息
 --display-reasons： 会把打包的原因列出来
 
 
-[id]			模块标识符(module identifier)
-[name]			模块名称 [hash:8]	  //默认20位
+[id]				模块标识符(module identifier)
+[name]			模块名称 [hash:8]	  
 [query]			模块的 query，例如，文件名 ? 后面的字符串
-[hash]			模块标识符(module identifier)的 hash, 本次编译的一个hash版本
+[hash]			模块标识符(module identifier)的 hash, 本次编译的一个hash版本		//默认20位
 [chunkhash]		chunk 内容的 hash(没改动则没有变化---设置线上缓存)
 
 //当前chunk的一个hash版本,在同一次编译中，每一个chunk的hash都是不一样的,
@@ -49,7 +48,7 @@ css		-- contenthash			//extract插件的contenthash
 //publicPath: 'http://cdn.example.com/assets/[hash]'
 
 
-一.webpack.optimize.CommonsChunkPlugin  //需配置多入口(entry)--对象方式  splitChunks, runtimeChunk
+一.webpack.optimize.CommonsChunkPlugin  //需配置多入口(entry)--对象方式  4.x  splitChunks, runtimeChunk
 
 //字符串方式-- 默认会把所有入口节点的公共代码提取出来
 CommonsChunkPlugin('common.js')
@@ -93,6 +92,7 @@ externals: {
 c).配置别名：alias， --> 引入：import $ from jquery
     resolve: {
 		alias: {
+			@: './src',
 			vue$: 'vue/dist/vue.esm.js',
 			jquery: path.resolve(__dirname, '/static/js/jquery')
 		}

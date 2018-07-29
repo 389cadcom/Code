@@ -3,7 +3,7 @@ new webpack.IgnorePlugin(/\.\/src\/jquery.js/)
 
 //1.
 new CopyWebpackPlugin([{
-    from: __dirname + '/src/public',
+  from: __dirname + '/src/public',
 	to: 'assets/'
 }]);
 作用：把public 里面的内容全部拷贝到编译目录
@@ -18,7 +18,7 @@ ignore  忽略拷贝指定的文件           可以用模糊匹配
 */
 
 //2.
-new HTMLPlugin({
+new HtmlTextPlugin({
 	title: 'index Demo',
 	template:  './index.html',
 	filename: 'index.html',
@@ -34,7 +34,7 @@ new HTMLPlugin({
   inject:	把模板注入到哪个标签后 'body',   
   favicon:	给html添加一个favicon  './images/favico.ico',   
   minify:	是否压缩  {...} | false （最新api变动，原来是ture|false 感谢@onmi指正) html-minifier
-  hash:		是否hash化 true false ,     
+  hash:		是否使用hash true false ,     
   cache:	是否缓存,   
   showErrors:是否显示错误,  
   chunks:	模板对应上面那个节点
@@ -42,6 +42,8 @@ new HTMLPlugin({
 */
 
 //3.配置了DefinePlugin，那么这里面的标识就相当于全局变量，你的业务代码可以直接使用配置的标识
+cross-env=devlopment
+
 new webpack.DefinePlugin({
 	'process.env': {
 		'NODE_ENV': "'production'"
@@ -119,14 +121,16 @@ new ExtractTextPlugin({
 	filename: utils.assetsPath('css/[name].css'),
 	allChunks: true				//将所有额外的chunk都压缩成一个文件
 })
+
 //FixMe: 
 1.@import url('../asserts/style.css')		//只能抽取到当前chunk
 2.import '../assert/style.css'				//通过CommonsChunkPlugin设置导出到公共样式中，/\.(css|less|scss)$/.test(module.resource) && count>=2
 
-//8.webpack-dev-server
+
+//8.webpack-dev-server  --mode development --open  --hot
 devServer: {
 	// --告诉服务器从哪里提供内容。这只有在您想要提供静态文件时才需要。例如图片？？
-	contentBase: path.join(__dirname, 'dist'),
+	contentBase: path.join(__dirname, 'dist'),			//优于publicPath
 	// contentBase: false,
 	// --告诉服务器观看由devServer.contentBase选项提供的文件。文件更改将触发整个页面重新加载。
 	watchContentBase: true,

@@ -7,10 +7,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var extractCSS = new ExtractTextPlugin('static/css/normal.css')
 var extractVue = new ExtractTextPlugin('static/css/vue-style.css')
 
+//…Ë÷√¬∑æ∂
 var utils = {
 	assetsPath(_path) {
-		const assetsRoot =
-			process.env.NODE_ENV === 'production' ? 'static' : 'static'
+		const assetsRoot = process.env.NODE_ENV === 'production' ? 'static' : 'static'
 		return path.posix.join(assetsRoot, _path)
 	}
 }
