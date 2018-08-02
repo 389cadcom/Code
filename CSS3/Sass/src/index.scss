@@ -2,7 +2,7 @@
 // @import 'base/space';
 @import 'utils/mixin';
 
-.box, .ellipsis{
+.content, .ellipsis{
 	@include ellipsis;
 }
 
@@ -15,13 +15,17 @@
 	border-color: black blue orange yellow;
 }
 
-.table{
-	@include table;
-}
-
 .flexbox{
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
 	flex-direction: column-reverse;
+}
+// @include placeholder(#ccc, 13px)
+
+.main{
+	position: relative;
+	.box{
+		@extend %middle
+	}
 }

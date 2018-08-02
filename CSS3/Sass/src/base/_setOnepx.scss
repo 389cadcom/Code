@@ -1,4 +1,4 @@
-﻿@mixin setLine($direction:bottom, $color:#c7c7c7){
+﻿@mixin setOneLine($direction:bottom, $color:#c7c7c7){
     position: absolute;
     content: " ";
     #{$direction}: 0px;
@@ -14,12 +14,17 @@
         bottom: 0;
     }
 }
-@mixin setAllLine($color: #c7c7c7){
-	position: absolute;
-	content: " ";
+@mixin setBoxLine($color: #c7c7c7, $radius:0){
+    position: absolute;
+	content: ' ';
+	display: block;
 	width: 200%;
 	height: 200%;
+	left: 0;
+	top: 0;
+	box-sizing: border-box;
 	transform: scale(0.5);
 	transform-origin: 0 0;
 	border: 1px solid $color;
+	border-radius: $radius;
 }

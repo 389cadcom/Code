@@ -8,14 +8,22 @@
 	@extend %ellipsis;
 	width: $width;
 }
-@mixin ellipsis-multi($line: 2) {
+@mixin multi-ellipsis($line: 2) {
+	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: $line;
-	overflow: hidden;
 }
 
-//三角形
+//居中
+%middle {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+//小三角形
 @mixin arrow($dir: right, $color: orange, $width: 8px) {
 	width: 0;
 	height: 0;
@@ -24,9 +32,9 @@
 	border-color: transparent;
 	border-#{$dir}-color: $color;
 }
-//$fill--填充的边 与实际箭头方向相反
 
-@mixin caret( $width: 5px, $border: 1px, $borderColor: #f00, $bgColor: #fff, $fill: left ) {
+//小箭头  $fill--填充的边 与实际箭头方向相反
+@mixin carte( $width: 5px, $border: 1px, $borderColor: #f00, $bgColor: #fff, $fill: left ) {
 	$width1: $width - $border;
 	position: relative;
 	display: inline-block;
@@ -57,7 +65,7 @@
 	}
 }
 
-// 1像素线条
+//高清屏1像素线条
 @mixin setOneLine($direction: bottom, $color: #c7c7c7) {
 	position: absolute;
 	content: ' ';
@@ -68,21 +76,32 @@
 		left: 0;
 		right: 0;
 	}
-
 	@if ($direction == left) or ($direction == right) {
 		transform: scaleX(0.5);
 		top: 0;
 		bottom: 0;
 	}
 }
-@mixin setAllLine($color: #c7c7c7) {
+@mixin setBoxLine($color: #c7c7c7, $radius:0) {
 	position: absolute;
 	content: ' ';
+	display: block;
 	width: 200%;
 	height: 200%;
+	left: 0;
+	top: 0;
+	box-sizing: border-box;
 	transform: scale(0.5);
 	transform-origin: 0 0;
 	border: 1px solid $color;
+	border-radius: $radius;
+}
+
+@mixin placeholder($c, $s) {
+	::placeholder{
+		color: $c;
+		font-size: $s;
+	}
 }
 
 @mixin table($bordeCcolor:gray){
