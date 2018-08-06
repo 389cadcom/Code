@@ -20,40 +20,59 @@ settings.json
 vsicons.settings.json
 
 
-EXTENSIONS ADDED :
+//18.8.3备份
+Extensions Added:
+  alignment v0.3.0
+  auto-close-tag v0.5.6
+  auto-rename-tag v0.0.15
+  change-case v1.0.0
+  code-settings-sync v3.0.0
+  cssrem v0.0.6
+  debugger-for-chrome v4.8.2
+  EditorConfig v0.12.4
+  html-snippets v0.2.1
+  html-tag-wrapper v0.2.3
+  JavaScriptSnippets v1.7.0
+  live-sass v3.0.0
+  LiveServer v5.1.1
+  npm-intellisense v1.3.0
+  path-autocomplete v1.12.0
+  path-intellisense v1.4.2
+  prettier-vscode v1.5.0
+  project-manager v8.0.0
+  rest-client v0.19.0
+  sharecode v0.4.1
+  theme-atom-one-dark v0.0.1
+  vetur v0.12.5
+  vscode-caniuse v0.5.0
+  vscode-css-peek v2.1.0
+  vscode-eclipse-keybindings v0.9.8
+  vscode-eslint v1.4.12
+  vscode-fileheader v0.0.2
+  vscode-html-css v0.2.0
+  vscode-html-scss v0.0.42
+  vscode-icons v7.25.0
+  vscode-javascript-snippet-pack v0.1.5
+  vscode-language-pack-zh-hans v1.25.3
+  vscode-nginx v0.5.0
+  vscode-nginx-conf-hint v0.1.0
+  vscode-npm-script v0.3.5
+  vscode-power-mode v2.2.0
+  vscode-scss v0.6.2
+  vscode-todo-highlight v1.0.4
+  vscode-todo-parser v1.9.1
+  vue-peek v1.0.2
+  vuehelper v0.1.0
+  webpack v2.1.0
+  wpy-beautify v2.0.10
 
 
 Lodash Lodash									//代码段
 
-auto-close-tag - Version :0.5.0
-auto-rename-tag - Version :0.0.14
 bootstrap-3-snippets - Version :0.1.0
-code-settings-sync - Version :2.8.3
-cssrem - Version :0.0.3
-GBKtoUTF8 - Version :0.0.2
-html-snippets - Version :0.1.0
-JavaScriptSnippets - Version :1.4.1
 jquerysnippets - Version :0.0.1
 npm-intellisense - Version :1.3.0					//导入模块时，提示已安装模块名称
 open-in-browser - Version :1.1.0
 output-colorizer - Version :0.1.2
-path-autocomplete - Version :1.6.1					//路径完成提示
-path-intellisense - Version :1.4.2					//自动补全文件名
-project-manager - Version :0.21.1					//快速切换项目
-theme-atom-one-dark - Version :0.0.1
-vetur - Version :0.9.8
 vscode-caniuse - Version :0.5.0
-vscode-eclipse-keybindings - Version :0.9.6
-vscode-fileheader - Version :0.0.2
 vscode-gulp - Version :0.0.4
-vscode-html-css - Version :0.1.8
-vscode-html-scss - Version :0.0.42
-vscode-icons - Version :7.13.0						//文件图标，方便定位文件
-vscode-javascript-snippet-pack - Version :0.1.5
-vscode-JS-CSS-HTML-formatter - Version :0.2.3
-vscode-scss - Version :0.6.2
-vscode-todo-parser - Version :1.9.1					
-vetur - Version :0.1.0								//Vue语法高亮
-vuehelper - Version :0.1.0							//Vue2代码段（包括Vue2 api、vue-router2、vuex2）
-vscode-vue-peek										//定位vue路径
-webpack - Version :2.0.2
