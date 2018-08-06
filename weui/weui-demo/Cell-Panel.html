@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="dist/style/weui.css">
+</head>
+<style>
+body{display: grid; grid-template-columns: 30% 30% 30%; grid-column-gap: 3.3%; margin-left: 10px}
+img{display: block}
+.weui-flex__item{background: #ddd;}
+</style>
+<body>
+<!-- TODO weui-cells -->
+<section class="cells">
+  <div class="weui-cells__title">标题</div>
+  <div class="weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__hd">h</div>
+      <div class="weui-cell__bd">body</div>
+      <div class="weui-cell__ft">footer</div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__bd" style="transform: translateX(-15px)">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>嵌套weui-cell</p>
+            </div>
+            <div class="weui-cell__ft">说明文字</div>
+        </div>
+      </div>
+      <div class="weui-cell__ft">
+        <a class="weui-swiped-btn weui-swiped-btn_warn" href="javascript:">删除</a>
+      </div>
+    </div>
+    <div class="weui-cell weui-cell_access">
+      <div class="weui-cell__hd" style="align-self: flex-start; padding-right: 3px">
+        <img src="http://via.placeholder.com/48x48" >
+      </div>
+      <div class="weui-cell__bd">Welcome to placeholder.com simple image placeholders.</div>
+      <div class="weui-cell__ft">footer</div>
+    </div>
+  </div>
+  <div class="weui-cells__tips">注释</div>
+</section>
+<!-- TODO weui-panel -->
+<section class="weui-panel">
+  <div class="weui-panel__hd">大图文内容</div>
+  <div class="weui-panel__bd">
+    <div class="weui-media-box weui-media-box_appmsg">
+      <div class="weui-media-box__hd"><img src="http://via.placeholder.com/60x60"></div>
+      <div class="weui-media-box__bd">
+        <div class="weui-media-box__title">标题一</div>
+        <div class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</div>
+      </div>
+    </div>
+    <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd" style="width:24px;height:24px"><img src="http://via.placeholder.com/24x24"></div>
+        <div class="weui-media-box__bd">小图文内容</div>
+    </div>
+    <div class="weui-media-box weui-media-box_small-appmsg">
+      <div class="weui-cells">
+          <div class="weui-cell weui-cell_access">
+            <div class="weui-cell__hd" style="margin-right:5px;"><img src="res/img/weui.png" style="width:24px;margin-right:5px"></div>
+            <div class="weui-cell__bd">小图文内容</div>
+            <div class="weui-cell__ft"></div>
+          </div>
+        </div>
+    </div>
+  </div>  
+  <div class="weui-panel__ft">
+    <div class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell__bd">查看更多</div>
+        <div class="weui-cell__ft"></div>
+    </div>
+  </div>  
+</section>
+<section class="weui-panel">
+  <div class="weui-panel__hd">文字介绍</div>
+  <div class="weui-panel__bd">
+    <div class="weui-media-box weui-media-box_text">
+      <div class="weui-media-box__bd">
+        <div class="weui-media-box__title">标题一</div>
+        <div class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</div>
+      </div>
+    </div>
+    <div class="weui-media-box weui-media-box_text">
+      <div class="weui-media-box__bd">
+        <div class="weui-media-box__title">标题一</div>
+        <div class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</div>
+        <ul class="weui-media-box__info">
+          <li class="weui-media-box__info__meta">来源</li>
+          <li class="weui-media-box__info__meta">时间</li>
+          <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">其他</li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+  <div class="weui-panel__ft">
+    <div class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell__bd">查看更多</div>
+        <div class="weui-cell__ft"></div>
+    </div>
+  </div>  
+</section>
+<!-- TODO grids -->
+<section class="grid">
+  <div class="weui-grids">
+    <div class="weui-grid">
+      <div class="weui-grid__icon"><img src="res/img/weui.png"></div>
+      <div class="weui-grid__label">grid</div>
+    </div>
+    <div class="weui-grid">
+      <div class="weui-grid__icon"><img src="res/img/weui.png"></div>
+      <div class="weui-grid__label">grid</div>
+    </div>
+    <div class="weui-grid">
+      <div class="weui-grid__icon"><img src="res/img/weui.png"></div>
+      <div class="weui-grid__label">grid</div>
+    </div>
+  </div>
+</section>
+<section class="flex">
+  <div class="weui-flex">
+    <div class="weui-flex__item">flex-item</div>
+    <div class="weui-flex__item">flex-item</div>
+  </div>
+  <div class="weui-flex">
+    <div class="weui-flex__item">flex-item</div>
+    <div class="weui-flex__item">flex-item</div>
+    <div class="weui-flex__item">flex-item</div>
+  </div>
+</section>
+</body>
+</html>
