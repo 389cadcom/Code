@@ -36,6 +36,32 @@ Request Payload					//Content-Type: multipart/form-data;
 		})
 
 
+//FormData:   append delete get getAll has set keys values forEach entries
+//URLSearchParams: 
+
+//原生获取参数  for...of --> FormData
+var data = new FormData(document.getElementById('form')				//流：  multipart/form-data
+data.append('user', 1)
+
+var params = new URLSearchParams();														//表单：application/x-www-form-urlencoded
+
+
+//Fetch  默认Request Payload, 设置请求头部Form Data
+fetch({
+  url: url,
+  method: 'POST',
+  headers:{
+    'Content-Type': 'application/x-www-form-urlencoded'				//模拟表单提交
+  },
+  body: "name=yu&user=1"
+}).then( res => {
+//console.log(res)
+  return res.json()
+}).then( data => {
+  console.log(data)
+})
+
+
 
 //原生Ajax  --> new XMLHttpRequest()  默认 Content-Type: text/plain;charset=UTF-8
 //GET:	--> 默认Query String 
