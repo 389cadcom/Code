@@ -9,21 +9,23 @@
 </head>
 <style>
 body{display: grid; grid-template-columns: 30% 30% 30%; grid-column-gap: 3.3%; margin: 10px}
-
+.hide{display: none;}
 </style>
 <body>
 <section>
   <div class="weui-btn weui-btn_default">default</div>
-  <div class="weui-btn weui-btn_primary">default</div>
-  <div class="weui-btn weui-btn_warn">default</div>
-  <div class="weui-btn weui-btn_warn weui-btn_disabled">default</div>
-  <div class="weui-btn weui-btn_plain-primary">default</div>
+  <div class="weui-btn weui-btn_primary">primary</div>
+  <div class="weui-btn weui-btn_warn">warn</div>
+  <div class="weui-btn weui-btn_warn weui-btn_disabled">disabled</div>
 
-  <div class="weui-btn weui-btn_default weui-btn_mini  weui-btn_inline">default</div>
-  <div class="weui-btn weui-btn_primary weui-btn_mini weui-btn_inline">primary</div>
-  <div class="weui-btn weui-btn_warn weui-btn_mini weui-btn_inline">warn</div>
+  <div class="weui-btn weui-btn_default weui-btn_mini weui-btn_inline">default</div>
+  <div class="weui-btn weui-btn_primary weui-btn_mini weui-btn_inline">btn_line</div>
+  <div class="weui-btn weui-btn_warn weui-btn_mini weui-btn_inline">btn_mini</div>
 </section>
 <section>
+  <div class="weui-btn weui-btn_plain-default">plain-default</div>
+  <div class="weui-btn weui-btn_plain-primary">plain-primary</div>
+  <!-- TODO toast -->
   <div class="weui-mask_transparent"></div>
   <div class="weui-toast">
     <!-- <i class="weui-loading weui-icon_toast"></i> -->
@@ -31,8 +33,42 @@ body{display: grid; grid-template-columns: 30% 30% 30%; grid-column-gap: 3.3%; m
     <div class="weui-toast__content">加载中...</div>
   </div>
 </section>
-<section>
 
+<section>
+  <div class="weui-msg">
+    <div class="weui-msg__icon-area">
+      <i class="weui-icon-success weui-icon_msg"></i>
+    </div>
+    <div class="weui-msg__text-area">
+      <div class="weui-msg__title">标题</div>
+      <p class="weui-msg__desc">提示信息</p>
+    </div>
+    <div class="weui-msg__opr-area">
+      <div class="weui-btn weui-btn_primary">确定</div>
+      <div class="weui-btn weui-btn_default">取消</div>
+    </div>
+    <div class="weui-msg__extra-area">
+      <div class="weui-footer">
+        <div class="weui-footer__links">
+          <a href="#" class="weui-footer__link">链接</a>
+        </div>
+        <div class="weui-footer__text">@copyright</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="position: relative;" class="hide">
+  <div class="weui-mask"></div>
+  <div class="weui-dialog">
+    <div class="weui-dialog__hd">
+      <p class="weui-dialog__title">标题</p>
+    </div>
+    <div class="weui-dialog__bd">内容</div>
+    <div class="weui-dialog__ft">
+      <div class="weui-dialog__btn weui-dialog__btn_default">取消</div>
+      <div class="weui-dialog__btn weui-dialog__btn_primary">取消</div>
+    </div>
+  </div>
 </section>
 </body>
 </html>
