@@ -69,6 +69,18 @@ new Vue({
 	}
 }).$mount('#app')				//实例化时没有收到 el 选项，则它处于“未挂载”状态, 可使用 vm.$mount().$el 手动地挂载一个未挂载的实例
 
+//立即执行
+watch: {
+	'$route':{
+		handler: 'getData',
+		immediate: true
+	}
+},
+getData(to, from){
+  if(to.path == '/me/'){}
+}
+
+
 //路由
 router.beforeEach((to, from, next)=>{
 	

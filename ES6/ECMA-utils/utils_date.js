@@ -39,5 +39,8 @@ export default {
 	getTime1(){
 		//return +new Date() || Date.now()	
 		return new Date().setHours(0, 0, 0, 0)
+	},
+	zeroPad(val){
+		return +val >=10 ? val : 	'0'+val;
 	}
 }
