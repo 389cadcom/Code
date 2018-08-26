@@ -62,3 +62,21 @@ trim = /^\s*(.*?)\s*$/			// '  abc  '.replace(/^\s*(.*?)\s*$/, '$1')
 
 //9.其他
 //a.边界-- ^, $, \b, \B
+
+
+
+//将参数转为对象， 对象转参数见--> 数组 Object.keys().map((key)=> k + '=' + params[k])
+var url = decodeURI(location.search)
+var reg = /([^?=&]+)=([^&]*)/gi, o = {};
+url.replace(reg, (str, a, b)=>{
+  o[a] = b;
+})
+console.log(o)
+
+var ary = url.match(reg)
+var o = ary.reduce((prev, curr)=>{
+  var a = curr.split('=')
+  //console.log(prev, a)
+  prev[a[0]] = a[1];
+  return prev
+}, {})

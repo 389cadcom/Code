@@ -1,0 +1,98 @@
+@import 'test.scss';
+
+$color: green;
+
+.green{
+  color: $color;
+}
+
+:root {
+  --color-black: rgb(0,0,0);
+  --color-blue: #32c7ff;
+}
+
+body{
+  color: var(--color-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(./images/temp/img.png) no-repeat;
+}
+.cells{
+  margin-bottom: 10px;
+  .cell{
+    padding: 0 15px;
+    display: flex;
+    &__hd{
+      width: 64px;
+    }
+    &__bd{
+      flex: 1;
+    }
+    &__ft{
+      text-align: right;
+    }
+  }
+}
+
+.icon{
+  background: 0 0  no-repeat;
+}
+.icon1{
+  background-image: url('./images/sprites/ma/1.png');
+}
+.icon2{
+  background-image: url('./images/sprites/ma/2.png');
+}
+.icon3{
+  background-image: url('./images/sprites/ma/3.png');
+}
+.icon4{
+  background-image: url('./images/sprites/ma/4.png');
+}
+
+.girl1{
+  background-image: url('./images/sprites/girl/gif1@2x.png');
+}
+.girl2{
+  background-image: url('./images/sprites/girl/gif2@2x.png');
+}
+.girl3{
+  background-image: url('./images/sprites/girl/gif3@2x.png');
+}
+.girl4{
+  background-image: url('./images/sprites/girl/gif4@2x.png');
+}
+.girlx1{
+  background-image: url('./images/sprites/girl/gif1@3x.png');
+}
+.girlx2{
+  background-image: url('./images/sprites/girl/gif2@3x.png');
+}
+.girlx3{
+  background-image: url('./images/sprites/girl/gif3@3x.png');
+}
+.girlx4{
+  background-image: url('./images/sprites/girl/gif4@3x.png');
+}
+
+.clock{
+  width: 16px;
+  height: 16px;
+  background-size: 16px;
+  background-image: url('./images/sprites/clock.png');
+}
+.crame{
+  width: 16px;
+  height: 16px;
+  background-size: 16px;
+  background-image: url('./images/sprites/camera.png');
+}
+
+
+.test-radius {
+  width:20px;
+  height:20px;
+  border-radius: calc(20px / 2);
+  background-color:#ccc;
+}

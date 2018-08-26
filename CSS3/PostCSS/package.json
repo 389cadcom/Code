@@ -1,0 +1,36 @@
+{
+  "name": "webpack-postcss",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && webpack",
+    "postcss": "postcss src/index.css -o dist/index.css",
+
+    "css": "postcss -w ./src/css/*.css -d ./dist/css",
+    "js": "uglifyjs ./dist/js/*.js -m -c  -o ./dist/js/main.js",
+    "ES6": "babel ./src/js -d ./dist/js -w"
+  },
+  "dependencies": {
+    "css-loader": "0.x",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^2.0.0",
+    "postcss-loader": "^3.0.0",
+    "webpack": "3.x"
+  },
+  "devDependencies": {
+    "cssnano": "^4.0.5",
+    "postcss": "^7.0.2",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^12.0.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-pxtorem": "^4.0.1",
+    "postcss-scss": "^2.0.0",
+    "postcss-simple-vars": "^4.1.0",
+    "postcss-sprites": "^4.2.1"
+  },
+  "keywords": [],
+  "author": "",
+  "description": "",
+  "license": "ISC"
+}
