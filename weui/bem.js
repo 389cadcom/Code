@@ -1,7 +1,7 @@
 /*
-	Block Element(双下划线)	Modify(单下划线) clss (inpu-box 中横杠--链词符)
+	Block(块) Element(双下划线)	Modify(单下划线) class (inpu-box 中横杠--链词符)
 	cell 
-		元素: cell__hd  cell__bd  cell__ft  cell__title  cell__tips
+		元素: cell__hd  cell__bd  cell__ft  cells__title  cells__tips
 		属性: cell_primay	cell_access cell_link cell_switch cell_vcode
 		类名: vcode  vcode-img
 */

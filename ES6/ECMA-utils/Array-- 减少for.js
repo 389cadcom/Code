@@ -1,5 +1,5 @@
 //1.跳出for循环,    forEach遍历数组的时候是无法 break 或者 return false 中断的
-var arr = [1,2,3]
+var arr = [1,2,3]		
 arr.foo = 'foo'
 for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 	if(i==2) break;

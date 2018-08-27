@@ -1,6 +1,17 @@
+Autoprefixer
+@imports
+$variables
+@extends
+Nested class
+Mixins
+
+
 
 precss								//满足SASS开发者的习惯，继承了很多插件		
-	postcss-mixins
+	postcss-mixins			//@define-mixin icon $network  | @mixin icon twitter, blue;   @define-extend
+	postcss-sass-extend	//@extend %placehold
+	postcss-for
+	postcss-each
 	postcss-atroot
 	postcss-extend
 
@@ -9,7 +20,7 @@ precss								//满足SASS开发者的习惯，继承了很多插件
 
 //px2rem
 postcss-pxtorem				//css样式代码中将px写成Px或者PX他也不会转换成rem的~
-postcss-ben						//
+postcss-bem						//
 
 
 //像scss一样编写
