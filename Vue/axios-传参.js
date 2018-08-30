@@ -13,6 +13,7 @@ res = {
 	}
 }
 
+
 //get -- params
 //post-- data
 
@@ -94,4 +95,49 @@ instance.interceptors.response.use( data =>{
 //拦截请求
 instance.get('views').then( res => {
 //	console.log(res);
+})
+
+
+
+
+//三种传参方式
+
+//设置请求头部
+var instance = axios.create({
+  header: {
+    'content-type': 'application/x-www-form-urlencoded'
+  },
+  transformRequest: [function (data) {
+    var ret = ''
+    for (var it in data) {
+      ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+    }
+    return ret
+  }],
+})
+
+var params = {user:'yu', age:2, arr: [1,2,3]}
+
+//参数的格式                 编码类型  -- 序列化post方式的数据
+//1.Form Data      'Content-type': 'application/x-www-form-urlencoded'
+var data = new URLSearchParams()      
+data.append('user', 1)
+data.append('arr', [1,2,3])
+
+//qs.stringify({ a: ['b', 'c', 'd'] }, { indices: false });
+
+instance.post(url, params ).then( res =>{
+  console.log(res)
+})
+
+//2.Query String  'Content-type': 'application/json'
+axios.get(url, {params: params}).then( res =>{
+  console.log(res)
+})
+
+//3.Request Payload  Content-Type:multipart/form-data 图片上传流
+var formdata = new FormData()
+formdata.append('age', 2)
+axios.post(url, formdata ).then( res =>{
+  console.log(res)
 })

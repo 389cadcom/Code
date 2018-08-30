@@ -13,7 +13,7 @@
 {path: '', name:'', redirect:'', alias:'', meta:{checkAuth:}, component: Home |  components: { default:Home, b:Edit } }  
 
 
-//router-link属性  :to, tag, active-class, replace, exact
+//router-link属性  :to, tag, active-class, replace, append, exact
 
 <router-link tag="li" to="/home#hash"><a>Home</a></router-link>
 <router-link tag="li" :to="{path:'/'}"><a>Home</a></router-link>
@@ -57,6 +57,7 @@ route对象
    to  = {path: '', append:true, activeClass: 'active'}  
    :to = {path: '/detail/' + this.$route.params.id}
 */
+vue传参方式有：query、params+动态路由传参
 
 
 //路由回退、切换问题处理
@@ -66,7 +67,7 @@ addAddress(){
 }
 2.
 watch: {
-	//TODO 路由回退问题
+	//TODO 路由回退问题   keep-alive
 	'$route'(to, from) {
 		if(to.path == '/me' && from.path == '/me/address-add'){
 			this.$router.push('/me/address');
