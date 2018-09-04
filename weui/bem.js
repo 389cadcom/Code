@@ -93,3 +93,24 @@ picker animate-slide-up
 		picker__group  
 			picker__mask	picker__indicator
 			picker__content  picker__item
+
+
+
+/**
+.box__bd{
+  flex: 1;
+  /*min-width: 0;*/
+}
+
+.title{
+  /*overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;*/
+  
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+*/

@@ -4,27 +4,22 @@ function uploadAndSubmit() {
   if (form['file'].files.length > 0) {
     // 寻找表单域中的 <input type="file" ... /> 标签
     var file = form['file'].files[0]
+		console.log(file.size, file.type, file.name)
 
-    //TODO try sending
+    //TODO FileReader事件
     var reader = new FileReader()
     reader.onloadstart = function() {
-      // 这个事件在读取开始时触发
-      console.log('onloadstart')
       document.getElementById('bytesTotal').textContent = file.size
     }
     reader.onprogress = function(p) {
-      // 这个事件在读取进行中定时触发
-      console.log('onprogress')
       document.getElementById('bytesRead').textContent = p.loaded
     }
-
     reader.onload = function() {
-      // 这个事件在读取成功结束后触发
       console.log('load complete')
     }
 
+    // 这个事件在读取结束后，无论成功或者失败都会触发
     reader.onloadend = function() {
-      // 这个事件在读取结束后，无论成功或者失败都会触发
       if (reader.error) {
         console.log(reader.error)
       } else {
@@ -42,11 +37,7 @@ function uploadAndSubmit() {
           };
         }
         var xhr = new XMLHttpRequest()
-        xhr.open(
-          /* method */ 'POST',
-          /* target url */ 'upload.jsp?fileName=' + file.name
-          /*, async, default to true */
-        )
+        xhr.open('POST', 'upload.jsp?fileName=' + file.name  /*, async, default to true */)
         xhr.overrideMimeType('application/octet-stream')
         xhr.sendAsBinary(reader.result)
         xhr.onreadystatechange = function() {
@@ -61,7 +52,5 @@ function uploadAndSubmit() {
     }
 
     reader.readAsBinaryString(file)
-  } else {
-    alert('Please choose a file.')
   }
 }

@@ -18,16 +18,21 @@
 </body>
 <script src="http://unpkg.com/jquery"></script>
 <script type="text/javascript">
+
 $('#photo').on('change', function(){
 	var file = this.files[0]
 	var size = parseInt((file.size)/1024); //计算图片大小，默认是B，转换成KB  
-	console.log(file)
+
+	console.log(file.name, file.type, parseInt(file.size/1024))
 	
 	var reader = new FileReader()
-	reader.readAsDataURL(file)
-//	reader.readAsBinaryString(file)
+	//reader.readAsDataURL(file)
+	reader.readAsBinaryString(file)
+	reader.onprogress = function(){
+		
+	}
 	reader.onload = function(){
-		//console.log(this.result)
+		console.log(this.result)
 	}
 	console.log(getObjectURL(file))
 })
@@ -44,5 +49,6 @@ function getObjectURL(file) {
 　　} 
 　　return url ; 
 } 
+
 </script>
 </html>

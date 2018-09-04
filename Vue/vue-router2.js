@@ -60,6 +60,20 @@ route对象
 vue传参方式有：query、params+动态路由传参
 
 
+// replace跳转处理
+'$route'(to, from) {
+	if(to.path == '/' && from.path == '/me/shangbao'){
+		this.$router.push('/city');
+	}
+}
+
+'$route':{
+	handler: 'getCartList',
+	immediate: true
+},
+getCartList(to, from){}
+
+
 //路由回退、切换问题处理
 1.
 addAddress(){
