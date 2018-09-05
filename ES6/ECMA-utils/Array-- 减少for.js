@@ -76,3 +76,11 @@ for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 		flat[curr[0]]=curr[1]
 		return flat
 	}, {})
+
+
+//12.包含
+	arr.filter( item => {
+		if(arys.includes(item)){		//arys.indexOf(item) > -1
+			
+		}
+	})

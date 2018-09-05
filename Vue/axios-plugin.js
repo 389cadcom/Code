@@ -18,6 +18,7 @@ AxiosPlugin.install = function (Vue, opts) {
     return Promise.reject(error);
   })
 
+	//添加到原型
   Vue.prototype.$axios = instance;
   Vue.prototype.$http = {
     get(url, data = {}, options = {}){
