@@ -1,14 +1,24 @@
-1.process: env, argv, cwd()
+/*
+  module.exports 初始值为一个空对象 {}
+  exports 是指向的 module.exports的引用
+  exports 在module.exports被改变后，失效
+  require() 返回的是module.exports 而不是 exports
+*/
 
-//Buffer缓存区
+//1.全局对象
+process: env.Path, argv, cwd(), module.exports, exports.x
+	process.stdin.resume(), process.stdout.write()				//stdin.on('data'), readable, end
+
+//2.Buffer缓存区
 Buffer.from, alloc, write, slice, concat, compare
  //创建缓冲区，写入缓冲区
 
-//util
-inherit, inspect, log, _extend
+//3.util常工具    原型继承--prototype
+inherits, inspect, log, _extend, promiseify
 
-//url			-->解析URL  url.parse(url, true)格式化query内容
+//4.url		{URL, URLSearchParams }
 parse, format, resolve, resolveObject
+//-->解析URL  url.parse(url, true)格式化query内容
 
 
 //querystring	-->解析URL参数内容   //encodeURI, decodeURI
@@ -32,16 +42,23 @@ dirname, basename, extname
 
 //文件读取
 fs:			//node-xlsx
-	readFile(url, encoding, cb), writeFile(url, data, {encoding:'utf8'}, cb)	//文件完整读入缓存区
+	readFile(url, encoding, cb), writeFile(url, data, {encoding:'utf8'}, cb)	//将文件完整读入缓存区
 
-	read, write, ,											//不断地将文件中的一小块内容读入缓存区--buffer
+	read, write, ,																		//不断地将文件中的一小块内容读入缓存区--buffer
 
 	open, close, mkdir, readdir, rmdir
 
 	exists, unlink, stat
 
 //例:
-	fs.read(fd, buf, 0, buf.length, 0, (err, bytes)=>{}
+	fs.open('./res/note.txt', 'r', (err, fd)=>{								//r, r+ 文件不存在则发生异常  w文件不存在则报错
+		var buf = Buffer.alloc(200)
+		//读取fd文件内容到buf缓存区
+		fs.read(fd, buf, 0, buf.length, 0, (err, len, bytes)=>{ //fd 打开文件的标识
+		
+		})
+	})
+	
 	fs.open('./res/note.txt', 'a', (err, fd)=>{
     fs.writeFile(fd, 'node.js\r\n', (err)=>{
         console.log(err);
@@ -52,13 +69,20 @@ fs:			//node-xlsx
 http:		
 	createServer -> get, post请求
 
-	1.Request: 
-		事件: req.data, req.end
-		属性: req.url, req.method, req.headers
-					params = url.parse(req.url, true).query
+	1.Request:							//switch(params.pathname)
+		事件: 'data', 'end', 												
+		属性: req.url, req.method, req.headers 
+					params = url.parse(req.url, true).query		//get 方式
+
+					req.on('data', chunk => {									//post方式--请求数据写在了缓存区buffer, 数据写入触发data, 完全触发end
+						body += chunk
+					})
+					req.on('end', ()=>{
+						params = qs.parse(body)
+					})
 
 	2.Response: 
-		方法：res.setHeader(), res.write(), res.end()
+		方法：setHeader, res.writeHead(200, {}), res.write(), res.end()
 
 express
   req.params, req.query, req.body,

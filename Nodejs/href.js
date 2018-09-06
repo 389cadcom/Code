@@ -1,25 +1,27 @@
-/*
-                           href
- -----------------------------------------------------------------
-                            host              path
-                      --------------- ----------------------------
-http://user:pass @ host.com : 8080 /p/a/t/h ?query=string #hash
- -----  ---------  --------   ---- -------- ------------- -----
-protocol     auth  hostname   port pathname  search|query     hash
+/* 
+解析:
+url.parse(href)
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                            href                                             │
+├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
+│ protocol │  │        auth         │        host         │           path            │ hash  │
+│          │  │                     ├──────────────┬──────┼──────────┬────────────────┤       │
+│          │  │                     │   hostname   │ port │ pathname │     search     │       │
+│          │  │                     │              │      │          ├─┬──────────────┤       │
+│          │  │                     │              │      │          │ │    query     │       │
+"  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash "
+│          │  │          │          │   hostname   │ port │          │                │       │
+│          │  │          │          ├──────────────┴──────┤          │                │       │
+│ protocol │  │ username │ password │        host         │          │                │       │
+├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
+│   origin    │                     │       origin        │ pathname │     search     │ hash  │
+├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
+│                                            href                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
 
-
-node解析：
-		   url.parse(string).query
-                                           |
-           url.parse(string).pathname      |
-                       |                   |
-                     ------ -------------------
-http://localhost:8888/start?foo=bar&hello=world
-                                ---       -----
-                                 |          |
-              querystring.parse(queryString)["foo"]    |
-                                            |
-                         querystring.parse(queryString)["hello"]
+参数解析:
+querystring.stringify({age:1, name:'yu'})
+querystring.parse('age=1&name=yu')
 */
 
 
