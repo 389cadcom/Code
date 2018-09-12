@@ -7,11 +7,17 @@
 
 //1.全局对象
 process: env.Path, argv, cwd(), module.exports, exports.x
-	process.stdin.resume(), process.stdout.write()				//stdin.on('data'), readable, end
+	process.stdin.resume() | pause, //setEncoding
+	process.stdout.write()					//stdin.on('data'),  end
 
-//2.Buffer缓存区
-Buffer.from, alloc, write, slice, concat, compare
- //创建缓冲区，写入缓冲区
+//2.Buffer缓存区, 十六进制整数数组 0x41,  编码: utf8, ascii, hex, base64  String.fromCharCode(122), charCodeAt()
+Buffer.from, 
+alloc(size, fill), 
+
+//创建缓冲区，写入缓冲区  write, slice, concat, compare
+var buf = Buffer.alloc(255)
+buf.write(str, offset, len)			  //返回写入字符长
+
 
 //3.util常工具    原型继承--prototype
 inherits, inspect, log, _extend, promiseify
@@ -26,7 +32,7 @@ parse(url, '=', '&'), stringify(obj, '=', '&'), decode, encode, escape
 
 
 //path			-->解析文件路径 parse --> {root, dir, base, ext, name}
-join, normalize, parse, format
+path.join, path.resolve, normalize, parse, format
 
 dirname, basename, extname
 //属性sep, delimiter, posix, win32
@@ -44,9 +50,10 @@ dirname, basename, extname
 fs:			//node-xlsx
 	readFile(url, encoding, cb), writeFile(url, data, {encoding:'utf8'}, cb)	//将文件完整读入缓存区
 
-	read, write, ,																		//不断地将文件中的一小块内容读入缓存区--buffer
-
-	open, close, mkdir, readdir, rmdir
+	r: read(fd, buf, 0, buf.length, 0, (err, bytes)={}) 	//不断地将文件中的一小块内容读入缓存区--buffer
+	w: write()
+	fs.open(path, 'flag', (err, fd)=>{})
+	close, mkdir, readdir, rmdir
 
 	exists, unlink, stat
 
@@ -70,7 +77,7 @@ http:
 	createServer -> get, post请求
 
 	1.Request:							//switch(params.pathname)
-		事件: 'data', 'end', 												
+		事件: 'data', 'end', 'drain'												
 		属性: req.url, req.method, req.headers 
 					params = url.parse(req.url, true).query		//get 方式
 
