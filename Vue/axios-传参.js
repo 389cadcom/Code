@@ -1,3 +1,56 @@
+instance.interceptors.request.use( config => {
+    if(config.loading){     //显示遮罩层
+      Vue.loading()
+    }
+    var client_secret = clientSecret.substring(0, clientSecret.lastIndexOf('-'))
+
+    return new Promise((resolve, reject)=>{
+      token = utils.getCookie('token');
+      if (token) {
+        resolve();
+      } else {
+        //正在请求更新token时，其他接口等待 TODO
+        if (tokenLock && tokenTime < 30) {
+          setTimeout(function () {
+            tokenTime++;
+            resolve()
+          }, 500);
+        } else {
+          tokenLock = true;
+          var params = {
+            method: 'post',
+            url: '/hfBeam-tims-api/oauth/token',
+            data: qs.stringify({client_id, client_secret, grant_type})
+          }
+          //token请求
+          axios(params).then( res => {
+            if(res.status == 200){
+              token = res.data.access_token;
+              var expires_in = res.data.expires_in/3600
+              utils.setCookie('token', token, expires_in)
+            }
+            return Promise.resolve(config);
+          }).catch( err => {
+            console.log(err);
+          })
+        }
+      }
+    }).then( res => {
+      // console.log(res);
+      if(!config.__retryCount){
+        config = argsHandler(config);
+      }
+      return config;
+    })
+  },
+  error => {
+    console.log(JSON.stringify(error, null, 2));
+    Vue.loading.close()
+    Vue.$vux.toast.text('请求超时')
+    return Promise.reject(error)
+  }
+)
+
 //axios返回结构
 res = {
 	status: 200,
