@@ -124,7 +124,7 @@ new ExtractTextPlugin({
 
 //FixMe: 
 1.@import url('../asserts/style.css')		//只能抽取到当前chunk
-2.import '../assert/style.css'				//通过CommonsChunkPlugin设置导出到公共样式中，/\.(css|less|scss)$/.test(module.resource) && count>=2
+2.import '../assert/style.css'					//通过CommonsChunkPlugin设置导出到公共样式中，/\.(css|less|scss)$/.test(module.resource) && count>=2
 
 
 //8.webpack-dev-server  --mode development --open  --hot
@@ -138,9 +138,8 @@ devServer: {
 	compress: true,
 	port: 9997,
 	host: '0.0.0.0',
-	// --这个是使用热更新的标志，然后并不提供热更新功能，需要引入hotModule
-	// hot:true, 不加入HotModuleReplacementPlugin，因为API无法访问您的webpack配置
-	// --hot添加它。 （因为CLI可以访问您的webpack配置）
+	// hot:true, plugins加入new HotModuleReplacementPlugin()，因为API无法访问您的webpack配置
+	//--open --hot package.json设置不需要加入 hotModule
 	hot: true,
 	// --在构建失败的情况下，启用热模块替换（请参阅devServer.hot）而不刷新页面作为回退。
 	hotOnly: true,
@@ -182,3 +181,8 @@ devServer: {
 	// --启用安静功能后，除了初始启动信息之外的任何内容都将写入控制台。这也意味着来自webpack的错误或警告不可见。
 	quiet: true
 }
+
+
+//样式抽取ExtractTextWebpackPlugin 不能热更新
+
+//开发环境下的 webpack 配置中不要使用 extract-text-webpack-plugin 
