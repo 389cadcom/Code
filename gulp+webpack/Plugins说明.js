@@ -23,7 +23,7 @@ new HtmlTextPlugin({
 	template:  './index.html',
 	filename: 'index.html',
 	inject:"body",					//true | head | body
-	//hash: true,					//?hash
+	//hash: true,						//?hash
 	chunks: ['index', 'libs']
 })
 //²ÎÊý
