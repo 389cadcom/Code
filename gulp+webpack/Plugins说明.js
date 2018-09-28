@@ -122,6 +122,17 @@ new ExtractTextPlugin({
 	allChunks: true				//将所有额外的chunk都压缩成一个文件
 })
 
+/*
+	let styleLess = new ExtractTextWebpackPlugin('css/style.css');
+	let resetCss = new ExtractTextWebpackPlugin('css/reset.css');
+*/
+MiniCssExtractPlugin.loader
+new MiniCssExtractPlugin({
+	filename: "[name].css",
+  chunkFilename: "[id].css"
+})
+
+
 //FixMe: 
 1.@import url('../asserts/style.css')		//只能抽取到当前chunk
 2.import '../assert/style.css'					//通过CommonsChunkPlugin设置导出到公共样式中，/\.(css|less|scss)$/.test(module.resource) && count>=2

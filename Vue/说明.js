@@ -69,21 +69,3 @@ new Vue({
 		}
 	}
 })
-
-//webpack config
-npm run build --report			//查看打包文件体积
-
-//compression-webpack-plugin
-productionGzip: true				//生成.gz的gzip文件
-
-
-//相对路径打包
-1.首先需要修改config/index.js文件：
-	//assetsPublicPath: './'
-
-2.修改build/utils.js文件
-	 ExtractTextPlugin.extract({
-		 use: loaders,
-		 fallback: 'vue-style-loader',
-		 //publicPath: '../../'
-	 })
