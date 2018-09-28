@@ -8,8 +8,11 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 
+let smp = new SpeedMeasurePlugin()
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
@@ -24,22 +27,17 @@ const webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    // chunkFilename: utils.assetsPath('js/[id].[chunkhash].js'),
-    // sourceMapFilename: utils.assetsPath('/js/map/[name].[chunkhash].map')
+    // chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   optimization: {
-    /* splitChunks: {
-			name: 'vendor',
-			chunks: 'all',
-    }, */
     splitChunks: {
       chunks: 'async',
-      // name: true,                     //表示根据模块和缓存组秘钥自动生成
+      name: true,                       //表示根据模块和缓存组秘钥自动生成
       cacheGroups: {
         common: {
           name: 'common',
           chunks: 'initial',
-          minChunks: 2                //最少重复引用两次的模块
+          minChunks: 2                   //最少重复引用两次的模块
         },
         vendor: {
           name: 'vendor',
@@ -50,35 +48,32 @@ const webpackConfig = merge(baseWebpackConfig, {
     }
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: utils.assetsPath('css/[name].[contenthash].css')
+    // extract css into its own file
+    new ExtractTextPlugin({
+      filename: utils.assetsPath('css/[name].css'),
+      allChunks: true
     }),
-    // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
-    new OptimizeCSSPlugin({
+    /* new MiniCssExtractPlugin({
+      filename: utils.assetsPath('css/[name].[contenthash:7].css')
+    }), */
+    /* new OptimizeCSSPlugin({
       cssProcessorOptions: config.build.productionSourceMap
         ? { safe: true, map: { inline: false } }
         : { safe: true }
-    }),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /index.html
-    // see https://github.com/ampedandwired/html-webpack-plugin
+    }), */
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
       inject: true,
+      hash: true,           //hash防缓存
       minify: {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
-
-    // copy custom static assets
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
@@ -94,7 +89,7 @@ if (config.build.productionGzip) {
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
-      asset: '[path].gz[query]',
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: new RegExp(
         '\\.(' +
@@ -113,3 +108,4 @@ if (config.build.bundleAnalyzerReport) {
 }
 
 module.exports = webpackConfig
+// module.exports = smp.wrap(webpackConfig)

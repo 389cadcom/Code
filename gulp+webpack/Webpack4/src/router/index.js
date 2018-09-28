@@ -1,34 +1,45 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '@/views/Home'
-import Edit from '@/views/Edit'
-import About from '@/views/About'
-import Store  from '@/views/Store'
+import Vue from 'vue';
+import Router from 'vue-router';
+import HelloWorld from '@/components/HelloWorld';
 
-Vue.use(Router)
+/* import Home from '@/pages/Home.vue';
+import Edit from '@/pages/Edit.vue';
+import About from '@/pages/About.vue';
+import Me from '@/pages/Me.vue'; */
+
+const Home  = () => import(/* webpackChunkName: "bundler" */'@/pages/Home.vue')
+const Edit  = () => import(/* webpackChunkName: "bundler" */'@/pages/Edit.vue')
+const About = () => import(/* webpackChunkName: "bundler" */'@/pages/About.vue')
+const Me    = () => import(/* webpackChunkName: "bundler" */'@/pages/Me.vue')
+
+Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/edit',
-      name: 'edit',
-      component: Edit
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About
-    },
-    {
-      path: '/vuex',
-      name: 'vuex',
-      component: Store
-    },
-  ]
-})
+	routes: [
+		{
+			path: '/',
+			name: 'HelloWorld',
+			component: HelloWorld
+		},
+		{
+			path: '/home',
+			name: 'home',
+			component: Home
+		},
+		{
+			path: '/edit',
+			name: 'edit',
+			component: Edit
+		},
+		{
+			path: '/about',
+			name: 'about',
+			component: About
+		},
+		{
+			path: '/me',
+			name: 'me',
+			component: Me
+		},
+	]
+});

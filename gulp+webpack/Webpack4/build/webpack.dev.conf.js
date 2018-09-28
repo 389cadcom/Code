@@ -5,9 +5,9 @@ const config = require('../config')
 const merge = require('webpack-merge')
 const path = require('path')
 const baseWebpackConfig = require('./webpack.base.conf')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssTextPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
@@ -17,11 +17,12 @@ const PORT = process.env.PORT && Number(process.env.PORT)
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
   module: {
-    rules: utils.styleLoaders({
-      hotReload : true,
-      extract   : true,
+    // rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true }),
+    rules: utils.styleLoaders({ 
+      hotReload: true,
+      extract: false,
       usePostCSS: true,
-      sourceMap : config.dev.cssSourceMap
+      sourceMap: config.dev.cssSourceMap
     })
   },
   // cheap-module-eval-source-map is faster for development
@@ -53,24 +54,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-
-    // https://github.com/ampedandwired/html-webpack-plugin
+    new MiniCssExtractPlugin({
+      filename: utils.assetsPath('[name].[contenthash].css'),
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
       inject: true
     }),
     // copy custom static assets
-    new CopyWebpackPlugin([
-      {
+    new CopyWebpackPlugin([{
         from: path.resolve(__dirname, '../static'),
         to: config.dev.assetsSubDirectory,
         ignore: ['.*']
-      }
-    ]),
-    new MiniCssTextPlugin({
-      filename: utils.assetsPath('[name].css')
-    })
+    }])
   ]
 })
 

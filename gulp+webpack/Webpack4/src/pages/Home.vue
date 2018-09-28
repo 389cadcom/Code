@@ -1,5 +1,7 @@
 <template>
-  <div class="edit">Edit</div>
+<div class="home">
+  Home
+</div>
 </template>
 
 <script>
@@ -9,5 +11,7 @@ export default {
 </script>
 
 <style>
-
+.home{
+  background: #fff;
+}
 </style>
