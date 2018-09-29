@@ -20,51 +20,83 @@ template: `<div><p>添加全局组件到模板 <my-demo :num='99' str="99" :dataMsg="msg"
 template: '<div><p>添加全局组件到模板 <my-demo :num="99" :str-chars="99" :data-msg="msg" /></p></div>'
 
 
+
 /*
+页面缓存:
+<div id="app">
+	<keep-alive>
+		<router-view v-if="$route.meta.keepAlive"></router-view>
+	</keep-alive>
+	<router-view v-if="!$route.meta.keepAlive"></router-view>
+</div>
+
+
 Vue2 生命周期
 1.实例创建前后(初始化数据, 函数自执行如:data), $el还不存在
 2.模板编译/挂载(渲染)
 3.组件更新--app.msg='Hi'
 4.组件销毁前后--app.$destroy()
 */
-//keep-alive 组件被激活/移除 activated(), deactivated()
 beforeCreate(), beforeMounte(), beforeUpdate(), beforeDestory()
 created(),		  mounted(),		  updated(),		  destoryed()
 
+//keep-alive 组件被激活/移除 
+activated(), deactivated()
+
 //实例化
 new Vue({
-	el: '#app',					//vm.$el 要绑定的DOM
-	data: { },					//要绑定的数据, 通过data函数，返回一个全新副本数据对象(多个实例共享引用同一个数据对象)
-	props,						//接收父组件传下的数据
-	propsData,					//传递 props, 主要作用是方便测试
-	router: router,				//路由
-	render:						//res = Vue.compile('<div></div>'), res.render
-	template: '',				//使用模板将会替换挂载的元素, 选项中包含 render函数，template 选项将被忽略。
-	components:{				//局部组件
+	el: '#app',								//vm.$el 要绑定的DOM
+	data: { },								//要绑定的数据, 通过data函数，返回一个全新副本数据对象(多个实例共享引用同一个数据对象)
+	props,										//接收父组件传下的数据
+	propsData,								//传递 props, 主要作用是方便测试
+	router: router,						//路由
+	render:										//res = Vue.compile('<div></div>'), res.render
+	template: '',							//使用模板将会替换挂载的元素, 选项中包含 render函数，template 选项将被忽略。
+	components:{							//局部组件
 		'my-component': Child
 	},
-	directives,					//自定义指令
-	filters: {					//过滤
+	directives,								//自定义指令
+	filters: {								//过滤
 		tofixed: function(val){
 			return Number(val).toFixed(2)
 		}
 	},
-	computed: {					//计算属性，(data)属性名不需定义
+	computed: {								//计算属性，(data)属性名不需定义
 		hbprices: function(){}
 	},
-	watch:{						//侦听属性变化
-		'$route': 'routeChange'
+	watch:{										//侦听属性变化
+		'$route': 'routeChange',
+		obj: {
+			handler(val, old){},
+			deep: true
+		},
+		'obj.age'(){}
 	},
-	created: function(){
+	created: function(){			//dom未被解析
 	
 	},
-	mounted: function(){
+	mounted: function(){			//dom解析完成
 	
+	},
+	activated(){							//keep-alive 二次触发
+		if(document.body.scrollTop){
+			document.body.scrollTop = sessionStorage.getItem('top')
+		}else{
+			document.documentElement.scrollTop = sessionStorage.getItem('top')
+		}
+		window.addEventListener('scroll', this.roll)
+	},
+	deactivated(){
+		sessionStorage.setItem('roll', this.top)
+		window.removeEventListener('scroll', this.roll)	
 	},
 	methods: {
 		//method
+		rool(){
+			this.roll = document.body.scrollTop || document.documentElement.scrollTop
+		}
 	},
-	beforeDestory: function(){
+	beforeDestory: function(){//清除定时器
 
 	}
 }).$mount('#app')				//实例化时没有收到 el 选项，则它处于“未挂载”状态, 可使用 vm.$mount().$el 手动地挂载一个未挂载的实例
@@ -167,4 +199,22 @@ props: {
 		return value > 10
 	  }
 	}
+}
+
+setTitle(title){
+	setTimeout(function () {
+			//利用iframe的onload事件刷新页面
+			document.title = title;
+			var iframe = document.createElement('iframe');
+			iframe.src = '/favicon.ico'; // 必须
+			iframe.style.visibility = 'hidden';
+			iframe.style.width = '1px';
+			iframe.style.height = '1px';
+			iframe.onload = function () {
+					setTimeout(function () {
+							document.body.removeChild(iframe);
+					}, 0);
+			};
+			document.body.appendChild(iframe);
+	}, 0);
 }
