@@ -11,7 +11,7 @@ Vue.component('', {})
 <camel-cased-component></camel-cased-component>
 <title-cased-component></title-cased-component>
 
-//props
+//props   属性值必在子组件中通过props属性显示指定
 props:['inputMsg']
 <child :input-msg=""></child>
 <my-demo :num="99" :str-chars="99" :data-msg="msg" />
@@ -19,6 +19,10 @@ props:['inputMsg']
 template: `<div><p>添加全局组件到模板 <my-demo :num='99' str="99" :dataMsg="msg" /></p></div>`		
 template: '<div><p>添加全局组件到模板 <my-demo :num="99" :str-chars="99" :data-msg="msg" /></p></div>'
 
+//非父子通信
+bus = new Vue({})
+bus.$emit('up', arg)  //A组件
+bus.$on('up', fn)			//B组件
 
 
 /*

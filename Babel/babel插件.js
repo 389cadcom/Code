@@ -1,18 +1,59 @@
-//启用插件babel-plugin-transfrom-runtime，Babel就会使用babel-runtime工具函数
-babel-plugin-transform-runtime	//工具自动添加,主要的功能是为api提供沙箱的垫片方案
-//babel-runtime --> core-js中提取, 使用require('babel-runtime/core-js/promise')
+{
+	"presets":[
+		["env", {"modules": false}],
+		"stage-2"
+	],
+	"plugins": ["transform-runtime"]
+}
 
+// 区别：
+polyfill 所有兼容性问题，都可以通过polyfill解决（包括：实例方法）、污染全局环境, 改写全局prototype的方式实现
+runtime  除了实例方法以外，其他兼容新问题都能解决、不污染全局环境
+
+polyfill：如果想要支持全局对象（比如：`Promise`）、静态方法（比如：`Object.assign`）或者**实例方法**（比如：`String.prototype.padStart`）
+
+babel-runtime ：提供了兼容旧环境的函数，使用的时候，需要我们自己手动引入
+	//提取模块复用工具函数,提供工具函数,减少重复代码
+  比如： const Promise = require('babel-runtime/core-js/promise')
+  存在的问题：
+    1 手动引入太繁琐
+    2 多个文件引入同一个helper（定义），造成代码重复，增加代码体积
+/*
 babel-runtime/core-js/set
 babel-runtime/core-js/object/assign
 babel-runtime/core-js/promise
+*/
+
+babel-plugin-transform-runtime：
+    1 自动引入helper（比如，上面引入的 Promise）
+    2 babel-runtime提供helper(工具函数)定义，引入这个helper即可使用，避免重复
+    3 依赖于 babel-runtime 插件
 
 
-babel-polyfill					//通过改写全局prototype的方式实现, require('babel-polyfill') import 'babel-polyfill'   script引入
+transform-runtime插件的使用：
+  //直接在 .bablerc 文件中，添加一个 plugins 的配置项即可！！！
+  "plugins": [
+    "transform-runtime"
+  ]
+
+polyfill 使用步骤:  //或直接在页面添加 polyfill.min.js
+1.main.js
+  require('babel-polyfill')
+	's'.padStart(4)
+
+2.webpack.js
+	entry: {
+		app: ['babel-polyfill', './main.js']
+	}
 
 
-//plugins
-transform-modules-strip					//module: false, 去除import, export声明 ==> BS4
-transform-remove-strict-mode		// 'use strict'		
+//plugins说明
+transform-modules-strip											//module: false, 去除import, export声明 ==> BS4
+transform-remove-strict-mode								// 'use strict'		
+
+babel-plugin-transform-es2015-modules-strip	//禁用导入、导出模块
+babel-plugin-add-module-exports
+
 
 
 //babel-preset-es2015		20个插件
@@ -40,22 +81,19 @@ transform-regenerator                   // => generator特性
 
 
 //es2016	--es7
-transform-exponentiation-operator						//编译幂运算符
+transform-exponentiation-operator				//编译幂运算符
 
 
 //es2017	--es8
-syntax-trailing-function-commas							//function最后一个参数允许使用逗号
-transform-async-to-generator								//把async函数转化成generator函数
-transform-decorators-legacy									//ES7 装饰器
+syntax-trailing-function-commas					//function最后一个参数允许使用逗号
+transform-async-to-generator						//把async函数转化成generator函数
+transform-decorators-legacy							//ES7 装饰器
 
 
 //es2018  --es9
 
 
-/*
-  Stage-X(0/1/2/3/4) 五个阶段: 展示、征求、草案、候选、定案
-
-*/
+//Stage-X(0/1/2/3/4) 五个阶段: 展示、征求、草案、候选、定案
 
 //stage-4:
 syntax-trailing-function-commas			// function最后一个参数允许使用逗号（ES8已经存在）
@@ -84,29 +122,7 @@ transform-function-bind					// 编译bind运算符，即::
 
 
 
-{
-	"presets": [ ["env", { "modules":false }], "stage-2"],
-	"plugins": [ "transform-runtime" ]
-}
-
-
-
 //plugins插件  默认只转换新语句，不转换API
 
 //Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象
 //全局对象上的方法Object.assign, Array.from
-
-
-
-//插件说明:
-babel-plugin-transform-es2015-modules-strip	//禁用导入、导出模块
-
-babel-plugin-add-module-exports
-
-
-babel-plugin-transfrom-runtime				
-
-
-
-//babel-polyfill 直接在原型链上增加方法 (新的API及对象prototype上的方法)
-

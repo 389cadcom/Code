@@ -56,6 +56,13 @@ route对象
    //router-link
    to  = {path: '', append:true, activeClass: 'active'}  
    :to = {path: '/detail/' + this.$route.params.id}
+
+this.$router.push('/')
+this.$router.replace('/home')
+this.$router.go(-1)
+
+'$route'(to, from)
+
 */
 vue传参方式有：query、params+动态路由传参
 
@@ -146,7 +153,7 @@ var router = new VueRouter({
 })
 
 //router配置:
-mode,
+mode,								//window.addEventListener('hashchange', fn)
 base,
 linkActiveClass,
 scrollBehavior,			//to, from, savedPosition
