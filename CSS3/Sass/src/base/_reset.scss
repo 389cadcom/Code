@@ -1,14 +1,23 @@
-html{-webkit-text-size-adjust: 100%; height: 100%;}
-body{ height: 100%; padding: 0; font-size: .75rem; font-family: Microsoft YaHei,Arial,Helvetica;}
-ul, ol, li { list-style:none;}
-h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
-h1,h2,h3,h4,h5,h6,p,figure,form,blockquote { margin:0; }
-input, textarea, button, select { outline: none; vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+body {
+	max-width: 640px;
+  min-width: 320px;
+  margin: 0 auto;
+  font-size: 14px;
+  font-family: -apple-system, Helvetica, sans-serif arial;
+  -webkit-overflow-scrolling: touch;
+}
+body, p,form{margin: 0;padding: 0;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal; margin: 0; padding: 0;}
+input, textarea, button, select { outline: none; vertical-align:middle; font-family: -apple-system, Helvetica, sans-serif arial;}
 table { border-collapse: collapse; border-spacing: 0 }
+ul, ol, li { list-style:none; padding: 0; margin: 0;}
 hr { margin: 10px 0; border: 0; border-top: 1px solid #eee; }
-form, img, table, td { border:0;}
-a {color:#3c3f46; text-decoration:none;}
+img, img a{border: 0; vertical-align: middle; display: inherit}
 em,i{font-style:normal;}
+
+[v-cloak] { visibility: hidden }
+a {background-color: transparent; text-decoration:none; outline: 0;}
+a:active,a:hover { outline-width: 0 }
 
 .fl{float: left;}
 .fr{float: right;}
@@ -16,8 +25,10 @@ em,i{font-style:normal;}
 .text-left { text-align: right;}
 .text-right { text-align: right;}
 .text-center { text-align: center;}
-.hide{display: none !important;}
-.show{display: block !important;}
+.text-justify {text-align: justify}
+
+.hide{display: none;}
+.show{display: block;}
 .hidden{visibility: hidden;}
 .fade{opacity: 0; transition: opacity .15s linear;}
 .fade.in{opacity: 1;}
@@ -25,25 +36,19 @@ em,i{font-style:normal;}
 .collapse.in{display: block;}
 .collapsing{position: relative; height: 0; overflow: hidden; transition: height .35s ease;}
 
-//375为基准
-@media only screen and (min-width: 320px) and (max-width:360px) {
-  html { font-size:14px }
+img[lazy=loading] {
+  background-color: #f1f4f3
 }
-@media only screen and (min-width: 360px) and (max-width:375px) {
-  html { font-size:15px }
-}
-@media only screen and (min-width: 375px) and (max-width:414px) {
-  html { font-size:16px }
-}
-@media only screen and (min-width: 414px) and (max-width:640px) {
-  html { font-size:18px }
-}
-@media screen and (min-width: 640px) {
-  html { font-size:20px }
+img[lazy=loaded] {
+  -webkit-animation: opacity .3s;
+  animation: opacity .3s
 }
 
-/* font */
-.f8{font-size: 8px;}
-@for $i from 10 through 24 {
-  .f#{$i}{font-size: $i + px}
+@keyframes opacity{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 100%;
+  }
 }

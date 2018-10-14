@@ -193,6 +193,27 @@ devServer: {
 	quiet: true
 }
 
+devServer: {
+	proxy: { // 代理到后端服务接口
+      '/api': 'http://localhost:3000'
+    },
+	open: true,
+	https: false,
+	historyApiFallback:true
+}
+
+//针对命中的路由时都返回一个HTML 文件  http://webpack.wuhaolin.cn/2配置/2-6DevServer.html
+historyApiFallback: {
+  // 使用正则匹配命中路由
+  rewrites: [
+    // /user 开头的都返回 user.html
+    { from: /^\/user/, to: '/user.html' },
+    { from: /^\/game/, to: '/game.html' },
+    // 其它的都返回 index.html
+    { from: /./, to: '/index.html' },
+  ]
+}
+
 
 //样式抽取ExtractTextWebpackPlugin 不能热更新
 

@@ -1,0 +1,24 @@
+// 375为基准 结合rem vw %使用
+// 字体最小 pc=12px  mobile=8px
+
+// 1rem = 20
+// 1vw  = 37.5
+html {
+	font-size: 20px;
+  font-size: 5.33333vw;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%
+}
+
+@media screen and (max-width: 320px) {
+	html {
+		font-size: 17.06667px;
+	}
+}
+@media screen and (min-width: 540px) {
+	html {
+		font-size: 28.8px;
+	}
+}
+
+

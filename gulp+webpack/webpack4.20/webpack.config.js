@@ -4,7 +4,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-console.log(__dirname)
+console.log(path.resolve(__dirname, 'dist'))
+console.log(path.resolve(__filename))
 
 module.exports = {
   // mode: 'development',
@@ -45,7 +46,8 @@ module.exports = {
     new ExtractTextPlugin('static/common.css'),           //FIXME: util.assetsSubDirectory
     new HtmlWebpackPlugin({
       template: './index.html',
-      filename: 'index.html'
+      filename: 'index.html',
+			minify: true
     })
   ]
 }

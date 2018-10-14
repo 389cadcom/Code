@@ -5,8 +5,12 @@
 	],
 	"plugins": ["transform-runtime"]
 }
+// loose模式针对特定几个plugin
+// normal mode的转换更贴近es6的写法，许多的property都是通过Object.defineProperty进行的。
+// loose mode则更贴近es5的写法，性能更好一些，兼容性更好一些
 
-// 区别：
+// 区别：JS标准新增的原生对象和API的shim，实现上仅仅是core-js和regenerator-runtime
+
 polyfill 所有兼容性问题，都可以通过polyfill解决（包括：实例方法）、污染全局环境, 改写全局prototype的方式实现
 runtime  除了实例方法以外，其他兼容新问题都能解决、不污染全局环境
 
@@ -25,9 +29,10 @@ babel-runtime/core-js/promise
 */
 
 babel-plugin-transform-runtime：
-    1 自动引入helper（比如，上面引入的 Promise）
+    1 自动引入helper（比如，上面引入的 Promise, Set, Map, Symbol）
     2 babel-runtime提供helper(工具函数)定义，引入这个helper即可使用，避免重复
     3 依赖于 babel-runtime 插件
+		4.tranform-runtime不支持实例化的方法，如:Array.prototype.fill(), includes()
 
 
 transform-runtime插件的使用：
@@ -56,8 +61,7 @@ babel-plugin-add-module-exports
 
 
 
-//babel-preset-es2015		20个插件
-
+//babel-preset-es2015		20个插件	 
 transform-es2015-template-literals      // => es2015模板
 transform-es2015-literals								// => 编译整数(8进制/16进制)和unicode
 transform-es2015-function-name          // => 函数name属性
@@ -70,7 +74,7 @@ transform-es2015-computed-properties    // => 对象中括号属性，如obj   = {['x]: 1
 transform-es2015-for-of                 // => 对象for          of遍历
 transform-es2015-sticky-regex						// => 正则添加sticky属性
 transform-es2015-unicode-regex					// => 正则添加unicode模式
-check-es2015-constants                  // => const常量
+plugin-check-es2015-constants           // => const常量
 transform-es2015-spread                 // => 对象扩展运算符属性，如...foobar
 transform-es2015-parameters             // => 函数参数默认值及扩展运算符
 transform-es2015-destructuring          // => 赋值解构

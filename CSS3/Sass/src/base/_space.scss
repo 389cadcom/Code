@@ -1,9 +1,7 @@
+//统一设置间距 mtn, mvn, man | plx, ptx, prx, pbx
 $map: (n: 0, x: 3px, s: 5px, m: 10px, l: 15px, h:20px);
 $names: (p: padding, m: margin);
 $directions: (t: top, r:right, b: bottom, l: left); 
-
-//mtn, mvn, man
-
 @each $n-key, $n-value in $names{
   @each $d-key, $d-value in $directions {
     @each $size, $space in $map {
@@ -20,4 +18,8 @@ $directions: (t: top, r:right, b: bottom, l: left);
       }
     }
   }
+}
+
+@for $i from 10 through 24 {
+  .f#{$i}{font-size: $i + px}
 }

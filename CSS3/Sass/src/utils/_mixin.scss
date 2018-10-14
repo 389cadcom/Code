@@ -5,14 +5,25 @@
 	white-space: nowrap;
 }
 @mixin ellipsis($width:100%){
-	@extend %ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 	width: $width;
 }
-@mixin multi-ellipsis($line: 2) {
+@mixin multi($line: 2) {
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: $line;
+}
+
+@mixin mask($color: rgba(0, 0, 0, .65)) {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: $color;
 }
 
 //居中
@@ -22,6 +33,28 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
+@mixin middle($width: null, $height: null) {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	// @if type-of($width) == 'null' and type-of($height) == 'null' {
+	@if not $width and not $height {
+		transform: translate(-50%, -50%);
+	} @else if not $width {
+    height: $height;
+		margin-top: -($height / 2);
+		transform: translateX(-50%);
+	} @else if not $height {
+    width: $width;
+		margin-left: -($width / 2);
+		transform: translateY(-50%);
+	} @else {
+		width: $width;
+		height: $height;
+		margin: -($width / 2) #{0 0} - ($height / 2);   //容措方式
+	}
+}
+
 
 //小三角形
 @mixin arrow($dir: right, $color: orange, $width: 8px) {
@@ -63,38 +96,6 @@
 		border-width: $width1;
 		border-#{$fill}-color: $bgColor;
 	}
-}
-
-//高清屏1像素线条
-@mixin setOneLine($direction: bottom, $color: #c7c7c7) {
-	position: absolute;
-	content: ' ';
-	#{$direction}: 0px;
-	border-#{$direction}: 1px solid $color;
-	@if ($direction == top) or ($direction == bottom) {
-		transform: scaleY(0.5);
-		left: 0;
-		right: 0;
-	}
-	@if ($direction == left) or ($direction == right) {
-		transform: scaleX(0.5);
-		top: 0;
-		bottom: 0;
-	}
-}
-@mixin setBoxLine($color: #c7c7c7, $radius:0) {
-	position: absolute;
-	content: ' ';
-	display: block;
-	width: 200%;
-	height: 200%;
-	left: 0;
-	top: 0;
-	box-sizing: border-box;
-	transform: scale(0.5);
-	transform-origin: 0 0;
-	border: 1px solid $color;
-	border-radius: $radius;
 }
 
 @mixin placeholder($c, $s) {

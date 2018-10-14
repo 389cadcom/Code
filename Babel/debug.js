@@ -1,3 +1,19 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["ie >=9"]			//配置当前环境
+      },
+      "useBuiltIns": true,
+      "debug": true
+    }]
+  ],
+	"plugins": ["transform-runtime"]
+}
+//useBuiltIns: true   根据当前配置的环境去加载对应的一系列插件译替换直接引用babel-polyfill
+//入口文件添加 require('babel-polyfill')
+
 Using targets:
 {
   "ie": "9"

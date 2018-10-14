@@ -1,4 +1,5 @@
-﻿@mixin setOneLine($direction:bottom, $color:#c7c7c7){
+﻿//高清屏1像素线条
+@mixin setOneLine($direction:bottom, $color:#c7c7c7){
     position: absolute;
     content: " ";
     #{$direction}: 0px;
@@ -14,6 +15,7 @@
         bottom: 0;
     }
 }
+
 @mixin setBoxLine($color: #c7c7c7, $radius:0){
     position: absolute;
 	content: ' ';
@@ -21,10 +23,9 @@
 	width: 200%;
 	height: 200%;
 	left: 0;
-	top: 0;
-	box-sizing: border-box;
+    top: 0;
+    border: 1px solid $color;
+	border-radius: $radius;
 	transform: scale(0.5);
 	transform-origin: 0 0;
-	border: 1px solid $color;
-	border-radius: $radius;
 }
