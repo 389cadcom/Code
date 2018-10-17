@@ -7,3 +7,10 @@
     -webkit-line-clamp: 2;		/*4.设置2行应用省略*/
     -webkit-box-orient: vertical;
 }
+
+/*ios滚动卡顿*/
+.ios{
+	overflow-x:hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling:touch;
+}
