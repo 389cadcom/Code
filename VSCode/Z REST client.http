@@ -1,0 +1,36 @@
+###
+
+GET http://www.easy-mock.com/mock/5ae9d1dd0a492d2535b91366/hfBeam-tims-api/goods/list?name=yu&age12
+
+
+###   application/application/json
+POST https://www.easy-mock.com/mock/5ae9d1dd0a492d2535b91366/hfBeam-tims-api/test
+Content-Type: application/application/json
+
+{
+  "name": "yu",
+  "age": 20
+}
+
+
+###   application/x-www-form-urlencoded
+POST https://www.easy-mock.com/mock/5ae9d1dd0a492d2535b91366/hfBeam-tims-api/test
+Content-Type: application/x-www-form-urlencoded
+
+name=yu&age=20
+
+
+###   content-type: multipart/from-data
+POST https://www.easy-mock.com/mock/5ae9d1dd0a492d2535b91366/hfBeam-tims-api/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="text"
+
+title
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="1.png"
+Content-Type: image/png
+
+< ./1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

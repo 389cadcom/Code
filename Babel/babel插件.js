@@ -3,7 +3,7 @@
 		["env", {"modules": false}],
 		"stage-2"
 	],
-	"plugins": ["transform-runtime"]
+	"plugins": ["transform-runtime", "syntax-dynamic-import"]
 }
 // loose模式针对特定几个plugin
 // normal mode的转换更贴近es6的写法，许多的property都是通过Object.defineProperty进行的。
@@ -61,7 +61,8 @@ babel-plugin-add-module-exports
 
 
 
-//babel-preset-es2015		20个插件	 
+//babel-preset-es2015		20个插件
+
 transform-es2015-template-literals      // => es2015模板
 transform-es2015-literals								// => 编译整数(8进制/16进制)和unicode
 transform-es2015-function-name          // => 函数name属性
@@ -74,7 +75,7 @@ transform-es2015-computed-properties    // => 对象中括号属性，如obj   = {['x]: 1
 transform-es2015-for-of                 // => 对象for          of遍历
 transform-es2015-sticky-regex						// => 正则添加sticky属性
 transform-es2015-unicode-regex					// => 正则添加unicode模式
-plugin-check-es2015-constants           // => const常量
+check-es2015-constants                  // => const常量
 transform-es2015-spread                 // => 对象扩展运算符属性，如...foobar
 transform-es2015-parameters             // => 函数参数默认值及扩展运算符
 transform-es2015-destructuring          // => 赋值解构

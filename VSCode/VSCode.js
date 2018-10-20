@@ -12,6 +12,8 @@ svg --> svg language support
 /*
 "terminal.integrated.shell.windows": "D:\\Program Files\\cmder\\cmder.exe"
 
+editor.wordSeparators	
+Ctrl + Enter			    光标不在尾部，重开一行
 Ctrl + Shift + K			收缩代码
 Ctrl + K					展开代码
 
