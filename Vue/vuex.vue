@@ -1,3 +1,13 @@
+/**
+state,		 this.$store.state.count
+getters		 
+mutations  this.$store.commit('method', arg)
+actions		 this.$store.dispatch('')
+
+state, context, 
+
+扩展运算：...mapState
+*/
 <template>
   <div id="app">
     <img width="64" src="./assets/logo.png">
@@ -43,14 +53,14 @@ export default {
 		return {
       arys: [],
       msg: 'Vue vuex多组件共享状态管理',
-      page: this.$store.state.count,           //FIXME: state
+      page: this.$store.state.count,           //FIXME: state --> 定义变量
 		}
   },
   computed: {                                  //TODO 计算属性--辅助函数
     ...mapState({
       count0: state => state.count
     }),
-    ...mapState(['count']),
+    ...mapState(['count']),										 //同名变量属性
 
     arr(){
       return this.$store.getters.dos           //FIXME: getter
@@ -67,7 +77,7 @@ export default {
     mutationHandler(){
       this.$store.commit('add', 'commit')     //FIXME: mutations   {type:'add', args:''}
     },
-    ...mapMutations([
+    ...mapMutations([													//同方法名
       'add', 'mul'
     ]),
     //异步
@@ -90,26 +100,5 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-	font-family: 'Avenir', Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 10px;
-}
-h1, h2 {
-	font-weight: normal;
-}
 
-ul,ol{
-  text-align: left;
-}
-
-li {
-  margin-bottom: 10px;
-}
-a {
-	color: #42b983;
-}
 </style>

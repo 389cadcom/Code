@@ -8,11 +8,20 @@
     -webkit-box-orient: vertical;
 }
 
-/*ios滚动卡顿*/
+/*ios滚动卡顿 列表水平滑动*/
 .ios{
 	overflow-x:hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling:touch;
+}
+ul.list{
+	white-space: nowrap;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+li{
+	display: inline-block;
 }
 
 /*二列排榜--多行*/
