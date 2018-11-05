@@ -44,3 +44,71 @@ li{
 		margin: 0 2%;
 	}
 }
+
+/*圣杯布局--left无法提前*/
+.container{
+  padding: 0 200px;
+	overflow:hidden;				/*bfc*/
+	.middle, .left, .right{
+		float:left;
+		position:relatve;
+	}
+	.left{
+		margin-left:-100%;
+		left:-200px;					/*pl大小*/
+		width:200px;
+	}
+	.right{
+		margin-left:-200px;
+		right:-200px;				  /*pr大小*/
+		width:200px;
+	}
+}
+/*将中间的盒子设为box-sizing:border-box,给中间的盒子设置左右的padding*/
+.middle{
+	box-sizing: border-box;
+  width: 100%;
+  padding: 0 200px;
+}
+.left{
+	margin-left:-100%;
+	width:200px;
+}
+.right{
+	margin-left:-200px;
+	width:200px;
+}
+
+
+/*双飞翼*/
+.left, .middle, .right{
+	float:left;
+}
+.middle{
+	width:100%;
+	.main{
+		margin: 0 200px;		/*.left在头只能用margin, 后面层级比前面高*/
+	}
+}
+.left{
+	margin-left:-100%;
+}
+.right{
+	margin-left:-200px;
+}
+
+/*left的开头*/
+.middle{
+	width:100%;
+	padding:0 200px;
+	margin-left: -200px;
+	box-sizing: border-box;
+}
+/*或*/
+.middle{
+	width:100%;
+	margin-left: -200px;
+}
+.main{
+	margin: 0 200px;
+}
