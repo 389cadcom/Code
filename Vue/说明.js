@@ -87,3 +87,8 @@ setTitle(title){
 			document.body.appendChild(iframe);
 	}, 0);
 }
+
+//第三方插件使用
+this.$nextTick(() => {
+	new Swiper()
+})

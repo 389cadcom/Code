@@ -67,6 +67,9 @@ li{
 		float:left;
 		position:relatve;
 	}
+	.middle{
+		width:100%;
+	}
 	.left{
 		margin-left:-100%;
 		left:-200px;					/*pl大小*/
@@ -80,7 +83,7 @@ li{
 }
 
 相同：三栏全部float浮动，左右两栏加上负margin
-不同：中间栏div内容不被遮挡
+不同：中间栏div内容不被遮挡处理方式
 /*将中间的盒子设为box-sizing:border-box,给中间的盒子设置左右的padding*/
 .middle{
 	box-sizing: border-box;

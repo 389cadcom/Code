@@ -15,7 +15,7 @@ svg --> svg language support
 editor.wordSeparators	
 Ctrl + Enter			    光标不在尾部，重开一行
 Ctrl + Shift + K			收缩代码
-Ctrl + K					展开代码
+Ctrl + K							展开代码
 
 Ctrl + U					大小写
 Ctrl + Shift + U
