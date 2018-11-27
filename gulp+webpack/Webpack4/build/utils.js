@@ -57,6 +57,7 @@ exports.cssLoaders = function (options) {
       //loaders.unshift(MiniCssExtractPlugin.loader)
     } else {
       arys.unshift('vue-style-loader')
+	  //return ['vue-style-loader', 'css-loader'].concat(['postcss-loader'], loaders)
     }
     if(options.hotReload){
       return ['css-hot-loader'].concat(arys);

@@ -1,3 +1,5 @@
+//项目用的是ts配合vue-class-component  vue-property-decorator
+
 Vue.mixin, Vue.filter, Vue.directive,		//filters, components, directives, mixins, extends
 
 Vue.exend, Vue.component, Vue.compile

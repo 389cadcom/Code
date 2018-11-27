@@ -12,3 +12,32 @@
 
 //Брвы
 babel src --out-dir lib --presets=@babel/env
+
+
+//Р§:
+{
+	test: /\.(js|es|es6|jsx)$/,
+	use: [
+		{
+			loader: 'babel-loader',
+			options: {
+				 presets: [
+					 ['es2015', {modules: false, loose: true}],
+					 ['react'],
+					 ['stage-2']
+				 ],
+				 plugins: [
+					 ['transform-runtime']
+				 ],
+				 comments: false,
+				 cacheDirectory: true
+			}
+		},
+		{
+			loader: 'eslint-loader',
+			options: {
+				configFile: eslintConfigPath
+			}
+		}
+	],
+}

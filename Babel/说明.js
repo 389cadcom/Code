@@ -31,9 +31,11 @@ rimraf node_modules
 //编译
 babel es6.js  --preset es2015
 
-babel es6.js -o es5.js			//--out-file
+babel es6.js -o es5.js												//--out-file
 
-babel src -d lib				//--out-dir 
+babel src -d lib															//--out-dir 
+
+babel index.js main.js -o es5.js --compact		// 转义es5, 组合一个文件
 
 
 //执行脚本 node  babel-node
