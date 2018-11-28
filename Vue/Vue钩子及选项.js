@@ -25,7 +25,29 @@ bus.$emit('up', arg)  //A组件
 bus.$on('up', fn)			//B组件
 
 
-/*
+//keep-alive缓存问题解决
+//方案一
+watch: {
+	'$route': {
+		immediate: true,
+		handler(to, from){
+			if(to.path.includes('shop-detail')){
+				if(this.id == this.$route.params.id) return;
+				this.id = this.$route.params.id;
+				this.getData()
+			}
+		}
+	}
+},
+//方案二
+mounted(){
+	if(this.id != this.$route.params.id){
+		this.$destroy();
+	}
+}
+
+//方案三
+/*keep-alive设置  $route.path.includes('detail')
 页面缓存:
 <div id="app">
 	<keep-alive>
@@ -33,8 +55,18 @@ bus.$on('up', fn)			//B组件
 	</keep-alive>
 	<router-view v-if="!$route.meta.keepAlive"></router-view>
 </div>
+*/
+//方案四  回首页刷新
+beforeRouteLeave(to, from, next) {
+ if (to.path == "/index") {
+		to.meta.keepAlive = true;
+ } else {
+		to.meta.keepAlive = false;
+ }
+ next();
+}
 
-
+/**
 Vue2 生命周期
 1.实例创建前后(初始化数据, 函数自执行如:data), $el还不存在
 2.模板编译/挂载(渲染)
