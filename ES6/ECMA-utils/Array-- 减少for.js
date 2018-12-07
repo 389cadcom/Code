@@ -2,7 +2,10 @@
 	1.Array.includes   --> Array.indexOf
 	2.Array.find       --> Array.filter   findIndex(
 	3.Array.some			 --> Array.find
-	4.Array.reduce		 --> Array.filter + Array.map			arys.reduce((acc, curr)=> curr.bool ? acc.concat({...curr, age:2}): acc, [])
+	4.Array.reduce		 --> Array.filter + Array.map			
+	
+	给数组对象添加新属性
+	arys.reduce((acc, curr)=> curr.bool ? acc.concat({...curr, age:2}): acc, [])
 */
 
 
@@ -31,6 +34,13 @@ for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 	ary.join('&')
 	arr.map( k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]) )								//转义
 
+	//params-- reduce处理
+	Object.keys(params).sort().reduce((list, curr)=>{
+		if(params[curr]){
+			list.push(curr + '=' + params[curr])
+		}
+		return list;
+	}, []).join('&')
 
 //3.查找数组中第一个符合条件，索引
 	arr.find( item => item.id == 1 ).title
@@ -41,7 +51,7 @@ for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
   ary = arr.map( item => item.id == id ? {...item, title:'new title'} : item )							//新增属性覆盖原来同名属性Object.assgin()
 
 
-//5.统计数组对象某一属性值
+//5.统计数组对象某一属性值 | accumulator, currentValue
 	var arr= [{name:'yu', nums: 1}, {name:'cd', nums: 8}]
 	arr.reduce((total, curr)=> total + curr.nums, 0)
 
@@ -62,6 +72,7 @@ for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 		.filter( k => k !=='sex')
 		.map( k => ({[k]: user[k]}) )																		//映射返回数组对象
 		.reduce((previous, current) => ({...previous, ...curent}), {})	//平铺、展开
+	
 	delete user.sex
 	
 	//参数解构
@@ -70,11 +81,11 @@ for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 	}
 	fn(user)
 
-//9.随机生成数组，长度、元素大小自定义
-	Array.from({length: 10}, ()=> Math.floor(Math.random() * limit))
+//9.随机生成数组，长度、元素大小自定义 TODO无重复？？
+	Array.from({length: 10}, ()=> Math.floor(Math.random() * limit) )
 
 //10.多层数组平铺 -- 递归
-  flatten = arr => {
+var flatten = arr => {
 		return arr.reduce( (flat, curr)=> flat.concat(Array.isArray(curr)? flatten(curr) : curr ), [])
 	}
 
@@ -86,6 +97,8 @@ for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 		flat[curr[0]]=curr[1]
 		return flat
 	}, {})
+
+	arr.reduce()
 
 
 //12.包含--过滤在另一个数组存在的项

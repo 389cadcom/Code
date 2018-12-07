@@ -1,8 +1,8 @@
 /**
 state,		 this.$store.state.count
 getters		 
-mutations  this.$store.commit('method', arg)
-actions		 this.$store.dispatch('')
+mutations  this.$store.commit('method', arg)		(state, arg)
+actions		 this.$store.dispatch('mthod', arg)	  ({commit}, arg)
 
 state, context, 
 
@@ -58,16 +58,14 @@ export default {
   },
   computed: {                                  //TODO 计算属性--辅助函数
     ...mapState({
-      count0: state => state.count
+      count0: state => state.count						 //重新定义变量名
     }),
     ...mapState(['count']),										 //同名变量属性
 
     arr(){
       return this.$store.getters.dos           //FIXME: getter
     },
-    ...mapGetters([
-      'dos'
-    ])
+    ...mapGetters(['dos'])
   },
   mounted(){
     console.dir(this.$store.getters)

@@ -71,7 +71,7 @@ externals: {
 
 //若入引入本地文件，则不能定义externals(排除定义的库打包入build.js)
 c).配置别名：alias， --> 引入：import $ from jquery
-    resolve: {
+  resolve: {
 		alias: {
 			@: './src',
 			vue$: 'vue/dist/vue.esm.js',
@@ -86,7 +86,7 @@ d.在c的基础上，配置 plugins，无需 import 全局即可用(碰到使用$, jQuery自动引入req
 		})
 	]
 e).分离打包第三方库 webpack.optimize.CommonsChunkPlugin
-	//entry中定义入口，不打包的库
+	//entry中定义入口，不打包入bundle库
   entry: {   
 		common: ['jquery']
 	}

@@ -60,6 +60,8 @@ module.exports = (env, argv) => {
 }
 
 //热更新、样式热更新   style-loader将样式添加到js文件中, css-hot-loader抽取样式热更新
+//css 和 html 没有热更新的原因是没有进入到entry 入口，不在热跟新的检测范围内
+//当webpack入口的js文件被修改，则会自动更新数据并刷新
 devServer: {
 	hot:true,
 	host: 'localhost',
