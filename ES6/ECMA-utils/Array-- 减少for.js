@@ -9,7 +9,7 @@
 */
 
 
-//1.跳出for循环,    forEach遍历数组的时候是无法 break 中断的
+//1.跳出for循环,    forEach遍历数组的时候是无法 break 中断的, 可以用return;跳出当前值
 var arr = [1,2,3]		
 arr.foo = 'foo'
 for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
@@ -17,11 +17,13 @@ for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 }
 
 //遍历
-1.for...in遍历对象本身所有属性--自身+原型, 优先用于纯对象遍历 break
+0.for	 i, arr[i] 获取索引，当前值 可用 break, continue;
 
-2.for...of 遍历数组、伪数组，如果不需要索引优先用 break;
+1.for...in遍历对象本身所有属性--自身+原型, 优先用于纯对象遍历  可用 break
 
-3.forEach((item, i)=>{}), 需使用索引值使用，但不能中断遍历  return false; 跳出当前条件
+2.for...of 遍历数组、伪数组，如果不需要索引优先用		可用 break;
+
+3.forEach((item, i)=>{}), 需使用索引值使用，但不能用(break, continue);   return false; 跳出当前条件
 
 
 

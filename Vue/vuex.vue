@@ -1,3 +1,12 @@
+//require.context
+let contexts = require.context('../pages/', false, /\.vue$/)
+console.log(invest);
+
+contexts.keys().forEach(item => {
+  var entity = contexts(item).default;
+  // console.log(entity);
+});
+
 /**
 state,		 this.$store.state.count
 getters		 

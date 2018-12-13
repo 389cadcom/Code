@@ -4,6 +4,8 @@
 2.async函数内部抛出错误，会导致返回的Promise对象变为reject状态
 3.await等特是Promise对象，不必写then()方法，直执返回值
  */
+
+//js阻塞时间, 程序睡眠时间
 function sleep(second) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
