@@ -109,3 +109,29 @@ var flatten = arr => {
 			
 		}
 	})
+
+
+//13.分组--对数组对象分组
+function arrToGroup(results){
+	var map = {}, arr = [];
+	for(var item of results){
+		if(!map[item.id]){
+			arr.push({
+				id: item.id,
+				datas: [item]
+			})
+			map[item.id] = item
+		}else{
+			for(var list of arr){
+				if(list.id == item.id){
+					list.datas.push(item);
+					break;
+				}
+			}		
+		}
+	}
+	arr.sort((a, b)=>{
+		return a.name.charCodeAt() - b.name.charCodeAt()
+	})
+	return arr;
+}
