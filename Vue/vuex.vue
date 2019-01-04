@@ -1,4 +1,4 @@
-//require.context
+//TODO require.context 动态载入注册页面
 let contexts = require.context('../pages/', false, /\.vue$/)
 console.log(invest);
 
@@ -7,15 +7,24 @@ contexts.keys().forEach(item => {
   // console.log(entity);
 });
 
+
 /**
 state,		 this.$store.state.count
-getters		 
+getters																					(state, getters)
 mutations  this.$store.commit('method', arg)		(state, arg)
-actions		 this.$store.dispatch('mthod', arg)	  ({commit}, arg)
+actions		 this.$store.dispatch('mthod', arg)	  ({commit}, arg)  (context, arg)
 
-state, context, 
 
-扩展运算：...mapState
+
+扩展运算：...mapState, mapGetters, mapMutations, mapActions
+computed: {
+	...mapState({
+		
+	})
+}
+
+对象形式、数组形式
+computed: mapState({})		mapState([])	同变量名
 */
 <template>
   <div id="app">

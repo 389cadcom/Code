@@ -1,14 +1,16 @@
 enctype="application/x-www-form-urlencoded"   
 enctype="application/json"
 enctype="multipart/form-data"
-Node + Express + post请求
+
+//Node + Express + post请求
 
 
-//发送数据到服务器
+//请求数据的三种方式区别， 默认请求方式  
 Query string parameters	
 	form ->get						//get提交表单
 	$.get()								//get发送数据方式
 	//node接收：req.query, req.params
+
 
 Form Data								//Content-Type: application/x-www-form-urlencoded
 	form ->post						//post提交表单
@@ -16,18 +18,26 @@ Form Data								//Content-Type: application/x-www-form-urlencoded
 	var params = new URLSearchParams()  params.append()
 	var data   = qs.stringify(data)
 
+	//base64方式表单上传图片 FileReader转为base64  reader.readAsDataURL
+
+
 
 	//注：Form Data的请求正文格式是用key=value&key1=value2格式
 	//node接收:  req.body
+
 
 //以流方式传入服务端
 Request Payload					//Content-Type: multipart/form-data;
 	form ->file						//表单上传控件方式		-- enctype="multipart/form-data"   formenctype="multipart/form-data" 
 	axios({method, ulr})	//默认传参方式
+	fetch(url)
 	wx.request()					//微信请求方式
 
-
+	//图片上传参数
+	let params = new FormData();
+  params.append('file', file, 'image.png')
 	//Request Header  -- Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryp3gmLrKfayrJbBUh
+
 	//注：Request Payload的请求正文格式是json格式的字符串
 	//node接收
 	  var str = ''
@@ -36,14 +46,16 @@ Request Payload					//Content-Type: multipart/form-data;
 		})
 
 
-//FormData:   append delete get getAll has set keys values forEach entries
+//FormData:						append delete get getAll has set keys values forEach entries
 //URLSearchParams: 
+
 
 //原生获取参数  for...of --> FormData
 var data = new FormData(document.getElementById('form')				//流：  multipart/form-data
 data.append('user', 1)
 
 var params = new URLSearchParams();														//表单：application/x-www-form-urlencoded
+
 
 
 //Fetch  默认Request Payload, 设置请求头部Form Data

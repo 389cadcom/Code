@@ -5,7 +5,7 @@ GET http://www.easy-mock.com/mock/5ae9d1dd0a492d2535b91366/hfBeam-tims-api/goods
 
 ###   application/application/json
 POST https://www.easy-mock.com/mock/5ae9d1dd0a492d2535b91366/hfBeam-tims-api/test
-Content-Type: application/application/json
+Content-Type: application/json
 
 {
   "name": "yu",
