@@ -9,16 +9,32 @@ enctype="application/json"
 Query string parameters	
 	form ->get						//get提交表单
 	$.get()								//get发送数据方式
+	fetch(url + '?name=yu', {method:'get'})
+
 	//node接收：req.query, req.params
 
 //Post方式
 Form Data								//Content-Type: application/x-www-form-urlencoded
-	form ->post						//post提交表单
-	$.post()							//post发送数据方式
-	var params = new URLSearchParams()  params.append()
-	var data   = qs.stringify(data)
+	1.form ->post						//post提交表单
+	2.$.post()							//post发送数据方式
 
-	//base64方式表单上传图片 FileReader转为base64  reader.readAsDataURL
+	var params = new URLSearchParams()
+	var data   = qs.stringify(data)
+	3.axios({								//axios--formdata数据
+		method: 'post',
+		data: params
+	})
+	
+	4.fetch(url,{
+		method: 'post',
+		headers: {
+			'content-type':'application/x-www-form-urlencoded'
+		},
+		body: 'age=10'
+	})
+
+
+	//TODO base64方式表单上传图片 FileReader转为base64  reader.readAsDataURL
 
 	//注：Form Data的请求正文格式是用key=value&key1=value2格式
 	//node接收:  req.body
@@ -27,6 +43,10 @@ Form Data								//Content-Type: application/x-www-form-urlencoded
 //Post上传
 Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-data"
 	form ->file						//表单上传控件方式
+	axios({								//axios--formdata数据
+		method: 'post',
+		data: formdata
+	})
 
 	//图片上传参数
 	let params = new FormData();
@@ -34,7 +54,7 @@ Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-
 	//Request Header  -- Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryp3gmLrKfayrJbBUh
 	//注：Request Payload的请求正文格式是json格式的字符串
 	
-
+	//$.ajax上传图片
 	$.ajax({
 		type:"post",
 		url:"/hfBeam-portal-api/file/uploadFile",
@@ -57,11 +77,12 @@ Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-
 
 //以JSON方式传入服务端
 Request Payload					//Content-Type: application/json
-	axios({method, ulr})	//默认传参方式
-	fetch(url)
-	wx.request()					//微信请求方式
+	1.axios({method:'post', url:url})	      //axios post默认传参方式
+	2.fetch(url, {method:'post',body:data})		//fetch post
 
-	//jq传递json
+	3.wx.request()					//微信请求方式
+
+	4.//jq传递json
 	$.ajax({
 		method: 'post',
 		url: url,
@@ -70,6 +91,16 @@ Request Payload					//Content-Type: application/json
 			'content-type': 'application/json'
 		}
 	})
+
+//例
+fetch(url,{
+  method: 'post',
+  headers: {
+    'content-type':'application/json'
+  },
+  body: JSON.strinfiy({age: 10})
+})
+
 
 //TODO---API
 //FormData:						append delete get getAll has set keys values forEach entries

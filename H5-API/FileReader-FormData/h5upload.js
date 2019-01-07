@@ -1,3 +1,5 @@
+//https://browser.server.nubia.cn/submit.html
+
 var H5Uploader = (function (fromId, fileName, requestURI, locationURI) {
 
     var loading, locationHREF, btnVal;
