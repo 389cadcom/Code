@@ -1,6 +1,6 @@
 enctype="application/x-www-form-urlencoded"   
-enctype="application/json"
 enctype="multipart/form-data"
+enctype="application/json"
 
 //Node + Express + post请求
 
@@ -11,7 +11,7 @@ Query string parameters
 	$.get()								//get发送数据方式
 	//node接收：req.query, req.params
 
-
+//Post方式
 Form Data								//Content-Type: application/x-www-form-urlencoded
 	form ->post						//post提交表单
 	$.post()							//post发送数据方式
@@ -20,32 +20,58 @@ Form Data								//Content-Type: application/x-www-form-urlencoded
 
 	//base64方式表单上传图片 FileReader转为base64  reader.readAsDataURL
 
-
-
 	//注：Form Data的请求正文格式是用key=value&key1=value2格式
 	//node接收:  req.body
 
 
-//以流方式传入服务端
-Request Payload					//Content-Type: multipart/form-data;
-	form ->file						//表单上传控件方式		-- enctype="multipart/form-data"   formenctype="multipart/form-data" 
+//Post上传
+Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-data"
+	form ->file						//表单上传控件方式
+
+	//图片上传参数
+	let params = new FormData();
+  params.append('file', files[0], 'image.png')
+	//Request Header  -- Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryp3gmLrKfayrJbBUh
+	//注：Request Payload的请求正文格式是json格式的字符串
+	
+
+	$.ajax({
+		type:"post",
+		url:"/hfBeam-portal-api/file/uploadFile",
+		dataType: 'json',
+		data: formdata,
+		cache: false,										//上传文件不设置缓存
+		processData: false,							//jq不要处理发送的数据
+		contentType: false,							//jq不要设置Content-Type请求头
+		success:function(res){
+			console.log(res)
+		},
+	})
+
+	//node流方式接收数据
+	var str = ''
+	req.on('data', chunk => {
+		str += chunk;
+	})
+
+
+//以JSON方式传入服务端
+Request Payload					//Content-Type: application/json
 	axios({method, ulr})	//默认传参方式
 	fetch(url)
 	wx.request()					//微信请求方式
 
-	//图片上传参数
-	let params = new FormData();
-  params.append('file', file, 'image.png')
-	//Request Header  -- Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryp3gmLrKfayrJbBUh
+	//jq传递json
+	$.ajax({
+		method: 'post',
+		url: url,
+		data: JSON.stringify(data),
+		headers: {
+			'content-type': 'application/json'
+		}
+	})
 
-	//注：Request Payload的请求正文格式是json格式的字符串
-	//node接收
-	  var str = ''
-		req.on('data', chunk => {
-			str += chunk;
-		})
-
-
+//TODO---API
 //FormData:						append delete get getAll has set keys values forEach entries
 //URLSearchParams: 
 
