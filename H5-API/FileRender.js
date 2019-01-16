@@ -1,56 +1,44 @@
-function uploadAndSubmit() {
-  var form = document.forms['demoForm']
+var reader = new FileReader()
+reader.onload = (e) => e.target.result
+reader.readAsDataURL(file)
 
-  if (form['file'].files.length > 0) {
-    // 寻找表单域中的 <input type="file" ... /> 标签
-    var file = form['file'].files[0]
-		console.log(file.size, file.type, file.name)
 
-    //TODO FileReader事件
-    var reader = new FileReader()
-    reader.onloadstart = function() {
-      document.getElementById('bytesTotal').textContent = file.size
-    }
-    reader.onprogress = function(p) {
-      document.getElementById('bytesRead').textContent = p.loaded
-    }
-    reader.onload = function() {
-      console.log('load complete')
-    }
-
-    // 这个事件在读取结束后，无论成功或者失败都会触发
-    reader.onloadend = function() {
-      if (reader.error) {
-        console.log(reader.error)
-      } else {
-        document.getElementById('bytesRead').textContent = file.size
-
-        // 构造 XMLHttpRequest 对象，发送文件 Binary 数据
-        if(!XMLHttpRequest.prototype.sendAsBinary){
-          XMLHttpRequest.prototype.sendAsBinary = function(datastr) {
-            function byteValue(x) {
-              return x.charCodeAt(0) & 0xff;
-            }
-            var ords = Array.prototype.map.call(datastr, byteValue);
-            var ui8a = new Uint8Array(ords);
-            this.send(ui8a.buffer);
-          };
+//分片上传 -- 服务端文件片的保存与追加
+function uploadFile(file) {
+  var chunkSize = 1024 * 1024;   // 每片1M大小
+  var totalSize = file.size;
+  var chunkQuantity = Math.ceil(totalSize/chunkSize);  //分片总数
+  var offset = 0;  // 偏移量
+  
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST","http://xxxx/upload?fileName="+file.name);
+    xhr.overrideMimeType("application/octet-stream");
+    
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        ++offset;
+        if(offset === chunkQuantity) {
+          alert("上传完成");
+        } else if(offset === chunkQuantity-1){
+          blob = file.slice(offset*chunkSize, totalSize);   // 上传最后一片
+          reader.readAsBinaryString(blob);
+        } else {
+          blob = file.slice(offset*chunkSize, (offset+1)*chunkSize);   
+          reader.readAsBinaryString(blob);
         }
-        var xhr = new XMLHttpRequest()
-        xhr.open('POST', 'upload.jsp?fileName=' + file.name  /*, async, default to true */)
-        xhr.overrideMimeType('application/octet-stream')
-        xhr.sendAsBinary(reader.result)
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-              console.log('upload complete')
-              console.log('response: ' + xhr.responseText)
-            }
-          }
-        }
+      }else {
+        alert("上传出错");
       }
     }
-
-    reader.readAsBinaryString(file)
+    
+    if(xhr.sendAsBinary) {
+      xhr.sendAsBinary(e.target.result);   // e.target.result是此次读取的分片二进制数据
+    } else {
+      xhr.send(e.target.result);
+    }
   }
+   var blob = file.slice(0, chunkSize);
+   reader.readAsBinaryString(blob);
 }

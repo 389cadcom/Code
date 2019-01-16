@@ -1,3 +1,4 @@
+//chrome截屏-- 打开工具ctrl+shift+i  打开命令行ctrl+shift+p  输入命令Screen   选择Capture full size screenshot
 1.带snippets	一般是代码提示类扩展；
 3.带support		一般是代码语言支持；
 5.带Format	 	一般是代码格式化整理扩展；

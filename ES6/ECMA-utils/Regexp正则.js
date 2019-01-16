@@ -107,3 +107,8 @@ var o = ary.reduce((prev, curr)=>{
 
 //10.其他
 //a.边界-- ^, $, \b, \B
+
+//11.
+dataURI = 'data:image/png;base64,iVBC'
+var type = dataURI.match(/data:([^;]+)/)[1];			//image/png
+var base64 = dataURI.replace(/^[^,]+,/, '');			//iVBC        [^,]--匹配未包含的任意字符
