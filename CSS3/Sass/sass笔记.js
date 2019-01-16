@@ -1,7 +1,7 @@
 //sass -i	进入sass shell编辑环境
 //live sass compile
 
-//插值、默认参数、rest参数、Each...in、Map、@extend
+//插值、默认参数、rest参数、Each...in、list、 Map、@extend
 
 //type-of: string, boolean, number, null, color, list, map
 
@@ -16,7 +16,7 @@ compass watch
 sass -t expanded  src/index.scss index.css --sourcemap=none
 sass -t expanded --watch src/index.scss 
 
-//运算符前后需空隔, 不然编译会报错
+//运算符前后需空隔, 不然编译会报错 $i: $i - 1;
 
 .header {
   @at-root #{&}-top{ }
@@ -33,19 +33,21 @@ sass -t expanded --watch src/index.scss
 	p{font-size:12px;}
 }
 
-//三目运算
+//条件、三目运算
 top: if($direction==left, 1px, 0);
 
 @if $bool {	}
 @else { }
-//@if not()  or and表示 非，或，与  type-of
+//@if not()  not or and表示 非，或，与  type-of
 
+//for, while遍历
 @for $i from 1 through 4 { }
 @for $i from 1 $i to 4 {}
 
 $type: 4;
 @while $type > 0 {
-	$type: $type-1
+	.item-#{$type}{padding:#{$type}px}
+	$type: $type - 1;				//运算前后需空格
 }
 
 
@@ -77,7 +79,7 @@ map-merge($m1, $m2)
 map-keys($m)
 map-values($m)
 
-//自定义函数
+//自定义函数 @function  @return
 $social-colors: (
     facebook: #3b5998,
     github: #171515,
