@@ -12,7 +12,7 @@ contexts.keys().forEach(item => {
 state,		 this.$store.state.count
 getters																					(state, getters)
 mutations  this.$store.commit('method', arg)		(state, arg)
-actions		 this.$store.dispatch('mthod', arg)	  ({commit}, arg)  (context, arg)
+actions		 this.$store.dispatch('mthod', arg)	  ({commit}, arg) => commit('method')  context | dispatch, commit, getters, state
 
 
 
