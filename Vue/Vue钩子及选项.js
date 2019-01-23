@@ -102,6 +102,18 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+// main.js
+Vue.prototype.$EventBus = new Vue()
+
+//ES5定义属性方式 - 冻结属性
+Object.defineProperties(Vue.prototype, {
+    $bus: {
+        get: function () {
+            return EventBus
+        }
+    }
+})
+
 
 //实例化
 new Vue({
