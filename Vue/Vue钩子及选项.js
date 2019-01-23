@@ -12,17 +12,17 @@ Vue.component('', {})
 <title-cased-component></title-cased-component>
 
 //props   属性值必在子组件中通过props属性显示指定
-props:['inputMsg']
+props:['inputMsg', 'star-chars', 'data-msg']
 <child :input-msg=""></child>
 <my-demo :num="99" :str-chars="99" :data-msg="msg" />
 
 template: `<div><p>添加全局组件到模板 <my-demo :num='99' str="99" :dataMsg="msg" /></p></div>`		
 template: '<div><p>添加全局组件到模板 <my-demo :num="99" :str-chars="99" :data-msg="msg" /></p></div>'
 
-//非父子通信
+//非父子通信--通过创建一个实例，中央事件总线
 bus = new Vue({})
-bus.$emit('up', arg)  //A组件
-bus.$on('up', fn)			//B组件
+bus.$emit('up', arg)  //A组件- 注册事件
+bus.$on('up', fn)			//B组件- 侦听事件
 
 
 //keep-alive缓存问题解决
@@ -39,11 +39,10 @@ watch: {
 		}
 	}
 },
-//方案二
-mounted(){
-	if(this.id != this.$route.params.id){
-		this.$destroy();
-	}
+
+//方案二 前进刷新，后退不刷新
+deactivated () {
+	this.$destroy()															//清理它与其它实例的连接，解绑它的全部指令及事件监听器
 }
 
 //方案三
@@ -51,11 +50,12 @@ mounted(){
 页面缓存:
 <div id="app">
 	<keep-alive>
-		<router-view v-if="$route.meta.keepAlive"></router-view>
+		<router-view v-if="$route.meta.keepAlive"></router-view>		//需缓存页面	activated
 	</keep-alive>
-	<router-view v-if="!$route.meta.keepAlive"></router-view>
+	<router-view v-if="!$route.meta.keepAlive"></router-view>			//不需缓存页面
 </div>
 */
+
 //方案四  回首页刷新
 beforeRouteLeave(to, from, next) {
  if (to.path == "/index") {
@@ -66,9 +66,10 @@ beforeRouteLeave(to, from, next) {
  next();
 }
 
+
 /**
 Vue2 生命周期
-1.实例创建前后(初始化数据, 函数自执行如:data), $el还不存在
+1.实例创建前后(初始化数据, 函数自执行如:data方法 ), $el还不存在
 2.模板编译/挂载(渲染)
 3.组件更新--app.msg='Hi'
 4.组件销毁前后--app.$destroy()
@@ -79,11 +80,34 @@ created(),		  mounted(),		  updated(),		  destoryed()
 //keep-alive 组件被激活/移除 
 activated(), deactivated()
 
+//组件路由钩子
+beforeRouteEnter, beforeRouteLeave
+
+//全局路由钩子main.js
+router.afterEach()
+router.beforeEach((to, from, next) => {})
+//验证登录
+router.beforeEach((to, from, next) => {
+  var userId = Vue.prototype.userId;
+  if(to.meta.requireAuth){
+    if(!userId){
+      next({
+        name: 'login',
+        query: { redirect: to.path }
+      })
+    }
+    next()
+  }else{
+    next()
+  }
+})
+
+
 //实例化
 new Vue({
 	el: '#app',								//vm.$el 要绑定的DOM
 	data: { },								//要绑定的数据, 通过data函数，返回一个全新副本数据对象(多个实例共享引用同一个数据对象)
-	props,										//接收父组件传下的数据
+	props: [],										//接收父组件传下的数据
 	propsData,								//传递 props, 主要作用是方便测试
 	router: router,						//路由
 	render:										//res = Vue.compile('<div></div>'), res.render
@@ -132,10 +156,10 @@ new Vue({
 			this.roll = document.body.scrollTop || document.documentElement.scrollTop
 		}
 	},
-	beforeDestory: function(){//清除定时器
-
+	beforeDestory: function(){
+		//清除定时器
 	}
-}).$mount('#app')				//实例化时没有收到 el 选项，则它处于“未挂载”状态, 可使用 vm.$mount().$el 手动地挂载一个未挂载的实例
+}).$mount('#app')				//实例化时没有收到 el 选项，则它处于“未挂载”状态, 可使用 vm.$mount(id) 手动地挂载一个未挂载的实例
 
 //立即执行
 watch: {
@@ -149,15 +173,6 @@ getData(to, from){
 }
 
 
-//路由
-router.beforeEach((to, from, next)=>{
-	
-})
-router.afterAfter(to=>{
-
-})
-
-
 //动态组件 :is  keep-alive  transition
 <component :is="currentView"></compnent>
 
@@ -169,7 +184,7 @@ Vue.component('my-component', {
 	}
 	props: ['a', 'msgTip'],				//传递值 :a=''
 	template: '#tmpl',
-	methods: {							//$on, $emit
+	methods: {										//$on, $emit
 		increment: function(){
 			this.count++;
 			this.$emit('increment', this.count)		//组件派发事件名称,传参
@@ -181,7 +196,7 @@ Vue.component('my-component', {
 	}
 });
 <my-component v-on:increment="doThis" v-on:reduce="doThat" :a="msg" :msg-tip="msg" ref="mychild">
-    <img slot="icon" src=''/>
+  <img slot="icon" src=''/>
 	<p slot="text">text</p>
 </my-component>
 
@@ -237,6 +252,7 @@ props: {
 	}
 }
 
+//vue-meta  metaInfo: {},  metaInfo(){return {title: this.title}}
 setTitle(title){
 	setTimeout(function () {
 			//利用iframe的onload事件刷新页面

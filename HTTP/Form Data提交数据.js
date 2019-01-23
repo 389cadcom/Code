@@ -9,7 +9,15 @@ enctype="application/json"
 Query string parameters	
 	form ->get						//get提交表单
 	$.get()								//get发送数据方式
-	fetch(url + '?name=yu', {method:'get'})
+
+	axios({
+		url: url,
+		method: 'get',
+		params: data
+	})
+	axios.get(url +'?name=yu', {params: {age:10}})	//axios.get(url[, config])
+
+	fetch(url + '?name=yu', {method:'get'})					//参数需拼接在url后面
 
 	//node接收：req.query, req.params
 
@@ -24,6 +32,7 @@ Form Data								//Content-Type: application/x-www-form-urlencoded
 		method: 'post',
 		data: params
 	})
+	axios.post(url, data, config)		//axios.post(url[, data[, config]])
 	
 	4.fetch(url,{
 		method: 'post',
@@ -40,7 +49,7 @@ Form Data								//Content-Type: application/x-www-form-urlencoded
 	//node接收:  req.body
 
 
-//Post上传
+//Post上传 multipart/form-data
 Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-data"
 	form ->file						//表单上传控件方式
 	axios({								//axios--formdata数据
@@ -75,14 +84,12 @@ Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-
 	})
 
 
-//以JSON方式传入服务端
-Request Payload					//Content-Type: application/json
-	1.axios({method:'post', url:url})	      //axios post默认传参方式
-	2.fetch(url, {method:'post',body:data})		//fetch post
+//以JSON方式传入服务端   Content-Type: application/json
+Request Payload					
+	1.axios({method:'post', url:url})	        //axios post默认传参方式
+	2.wx.request()					//微信请求方式
 
-	3.wx.request()					//微信请求方式
-
-	4.//jq传递json
+	3.//jq传递json
 	$.ajax({
 		method: 'post',
 		url: url,
@@ -96,7 +103,7 @@ Request Payload					//Content-Type: application/json
 fetch(url,{
   method: 'post',
   headers: {
-    'content-type':'application/json'
+    'content-type':'application/json'				//fetch默认为text/plain
   },
   body: JSON.strinfiy({age: 10})
 })

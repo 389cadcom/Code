@@ -10,7 +10,7 @@
  9.懒加载				{ path:'', component: resolve=>require(['./index.vue']), resolve }
 */
 //routes: options参数 props
-{path: '', name:'', redirect:'', alias:'', meta:{checkAuth:}, component: Home |  components: { default:Home, b:Edit } }  
+{path: '/', name:'', redirect:'', alias:'', meta:{checkAuth:}, component: Home |  components: { default:Home, b:Edit } }  
 
 
 //router-link属性  :to, tag, active-class, replace, append, exact
@@ -26,10 +26,8 @@
 
 this.$router.push('home')																						// 字符串
 this.$router.push({ path: 'home' })																	// 对象
-this.$router.push({ name: 'user', params: { userId: 123 }})					// 命名的路由
+this.$router.push({ name: 'user', params: { userId: 123 }})					// 命名的路由,动态参数
 this.$router.push({ path: 'register', query: { plan: 'private' }})	// 带查询参数 
-
-//router-view
 
 
 //路由匹配
@@ -43,7 +41,7 @@ this.$router.push({ path: 'register', query: { plan: 'private' }})	// 带查询参数
 { path: '/a', redirect: to => {  return '重定向的 字符串路径/路径对象' } }
 
 /**
-route对象
+$route对象
    $route.name					名称
    $route.params				参数 user/:name
    $route.query					查找条件  query:{arg:123}
@@ -56,12 +54,13 @@ route对象
    //router-link
    to  = {path: '', append:true, activeClass: 'active'}  
    :to = {path: '/detail/' + this.$route.params.id}
+'$route'(to, from)
 
+
+$router实例
 this.$router.push('/')
 this.$router.replace('/home')
 this.$router.go(-1)
-
-'$route'(to, from)
 
 */
 vue传参方式有：query、params+动态路由传参
@@ -100,7 +99,7 @@ save(){
 	vm.$router.replace('/me/address');
 }
 
-
+//路由钩子执行vm
 beforeRouteEnter (to, from, next) {		//beforeRouteUpdate, beforeRouteLeave
   next(vm => {
     // 通过 `vm` 访问组件实例
@@ -108,13 +107,6 @@ beforeRouteEnter (to, from, next) {		//beforeRouteUpdate, beforeRouteLeave
 
   //next(false)
 }
-
-
-new Vue({
-  el: '#app',
-  router: router,
-  template: '<router-view></router-view>'
-})
 
 
 //运行时构建
@@ -127,8 +119,8 @@ new Vue({
 //动态生成的路由
 var routes = [];
 markPages.forEach(page => {
-    routes.push({
-	    path: '/mark/' + page.sid,
+  routes.push({
+	  path: '/mark/' + page.sid,
 		compnent:{
 			extends: MarkeComponent
 		    data: function () {
@@ -146,8 +138,8 @@ var router = new VueRouter({
 		{ path: '/index', component: index, props: {name: 'message'} },
 		{ path: '/index', 
 		  components: {
-			default: nav,
-			a: main
+				default: nav,
+				a: main
 		} },
 	]
 })
@@ -172,7 +164,6 @@ if(savedPosition){
 	if (to.matched.some(record => record.meta.scrollToTop)) {
 		return {x:0, y:100 }
 	}
-
 }
 
 
@@ -181,6 +172,7 @@ router.app
 router.mode					//hash | history | abstract
 router.currentRoute
 router.beforeEach()
+
 router.push()
 router.replace()			//<router-link :to="..." replace>
 router.go()
