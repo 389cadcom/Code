@@ -9,7 +9,7 @@ new Vuex.Store({
 		doneTodo(state){
 			return state.todos.filter(item => item.done)
 		},
-		getByID: (state) => (id) => {											//this.$store.getters.getByID(1)
+		getByID: (state) => (id) => {						//链式函数传参  this.$store.getters.getByID(1)
 			return state.todos.find(item => item.id == id)	
 		}
 	},

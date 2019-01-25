@@ -50,6 +50,24 @@ instance.interceptors.request.use( config => {
     if(config.loading){     //ÏÔÊ¾ÕÚÕÖ²ã
       Vue.loading()
     }
+    //TODO token
+    let router = this.$router;
+    let token = localStorage.getItem('token')
+    //Ã»µÇÂ¼Ìøµ½µÇÂ¼Ò³Ãæ
+    if(!token && router.currentRoute.path !== '/login'){
+      router.push('/login')
+    }else{
+      if(!config.data){
+        config.data = {
+          token: token
+        }
+      }else{
+        Object.assign(config.data, {token: token})
+      }
+      
+      return config;
+    }
+
     var client_secret = clientSecret.substring(0, clientSecret.lastIndexOf('-'))
 
     return new Promise((resolve, reject)=>{

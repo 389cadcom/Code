@@ -14,7 +14,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/Using_FormData_Objects
 3.FileReader
 	var reader = new FileReader();
 	reader.onload = (e) => e.target.result
-	reader.readAsDataURL(file)							//base64  ArrayBuffer  BinaryString | Binary 二进制  Text
+	reader.readAsDataURL(file)							//(file,blob) base64  ArrayBuffer  BinaryString | Binary 二进制  Text
 
 	/image/g.test(file.type),	/video/g.test(file.type)
 	
@@ -35,6 +35,11 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/Using_FormData_Objects
 	//Data URL				--> FileReader  e.target.result			  data:[<mediatype>][;base64],<data>
 	data:text/javascript;base64,SGVsbG8gV29ybGQ=
 	data:image/png;base64,IBV
+
+	//base64编码、解码 btoa, atob  btoa不支持中文特殊字符, encodeURIComponent   -- decodeURIComponent
+	var base64 = e.target.result
+	var str = base64.replace(/^[^,]+,/, '')
+	console.log(atob(str));
 
 	//Blob 分片上传
 

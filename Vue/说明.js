@@ -1,3 +1,4 @@
+//会把 APP.vue 中的的样式打包进 app.css 中，然后再把 main.js 中引用到的样式追加到后面
 //项目用的是ts配合vue-class-component  vue-property-decorator
 
 Vue.mixin, Vue.filter, Vue.directive,		//filters, components, directives, mixins, extends

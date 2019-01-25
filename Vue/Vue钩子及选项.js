@@ -24,6 +24,24 @@ bus = new Vue({})
 bus.$emit('up', arg)  //A组件- 注册事件
 bus.$on('up', fn)			//B组件- 侦听事件
 
+//只在子组件里面改变父组件的一个值 
+//<input v-model='' v-bind:value="something" v-on:input="something = $event.target.value">	
+
+正常方式:
+<my-component :total="total" @update="handler"></my-component>
+
+
+//父 利用默认 input 事件
+<my-component v-model="total"></my-component>
+
+//子
+<p @click="update"></p>
+methods: {
+	update(){
+		this.$emit('input', 100)
+	}
+}
+
 
 //keep-alive缓存问题解决
 //方案一
