@@ -1,3 +1,6 @@
+//匹配script
+reg = /<script>(.|\s)+/
+
 //https://www.tuicool.com/articles/3UnY32A
 
 //1.元字符
@@ -112,3 +115,8 @@ var o = ary.reduce((prev, curr)=>{
 dataURI = 'data:image/png;base64,iVBC'
 var type = dataURI.match(/data:([^;]+)/)[1];			//image/png
 var base64 = dataURI.replace(/^[^,]+,/, '');			//iVBC        [^,]--匹配未包含的任意字符
+
+
+//12.匹配html标签
+var imgReg = /<video.*?(?:>|\/>)/gi							//匹配video标签
+var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i		//匹配video文本中src内容

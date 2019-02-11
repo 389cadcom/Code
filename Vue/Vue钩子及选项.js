@@ -145,7 +145,7 @@ new Vue({
 	components:{							//局部组件
 		'my-component': Child
 	},
-	directives,								//自定义指令
+	directives,								//自定义指令  指令名、参数、修饰符、表达式、值
 	filters: {								//过滤
 		tofixed: function(val){
 			return Number(val).toFixed(2)

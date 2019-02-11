@@ -3,18 +3,18 @@ import axios from 'axios';
 let AxiosPlugin = {}
 AxiosPlugin.install = function (Vue, opts) {
   let instance = axios.create(opts);
+
+  //TODO 发送请求
   instance.interceptors.request.use(config => {
-    //TODO 发送请求
     return config;
   }, error => {
-    //TODO 请求错误处理
     return Promise.reject(error);
   })
+
+	//TODO 响应成功
   instance.interceptors.response.use(response => {
-    //TODO 响应成功
     return response
   }, error => {
-    //TODO 响应错误处理
     return Promise.reject(error);
   })
 
@@ -44,10 +44,29 @@ AxiosPlugin.install = function (Vue, opts) {
       return instance(config);
     },
     //并行
-    all(maps){
-      return instance.all(maps)
+    all(arrs){
+      return instance.all(arrs)
     }
   }
 }
 
 export default AxiosPlugin;
+
+/*
+使用例子:
+this.$http.post(url, qs.stringify(data), {
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  }
+})
+*/
+1. Vue.$axios 
+2. Vue.directive('', {
+	bind(el, binding){},
+	update(el, binding){},
+})
+
+3. Vue.mixin('', {
+	
+})
+4. Vue.prototype.
