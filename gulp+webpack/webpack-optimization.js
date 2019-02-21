@@ -53,11 +53,12 @@
   自定义打包块优先级为0
 */
 
-
+//说明： https://juejin.im/post/5b99b9cd6fb9a05cff32007a
+//来自node_module模块 默认小于30k不会抽取为公共文件，包括css和js
 //splitChunk默认值,  minimizer配置
 optimization: {
 	minimize: true,																	// [new UglifyJsPlugin({...})]
-	minimizer: [
+	minimizer: [																		//与mode设置有关  mode > minimizer
 		new UglifyJsPlugin(
 			cache: true,
 			parallel: true,
@@ -66,19 +67,26 @@ optimization: {
 		new OptimizeCssAssetsPlugin()									//css
 	],
 	splitChunks: {
-		chunks: "async",
+		chunks: "async",															//默认，其他initial, all 自node_modules的分配到vendors的缓存组, 重复两次分配到default的缓存组
 		minSize: 30000,
 		minChunks: 1,
-		maxAsyncRequests: 5,											//异步请求的chunks不应该超过此值
-		maxInitialRequests: 3,										//entry文件请求的chunks不应该超过此值（请求过多，耗时）
-		automaticNameDelimiter: '~',							//自动命名连接符
+		maxAsyncRequests: 5,													//异步请求的chunks不应该超过此值
+		maxInitialRequests: 3,												//entry文件请求的chunks不应该超过此值（请求过多，耗时）
+		automaticNameDelimiter: '~',									//自动命名连接符
 		name: true,
-		cacheGroups: {
-			vendors: {
+		cacheGroups: {																//自定组优先级为0, 默认打包块vendors（优先级为负）
+			commons: {
+				name: 'commons',
 				test: /[\\/]node_modules[\\/]/,
 				priority: -10
 			},
-			default: {//cacheGroups重写继承配置，设为false不继承
+			styles: {
+				name: 'styles',
+				test: /\.css/,
+				chunks: 'initial',
+				enforce: true															//TODO
+			},
+			default: {//cacheGroups重写继承配置，				
 				minChunks: 2,
 				priority: -20,
 				reuseExistingChunk: true
@@ -86,7 +94,6 @@ optimization: {
 		}
 	}
 }
-//自定义打包块的优先级是0, 默认打包块vendors优先级为负
 
 //打包第三方、自定义公共方法
 optimization: {

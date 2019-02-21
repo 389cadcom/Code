@@ -83,6 +83,28 @@ STDOUT			标准输出
 STDERR			标准错误输出
 side effects	函数副作用，即函数除了返回外还产生别的作用，比如改了全局变量
 */
+new webpack.optimize.UglifyJsPlugin({
+	mangle: { // 排除不想要压缩的对象名称
+		except: ['$', 'exports', 'require', 'module']
+	},
+	compress: {
+		// http://lisperator.net/uglifyjs/compress
+		warnings: false,    // warn about potentially dangerous optimizations/code
+		conditionals: true, // optimize if-s and conditional expressions
+		unused: true,       // drop unused variables/functions
+		comparisons: true,  // optimize comparisons
+		sequences: true,    // join consecutive statements with the "comma operato"
+		dead_code: true,    // discard unreachable code 丢弃未使用的代码
+		evaluate: true,     // evaluate constant expressions
+		join_vars: true,    // join var declarations
+		if_return: true     // optimize if-s followed by return/continue
+	},
+	output: {
+			// https://github.com/mishoo/UglifyJS2/blob/master/lib/output.js
+			comments: false
+	},
+	sourceMap: false         //将错误信息的位置映射到模块。这会减慢编译的速度。仅在开发环境下使用。
+}),
 
 //5.抽取公用代码
 new CommonsChunkPlugin("common.js")
