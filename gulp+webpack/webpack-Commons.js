@@ -1,4 +1,9 @@
-
+/**
+	optimize.CommonsChunkPlugin抽取
+	1.默认全部打包一个包
+	2.创建多个Common则从第一个包中分离出相应的文件
+	3.
+*/
 //1.入口需明确指定第三方库 chunk，若没指明则合并到第一个chunk name --> utils
 entry: {
   vendor: ['jquery']
@@ -59,6 +64,9 @@ plugins: [
 ]
 
 //4.minChunks函数，正则判断自定义的引入逻辑文件-->打包成工具模块
+//module.resource    模块文件绝对路径
+//module.context		 模块文件目录
+
 plugins: [
   //抽取第三方库内容
   new webpack.optimize.CommonsChunkPlugin({
@@ -76,6 +84,15 @@ plugins: [
       )
     }
   }),
+	//从node_module中抽取vue-相关文件
+	new webpack.optimize.CommonsChunkPlugin({
+		return (
+			module.resource && 
+			/\.js$/.test(module.resource) && 
+			module.resource.includes('node_modules') && 
+			module.context.includes('vue')
+		)
+	}),
   //抽取运行时所需的文件manifest--> runtime
   new webpack.optimize.CommonsChunkPlugin({
     name: "manifest",

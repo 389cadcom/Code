@@ -1,6 +1,21 @@
 new webpack.IgnorePlugin(/\.\/src\/jquery.js/)		
 //忽略打包文件(路径为require中加载的路径), 使用script引入
 
+//如果build目录使用CleanWebpackPugin插件会认为 webpack.config.js 所在的目录为项目的根目录, 需设置根目录
+new CleanWebpack({
+	root: path.resolve(__dirname, '../'),
+	verbose: true
+})
+
+new PurifyCSS({
+  verbose: true,
+  minimize: true,
+  paths: glob.sync([													//要做CSS Tree Shaking的路径文件
+    path.resolve(__dirname, "./*.html"),
+    path.resolve(__dirname, "./src/*.js")
+  ])
+});
+
 //1.
 new CopyWebpackPlugin([{
   from: __dirname + '/src/public',
@@ -38,13 +53,15 @@ new HtmlTextPlugin({
   hash:		是否使用hash true false ,     
   cache:	是否缓存,   
   showErrors:是否显示错误,  
-  chunks:	模板对应上面那个节点
+  chunks:	模板对应上面那个节点(打包entry中的入口模块)
   xhtml:	是否自动关毕标签 默认false  
 */
 
 //3.配置了DefinePlugin，那么这里面的标识就相当于全局变量，你的业务代码可以直接使用配置的标识
+//config 标识当前的环境
 cross-env=devlopment
 
+//业务代码可以直接使用配置的标识
 new webpack.DefinePlugin({
 	'process.env': {
 		'NODE_ENV': "'production'"
@@ -118,6 +135,7 @@ new CommonsChunkPlugin({
 webpack.ProvidePlugin({
 	$: 'jquery',
 	jQuery: 'jquery',
+	jq: 'jQuery',					// 引用本地   alias: { jQuery$: path.resolve(__dirname, 'src/assets/js/jquery.js') }
 	'window.jQuery': 'jquery'
 })
 
@@ -142,7 +160,7 @@ ExtractTextPlugin.extract({
 })
 new ExtractTextPlugin({
 	filename: utils.assetsPath('css/[name].css'),
-	allChunks: true				//将所有额外的chunk都压缩成一个文件
+	allChunks: true														//将所有额外的chunk都压缩成一个文件, false不打包异步加载的 CSS
 })
 
 /*
@@ -161,7 +179,7 @@ new MiniCssExtractPlugin({
 2.import '../assert/style.css'					//通过CommonsChunkPlugin设置导出到公共样式中，/\.(css|less|scss)$/.test(module.resource) && count>=2
 
 
-//8.webpack-dev-server  --mode development --open  --hot
+//8.webpack-dev-server					当入口的js文件被修改，则会自动更新数据并刷新浏览器，使用style-loader将样式添加到js文件中
 devServer: {
 	// --告诉服务器从哪里提供内容。这只有在您想要提供静态文件时才需要。例如图片？？
 	contentBase: path.join(__dirname, 'dist'),			//优于publicPath

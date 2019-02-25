@@ -9,6 +9,10 @@
 @babel/preset-typescript
 
 
+//
+babel-loader@8 requires Babel 7.x (the package '@babel/core')
+
+
 
 //Брвы
 babel src --out-dir lib --presets=@babel/env

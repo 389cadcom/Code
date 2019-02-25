@@ -7,8 +7,8 @@ class AComponent extends React{
 	componentWillMount()
 	componentDidMount()
 
-	componentWillReceiveProps()
-	shouldComponentUpdate(newProps, newState)
+	componentWillReceiveProps(nextProps)
+	shouldComponentUpdate(newProps, newState)		//nextProps
 
 	componentWillUpdate(newProps, newState)
 	componentDidUpdate(prevProps, prevState)
