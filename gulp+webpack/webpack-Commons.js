@@ -10,8 +10,10 @@ entry: {
 }
 plugins: [
   new webpack.optimize.CommonsChunkPlugin({
-    name: ['utils', 'vendor', 'runtime'],
-    filename: '[name].js',
+    name: 'vendor',
+		minChunks: (module, count)=>{
+			return module.resource && /node_modules/.test(module.resource)					//所有 node_modules 下的文件
+		}
   }),
 ]
 

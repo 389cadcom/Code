@@ -49,7 +49,7 @@
 
 	async  : 1 默认方式--只打包异步导入的模块  如: const $ = () => import('jquery'), 同步被并入入口文件中
 
-	默认打包块vendors（优先级为负）
+	默认(initial, all--default)打包块vendors（优先级为负）
   自定义打包块优先级为0
 */
 

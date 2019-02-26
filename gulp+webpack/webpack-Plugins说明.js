@@ -3,7 +3,7 @@ new webpack.IgnorePlugin(/\.\/src\/jquery.js/)
 
 //如果build目录使用CleanWebpackPugin插件会认为 webpack.config.js 所在的目录为项目的根目录, 需设置根目录
 new CleanWebpack({
-	root: path.resolve(__dirname, '../'),
+	root: path.resolve(__dirname, '../dist'),
 	verbose: true
 })
 

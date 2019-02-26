@@ -1,12 +1,8 @@
-object { 
-	checkWasmTypes?, chunkIds?, concatenateModules?, 
-	flagIncludedChunks?, hashedModuleIds?, mangleWasmImports?, 
-	mergeDuplicateChunks?, minimize?, minimizer?, moduleIds?, 
-	namedChunks?, namedModules?, noEmitOnErrors?, nodeEnv?, 
-	occurrenceOrder?, portableRecords?, providedExports?, 
-	removeAvailableModules?, removeEmptyChunks?, runtimeChunk?, 
-	sideEffects?, splitChunks?, usedExports? 
-}
+1.动态加载 import(/*webpackChunkName: 'lodash'*/ 'lodash')
+  需安装  babel-plugin-syntax-dynamic-import
+
+2.使用 async, await
+  需安装  babel-plugin-transform-runtime
 
 
 //vendor: Object.keys(pkg.dependencies)
@@ -26,3 +22,17 @@ me = () => import(/*webpackChunkName: "me" */ './page/me.vue')		//vue-router路由
 window.addEventListener('click', ()=>{
 	import(/* webpackChunkName: 'styles'*/ './common')							//异步加载css
 }, false)
+
+
+
+
+//optimization参数
+object { 
+	checkWasmTypes?, chunkIds?, concatenateModules?, 
+	flagIncludedChunks?, hashedModuleIds?, mangleWasmImports?, 
+	mergeDuplicateChunks?, minimize?, minimizer?, moduleIds?, 
+	namedChunks?, namedModules?, noEmitOnErrors?, nodeEnv?, 
+	occurrenceOrder?, portableRecords?, providedExports?, 
+	removeAvailableModules?, removeEmptyChunks?, runtimeChunk?, 
+	sideEffects?, splitChunks?, usedExports? 
+}
