@@ -13,6 +13,22 @@
 
 */	
 
+//Ajax--blob
+
+var xhr = new XMLHttpRequest();
+xhr.open('get', url, true);
+xhr.responseType = 'blob';
+xhr.onload = function() {
+	if (this.status == 200) {
+		console.log(this.response);
+		callback(this.response);
+	}
+};
+xhr.send();
+
+
+
+
 //1.post
 fetch(url, {method: 'post',body: JSON.stringify(data)} ).then(res => {
 	return res.json()		

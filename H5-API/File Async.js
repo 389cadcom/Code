@@ -14,7 +14,7 @@ async nextHandler(){
 
 			obj.fileName    = file.name.split('.')[0]
 			obj.fileType    = file.name.split('.')[0]
-			obj.fileContent = await readFileAsync( file )
+			obj.fileContent = await readFileAsync( file )			//FileReader读取本地多张图片的dataurl
 			maps.push(obj)
 		}
 		console.log(maps);

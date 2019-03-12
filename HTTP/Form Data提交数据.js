@@ -62,6 +62,8 @@ Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-
   params.append('file', files[0], 'image.png')
 	//Request Header  -- Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryp3gmLrKfayrJbBUh
 	//注：Request Payload的请求正文格式是json格式的字符串
+
+	var fd = new FormData($('#form')[0])				//<form>标签添加enctype="multipart/form-data"
 	
 	//$.ajax上传图片
 	$.ajax({

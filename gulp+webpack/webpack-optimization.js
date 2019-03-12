@@ -106,24 +106,24 @@ optimization: {
 			sourceMap: false
 		})
 	],
-	splitChunks: {
+	splitChunks: {																	//若chunk-vendors 体积很大，而且包含一些经常升级的依赖，那么我们可以继续做拆分
 		chunks: "all",
 		cacheGroups: {
 			vendor: {                                   //只打包初始时依赖的第三方 vue + vue-router + vuex + axios
 				name: 'vendor',
 				chunks: 'initial',
-				priority: 10,
-				test: /node_modules/,
+				priority: -10,
+				test: /[\\/]node_modules[\\/]/,
 			},
-			vux: {                                      //单独将 UI 拆包
+			vux: {                                      //在node_modules基础上继续分离
 				name: 'vux-UI',
-				priority: 20,															//权重要大于 vendor 和 app 不然会被打包进 vendor 或者 app
+				priority: 10,															//权重要大于 vendor 和 app 不然会被打包进 vendor 或者 app
 				test: /node_modules\/vux/,
 			},
-			commons: {                                  //抽取公用 自定义与第三方   注意：不是初始时使用--App, Home中组件使用
+			commons: {                                  //TODO 抽取公用 自定义与第三方   注意：不是初始时使用--App, Home中组件使用
 				name: 'commons',
-				minChunks: 2,      
-				priority: 5,
+				minChunks: 2,															//被依赖超过两次的 chunk 都分离到commons
+				priority: -20,
 			},
 			echarts: {																	//对echarts进行单独优化，优先级较高
 				name: 'echarts',

@@ -7,7 +7,7 @@ reader.readAsDataURL(file)
 function uploadFile(file) {
   var chunkSize = 1024 * 1024;   // 每片1M大小
   var totalSize = file.size;
-  var chunkQuantity = Math.ceil(totalSize/chunkSize);  //分片总数
+  var number = Math.ceil(totalSize/chunkSize);  //分片总数
   var offset = 0;  // 偏移量
   
   var reader = new FileReader();
@@ -17,19 +17,17 @@ function uploadFile(file) {
     xhr.overrideMimeType("application/octet-stream");
     
     xhr.onreadystatechange = function() {
-      if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      if(xhr.readyState === 4 && xhr.status === 200) {
         ++offset;
-        if(offset === chunkQuantity) {
+        if(offset === number) {															//fileReader持续读取片断
           alert("上传完成");
-        } else if(offset === chunkQuantity-1){
+        } else if(offset === number - 1){
           blob = file.slice(offset*chunkSize, totalSize);   // 上传最后一片
           reader.readAsBinaryString(blob);
         } else {
           blob = file.slice(offset*chunkSize, (offset+1)*chunkSize);   
           reader.readAsBinaryString(blob);
         }
-      }else {
-        alert("上传出错");
       }
     }
     
@@ -39,6 +37,6 @@ function uploadFile(file) {
       xhr.send(e.target.result);
     }
   }
-   var blob = file.slice(0, chunkSize);
+   var blob = file.slice(0, chunkSize);		// 上传第一片
    reader.readAsBinaryString(blob);
 }
