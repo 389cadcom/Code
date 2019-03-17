@@ -9,7 +9,7 @@ var str:string = "hi";
 
 //复杂数据类型 [string, number], type[], enum
 //Array
-var arr0:[string, number] = ['1',2,3]
+var arr0:[string, number, number] = ['1',2,3]
 var arr:number[] = [1,2,3];
 var list:Array<number> = [1,2,3];
 

@@ -4,12 +4,16 @@
   "description": "nodemon参数  --ext  exec",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --ext ts --watch server --exec \"npm run clean && npm run tsc && npm run server\"",
-    "server": "cross-env NODE_ENV=development node ./dist/app.js",
+    "dev": "nodemon --ext ts --watch server --exec \"npm run clean && npm run tsc",
     "clean": "rm -rf ./dist",
+    "type": "ts-node main.ts",
     "tsc": "tsc",
     "build": "npm run clean && npm run tsc"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "extract-text-webpack-plugin": "^4.0.0-beta.0"
+  }
 }
