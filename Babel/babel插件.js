@@ -46,11 +46,25 @@ polyfill 使用步骤:  //或直接在页面添加 polyfill.min.js
   require('babel-polyfill')
 	's'.padStart(4)
 
+  import '@babel/polyfill'
+
 2.webpack.js
 	entry: {
 		app: ['babel-polyfill', './main.js']
 	}
-
+//或
+{
+	"presets": [
+		["@babel/preset-env", 
+		 {
+			"target"": {
+				"browsers": ["chrome 70"]
+			},
+			"useBuiltIns": "usage"				//是否开启自动支持 polyfill
+		 }
+		]	
+	]
+}
 
 //plugins说明
 transform-modules-strip											//module: false, 去除import, export声明 ==> BS4

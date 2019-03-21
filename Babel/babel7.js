@@ -35,7 +35,8 @@ babel src --out-dir lib --presets=@babel/env
   "plugins": [
     ["@babel/plugin-transform-runtime", {
       "helpers": false
-    }]
+    }],
+		["@babel/plugin-transform-regenerator"]  //async
   ]
 }
 
@@ -92,5 +93,9 @@ if (!window.Promise) {
 3.使用 async, await  
 	
 	需安装:
-	babel-runtime/regenerator
+	babel-plugin-runtime/regenerator
   babel-plugin-transform-runtime
+
+	@babel/plugin-transform-regenerator
+	@babel/plugin-transform-runtime
+	@babel/runtime
