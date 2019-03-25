@@ -13,9 +13,9 @@
 {path: '/', name:'', redirect:'', alias:'', meta:{checkAuth:}, component: Home |  components: { default:Home, b:Edit } }  
 
 
-//router-link属性  :to, tag, active-class, replace, append, exact
+router-link属性  :to, tag, active-class, replace, append, exact
 
-<router-link tag="li" to="/home#hash"><a>Home</a></router-link>
+<router-link tag="li" to="/home#hash" replace><a>Home</a></router-link>
 <router-link tag="li" :to="{path:'/'}"><a>Home</a></router-link>
 
 <router-link :to="{ path: '/abc'}" replace append></router-link>
@@ -107,6 +107,19 @@ beforeRouteEnter (to, from, next) {		//beforeRouteUpdate, beforeRouteLeave
 
   //next(false)
 }
+
+
+//登录token验证
+router.beforeEach((to, from, next)=>{		
+	let isLogin = localStorage.getItem('token') ? true : false
+	if(to.path == '/'){
+		next()
+	}else{
+		isLogin ? next() : next('/login')
+	}
+})
+
+
 
 
 //运行时构建

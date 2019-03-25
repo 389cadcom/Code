@@ -1,7 +1,8 @@
 @babel/core 
 @babel/cli 
 @babel/polyfill
-@babel/runtime	 @babel/plugin-transform-runtime
+@babel/runtime	 @babel/plugin-transform-runtime 
+@babel/plugin-transform-regenerator
 
 //@babel/plugin-transform-arrow-functions
 @babel/preset-env					 

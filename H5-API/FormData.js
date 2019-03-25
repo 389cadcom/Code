@@ -5,6 +5,9 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/Using_FormData_Objects
 
 //DataTransfer, FormData, URLSearchParams 
 
+//H5只拍照, 不能从图库中选择
+<input type="file" capture="camera" @change="uploadHandler" type="file" accept="image/*" multiple />
+
 
 1.File
 	e.target.files, this.files[0]						//file.name, file.size, file.type, file.lastModified

@@ -14,9 +14,9 @@
 Child = Object.create(Parent.prototype, {
 	constructor: {
 		value: Child,
-		configurable:true,
-		enumerable: true,
-		writable: true
+		configurable:true,							//该属性能否被删除或者改变特征值
+		enumerable: true,								//该属性能否枚举
+		writable: true									//该属性能否被重新赋值
 	}
 })
 

@@ -1,4 +1,6 @@
-//¼òĞ´
+"â˜…â˜…â˜…â˜…â˜…âœ°âœ°âœ°âœ°âœ°".substring(5-3, 10-3)
+
+//ç®€å†™
 toString = Object.prototype.toString,
 hasOwn   = Object.prototype.hasOwnProperty,
 push     = Array.prototype.push,
@@ -6,11 +8,11 @@ slice    = Array.prototype.slice,
 trim     = String.prototype.trim,
 indexOf  = Array.prototype.indexOf
 
-// ×Ô¶¨ÒåÅĞ¶ÏÔªËØÀàĞÍJS
+// è‡ªå®šä¹‰åˆ¤æ–­å…ƒç´ ç±»å‹JS
 function toType (obj) {
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
-// ²ÎÊı¹ıÂËº¯Êı
+// å‚æ•°è¿‡æ»¤å‡½æ•°
 function filterNull (o) {
   for (var key in o) {
     if (o[key] === null) {
@@ -28,28 +30,28 @@ function filterNull (o) {
 }
 
 
-//1.±äÁ¿¸³Öµ
+//1.å˜é‡èµ‹å€¼
 let variable = variable0 || "var";
 
-//2.ÒşÊ½·µ»Ø (Òª·µ»Ø¶àĞĞÓï¾ä£¨ÀıÈç¶ÔÏóÎÄ±¾£©£¬ĞèÒªÊ¹ÓÃ()¶ø²»ÊÇ{ }À´°ü¹üº¯ÊıÌå¡£ÕâÑù¿ÉÒÔÈ·±£´úÂëÒÔµ¥¸öÓï¾äµÄĞÎÊ½½øĞĞÇóÖµ)
+//2.éšå¼è¿”å› (è¦è¿”å›å¤šè¡Œè¯­å¥ï¼ˆä¾‹å¦‚å¯¹è±¡æ–‡æœ¬ï¼‰ï¼Œéœ€è¦ä½¿ç”¨()è€Œä¸æ˜¯{ }æ¥åŒ…è£¹å‡½æ•°ä½“ã€‚è¿™æ ·å¯ä»¥ç¡®ä¿ä»£ç ä»¥å•ä¸ªè¯­å¥çš„å½¢å¼è¿›è¡Œæ±‚å€¼)
 const fn = num => (
 	Math.PI * num
 )
-//3.½â¹¹¸³Öµ
+//3.è§£æ„èµ‹å€¼
 const {store, form, loading, errors, entity} = this.props;
 
-//4.Êı×éÕ¹¿ªÔËËã·û
+//4.æ•°ç»„å±•å¼€è¿ç®—ç¬¦
 const nums = [1,2,3, ...odd];
 const {a, b, ...z} = {a:1, b:2, c:3, d:4}
 
 let ary = arr.slice(), ary = Array.from(arr);
 
-Array.apply( null, { length: 4 } );							//ÀàÊı×é
+Array.apply( null, { length: 4 } );							//ç±»æ•°ç»„
 Array.from({length:4})
 
-//5.Î»ÔËËã(Óë¡¢»ò¡¢·Ç¡¢Òì»ò¡¢·´¡¢ÓÒÒÆ)  &, |, !, ^¡¢~, >>
+//5.ä½è¿ç®—(ä¸ã€æˆ–ã€éã€å¼‚æˆ–ã€åã€å³ç§»)  &, |, !, ^ã€~, >>
 //
-~~4.9 = 4		//È¡Õû
+~~4.9 = 4		//å–æ•´
 
 ~~true == 1
 ~~false == 0
@@ -65,45 +67,45 @@ Array.from({length:4})
 
 ~~!location.href.indexOf('http')
 
-//11.indexOfµÈÓÚ-1;
+//11.indexOfç­‰äº-1;
 !!~location.href.indexOf('http')
 
-//6.Î»ÔËËã NOT ÊµÖÊÉÏÊÇ¶ÔÊı×ÖÇó¸º,È»ºó¼õ 1; ÄæÔËËã¾ÍÊÇÊı×Ö¼Ó1ºóÔÙÇó¸º
+//6.ä½è¿ç®— NOT å®è´¨ä¸Šæ˜¯å¯¹æ•°å­—æ±‚è´Ÿ,ç„¶åå‡ 1; é€†è¿ç®—å°±æ˜¯æ•°å­—åŠ 1åå†æ±‚è´Ÿ
 ~true = -2
 ~false = -1
 
 
-//7.×îĞ¡|´óÖµ
+//7.æœ€å°|å¤§å€¼
 Math.max.apply(null, arr)
 Math.min.apply(null, arr)
 
 const max = (arr) => Math.max(...arr);
 
-//8.Êı×é×óÓÒÒÆ¶¯--²ğ·ÖÔÙºÏ²¢
+//8.æ•°ç»„å·¦å³ç§»åŠ¨--æ‹†åˆ†å†åˆå¹¶
 var arr = [1,2,3,4,5];
-//ÓÒÒÆÒ»
+//å³ç§»ä¸€
 arr1 = arr.slice(-1);
 arr2 = arr.slice(0, -1);
 arr1.concat(arr2);
 
-moveArr = (arr, n)=>{	  //n ÕıÊı-ÓÒÒÆ, ¸ºÊı-×óÒÆ, 0-²»ÒÆ¶¯
+moveArr = (arr, n)=>{	  //n æ­£æ•°-å³ç§», è´Ÿæ•°-å·¦ç§», 0-ä¸ç§»åŠ¨
 	if(Math.abs(n)>arr.length) n = n%arr.length;
 	return arr.slice(-n).concat(arr.slice(0, -n))
 }
 
-//9.ĞÇĞÇarr.sliceÕÛ·Ö, str.substr(4-RegExp.$1.length)
+//9.æ˜Ÿæ˜Ÿarr.sliceæŠ˜åˆ†, str.substr(4-RegExp.$1.length)
 var rate = 1;
-"¡ï¡ï¡ï¡ï¡ï¡î¡î¡î¡î¡î".slice(5 - rate, 10 - rate);
+"â˜…â˜…â˜…â˜…â˜…â˜†â˜†â˜†â˜†â˜†".slice(5 - rate, 10 - rate);
  
-//10.Ê®½øÖÆÖ¸Êı
+//10.åè¿›åˆ¶æŒ‡æ•°
 1000 = 1e3
  
 
 
-//12.¿ÂÀï»¯
+//12.æŸ¯é‡ŒåŒ–
 let add = a => b => a + b
 
-let is = p => v => o => o.hasOwnProperty(p) && o[p] == v;	//ÅĞ¶ÏÒ»¶ÔÏóÊôĞÔÖµ
+let is = p => v => o => o.hasOwnProperty(p) && o[p] == v;	//åˆ¤æ–­ä¸€å¯¹è±¡å±æ€§å€¼
 
 //13 Set([...set1, ...set2])
 [...set1].filter(x=>set2.has(x))
@@ -133,12 +135,12 @@ with({
   }
 }
 
-//·ÇÊı×Ö»òÕßÊı×Ö×Ö·û´®µÄÄÚÈİ±ä³É 0ÄØ
+//éæ•°å­—æˆ–è€…æ•°å­—å­—ç¬¦ä¸²çš„å†…å®¹å˜æˆ 0å‘¢
 !!+0
 ~~0
 
 
-//14.Êı×é¶ÔÏóÈ¥ÖØ
+//14.æ•°ç»„å¯¹è±¡å»é‡
 function removeRepeat(arr, field){
     var s = [], result = {}, reSet = {}
     for(var v of arr){
@@ -177,7 +179,7 @@ $('#filter').bind('input propertychange', function() {
 	}
 });
 
-//16.Êı×éÖĞÍ¼Æ¬°´Ë³ĞòÏÔÊ¾
+//16.æ•°ç»„ä¸­å›¾ç‰‡æŒ‰é¡ºåºæ˜¾ç¤º
 function loadImage(imgList,callback){
 	if(!$.isArray(imgList) || !$.isFunction(callback)) return ;
 	var imageData = [] ;
@@ -196,14 +198,14 @@ function loadImage(imgList,callback){
 	})
 }
 
-//Ä£ÄâĞİÃßsleep
+//æ¨¡æ‹Ÿä¼‘çœ sleep
 function sleep(milli){
 	var start = Date.now();
 	while(Date.now() < start + milli);
 }
 
 
-//¼òµ¥ÊµÏÖºÏ²¢¶ÔÏó, ²»¶¨¸ö²ÎÊı   TODO: Object.assgin({})
+//ç®€å•å®ç°åˆå¹¶å¯¹è±¡, ä¸å®šä¸ªå‚æ•°   TODO: Object.assgin({})
 funtion merge(root){
   for(var i=1; i<arguments.length; i++){
     for(var key in arguments[i]){
@@ -221,10 +223,10 @@ var merged=merge({name:'shokc'},{city:"shenzhen", name:'shokc'})
 function type(o){
     var s = Object.prototype.toString.call(o);
     //console.log(s.match(/\[object (.*?)\]/))
-    return s.match(/\[object (.*?)\]/)[1].toLowerCase();        //ÕıÔòÆ¥Åä
+    return s.match(/\[object (.*?)\]/)[1].toLowerCase();        //æ­£åˆ™åŒ¹é…
 }
 
-//ÔÚtypeº¯Êı»ù´¡ÉÏ£¬¼ÓÉÏ×¨ÃÅÅĞ¶ÏÄ³ÖÖÀàĞÍÊı¾İ
+//åœ¨typeå‡½æ•°åŸºç¡€ä¸Šï¼ŒåŠ ä¸Šä¸“é—¨åˆ¤æ–­æŸç§ç±»å‹æ•°æ®
 [
 	'Null',
 	'Undefined',
