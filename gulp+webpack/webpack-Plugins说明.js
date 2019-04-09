@@ -2,7 +2,7 @@ new webpack.IgnorePlugin(/\.\/src\/jquery.js/)
 //忽略打包文件(路径为require中加载的路径), 使用script引入
 
 //如果build目录使用CleanWebpackPugin插件会认为 webpack.config.js 所在的目录为项目的根目录, 需设置根目录
-new CleanWebpack({
+new CleanWebpack(['dist/assets/js', 'dist/index.html'], {			//删除指定文件
 	root: path.resolve(__dirname, '../dist'),
 	verbose: true
 })
@@ -35,7 +35,7 @@ ignore  忽略拷贝指定的文件           可以用模糊匹配
 
 //2.
 new HtmlTextPlugin({
-	title: 'index Demo',
+	title: 'index Demo',										//<title><%= htmlWebpackPlugin.options.title %></title>
 	template:  './index.html',
 	filename: 'index.html',
 	inject:"body",					//true | head | body
@@ -58,10 +58,11 @@ new HtmlTextPlugin({
 */
 
 //3.配置了DefinePlugin，那么这里面的标识就相当于全局变量，你的业务代码可以直接使用配置的标识
-//config 标识当前的环境
-cross-env=devlopment
 
-//业务代码可以直接使用配置的标识
+//webpack.configconfig 标识当前的环境
+cross-env=devlopment  
+
+//业务代码可以直接使用配置的标识, webpack4 使用mode: 'production'代替
 new webpack.DefinePlugin({
 	'process.env': {
 		'NODE_ENV': "'production'"
@@ -153,7 +154,7 @@ new webpack.LoaderOptionsPlugin({
 	}
 })
 
-//8.ExtractTextWebpackPlugin
+//8.ExtractTextWebpackPlugin, 如果filename定义同一个名(style.css), 后打包会覆盖前面的样式
 ExtractTextPlugin.extract({
 	use: ['css-loader'],
 	fallback: 'style-loader'
@@ -162,16 +163,24 @@ new ExtractTextPlugin({
 	filename: utils.assetsPath('css/[name].css'),
 	allChunks: true														//将所有额外的chunk都压缩成一个文件, false不打包异步加载的 CSS
 })
+//多个样式
+let styleLess = new ExtractTextWebpackPlugin('css/style.css');
+let resetCss = new ExtractTextWebpackPlugin('css/reset.css');
 
-/*
-	let styleLess = new ExtractTextWebpackPlugin('css/style.css');
-	let resetCss = new ExtractTextWebpackPlugin('css/reset.css');
-*/
+//9.添加splitChunks.cacheGroups.commons 可提取共用样式
+commons: {						//共用样式style.css是被单独提取到commons
+	name: 'commons',
+	minSize: 0,
+	minChunks: 2,
+},
+
 MiniCssExtractPlugin.loader
 new MiniCssExtractPlugin({
 	filename: "[name].css",
   chunkFilename: "[id].css"
 })
+
+
 
 
 //FixMe: 

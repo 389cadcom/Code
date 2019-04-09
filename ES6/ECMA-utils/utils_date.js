@@ -2,6 +2,20 @@ export default {
 	format(){
 		
 	},
+	getRunTime(endTime) {
+		var time = endTime*1000 - Date.now();
+		var day = Math.floor(time / 1000 / 60 / 60 / 24);
+		var hour = Math.floor(time / 1000 / 60 / 60 % 24);
+		var minute = Math.floor(time / 1000 / 60 % 60);
+		var second = Math.floor(time / 1000 % 60);
+
+		return {
+			day,
+			hour: String(hour).padStart(2, '0'),
+			minute: String(minute).padStart(2, '0'),
+			second: String(second).padStart(2, '0'),
+		}
+	},
   goodTime (str) {
     let now      = new Date().getTime()
     let oldTime  = new Date(str).getTime()
@@ -40,7 +54,7 @@ export default {
 		//return +new Date() || Date.now()	
 		return new Date().setHours(0, 0, 0, 0)
 	},
-	zeroPad(val){
-		return +val >=10 ? val : 	'0'+val;
+	zeroPad(num){
+		return +num <=9 ? '0'+num + num;
 	}
 }

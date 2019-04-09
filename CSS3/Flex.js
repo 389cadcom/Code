@@ -1,38 +1,34 @@
 Flex自适应布局:
+flex: initial;    //默认值  flex: 0 auto; flex: 0 1 auto;
 
-//网格布局 -- 百分比布局
-
-//圣杯布局
-flex-direction: column;
-
-//固定底栏 -- 首尾高度固定，中间flex:1
-flex-direction: column;
-min-height: 100vh;
-
-//流式布局 
-flex-wrap: wrap;
-
-flex: 0 0 25%
+flex: 1;     -->  flex:1 1 0%;
+flex: 2;     -->  flex:2 1 0%;
+flex: auto;  -->  flex: 1 1 auto;
+flex: none   -->  flex: 0 0 auto;
 
 
+//两栏布局, 左定宽，右自适应
+.flex_left{
+	//min-width: 200px;  //若只设置width:200px, 则为默认值flex:0 1 auto; 容器小于宽度则会被压缩
+	flex: 0 0 200px;
+}
+.flex_right{
+	flex: 1;						//flex: 1 1 0%;
+}
+
+//三栏布局
+.flex_content{flex: 1;}
+.flex_left, .flex_right{ flex: 0 0 200px}
+//.flex_left{min-width: 200px;}  .flex_right{min-width:100px}
+
+.flex_icon, .flex_more{flex: 0 0 80px;}
+.flex_more{margin-left: auto;}
 
 
-//新Flex:
-display:flex; 
-	flex-direction:		伸缩流方向
-	flex-wrap: 				伸缩换行
-	flex-flow:
-
-	justify-content: center | space-between | space-around 
-	align-items: flex-start | flex-end | center | stretch   
-	align-self:
-	align-content:		堆栈伸缩行
-	flex-group: 0 | 1;  /*left{width:100px; flex-group:0;}; right{width:auto; flex-group:1;}*/
 
 
-//旧Flex:
-display:box;  box-align, box-pack, box-direction:reverse, box-orient:horizontal/vertical
-	      box-flex,  box-flex-group, box-flex-ordinal
+
+
 
 //动画：
 transform: translate(0,10px)/translate(10px); rotate, scale, skew;

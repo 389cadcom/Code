@@ -42,6 +42,15 @@ methods: {
 	}
 }
 
+//绑定v-on="$listener"
+<!--input type="text"
+		@focus="$emit('focus')"
+		@click="$emit('click')"
+		@blur="$emit('blur')"
+		@hover="$emit('hover')"
+/-->
+<input v-on="$listeners" type="text"/>
+
 
 //keep-alive缓存问题解决
 //方案一

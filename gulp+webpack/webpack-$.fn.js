@@ -24,22 +24,23 @@ webpack --display-error-details //#显示编译出错信息
 --display-modules： 会把所有打包的模块列出来
 --display-reasons： 会把打包的原因列出来
 
+chunkFilename 按需加载（异步）模块的时候，也就是路由懒加载，这样的文件是没有被列在entry中
 
-[id]				模块标识符(module identifier)
-[name]			模块名称 [hash:8]	  
+[id]				模块标识符, id是唯一标示，不会重复，从0开始，
+[name]			模块名称, 配置路由懒加载的时候可以自己命名 //import(/*webpackChunkNames: ''*/ './compoent.vue')
 [query]			模块的 query，例如，文件名 ? 后面的字符串
-[hash]			模块标识符(module identifier)的 hash, 本次编译的一个hash版本		//默认20位
-[chunkhash]	chunk 内容的 hash(没改动则没有变化---设置线上缓存)
+[hash]			每次修改任何一个文件，所有文件名的hash至都将改变		//默认20位
+[chunkhash]	只有被修改了的文件的文件名，hash值修改
 
-//当前chunk的一个hash版本,在同一次编译中，每一个chunk的hash都是不一样的,
-//如果页面的文件没有发生改变，那么chunk的hash也不会发生改变，因此未改变的文件会在缓存中读取
-contenthash   //ExtractTextWebpackPlugin, 文件内容算出的8位 hash
+//css用chunkhash 修改了js，css文件名的hash值确实没变，但修改css文件的话，会发现css文件名的chunkhash值居然没变化
+[contenthash]   //ExtractTextWebpackPlugin@3x, 文件内容算出的8位 hash
 
 js		-- chunkhash				//根据chunks--js里的不同内容进行生成
 img		-- hash							//每一个资源本身有自己的hash
 css		-- contenthash			//extract插件的contenthash
 //[name].[chunkhash:5]
-//publicPath: 'http://cdn.example.com/assets/[hash]'
+
+publicPath: 'http://cdn'  //图片、js、css前缀路径
 
 
 一.webpack.optimize.CommonsChunkPlugin  //需配置多入口(entry)--对象方式  4.x  splitChunks, runtimeChunk

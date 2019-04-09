@@ -1,57 +1,76 @@
-//Script
-vbase			基本模板
-vdata			组件数据结构
-vmethod			methods方法
+//Vue Snippets代码片断
+vuec			  基本模板			//自定义代码片断
+vbase			
+
+//script
+vdata				组件数据结构
 vcomputed		computed方法
 vwatcher		watch方法
 vprops			组件props属性
-vimport			import组件
-vimport-lib		导入库
-vimport-c		局部组件
-vimport-export  组件JS导入、导出模板
+vmethod			methods方法
 
 vfilter			filter过滤定义
 vmixin			mixin定义
-vmixin-use		
-vc-direct		directive指令定义
-vimport-gsap    导入gsap
+vmixin-use	使用mixin
+
+vimport-c		局部组件
+vimport			import组件
+vimport-lib	导入库
+
 vanimhook-js	transition过渡组件JS钩子
 
-
 //template
-vfor			生成vfor元素
+von         @click=""
+vfor				生成vfor元素
 vmodel			生成input元素
-vsrc			生成img
+vmodel-nul	生成input元素
+vsrc			  生成img
+vel-props   生成组件属性
 
-vstyle
+vstyle 
+vstyle-obj
 vclass
-
+vclass-obj
+vclass-obj-mult
 vanim			生成transition过渡
 
+//vuex
+vstore-import
 
-//Template
-vfor				v-for      directive
-vmodel				Semantic   v-model     directive
-vmodel-num			Semantic   v-model     number  directive
-von					v-on       click       handler with arguments
-vel-props			Component  element     with    props
-vsrc	           Image      src         binding
-vstyle				Inline     style       binding
-vstyle-obj			Inline     style       binding with objects
-vclass				Class      binding
-vclass-obj			 Class      binding     with    objects
-vclass-obj-mult	Multiple   conditional class   bindings
-vanim	          Transition component   with    JS   hooks
-vnuxtl	         Nuxt       Routing Link
+vstore
+vgetter
+vaction
+vmutation
 
-//scripte
-vdata			Component data as a function
-vmethod			Vue method
-vcomputed		Vue computed property
-vwatcher		Vue watcher with new and old value args
-vprops			Props with type and default
-vimport			Import one component into another
-vimport-c		Import one component into another within the export statement
-vimport-export	Import one component into another and use it within the export statement
-vfilter			Vue filter
-vmixin			Create a Vue Mixin
+vcommit
+vdispatch
+
+//router    push, replace, go, back, forward
+routerBeforeEach
+routerAfterEach
+newVueRouter, routes
+
+beforeEnter					//路由钩子
+	
+beforeRouteEnter		//组件钩子   不能访问this,  next( vm => {})访问vm
+beforeRouteUpdate
+beforeRouteLeave
+scrollBehavior
+
+//全局  
+vueExtend
+vueComponent
+vueCompile
+vueFilter
+vueDirective
+vueMixin
+vueNextTick
+vueSet
+vueDelete
+vueUse
+
+vmNextTick
+vmEmit
+vmSet
+vmDelete
+vmRefs

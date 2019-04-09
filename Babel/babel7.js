@@ -11,6 +11,9 @@
 @babel/preset-typescript
 
 
+npm i -D  babel-loader @babel/core @babel/preset-env @babel/runtime @babel/plugin-transform-runtime @babel/polyfill
+
+
 //
 babel-loader@8 requires Babel 7.x (the package '@babel/core')
 
