@@ -101,6 +101,17 @@ STDOUT			标准输出
 STDERR			标准错误输出
 side effects	函数副作用，即函数除了返回外还产生别的作用，比如改了全局变量
 */
+
+new UglifyJsPlugin({
+	uglifyOptions: {
+		compress: {
+			warnings: false
+		}
+	},
+	cache: true,
+	parallel: true,           //开启多线程压缩
+	sourceMap: true
+})
 new webpack.optimize.UglifyJsPlugin({
 	mangle: { // 排除不想要压缩的对象名称
 		except: ['$', 'exports', 'require', 'module']
