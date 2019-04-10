@@ -19,9 +19,6 @@ vmixin-use	使用mixin
 vimport			import组件
 vimport-export
 
-//vuex
-vmapstate | getters | mutations | actions
-
 
 //template
 von         @click=""
@@ -46,10 +43,13 @@ vgetter
 vmutation
 vaction
 
+vmapstate | getters | mutations | actions
+
 vcommit					//生成调用方法
 vdispatch
 
-//router    push, replace, go, back, forward
+
+//router-routes    this.$router,  push, replace, go, back, forward;     this.$route {path, name, params, query, meta}
 routerBeforeEach
 routerAfterEach
 newVueRouter, routes
@@ -60,6 +60,8 @@ beforeRouteEnter		//组件钩子   不能访问this,  next( vm => {})访问vm
 beforeRouteUpdate
 beforeRouteLeave
 scrollBehavior
+
+
 
 //全局  
 vueExtend

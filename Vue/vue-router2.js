@@ -1,4 +1,13 @@
 /*
+ VueRouter: router  router.beforeEach()   this.$router.push() 
+
+ watch:{
+	'$route'(to, from){}
+ }  
+ this.$route: { path name params query meta fullPath }
+
+
+
  1.配置						routes: []
  2.嵌套路由				children: []
  3.动态路由				path: 'user/:id'
@@ -117,6 +126,10 @@ router.beforeEach((to, from, next)=>{
 	}else{
 		isLogin ? next() : next('/login')
 	}
+
+	if(to.meta.title){
+			document.title = to.meta.title
+	}
 })
 
 
@@ -199,51 +212,74 @@ beforeEach()
 afterEach()
 
 //单个路由独享的钩子
-beforeEnter()						//canActivate
+beforeEnter()						
 afterEnter()
 
 //组件内钩子
-	- beforeRouteEnter				//activate
-    - beforeRouteUpdate
-    - beforeRouteLeave				//canActivate
+beforeRouteEnter			
+beforeRouteUpdate
+beforeRouteLeave			
 
 
 //TODO 组件生命周期钩子函数
-beforeCreate,						//beforeCompile, init
+beforeCreate,						
 created
 
 beforeMount,
-mounted								//compiled, attached, ready
+mounted								  
 
 beforeUpdate
 updated
 
 beforeDestory,
-destoryed							//deactivate
-
-
-//组件生命周期钩子
-vue 1.0+					vue 2.0					Description
-init						beforeCreate	        组件实例刚被创建，组件属性计算之前，如 data 属性等
-created						created	                组件实例创建完成，属性已绑定，但 DOM 还未生成，$el 属性还不存在
-beforeCompile				beforeMount	            模板编译/挂载之前
-compiled					mounted	                模板编译/挂载之后
-ready						mounted	                模板编译/挂载之后（不保证组件已在 document 中）
--							beforeUpdate	        组件更新之前
--							updated	                组件更新之后
--							activated	            for keep-alive，组件被激活时调用
--							deactivated	            for keep-alive，组件被移除时调用
-attached					-	                    不用了还说啥哪...
-detached					-	                    那就不说了吧...
-beforeDestory				beforeDestory	        组件销毁前调用
-destoryed					destoryed	            组件销毁后调用
+destoryed							
 
 
 
-activate & deactivate：		使用组件自身的 lifecycle hook 替代
-data：						通过组件 watch 属性来监听当前路由 $route 的变化
-canActivate：				由路由属性 beforeEnter 来代替
-canDeactivate：				由路由属性 beforeRouteLeave 来代替
-canReuse：					去除
+//获取 wxconfig 配置
+let url = location.href.split('#')[0]
+http.get('weixin/config',{
+	params:{
+			url: encodeURIComponent(url)
+	}
+}).then(res=>{
+	wx.config({
+			beta: true,														// 必须这么写，否则wx.invoke调用形式的jsapi会有问题
+			debug: false,                       // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			appId: res.data.appId,           // 必填，企业微信的corpID
+			timestamp: res.data.timestamp,  // 必填，生成签名的时间戳
+			nonceStr: res.data.nonceStr,   // 必填，生成签名的随机串
+			signature: res.data.signature,// 必填，签名，见 附录-JS-SDK使用权限签名算法
+			jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表，凡是要调用的接口都需要传进来
+	})
+	// 检测微信
+	wx.error(function(res){
+			//  config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+			console.log('错误信息====',res)
+	})
+})
 
 
+// 添加百度统计 先判断是生产环境还是开发环境 如果是开发环境 不用添加
+if (process.env.NODE_ENV !== 'development') {
+	let _hmt = _hmt || [];
+	window._hmt = _hmt;  // 必须把_hmt挂载到window下，否则找不到
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?yourappid";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})()
+}
+
+// 添加百度统计代码 先判断是生产环境还是开发环境
+router.beforeEach(to, from, next){
+	if (process.env.NODE_ENV !== 'development') {
+		// 添加页面统计
+		if (_hmt) {
+				if (to.path) {
+						_hmt.push(['_trackPageview', '/#' + to.fullPath]);
+				}
+		}
+	}
+}

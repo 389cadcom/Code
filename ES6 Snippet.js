@@ -54,9 +54,12 @@ fre¡ú	arrayName.forEach(element => { }
 fof¡ú	for(let itemName of objectName { }
 fin¡ú	for(let itemName in objectName { }
 
+dob¡ú	const {propName} = objectToDescruct			//½â¹¹
+dar¡ú	const [propName] = arrayToDescruct
+
 //function
-nfn¡ú	const functionName = (params) => { }
 fn¡ú   function methodName (arguments) { }
+nfn¡ú	const functionName = (params) => { }
 
 
 //class
@@ -71,3 +74,8 @@ thenc¡ú  .then((res) => {).catch((err)
 
 sti¡ú	setInterval(() => { }, intervalTime
 sto¡ú	setTimeout(() => { }, delayTime
+
+
+//ES
+gi -> document.getElementById()
+qs -> document.querySelector()

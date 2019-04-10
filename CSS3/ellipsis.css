@@ -45,6 +45,19 @@ li{
 		padding-left: .2rem;
 	}
 }
+/*IE10 flex*/
+.list li{
+	width: calc(50% - 10px);
+}
+.list li:nth-child(odd){
+	background: lightskyblue;
+	margin-right: 10px;
+}
+.list li:nth-child(even){
+	background: lawngreen;
+	margin-left: 10px;
+}
+
 /*三列排榜--多行*/
 .list-three{
 	float:left;

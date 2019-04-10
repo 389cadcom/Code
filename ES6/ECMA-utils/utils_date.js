@@ -2,8 +2,8 @@ export default {
 	format(){
 		
 	},
-	getRunTime(endTime) {
-		var time = endTime*1000 - Date.now();
+	getRunTime(time) {
+		time    = String(time).padEnd(13, '0')*1 - Date.now();
 		var day = Math.floor(time / 1000 / 60 / 60 / 24);
 		var hour = Math.floor(time / 1000 / 60 / 60 % 24);
 		var minute = Math.floor(time / 1000 / 60 % 60);
@@ -13,7 +13,7 @@ export default {
 			day,
 			hour: String(hour).padStart(2, '0'),
 			minute: String(minute).padStart(2, '0'),
-			second: String(second).padStart(2, '0'),
+			second: String(second).padStart(2, '0')
 		}
 	},
   goodTime (str) {

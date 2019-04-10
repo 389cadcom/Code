@@ -24,9 +24,20 @@ flex: none   -->  flex: 0 0 auto;
 .flex_icon, .flex_more{flex: 0 0 80px;}
 .flex_more{margin-left: auto;}
 
-
-
-
+/*ÈýÀ¸¸º±ß¾à*/
+.list{
+	padding-right:20px;
+	li{
+		float:left;
+		width:33.33%;
+		&:nth-child(3n+2){
+			margin: 0 10px;
+		}
+		&:nth-child(3n){
+			margin-right:-20px;
+		}
+	}
+}
 
 
 
