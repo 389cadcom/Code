@@ -33,14 +33,14 @@ state→	this.state.stateName
 
 
 //ES6 base
-//import
+//import 默认、模块、别名
 imp→	import moduleName from 'module'
-imn→	import 'module'
 imd→	import { destructuredModule } from 'module'
-ime→	import * as alias from 'module'
 ima→	import { originalName as aliasName} from 'module'
+ime→	import * as alias from 'module'
+imn→	import 'module'
 
-//export
+//export 默认、模块、别名
 exp→	export default moduleName
 exd→	export { destructuredModule } from 'module'
 exa→	export { originalName as aliasName} from 'module'
@@ -79,3 +79,4 @@ sto→	setTimeout(() => { }, delayTime
 //ES
 gi -> document.getElementById()
 qs -> document.querySelector()
+cel-> document.createElement()

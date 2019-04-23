@@ -1,17 +1,53 @@
 //ES7 => es2016
-Array.prototype.includes
-3**3										// 指数运算
+Array.prototype.includes					//NaN, undefined
+3**3															// 指数运算
 
 //ES8	=> es2017
-padStart(2, '0'), padEnd()
-trimLeft, trimRight
+async await,				//var [res1, res2] = await Promise.all([])
+ArrayBuffer					//共享内存-- Uint8Buffer, Int8Array, 
+
+padStart(2, '0'), padEnd(), trimLeft, trimRight
 
 values
 entries
 getOwnPropertyDescriptors
 
-async await
+//函数参数尾部逗号优化
 
+
+//ES9   iter = arr[Symbol.iterator]();  iter.next()
+1.异步迭代、Promise.prototype.finally
+
+2.对象扩展运算符
+
+3.正则命名的捕获组
+
+const promises = [
+	new Promise(resolve => resolve(1)),
+	new Promise(resolve => resolve(2)),
+	new Promise(resolve => resolve(3)),
+];
+
+async function test() {
+	for await (const p of promises) {
+		console.log(p);
+	}
+}
+
+str.match(/(?<year>\d{4})-(\d{2})-(\d{2})/)   
+
+
+
+//ES10
+BigInt()
+
+String .matchAll, .trimStart(), .trimEnd()
+Array .flat(Infinity), .flatMap(), .sort()
+
+Object .fromEntries()
+new Function .toString()
+
+await import()
 
 
 //ES6

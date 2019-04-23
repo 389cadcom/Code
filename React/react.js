@@ -29,15 +29,14 @@ function NumberList(props){
 constructor(props){
 	super(props)
 
-	this.handler = this.handler.bind(this)		//绑定this
+	this.handler = this.handler.bind(this)		//1.构造函数绑定this
 }
-handler = (e) => {}													//定义函数, 隐式传递event对象
-onClick = { this.handler }									//未绑定this--当前对象, 非react
-
+handler = (e) => {}													//2.箭头函数定义, 隐式传递event对象
 
 //绑定this传递参数
-onClick = { this.handler.bind(this, arg) }  //bind方式: 事件对象e要排在所传递参数的后面 handler(name, e){}  隐式传递event对象
-onClick = { (e) => this.handler(e) }				//箭头函数: 事件对象e必须显式传递
+onClick = { this.handler.bind(this, arg) }  //3.bind方式传入this: 事件对象e要排在所传递参数的后面 handler(name, e){}  隐式传递event对象
+onClick = { (e) => this.handler(e) }				//4.箭头函数绑定: 事件对象e必须显式传递
+onClick = { this.handler }									//TODO  未绑定this--当前对象, 非react
 
 
 //10.24 组件API  容器组件定义state更新修改数据, 子组件只能通过props传递数据
@@ -73,6 +72,16 @@ shouldComponentUpdate(newProps, newState)			//接收新props或state时被调用, 初始或
 componentWillUpdate(nextProps, nextState)
 componentDidUpdate(prevProps, prevState)
 
-compnentWillUnMount()
+componentWillUnMount()
+
+componentDidCache
 
 render()																			//每次更新都会重新渲染 willMount render didMount, willUpdate render didUpdate
+
+
+
+//16.2 Fragment片断可以添加多个子节点
+//19.4.16
+受控、非受控组件						//onChange事件来监听值的变化
+
+<select value={this.state.value} onChange={this.handleChange}>
