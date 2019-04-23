@@ -10,10 +10,30 @@ imrmp→	import React, { memo } from 'react' & import PropTypes from 'prop-types'
 impt→	import PropTypes from 'prop-types'
 imrr→	import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-rconst→	constructor(props) with this.state
-rconc→	constructor(props, context) with this.state
 
-cwm→	componentWillMount = () => { } DEPRECATED!!!
+rconst→	constructor(props) with this.state     //构造函数
+rconc→	constructor(props, context) with this.state
+ 
+ren→	render() { return( ) }										//渲染  
+est→	this.state = { }
+sst→	this.setState({ })
+ssf→	this.setState((state, props) => return { })
+
+//cp, cs
+props→	this.props.propName
+state→	this.state.stateName
+
+//r开头--生成组件
+rcc  → export default class									   //组合生成组件
+rce  → export class ; export default;
+rcep → import react, component, prop-types
+rccp →  export default class
+
+rfc  → export default function(){}
+rfce → export default c
+rfcp →
+
+cwm→	componentWillMount = () => { }					 //生命周期
 cdm→	componentDidMount = () => { }
 cwr→	componentWillReceiveProps = (nextProps) => { } DEPRECATED!!!
 scu→	shouldComponentUpdate = (nextProps, nextState) => { }
@@ -23,13 +43,6 @@ cwun→	componentWillUnmount = () => { }
 
 gdsfp→	static getDerivedStateFromProps(nextProps, prevState) { }
 gsbu→	getSnapshotBeforeUpdate = (prevProps, prevState) => { }
-
-ren→	render() { return( ) }
-est→	this.state = { }
-sst→	this.setState({ })
-ssf→	this.setState((state, props) => return { })
-props→	this.props.propName
-state→	this.state.stateName
 
 
 //ES6 base
@@ -80,3 +93,35 @@ sto→	setTimeout(() => { }, delayTime
 gi -> document.getElementById()
 qs -> document.querySelector()
 cel-> document.createElement()
+
+
+gc   document.getElementByClassName
+gt   document.getElementsByTagName
+qsa  document.querySelectorAll
+
+ga	 document.getAttribute
+sa	 document.setAttribute
+ra	 document.removeAttribute
+
+ae	 addEventListener    --re
+ac	 appendChild
+rc	 removeChild
+
+classList.toggle, remove, add
+
+
+iife
+fn
+afn	 匿名fn
+
+si   setInterval
+sto   setTimeout
+apply
+call
+pr	 prototype
+tc	 textContent
+ih	 innerHTML
+
+us	 'use strict'
+js   JSON.stringify
+jp   JSON.parse
