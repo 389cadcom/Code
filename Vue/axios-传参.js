@@ -1,3 +1,22 @@
+//同部 ->内部then -> 外部then
+Promise.resolve(
+  new Promise((resolve,reject) => {
+    console.log('inner Promise');
+    resolve('123');				//传给then
+  }).then(data=>{
+    console.log(1, typeof(data), data);
+    return data+'4';			//传给外部then
+  })
+  
+).then(data=>{
+	console.log(2, 'Randy'+data)
+    return Promise.resolve('Randy'+data);
+}).then(data=>{
+    console.log(3, typeof(data), data)
+});
+
+
+
 //三种传参方式  axios默认是 Request Payload
 
 //JS拦截设置请求头部参数 --> 'bar=123&age=19'			application/x-www-form-urlencoded

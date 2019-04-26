@@ -19,7 +19,7 @@ est¡ú	this.state = { }
 sst¡ú	this.setState({ })
 ssf¡ú	this.setState((state, props) => return { })
 
-//cp, cs
+//cp, cs ½â¹¹
 props¡ú	this.props.propName
 state¡ú	this.state.stateName
 
