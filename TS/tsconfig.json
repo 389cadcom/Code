@@ -1,20 +1,15 @@
 {
   "compilerOptions": {
-      "module": "commonjs",   //指定生成哪个模块系统代码 esnext
-      "target": "es6",        //目标代码类型
-      "noImplicitAny": false, //在表达式和声明上有隐含的'any'类型时报错。
-      "sourceMap": false,     //用于debug   
-      "rootDir":"./src",      //仅用来控制输出的目录结构--outDir。
-      "outDir":"./build",     //重定向输出目录。   
-      "isolatedModules": false,
-      "experimentalDecorators": true,
-      "watch":true            //在监视模式下运行编译器。会监视输出文件，在它们改变时重新编译。
+    "module"        : "es2015", // 遵循的JavaScript模块规范。主要的候选项有：commonjs、AMD和es2015。为了后面与node.js保持一致，我们这里选用commonjs。
+    "target"        : "es5", // 编译之后生成的JavaScript文件需要遵循的标准。有三个候选项：es3、es5、es2015 (即es6)
+    "sourceMap"     : false, // 编译时是否生成对应的source map文件。这个文件主要用于前端调试。当前端js文件被压缩引用后，出错时可借助同名的source map文件查找源文件中错误位置。
+    "removeComments": false, // 编译生成的JavaScript文件是否移除注释。
+    "noImplicitAny" : false, // 为false时，如果编译器无法根据变量的使用来判断类型时，将用any类型代替。为true时，将进行强类型检查，无法推断类型时，提示错误。
+    "rootDir"       :"./src",      //仅用来控制输出的目录结构--outDir。
+    "outDir"        : "dist"   // 编译输出JavaScript文件存放的目录
   },
-  "include":[
-      "./src/**/*"
-  ],
-  "exclude":[
-      "views",
-      "static"
+  //include、exclude：编译.ts时需要包含/剔除的文件夹
+  "exclude": [
+    "node_modules"
   ]
 }

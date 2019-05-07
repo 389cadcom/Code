@@ -1,5 +1,5 @@
-//TS编译后的代码是更符合习惯、简洁易读一些
-tsc base/class.ts
+tsc src/test.ts -m commonjs  --outDir dist  //手动添加命令
+tsc                                         //配置tsconfig.json, 编辑当前目录下的所有文件
 
 tsc --init            //生成tsconfig.json
 

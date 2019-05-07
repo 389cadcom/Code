@@ -1,19 +1,14 @@
 {
-  "name": "ts",
+  "name": "tsc",
   "version": "1.0.0",
-  "description": "nodemon参数  --ext  exec",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --ext ts --watch server --exec \"npm run clean && npm run tsc",
-    "clean": "rm -rf ./dist",
-    "type": "ts-node main.ts",
-    "tsc": "tsc",
-    "build": "npm run clean && npm run tsc"
+    "test": "ts-node src/interface.ts",
+    "dev": "tsc src/app.ts --outDir dist -m amd",
+    "tsc": "tsc"
   },
+  "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {},
-  "dependencies": {
-    "extract-text-webpack-plugin": "^4.0.0-beta.0"
-  }
+  "license": "ISC"
 }
