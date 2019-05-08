@@ -1,43 +1,92 @@
 /*
-	yarn add postcss-loader autoprefixer 
-
-	postcss-import
-	postcss-next
+2019-5-8
+"postcss": "postcss src/index.css -o dist/test.css",
+"css": "postcss -w ./src/css/*.css -d ./dist/css",
+"js": "uglifyjs ./dist/js/*.js -m -c  -o ./dist/js/main.js",
+"ES6": "babel ./src/js -d ./dist/js -w"
 */
 
-Autoprefixer
-@imports
-$variables
-@extends
-Nested class
-Mixins
+//å˜é‡ã€æ¡ä»¶ã€å¾ªç¯ã€åµŒå¥—ã€ç»§æ‰¿ã€æ··åˆã€å¯¼å…¥
+
+precss		 //æ»¡è¶³SASSå¼€å‘è€…çš„ä¹ æƒ¯ï¼Œç»§æ‰¿äº†å¾ˆå¤šæ’ä»¶, ä½†å­˜åœ¨å¾ˆå¤šå‘(è§£é‡ŠCss4å‡ºé”™--postcss-cssnextæ›¿ä»£)
+	"postcss": "^7.0.6",
+	"postcss-advanced-variables": "^3.0.0",				//å˜é‡
+	"postcss-atroot": "^0.1.3",
+	"postcss-extend": "^2.0.0",										//ç»§æ‰¿,postcss-extend-ruleä¸ä¼šæŠ½å–å…±ç”¨
+	"postcss-nested": "^4.1.0",										//åµŒå¥—
+	"postcss-property-lookup": "^2.0.0"						//å¾ªç¯
+	"postcss-cssnext":														//CSS4è¯­æ³•, åŒ…å«æœ‰autoprefixer   {browsers: ['last 2 versions', '> 5%']}
+	//"postcss-preset-env":												//??è§£æï¼Œä½†åŸæ¥è¿˜å­˜åœ¨
+	"cssnano"																			//CSS å‹ç¼©å™¨, æ”¾åœ¨æœ€å
 
 
-
-precss								//Âú×ãSASS¿ª·¢ÕßµÄÏ°¹ß£¬¼Ì³ĞÁËºÜ¶à²å¼ş		
-	postcss-mixins			//@define-mixin icon $network  | @mixin icon twitter, blue;   @define-extend
-	postcss-sass-extend	//@extend %placehold
-	postcss-for
-	postcss-each
+	postcss-mixins							//@define-mixin icon $network  | @mixin icon twitter, blue;   @define-extend
+	postcss-sass-extend					//@extend %placehold
+	postcss-for									//@for $i from 1 to 3
+	postcss-each								//@each  $icon in $list{ .icon-$icon{} }
 	postcss-atroot
-	postcss-extend
 
-	postcss-nesting,		//Ç¶Ì×µÄÑùÊ½Ç°Ãæ¶¼ĞèÒªÒ»¸ö& 
-	postcss-nested			//SASS-LIKEÇ¶Ì×
+	postcss-nesting,						//åµŒå¥—çš„æ ·å¼å‰é¢éƒ½éœ€è¦ä¸€ä¸ª& 
+	postcss-nested							//SASS-LIKEåµŒå¥—
 
-//px2rem
-postcss-pxtorem				//cssÑùÊ½´úÂëÖĞ½«pxĞ´³ÉPx»òÕßPXËûÒ²²»»á×ª»»³ÉremµÄ~
-postcss-bem						//
+	//px2rem
+	postcss-pxtorem				//cssæ ·å¼ä»£ç ä¸­å°†pxå†™æˆPxæˆ–è€…PXä»–ä¹Ÿä¸ä¼šè½¬æ¢æˆremçš„~
 
 
-//ÏñscssÒ»Ñù±àĞ´
-postcss-nested				//Sass Ç¶Ì×¹æÔòµÄĞ´·¨
-postcss-simple-vars		//ÏñsassÄÇÑùÖ§³Ö±äÁ¿Ê¹ÓÃµÄ²å¼ş
-postcss-mixins				//Ìá¹©ÁË×Ô¶¨ÒåmixinµÄ¹¦ÄÜ
-postcss-scss					//ÔÊĞíÄãÍ¬Ê±Ê¹ÓÃSCSS×¢ÊÍ--parser:'postcss-scss'£¨µ«²»Ö§³Ö°ÑSCSS±àÒë³ÉCSS£©
+
+/* 
+"postcss-pxtorem": {
+	rootValue: 75,
+	unitPrecision: 5,
+	propList: ['*'],
+	selectorBlackList: [],
+	replace: true,
+	mediaQuery: false,
+	minPixelValue: 12
+}, 
+*/
+
+/* 
+"postcss-sprites": {
+	retina: true,
+	verbose: true,
+	spritePath: './src/sprites/',
+	stylesheetPath: './src',
+	basePath: './',
+
+	//è¿‡æ»¤ä¸€äº›ä¸éœ€è¦åˆå¹¶çš„å›¾ç‰‡
+	filterBy: function (image) {
+		// if (image.url.indexOf('images/sprites') === -1) {
+		if (image.url.indexOf('images/temp') > -1) {
+				return Promise.reject();
+		}
+		return Promise.resolve();
+	},
+	//é›ªç¢§å›¾åˆ†ç»„
+	groupBy: function (image) {
+		let icon = 'icon';
+		let groups = /\/images\/sprites\/(.*?)\/.+/gi.exec(image.url);
+		let groupName = groups ? groups[1] : icon;
+		image.retina = true;
+		image.ratio = 1;
+		if (groupName) {
+			let ratio = /@(\d+)x$/gi.exec(groupName);
+			if (ratio) {
+					ratio = ratio[1];
+					while (ratio > 10) {
+							ratio = ratio / 10;
+					}
+					image.ratio = ratio;
+			}
+		}
+		return Promise.resolve(groupName);
+	},
+}, 
+*/
 
 
-//8-25 webpack³£ÓÃ²å¼ş
-css-loaderÖĞimportLoadersÑ¡ÏîµÄ×÷ÓÃÊÇÓÃÓÚÅäÖÃcss-loader×÷ÓÃÓÚ @import µÄ×ÊÔ´Ö®Ç°ĞèÒª¾­¹ıÆäËûloaderµÄ¸öÊı¡£
-@import ÓÃÓÚcssÔ´ÂëÖĞÒıÓÃÆäËûÄ£¿éµÄ¹Ø¼ü×Ö£¬Èç¹ûÄãµÄÏîÄ¿ÖĞÈ·¶¨²»»áÉæ¼°Ä£¿é»¯¿ÉÒÔºöÂÔ´ËÅäÖÃÏî£»
-Èç¹ûĞèÒª½«±àÒëºóµÄcssÎÄ¼ş¶ÀÁ¢µ¼³ö£¬ÔòĞè½«style-loader[×¢]Ìæ»»Îªextract-text-webpack-plugin£¬mini-css-extract-plugin
+
+//8-25 webpackå¸¸ç”¨æ’ä»¶
+css-loaderä¸­importLoadersé€‰é¡¹çš„ä½œç”¨æ˜¯ç”¨äºé…ç½®css-loaderä½œç”¨äº @import çš„èµ„æºä¹‹å‰éœ€è¦ç»è¿‡å…¶ä»–loaderçš„ä¸ªæ•°ã€‚
+@import ç”¨äºcssæºç ä¸­å¼•ç”¨å…¶ä»–æ¨¡å—çš„å…³é”®å­—ï¼Œå¦‚æœä½ çš„é¡¹ç›®ä¸­ç¡®å®šä¸ä¼šæ¶‰åŠæ¨¡å—åŒ–å¯ä»¥å¿½ç•¥æ­¤é…ç½®é¡¹ï¼›
+å¦‚æœéœ€è¦å°†ç¼–è¯‘åçš„cssæ–‡ä»¶ç‹¬ç«‹å¯¼å‡ºï¼Œåˆ™éœ€å°†style-loader[æ³¨]æ›¿æ¢ä¸ºextract-text-webpack-pluginï¼Œmini-css-extract-plugin
