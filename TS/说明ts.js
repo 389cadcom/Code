@@ -5,30 +5,30 @@ let count = <Count>function(start: number){
 	
 }
 
-³õÊ¼¶¨Òå±äÁ¿£¬ÈçÓÐ¸³Öµts¿ÉÒÔ×Ô¶¯ÍÆµ¼ÀàÐÍ£¬²»ÐèÖ¸Ã÷ÀàÐÍ
+åˆå§‹å®šä¹‰å˜é‡ï¼Œå¦‚æœ‰èµ‹å€¼tså¯ä»¥è‡ªåŠ¨æŽ¨å¯¼ç±»åž‹ï¼Œä¸éœ€æŒ‡æ˜Žç±»åž‹
 
-//2.ÀàµÄÐÞÊÎ·û
-À´×ÔÍ¬Ò»´¦ÉùÃ÷, ÈÏÎªÕâÁ½¸öÀàÐÍÊÇ¼æÈÝ
-private, protected  //ÊÜ±£»¤ÊôÐÔ£¬Ö»ÄÜÔÚÀà»ò×ÓÀàÖÐÊ¹ÓÃ
+//2.ç±»çš„ä¿®é¥°ç¬¦
+æ¥è‡ªåŒä¸€å¤„å£°æ˜Ž, è®¤ä¸ºè¿™ä¸¤ä¸ªç±»åž‹æ˜¯å…¼å®¹
+private, protected  //å—ä¿æŠ¤å±žæ€§ï¼Œåªèƒ½åœ¨ç±»æˆ–å­ç±»ä¸­ä½¿ç”¨
 
-¹¹Ôìº¯Êý±»±ê¼Ç³É protected¡£ Àà²»ÄÜÔÚ°üº¬ËüµÄÀàÍâ±»ÊµÀý»¯£¬µ«ÊÇÄÜ±»¼Ì³Ð
+æž„é€ å‡½æ•°è¢«æ ‡è®°æˆ protectedã€‚ ç±»ä¸èƒ½åœ¨åŒ…å«å®ƒçš„ç±»å¤–è¢«å®žä¾‹åŒ–ï¼Œä½†æ˜¯èƒ½è¢«ç»§æ‰¿
 
-readonlyÖ»ÄÜÔÚ³õÊ¼»¯»ò¹¹Ôìº¯ÊýÖÐ¸³Öµ
+readonlyåªèƒ½åœ¨åˆå§‹åŒ–æˆ–æž„é€ å‡½æ•°ä¸­èµ‹å€¼
 
-²ÎÊýÊôÐÔ
+å‚æ•°å±žæ€§
 constructor(private name:string){}
 
 
-Ö»´øget²»´øÓÐ setµÄ´æÈ¡Æ÷×Ô¶¯±»ÍÆ¶ÏÎª readonly
+åªå¸¦getä¸å¸¦æœ‰ setçš„å­˜å–å™¨è‡ªåŠ¨è¢«æŽ¨æ–­ä¸º readonly
 
-//³éÏóÀà, ³éÏó·½·¨ abstract    ³éÏóÀà¿ÉÒÔ°üº¬³ÉÔ±ÊµÏÖµÄ·½·¨
+//æŠ½è±¡ç±», æŠ½è±¡æ–¹æ³• abstract    æŠ½è±¡ç±»å¯ä»¥åŒ…å«æˆå‘˜å®žçŽ°çš„æ–¹æ³•
 
-//ÁªºÏÊý×éÀàÐÍ£º(Rhino | Elephant | Snake)[]  Animal[]
+//è”åˆæ•°ç»„ç±»åž‹ï¼š(Rhino | Elephant | Snake)[]  Animal[]
 var x = [new Rhino(), new Elephant(), new Snake()];
 
 
-//12.25·ºÐÍ
-Array<T>       //ÀàÐÍ¡°String¡±²»ÊÇ·ºÐÍÀàÐÍ   String<T>³ö´í
+//12.25æ³›åž‹
+Array<T>       //ç±»åž‹â€œStringâ€ä¸æ˜¯æ³›åž‹ç±»åž‹   String<T>å‡ºé”™
 
 interface ILength{
 	length:number
@@ -44,10 +44,10 @@ interface Generics<T> {
 let g1: Generics<number> = <Generics<number>>{};
 
 
-//12.28 ÀàÐÍ¼æÈÝÐÔ
-ts½á¹¹ÀàÐÍÏµÍ³À´ÃèÊöÕâÐ©ÀàÐÍ±È´«Í³ÃûÒåÀàÐÍÏµÍ³¸üºÃ£¬
+//12.28 ç±»åž‹å…¼å®¹æ€§
+tsç»“æž„ç±»åž‹ç³»ç»Ÿæ¥æè¿°è¿™äº›ç±»åž‹æ¯”ä¼ ç»Ÿåä¹‰ç±»åž‹ç³»ç»Ÿæ›´å¥½ï¼Œ
 
-Èç£º²»ÐèÒªÈ¥ÊµÏÖ½Ó¿ÚÄÚÈÝ£¬Ö»ÐèÒª¼ì²éÄ¿±êÀàÐÍ³ÉÔ±ÊôÐÔ¡¢ÀàÐÍÏàÒ»ÖÂ¾Í¿ÉÒÔ¸³Öµ
+å¦‚ï¼šä¸éœ€è¦åŽ»å®žçŽ°æŽ¥å£å†…å®¹ï¼Œåªéœ€è¦æ£€æŸ¥ç›®æ ‡ç±»åž‹æˆå‘˜å±žæ€§ã€ç±»åž‹ç›¸ä¸€è‡´å°±å¯ä»¥èµ‹å€¼
 interface IName{
 	name:string
 }
@@ -62,7 +62,7 @@ let x:IName
 let y = {name:'lonve', age:3}
 x = y
 
-//Á½¸ö±äÁ¿ÊÇ·ñÄÜ¸³Öµ£º¼ì²éÊôÐÔÊÇ¹»ÆëÈ«£¬²»ÄÜÈ±ÉÙ
+//ä¸¤ä¸ªå˜é‡æ˜¯å¦èƒ½èµ‹å€¼ï¼šæ£€æŸ¥å±žæ€§æ˜¯å¤Ÿé½å…¨ï¼Œä¸èƒ½ç¼ºå°‘
 
 let x = {name: 'lonve', age:3}
 let y = {name: 'yufeng'}
@@ -71,7 +71,7 @@ x = y			//Error
 y = x			//Yes
 
 
-//º¯ÊýµÄ²ÎÊýÊÇ·ñÄÜ´«²Î£º¼ì²éÊôÐÔÊÇ·ñÌ«¶à£¬È±Ê¡²ÎÊý¡£
+//å‡½æ•°çš„å‚æ•°æ˜¯å¦èƒ½ä¼ å‚ï¼šæ£€æŸ¥å±žæ€§æ˜¯å¦å¤ªå¤šï¼Œç¼ºçœå‚æ•°ã€‚
 let x = (a: number) => 0;
 let y = (b: number, s: string) => 0;
 
@@ -79,24 +79,24 @@ y = x; // OK
 x = y; // Error
 
 
-//²»Í¬µÄÃ¶¾ÙÖ®¼ä²»¼æÈÝ
+//ä¸åŒçš„æžšä¸¾ä¹‹é—´ä¸å…¼å®¹
 
 
-//ÀàÓÐ¾²Ì¬ÊôÐÔ¡¢ÊµÀýÊôÐÔ¡¢¹¹Ôìº¯Êý
-±È½ÏÁ½¸öÀàµÄÀàÐÍµÄ¶ÔÏóÊ±£¬Ö»ÓÐÊµÀýµÄ³ÉÔ±»á±»±È½Ï
+//ç±»æœ‰é™æ€å±žæ€§ã€å®žä¾‹å±žæ€§ã€æž„é€ å‡½æ•°
+æ¯”è¾ƒä¸¤ä¸ªç±»çš„ç±»åž‹çš„å¯¹è±¡æ—¶ï¼Œåªæœ‰å®žä¾‹çš„æˆå‘˜ä¼šè¢«æ¯”è¾ƒ
 
 
-//¸ß¼¶ÀàÐÍ
-½»²æÀàÐÍºÍÁªºÏÀàÐÍ
+//é«˜çº§ç±»åž‹
+äº¤å‰ç±»åž‹å’Œè”åˆç±»åž‹
 
-ÀàÐÍ±£»¤ÓëÇø·ÖÀàÐÍ
+ç±»åž‹ä¿æŠ¤ä¸ŽåŒºåˆ†ç±»åž‹
 
-¿ÉNullµÄÀàÐÍ
+å¯Nullçš„ç±»åž‹
 
-×Ö·û´®×ÖÃæÁ¿ÀàÐÍ
+å­—ç¬¦ä¸²å­—é¢é‡ç±»åž‹
 
-¶àÌ¬µÄthisÀàÐÍ
+å¤šæ€çš„thisç±»åž‹
 
-Ë÷ÒýÀàÐÍ
+ç´¢å¼•ç±»åž‹
 
-Ó³ÉäÀàÐÍ
+æ˜ å°„ç±»åž‹

@@ -1,23 +1,23 @@
-tsc src/test.ts -m commonjs  --outDir dist  //ÊÖ¶¯Ìí¼ÓÃüÁî
-tsc                                         //ÅäÖÃtsconfig.json, ±à¼­µ±Ç°Ä¿Â¼ÏÂµÄËùÓĞÎÄ¼ş
+tsc src/test.ts -m commonjs  --outDir dist  //æ‰‹åŠ¨æ·»åŠ å‘½ä»¤
+tsc                                         //é…ç½®tsconfig.json, ç¼–è¾‘å½“å‰ç›®å½•ä¸‹çš„æ‰€æœ‰æ–‡ä»¶
 
-tsc --init            //Éú³Étsconfig.json
+tsc --init            //ç”Ÿæˆtsconfig.json
 
 
-//1. »ù´¡ÀàĞÍ--
+//1. åŸºç¡€ç±»å‹--
 boolean, number, string, undefined, null, void, symbol, iterator, Proxy, Reflect  
 
-//2.¸´ÔÓÀàĞÍ
-[string, number], number[], Array<any>, Promise<object>  //Ôª×é¡¢Êı×é·ºĞÍ
+//2.å¤æ‚ç±»å‹
+[string, number], number[], Array<any>, Promise<object>  //å…ƒç»„ã€æ•°ç»„æ³›å‹
 
 any,  Object
 
-//ÀàĞÍ¶ÏÑÔ
+//ç±»å‹æ–­è¨€
 (<string>str).length, (str as string).length
 
 (<TypeClass1>.type).fn1
 
-//ÅĞ¶Ï
+//åˆ¤æ–­
 typeof,  f instanceof string
 
 function fn<T extends ILength>(arg:string):string{
@@ -25,7 +25,7 @@ function fn<T extends ILength>(arg:string):string{
 	return arg;
 }
 
-//ÀàĞÍ±£»¤
+//ç±»å‹ä¿æŠ¤
 function padLeft(val: string, pad: string | number){
 	if(typeof pad == 'string'){
 		return pad + val
@@ -36,34 +36,34 @@ function padLeft(val: string, pad: string | number){
 }
 
 
-//3.¸ß¼¶ÀàĞÍ
-object | null														//ÁªºÏ
+//3.é«˜çº§ç±»å‹
+object | null														//è”åˆ
 
 let fn:(id:string) => number = function(id:string):number{ return parseInt(id) }
-//(id:string) => number   º¯ÊıÀàĞÍ (°üº¬£º²ÎÊıÀàĞÍ, ·µ»ØÖµÀàĞÍ) --ÎªÃ¿¸ö²ÎÊıÖ¸¶¨Ò»¸öÃû×ÖºÍÀàĞÍ
+//(id:string) => number   å‡½æ•°ç±»å‹ (åŒ…å«ï¼šå‚æ•°ç±»å‹, è¿”å›å€¼ç±»å‹) --ä¸ºæ¯ä¸ªå‚æ•°æŒ‡å®šä¸€ä¸ªåå­—å’Œç±»å‹
 
 let addFunc = (x:number, y:number):number => x + y;
 
 let addFunc: (x: number, y:number) => number = function(x: number, y: number): number { return x + y }
 
-//ÍÆ¶ÏÀàĞÍ--ÉÏÏÂÍÆ¶Ï
+//æ¨æ–­ç±»å‹--ä¸Šä¸‹æ¨æ–­
 let addFunc: (x: number, y:number) => number = function(x, y): number { return x + y }
 
-//ÀàĞÍÍÆµ¼--Ä¬ÈÏÓĞ¸³ÖµµÄts¿ÉÒÔ×Ô¶¯ÍÆµ¼³öÀàĞÍ£¬²»ÓÃÉùÃ÷ÀàĞÍ
-//¸ù¾İ·µ»ØÓï¾ä£¬×Ô¶¯ÍÆµ¼·µ»ØÖµµÄÀàĞÍ
+//ç±»å‹æ¨å¯¼--é»˜è®¤æœ‰èµ‹å€¼çš„tså¯ä»¥è‡ªåŠ¨æ¨å¯¼å‡ºç±»å‹ï¼Œä¸ç”¨å£°æ˜ç±»å‹
+//æ ¹æ®è¿”å›è¯­å¥ï¼Œè‡ªåŠ¨æ¨å¯¼è¿”å›å€¼çš„ç±»å‹
 
 
 
-Ä¬ÈÏ²ÎÊı¡¢¿ÉÑ¡²ÎÊı			 //¿ÉÑ¡²ÎÊı±ØĞè·ÅÔÚ±ØĞè²ÎÊıºóÃæ
-												 //Ä¬ÈÏ²ÎÊıÒ²Ó¦·Å±ØĞè²ÎÊıºó, µ÷ÓÃÊ±¿ÉÂÔËõ
-Ê£Óà²ÎÊı	 function(x:number, ...args:string[]):string{}
+é»˜è®¤å‚æ•°ã€å¯é€‰å‚æ•°			 //å¯é€‰å‚æ•°å¿…éœ€æ”¾åœ¨å¿…éœ€å‚æ•°åé¢
+												 //é»˜è®¤å‚æ•°ä¹Ÿåº”æ”¾å¿…éœ€å‚æ•°å, è°ƒç”¨æ—¶å¯ç•¥ç¼©
+å‰©ä½™å‚æ•°	 function(x:number, ...args:string[]):string{}
 
-//º¯Êıthis  Ë­µ÷ÓÃÖ¸ÏòË­-- ÎŞÈËµ÷ÓÃ, setTimeout, setInterval ==> window | global
+//å‡½æ•°this  è°è°ƒç”¨æŒ‡å‘è°-- æ— äººè°ƒç”¨, setTimeout, setInterval ==> window | global
 
-onClick, => Ö¸Ïòµ±Ç°¶ÔÏó
+onClick, => æŒ‡å‘å½“å‰å¯¹è±¡
 
 
-//4.·ºĞÍ--º¯Êı¡¢½Ó¿Ú¡¢Àà
+//4.æ³›å‹--å‡½æ•°ã€æ¥å£ã€ç±»
 function fn<T>(str:T):T{
 	return str
 }
@@ -72,7 +72,7 @@ function identify<T extends IGen>(str:T):T{}
 
 function fetch<T>(url: string): Promise<T> { }
 
-//½Ó¿Ú
+//æ¥å£
 interface IGen{
 	length:number
 }
