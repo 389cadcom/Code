@@ -34,12 +34,10 @@ babel-plugin-transform-runtime：
     3 依赖于 babel-runtime 插件
 		4.tranform-runtime不支持实例化的方法，如:Array.prototype.fill(), includes()
 
+		helpers: 是否使用 @babel-runtime/helpers 来代替内部的 helpers
+　　coresjs: 是否用 @babel-runtime/corejs 中的辅助方法来替换 Map / Set 等方法
+　　polyfill: 是否用 @babel-runtime 的辅助函数来代替 polyfill
 
-transform-runtime插件的使用：
-  //直接在 .bablerc 文件中，添加一个 plugins 的配置项即可！！！
-  "plugins": [
-    "transform-runtime"
-  ]
 
 polyfill 使用步骤:  //或直接在页面添加 polyfill.min.js
 1.main.js
@@ -52,6 +50,7 @@ polyfill 使用步骤:  //或直接在页面添加 polyfill.min.js
 	entry: {
 		app: ['babel-polyfill', './main.js']
 	}
+
 //或
 {
 	"presets": [
@@ -110,10 +109,10 @@ transform-decorators-legacy							//ES7 装饰器
 
 
 //es2018  --es9
+babel-plugin-class-properties           //class 的静态属性转化
 
 
 //Stage-X(0/1/2/3/4) 五个阶段: 展示、征求、草案、候选、定案
-
 //stage-4:
 syntax-trailing-function-commas			// function最后一个参数允许使用逗号（ES8已经存在）
 transform-async-to-generator			// 把async函数转化成generator函数（ES8已经存在）
@@ -138,10 +137,3 @@ transform-export-extensions				// 编译额外的export语法，如export * as ns from "m
 //stage-0：
 transform-do-expressions				// 编译do表达式
 transform-function-bind					// 编译bind运算符，即::
-
-
-
-//plugins插件  默认只转换新语句，不转换API
-
-//Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象
-//全局对象上的方法Object.assign, Array.from

@@ -1,23 +1,23 @@
 {
-  "presets": [
+  "presets": [											//按照倒序的顺序执行
     ["env", {
       "modules": false,
       "targets": {
-        "browsers": ["ie >=9"]			//配置当前环境
+        "browsers": ["ie >=9"]			
       },
-      "useBuiltIns": true,
+      "useBuiltIns": "usage",
       "debug": true
     }]
   ],
-	"plugins": ["transform-runtime"]
+	"plugins": [											//按照顺序依赖编译
+		["transform-runtime", { "corejs":2 }]			
+	]
 }
 //useBuiltIns: true   根据当前配置的环境去加载对应的一系列插件译替换直接引用babel-polyfill
 //入口文件添加 require('babel-polyfill')
 
-Using targets:
-{
-  "ie": "9"
-}
+
+
 
 Modules transform: commonjs
 

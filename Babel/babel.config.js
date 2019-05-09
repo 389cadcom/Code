@@ -27,7 +27,7 @@ npmx babel-upgrade
 +    "@babel/plugin-syntax-import-meta": "^7.0.0",
 
 //@babel/preset-stage-2
-syntax-dynamic-import： 动态import
-transform-class-properties：用于 class 的属性转化
-transform-object-rest-spread：用来处理 rest spread
-transform-async-generator-functions：用来处理 async 和 await
+syntax-dynamic-import：									动态import
+transform-class-properties：						用于 class 的属性转化
+transform-object-rest-spread：					用来处理 rest spread
+transform-async-generator-functions：		用来处理 async 和 await

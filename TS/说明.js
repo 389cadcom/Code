@@ -1,7 +1,6 @@
-tsc src/test.ts -m commonjs  --outDir dist  //手动添加命令
-tsc                                         //配置tsconfig.json, 编辑当前目录下的所有文件
-
 tsc --init            //生成tsconfig.json
+tsc                                         //配置tsconfig.json, 编辑当前目录下的所有文件
+tsc src/test.ts -m commonjs  --outDir dist  //手动添加命令
 
 
 //1. 基础类型--

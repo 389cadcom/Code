@@ -1,7 +1,7 @@
 @babel/core 
 @babel/cli 
 @babel/polyfill
-@babel/runtime	 @babel/plugin-transform-runtime 
+@babel/runtime	 @babel/plugin-transform-runtime  --> corejs: 2
 @babel/plugin-transform-regenerator
 
 //@babel/plugin-transform-arrow-functions
@@ -28,16 +28,18 @@ babel src --out-dir lib --presets=@babel/env
   "plugins": [ "transform-es2015-modules-strip" ]				//不编译import export
 }
 
-//babel7配置ES6
+//babel7配置ES6 --  用户到polyfill，则会引用require('corejs/modules/es7.array.includes')
 {
   "presets": [
     ["@babel/preset-env", {
+			"corejs": 2,
       "useBuiltIns": "usage",		// 为文件引入所需部分的polyfill。利用捆绑器只加载一次相同的polyfill。
-      "modules": false					// 启用将ES6模块语法转换为其他模块类型，设置为false不会转换模块。
+      "modules": false					// 启用将ES6模块语法转换为cjs其他模块类型，设置为false不会转换模块。
     }]
   ],
   "plugins": [
     ["@babel/plugin-transform-runtime", {
+			"corejs": 2,
       "helpers": false
     }],
 		["@babel/plugin-transform-regenerator"]  //async
