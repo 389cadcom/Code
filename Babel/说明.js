@@ -5,8 +5,6 @@ var options = {
     cacheDirectory: true
 }
 
-删除 node_modules
-rimraf node_modules
 */
 
  //匿名对象---对象里的属性拼在一起，组成对象变量名
@@ -21,7 +19,7 @@ rimraf node_modules
 
 4.babel-polyfill						//为当前环境提供一个垫片
 
-5.babel-runtime	(_extend, callback)     //提取模块复用工具函数,提供工具函数,减少重复代码	_extend()， classCallCheck()工具函数
+5.babel-runtime	(_extend, callback)     //提取模块复用工具函数,提供工具函数,减少重复代码	_extend()， _classCallCheck()工具函数
 //babel-plugins-transform-runtime
 
 6.babel-register						//改写require命令, 用import代替require，import的优点可以引入所需方法或者变量，不需要加载整个模块，提高了性能
@@ -39,7 +37,8 @@ babel index.js main.js -o es5.js --compact		// 转义es5, 组合一个文件
 
 
 //执行脚本 node  babel-node
-node  test.js, babel-node test.js
+node  test.js, 
+babel-node test.js
 
 //babel-node	REPL环境
 Modules aren't supported in the REPL
@@ -47,14 +46,3 @@ Modules aren't supported in the REPL
 //正确:	直接执行脚本文件
 babel-node module.js;
 
-
-//注：
-编译后的JS程序有时需依赖polyfill模块，需引入require('babel-polyfill');
-
-babel-polyfill则是通过改写全局prototype的方式实现，比较适合单独运行的项目。
-开启babel-polyfill的方式，可以直接在代码中require，或者在webpack的entry中添加，
-也可以在babel的env中设置useBuildins为true来开启。
-
-
-//ES7
-babel --optional es7.decorators foo.js > foo.es5.js

@@ -12,7 +12,7 @@ module.exports = function(){
 }
 
 //babel7É¾³ı stateµÄÔ¤Éè
-npmx babel-upgrade
+npx babel-upgrade
 
 -    "@babel/preset-stage-2": "^7.0.0",
 

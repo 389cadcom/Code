@@ -4,7 +4,7 @@ new webpack.IgnorePlugin(/\.\/src\/jquery.js/)
 //如果build目录使用CleanWebpackPugin插件会认为 webpack.config.js 所在的目录为项目的根目录, 需设置根目录
 new CleanWebpack(['dist/assets/js', 'dist/index.html'], {			//删除指定文件
 	root: path.resolve(__dirname, '../dist'),
-	verbose: true
+	verbose: true																//控制台打印日志
 })
 
 new PurifyCSS({
@@ -33,7 +33,7 @@ flatten 只拷贝文件不管文件夹         默认是false
 ignore  忽略拷贝指定的文件           可以用模糊匹配
 */
 
-//2.
+//2. 自动生成HTML文件
 new HtmlTextPlugin({
 	title: 'index Demo',										//<title><%= htmlWebpackPlugin.options.title %></title>
 	template:  './index.html',
@@ -193,84 +193,98 @@ new MiniCssExtractPlugin({
 
 
 
+//导出资源路径：js, css, img	   filename, name
+output:{
+	path: util.assertPath('dist'),
+	//publicPath: '',
+	filename: 'js/[name].[chunkhash].js'				//util.assertPath('js/[name].[chunkhash].js')
+}
+
+
+
+//TODO 样式引用图片  相对路径打包-- 
+/**
+	1.图片位于 dist/img/0.png, 
+	2.样式位于 dist/css/app.css
+	3.background-image: url(img/0.png)  相对位于 dist/css/img/0.png
+	解决:
+		a.url-loader设置 options.publicPath --> '../img'
+
+		b.ExtractTextPlugin.extract的publicPath --> '../../'
+		c.MiniCssTextPlugin设置 options:{ publicPath --> '../../' }
+
+		File, URL配置options.publicPath高于extract.options
+*/
+use: ExtractTextPlugin.extract({
+	fallback: 'vue-style-loader',
+	use: ['css-loader', 'sass-loader'],
+	publicPath: '../../'												//TODO: 若打包设置相对路径，css插件需设置引用图片路径
+})
+new ExtractTextPlugin({
+	filename: 'css/[name].[contenthash].css',		//util.assertPath('css/[name].[contenthash].css')
+	allChunks: true															//TODO 
+}}
+//提取多个样式
+var extractVue = new ExtractTextPlugin('style/[name].css')
+var extractSass = new ExtractTextPlugin('style/[name].css')
+
+
+use: [
+	{
+		loader: MiniCssExtractPlugin.loader, 
+		options: {
+			publicPath: '../images'
+		}
+	},
+	'css-loader'
+]
+new MiniCssExtractPlugin({
+	filename: 'css/[name].[contenthash].css'
+})
+
+/**
+ 多页面打包同一个样式:
+ 需各入口引入样式base.css, common.css  -> style.css
+ new ExtractTextPlugin('style.css')
+
+ //Err:每个入口一个样式，共有样式会被重复打包
+ new MiniCssExtractPlugin({
+	filename: '[name].css'
+ })
+*/
+
+//图片资源 -- 打包时webpack将background url内容替换成配置文件中options指定的路径, 同时将图片文件复制到options指定的路径下
+rules: {
+	test: /\.(jpe?g|png|gif)$/,
+	loader: 'url-loader',
+	options: {
+		limit: 8192,
+		//publicPath: 'http://cdn.static.com',		//设置CDN路径
+		publicPath: '../images/',
+		outputPath: util.assertPath('images'),		//图片打包后存放的目录  --> 相对于dist路径下目录
+		name: 'img/[name].[hash:7].[ext]'					//util.assertPath('img/[name].[hash:7].[ext]')
+	}
+}
+new CopyWebpackPlugin([{
+	from: path.resolve(__dirname, '../static'),
+	to: 'static'																//config.build.assetsSubDirectory
+}])
+
+
+html-url-loader, html-withimg-loader					//设置html中图片路径
+
+image-webpack-loader													//压缩图片
+
+
+
+//绝对路径--> /、相对路径 --> ./
+1. /static				 
+2. static/img/logo.png
+3. src目录	使用相对引用
+
 
 //FixMe: 
 1.@import url('../asserts/style.css')		//只能抽取到当前chunk
 2.import '../assert/style.css'					//通过CommonsChunkPlugin设置导出到公共样式中，/\.(css|less|scss)$/.test(module.resource) && count>=2
 
 
-//8.webpack-dev-server					当入口的js文件被修改，则会自动更新数据并刷新浏览器，使用style-loader将样式添加到js文件中
-devServer: {
-	// --告诉服务器从哪里提供内容。这只有在您想要提供静态文件时才需要。例如图片？？
-	contentBase: path.join(__dirname, 'dist'),			//优于publicPath
-	// contentBase: false,
-	// --告诉服务器观看由devServer.contentBase选项提供的文件。文件更改将触发整个页面重新加载。
-	watchContentBase: true,
-	// --随所有内容启用gzip压缩
-	compress: true,
-	port: 9997,
-	host: '0.0.0.0',
-	// hot:true, plugins加入new HotModuleReplacementPlugin()，因为API无法访问您的webpack配置
-	//--open --hot package.json设置不需要加入 hotModule
-	hot: true,
-	// --在构建失败的情况下，启用热模块替换（请参阅devServer.hot）而不刷新页面作为回退。
-	hotOnly: true,
-	// --devtool控制台显示信息
-	clientLogLevel: 'none', //none, info, (warning,error 一直有）
-	// --延迟编译，对于异步模块，只有在请求时才会编译，在生产中不需要
-	lazy: true,
-	filename: "bundle.js",
-	// --为所有请求添加请求头
-	headers: {
-		"X-Custom-Foo": "bar"
-	},
-	// --使用HTML5 History API时，系统可能会放送index.html网页来取代404回应
-	historyApiFallback: true,
-	/*historyApiFallback: {
-	   rewrites: [
-		 { from: /^\/$/, to: '/views/landing.html' },
-		 { from: /^\/subpage/, to: '/views/subpage.html' },
-		 { from: /./, to: '/views/404.html' }
-	   ]
-	}*/
-	https: true, //使用https协议
-	// --在开发服务器的两种不同模式之间切换(--inline, --iframe)。默认情况下，将使用内联模式启用应用程序。这意味着一个脚本将插入到您的包中以处理实时重新加载，并且构建消息将显示在浏览器控制台中。
-	inline: true,
-	// --隐藏webpack打包是的信息
-	noInfo: true,
-	// --使用代理，需要 http-proxy-middleware  代理包,连接后台接口的时候使用
-	proxy: {
-		"/api": "http://localhost:3000"
-	    /*"/api": {
-			target: "http://localhost:3000",
-			pathRewrite: {"^/api" : ""},
-			secure: false
-	    }*/
-	},
-	public: "myapp.test:80",
-	// --也是静态文件的目录， 相当于 output.publicPath
-	publicPath: "/assets/",
-	// --启用安静功能后，除了初始启动信息之外的任何内容都将写入控制台。这也意味着来自webpack的错误或警告不可见。
-	quiet: true
-}
-
-devServer: {
-	proxy: { // 代理到后端服务接口
-      '/api': 'http://localhost:3000'
-    },
-	open: true,
-	https: false,
-	historyApiFallback:true
-}
-
-//针对命中的路由时都返回一个HTML 文件  http://webpack.wuhaolin.cn/2配置/2-6DevServer.html
-historyApiFallback: {
-  // 使用正则匹配命中路由
-  rewrites: [
-    // /user 开头的都返回 user.html
-    { from: /^\/user/, to: '/user.html' },
-    { from: /^\/game/, to: '/game.html' },
-    // 其它的都返回 index.html
-    { from: /./, to: '/index.html' },
-  ]
-}
