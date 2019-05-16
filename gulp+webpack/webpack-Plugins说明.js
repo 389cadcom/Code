@@ -1,16 +1,16 @@
 new webpack.IgnorePlugin(/\.\/src\/jquery.js/)		
-//ºöÂÔ´ò°üÎÄ¼ş(Â·¾¶ÎªrequireÖĞ¼ÓÔØµÄÂ·¾¶), Ê¹ÓÃscriptÒıÈë
+//å¿½ç•¥æ‰“åŒ…æ–‡ä»¶(è·¯å¾„ä¸ºrequireä¸­åŠ è½½çš„è·¯å¾„), ä½¿ç”¨scriptå¼•å…¥
 
-//Èç¹ûbuildÄ¿Â¼Ê¹ÓÃCleanWebpackPugin²å¼ş»áÈÏÎª webpack.config.js ËùÔÚµÄÄ¿Â¼ÎªÏîÄ¿µÄ¸ùÄ¿Â¼, ĞèÉèÖÃ¸ùÄ¿Â¼
-new CleanWebpack(['dist/assets/js', 'dist/index.html'], {			//É¾³ıÖ¸¶¨ÎÄ¼ş
+//å¦‚æœbuildç›®å½•ä½¿ç”¨CleanWebpackPuginæ’ä»¶ä¼šè®¤ä¸º webpack.config.js æ‰€åœ¨çš„ç›®å½•ä¸ºé¡¹ç›®çš„æ ¹ç›®å½•, éœ€è®¾ç½®æ ¹ç›®å½•
+new CleanWebpack(['dist/assets/js', 'dist/index.html'], {			//åˆ é™¤æŒ‡å®šæ–‡ä»¶
 	root: path.resolve(__dirname, '../dist'),
-	verbose: true																//¿ØÖÆÌ¨´òÓ¡ÈÕÖ¾
+	verbose: true																//æ§åˆ¶å°æ‰“å°æ—¥å¿—
 })
 
 new PurifyCSS({
   verbose: true,
   minimize: true,
-  paths: glob.sync([													//Òª×öCSS Tree ShakingµÄÂ·¾¶ÎÄ¼ş
+  paths: glob.sync([													//è¦åšCSS Tree Shakingçš„è·¯å¾„æ–‡ä»¶
     path.resolve(__dirname, "./*.html"),
     path.resolve(__dirname, "./src/*.js")
   ])
@@ -22,18 +22,18 @@ new CopyWebpackPlugin([{
 	to: 'assets/'
 }]);
 
-//×÷ÓÃ£º°Ñpublic ÀïÃæµÄÄÚÈİÈ«²¿¿½±´µ½±àÒëÄ¿Â¼
+//ä½œç”¨ï¼šæŠŠpublic é‡Œé¢çš„å†…å®¹å…¨éƒ¨æ‹·è´åˆ°ç¼–è¯‘ç›®å½•
 /*
-from    ¶¨ÒåÒª¿½±´µÄÔ´Ä¿Â¼           from: __dirname + ¡®/src/public¡¯
-to      ¶¨ÒåÒª¿½±´µ½µÄÄ¿±êÄ¿Â¼       to: __dirname + ¡®/dist¡¯
-toType  file »òÕß dir         		 ¿ÉÑ¡£¬Ä¬ÈÏÊÇÎÄ¼ş
-force   Ç¿ÖÆ¸²¸ÇÏÈÇ°µÄ²å¼ş           ¿ÉÑ¡ Ä¬ÈÏfalse
-context                         	 ¿ÉÑ¡ Ä¬ÈÏbase context¿ÉÓÃspecific context
-flatten Ö»¿½±´ÎÄ¼ş²»¹ÜÎÄ¼ş¼Ğ         Ä¬ÈÏÊÇfalse
-ignore  ºöÂÔ¿½±´Ö¸¶¨µÄÎÄ¼ş           ¿ÉÒÔÓÃÄ£ºıÆ¥Åä
+from    å®šä¹‰è¦æ‹·è´çš„æºç›®å½•           from: __dirname + â€˜/src/publicâ€™
+to      å®šä¹‰è¦æ‹·è´åˆ°çš„ç›®æ ‡ç›®å½•       to: __dirname + â€˜/distâ€™
+toType  file æˆ–è€… dir         		 å¯é€‰ï¼Œé»˜è®¤æ˜¯æ–‡ä»¶
+force   å¼ºåˆ¶è¦†ç›–å…ˆå‰çš„æ’ä»¶           å¯é€‰ é»˜è®¤false
+context                         	 å¯é€‰ é»˜è®¤base contextå¯ç”¨specific context
+flatten åªæ‹·è´æ–‡ä»¶ä¸ç®¡æ–‡ä»¶å¤¹         é»˜è®¤æ˜¯false
+ignore  å¿½ç•¥æ‹·è´æŒ‡å®šçš„æ–‡ä»¶           å¯ä»¥ç”¨æ¨¡ç³ŠåŒ¹é…
 */
 
-//2. ×Ô¶¯Éú³ÉHTMLÎÄ¼ş
+//2. è‡ªåŠ¨ç”ŸæˆHTMLæ–‡ä»¶
 new HtmlTextPlugin({
 	title: 'index Demo',										//<title><%= htmlWebpackPlugin.options.title %></title>
 	template:  './index.html',
@@ -42,34 +42,34 @@ new HtmlTextPlugin({
 	//hash: true,						//?hash
 	chunks: ['index', 'libs']
 })
-//²ÎÊı
+//å‚æ•°
 /*
-  title:	ÉèÖÃtitleµÄÃû×Ö   
-  filename: ÉèÖÃÕâ¸öhtmlµÄÎÄ¼şÃû   
-  template:	ÒªÊ¹ÓÃµÄÄ£¿éµÄÂ·¾¶  
-  inject:	°ÑÄ£°å×¢Èëµ½ÄÄ¸ö±êÇ©ºó 'body',   
-  favicon:	¸øhtmlÌí¼ÓÒ»¸öfavicon  './images/favico.ico',   
-  minify:	ÊÇ·ñÑ¹Ëõ  {...} | false £¨×îĞÂapi±ä¶¯£¬Ô­À´ÊÇture|false ¸ĞĞ»@onmiÖ¸Õı) html-minifier
-  hash:		ÊÇ·ñÊ¹ÓÃhash true false ,     
-  cache:	ÊÇ·ñ»º´æ,   
-  showErrors:ÊÇ·ñÏÔÊ¾´íÎó,  
-  chunks:	Ä£°å¶ÔÓ¦ÉÏÃæÄÇ¸ö½Úµã(´ò°üentryÖĞµÄÈë¿ÚÄ£¿é)
-  xhtml:	ÊÇ·ñ×Ô¶¯¹Ø±Ï±êÇ© Ä¬ÈÏfalse  
+  title:	è®¾ç½®titleçš„åå­—   
+  filename: è®¾ç½®è¿™ä¸ªhtmlçš„æ–‡ä»¶å   
+  template:	è¦ä½¿ç”¨çš„æ¨¡å—çš„è·¯å¾„  
+  inject:	æŠŠæ¨¡æ¿æ³¨å…¥åˆ°å“ªä¸ªæ ‡ç­¾å 'body',   
+  favicon:	ç»™htmlæ·»åŠ ä¸€ä¸ªfavicon  './images/favico.ico',   
+  minify:	æ˜¯å¦å‹ç¼©  {...} | false ï¼ˆæœ€æ–°apiå˜åŠ¨ï¼ŒåŸæ¥æ˜¯ture|false æ„Ÿè°¢@onmiæŒ‡æ­£) html-minifier
+  hash:		æ˜¯å¦ä½¿ç”¨hash true false ,     
+  cache:	æ˜¯å¦ç¼“å­˜,   
+  showErrors:æ˜¯å¦æ˜¾ç¤ºé”™è¯¯,  
+  chunks:	æ¨¡æ¿å¯¹åº”ä¸Šé¢é‚£ä¸ªèŠ‚ç‚¹(æ‰“åŒ…entryä¸­çš„å…¥å£æ¨¡å—)
+  xhtml:	æ˜¯å¦è‡ªåŠ¨å…³æ¯•æ ‡ç­¾ é»˜è®¤false  
 */
 
-//3.ÅäÖÃÁËDefinePlugin£¬ÄÇÃ´ÕâÀïÃæµÄ±êÊ¶¾ÍÏàµ±ÓÚÈ«¾Ö±äÁ¿£¬ÄãµÄÒµÎñ´úÂë¿ÉÒÔÖ±½ÓÊ¹ÓÃÅäÖÃµÄ±êÊ¶
+//3.é…ç½®äº†DefinePluginï¼Œé‚£ä¹ˆè¿™é‡Œé¢çš„æ ‡è¯†å°±ç›¸å½“äºå…¨å±€å˜é‡ï¼Œä½ çš„ä¸šåŠ¡ä»£ç å¯ä»¥ç›´æ¥ä½¿ç”¨é…ç½®çš„æ ‡è¯†
 
-//webpack.configconfig ±êÊ¶µ±Ç°µÄ»·¾³
+//webpack.configconfig æ ‡è¯†å½“å‰çš„ç¯å¢ƒ
 cross-env=devlopment  
 
-//ÒµÎñ´úÂë¿ÉÒÔÖ±½ÓÊ¹ÓÃÅäÖÃµÄ±êÊ¶, webpack4 Ê¹ÓÃmode: 'production'´úÌæ
+//ä¸šåŠ¡ä»£ç å¯ä»¥ç›´æ¥ä½¿ç”¨é…ç½®çš„æ ‡è¯†, webpack4 ä½¿ç”¨mode: 'production'ä»£æ›¿
 new webpack.DefinePlugin({
 	'process.env': {
 		'NODE_ENV': "'production'"
 	}
 })
 
-//4.Ñ¹Ëõ´úÂë
+//4.å‹ç¼©ä»£ç 
 new UglifyJsPlugin({
 	beautify: true,
 	compress: {warnings: false},
@@ -78,28 +78,28 @@ new UglifyJsPlugin({
 		except:['$']
 	}
 })
-//ÃÀ»¯²»Ñ¹Ëõ
+//ç¾åŒ–ä¸å‹ç¼©
 new UglifyJsPlugin({
 	beautify: true,
 	mangle: false
 });
 /*
-parse			½âÊÍ
-compress		Ñ¹Ëõ
-mangle			»ìÏı   -- Ä¬ÈÏÎªtrue£»Ö¸¶¨ÎªfalseÊ±£¬±íÊ¾²»½øĞĞ»ìÏıÑ¹Ëõ.
-beautify		ÃÀ»¯
-minify			×îĞ¡»¯
-CLI				ÃüÁîĞĞ¹¤¾ß
-sourcemap		±àÒëºó´úÂë¶ÔÔ´ÂëµÄÓ³Éä£¬ÓÃÓÚÍøÒ³µ÷ÊÔ
-AST				³éÏóÓï·¨Ê÷
-name			Ãû×Ö£¬°üÀ¨±äÁ¿Ãû¡¢º¯ÊıÃû¡¢ÊôĞÔÃû
-toplevel		¶¥²ã×÷ÓÃÓò
-unreachable		²»¿É´ï´úÂë
-option			Ñ¡Ïî
-STDIN			±ê×¼ÊäÈë£¬Ö¸ÔÚÃüÁîĞĞÖĞÖ±½ÓÊäÈë
-STDOUT			±ê×¼Êä³ö
-STDERR			±ê×¼´íÎóÊä³ö
-side effects	º¯Êı¸±×÷ÓÃ£¬¼´º¯Êı³ıÁË·µ»ØÍâ»¹²úÉú±ğµÄ×÷ÓÃ£¬±ÈÈç¸ÄÁËÈ«¾Ö±äÁ¿
+parse			è§£é‡Š
+compress		å‹ç¼©
+mangle			æ··æ·†   -- é»˜è®¤ä¸ºtrueï¼›æŒ‡å®šä¸ºfalseæ—¶ï¼Œè¡¨ç¤ºä¸è¿›è¡Œæ··æ·†å‹ç¼©.
+beautify		ç¾åŒ–
+minify			æœ€å°åŒ–
+CLI				å‘½ä»¤è¡Œå·¥å…·
+sourcemap		ç¼–è¯‘åä»£ç å¯¹æºç çš„æ˜ å°„ï¼Œç”¨äºç½‘é¡µè°ƒè¯•
+AST				æŠ½è±¡è¯­æ³•æ ‘
+name			åå­—ï¼ŒåŒ…æ‹¬å˜é‡åã€å‡½æ•°åã€å±æ€§å
+toplevel		é¡¶å±‚ä½œç”¨åŸŸ
+unreachable		ä¸å¯è¾¾ä»£ç 
+option			é€‰é¡¹
+STDIN			æ ‡å‡†è¾“å…¥ï¼ŒæŒ‡åœ¨å‘½ä»¤è¡Œä¸­ç›´æ¥è¾“å…¥
+STDOUT			æ ‡å‡†è¾“å‡º
+STDERR			æ ‡å‡†é”™è¯¯è¾“å‡º
+side effects	å‡½æ•°å‰¯ä½œç”¨ï¼Œå³å‡½æ•°é™¤äº†è¿”å›å¤–è¿˜äº§ç”Ÿåˆ«çš„ä½œç”¨ï¼Œæ¯”å¦‚æ”¹äº†å…¨å±€å˜é‡
 */
 
 new UglifyJsPlugin({
@@ -109,11 +109,11 @@ new UglifyJsPlugin({
 		}
 	},
 	cache: true,
-	parallel: true,           //¿ªÆô¶àÏß³ÌÑ¹Ëõ
+	parallel: true,           //å¼€å¯å¤šçº¿ç¨‹å‹ç¼©
 	sourceMap: true
 })
 new webpack.optimize.UglifyJsPlugin({
-	mangle: { // ÅÅ³ı²»ÏëÒªÑ¹ËõµÄ¶ÔÏóÃû³Æ
+	mangle: { // æ’é™¤ä¸æƒ³è¦å‹ç¼©çš„å¯¹è±¡åç§°
 		except: ['$', 'exports', 'require', 'module']
 	},
 	compress: {
@@ -123,7 +123,7 @@ new webpack.optimize.UglifyJsPlugin({
 		unused: true,       // drop unused variables/functions
 		comparisons: true,  // optimize comparisons
 		sequences: true,    // join consecutive statements with the "comma operato"
-		dead_code: true,    // discard unreachable code ¶ªÆúÎ´Ê¹ÓÃµÄ´úÂë
+		dead_code: true,    // discard unreachable code ä¸¢å¼ƒæœªä½¿ç”¨çš„ä»£ç 
 		evaluate: true,     // evaluate constant expressions
 		join_vars: true,    // join var declarations
 		if_return: true     // optimize if-s followed by return/continue
@@ -132,27 +132,27 @@ new webpack.optimize.UglifyJsPlugin({
 			// https://github.com/mishoo/UglifyJS2/blob/master/lib/output.js
 			comments: false
 	},
-	sourceMap: false         //½«´íÎóĞÅÏ¢µÄÎ»ÖÃÓ³Éäµ½Ä£¿é¡£Õâ»á¼õÂı±àÒëµÄËÙ¶È¡£½öÔÚ¿ª·¢»·¾³ÏÂÊ¹ÓÃ¡£
+	sourceMap: false         //å°†é”™è¯¯ä¿¡æ¯çš„ä½ç½®æ˜ å°„åˆ°æ¨¡å—ã€‚è¿™ä¼šå‡æ…¢ç¼–è¯‘çš„é€Ÿåº¦ã€‚ä»…åœ¨å¼€å‘ç¯å¢ƒä¸‹ä½¿ç”¨ã€‚
 }),
 
-//5.³éÈ¡¹«ÓÃ´úÂë
+//5.æŠ½å–å…¬ç”¨ä»£ç 
 new CommonsChunkPlugin("common.js")
-new CommonsChunkPlugin("common.js", ['index', 'login'])		//Ö»ÌáÈ¡index½ÚµãºÍlogin½Úµã
+new CommonsChunkPlugin("common.js", ['index', 'login'])		//åªæå–indexèŠ‚ç‚¹å’ŒloginèŠ‚ç‚¹
 new CommonsChunkPlugin({
-	name:'common',		//²»Òªºó×º
+	name:'common',		//ä¸è¦åç¼€
 	chunks: ['index', 'login']
 })
 
-//6.²»ĞèÒªÊÖ¶¯µ¼Èë
+//6.ä¸éœ€è¦æ‰‹åŠ¨å¯¼å…¥
 webpack.ProvidePlugin({
 	$: 'jquery',
 	jQuery: 'jquery',
-	jq: 'jQuery',					// ÒıÓÃ±¾µØ   alias: { jQuery$: path.resolve(__dirname, 'src/assets/js/jquery.js') }
+	jq: 'jQuery',					// å¼•ç”¨æœ¬åœ°   alias: { jQuery$: path.resolve(__dirname, 'src/assets/js/jquery.js') }
 	'window.jQuery': 'jquery'
 })
 
 
-//7.autoprefixer ²å¼şÅäÖÃ  webpack2 loader²»Ö§³Öuse
+//7.autoprefixer æ’ä»¶é…ç½®  webpack2 loaderä¸æ”¯æŒuse
 new webpack.LoaderOptionsPlugin({
 	options: {
 		postcss: function(){
@@ -165,21 +165,21 @@ new webpack.LoaderOptionsPlugin({
 	}
 })
 
-//8.ExtractTextWebpackPlugin, Èç¹ûfilename¶¨ÒåÍ¬Ò»¸öÃû(style.css), ºó´ò°ü»á¸²¸ÇÇ°ÃæµÄÑùÊ½
+//8.ExtractTextWebpackPlugin, å¦‚æœfilenameå®šä¹‰åŒä¸€ä¸ªå(style.css), åæ‰“åŒ…ä¼šè¦†ç›–å‰é¢çš„æ ·å¼
 ExtractTextPlugin.extract({
 	use: ['css-loader'],
 	fallback: 'style-loader'
 })
 new ExtractTextPlugin({
 	filename: utils.assetsPath('css/[name].css'),
-	allChunks: true														//½«ËùÓĞ¶îÍâµÄchunk¶¼Ñ¹Ëõ³ÉÒ»¸öÎÄ¼ş, false²»´ò°üÒì²½¼ÓÔØµÄ CSS
+	allChunks: true														//å°†æ‰€æœ‰é¢å¤–çš„chunkéƒ½å‹ç¼©æˆä¸€ä¸ªæ–‡ä»¶, falseä¸æ‰“åŒ…å¼‚æ­¥åŠ è½½çš„ CSS
 })
-//¶à¸öÑùÊ½
+//å¤šä¸ªæ ·å¼
 let styleLess = new ExtractTextWebpackPlugin('css/style.css');
 let resetCss = new ExtractTextWebpackPlugin('css/reset.css');
 
-//9.Ìí¼ÓsplitChunks.cacheGroups.commons ¿ÉÌáÈ¡¹²ÓÃÑùÊ½
-commons: {						//¹²ÓÃÑùÊ½style.cssÊÇ±»µ¥¶ÀÌáÈ¡µ½commons
+//9.æ·»åŠ splitChunks.cacheGroups.commons å¯æå–å…±ç”¨æ ·å¼
+commons: {						//å…±ç”¨æ ·å¼style.cssæ˜¯è¢«å•ç‹¬æå–åˆ°commons
 	name: 'commons',
 	minSize: 0,
 	minChunks: 2,
@@ -192,8 +192,11 @@ new MiniCssExtractPlugin({
 })
 
 
+//webpackæ‰“åŒ…èµ„æºå¼•ç”¨(ç›¸å¯¹è·¯å¾„ã€ç»å¯¹è·¯å¾„)
+publicPath, outputPath
 
-//µ¼³ö×ÊÔ´Â·¾¶£ºjs, css, img	   filename, name
+
+//å¯¼å‡ºèµ„æºè·¯å¾„ï¼šjs, css, img	   filename, name
 output:{
 	path: util.assertPath('dist'),
 	//publicPath: '',
@@ -202,29 +205,29 @@ output:{
 
 
 
-//TODO ÑùÊ½ÒıÓÃÍ¼Æ¬  Ïà¶ÔÂ·¾¶´ò°ü-- 
+//TODO æ ·å¼å¼•ç”¨å›¾ç‰‡  ç›¸å¯¹è·¯å¾„æ‰“åŒ…-- 
 /**
-	1.Í¼Æ¬Î»ÓÚ dist/img/0.png, 
-	2.ÑùÊ½Î»ÓÚ dist/css/app.css
-	3.background-image: url(img/0.png)  Ïà¶ÔÎ»ÓÚ dist/css/img/0.png
-	½â¾ö:
-		a.url-loaderÉèÖÃ options.publicPath --> '../img'
+	1.å›¾ç‰‡ä½äº dist/img/0.png, 
+	2.æ ·å¼ä½äº dist/css/app.css
+	3.background-image: url(img/0.png)  ç›¸å¯¹ä½äº dist/css/img/0.png
+	è§£å†³:
+		a.url-loaderè®¾ç½® options.publicPath --> '../img'
 
-		b.ExtractTextPlugin.extractµÄpublicPath --> '../../'
-		c.MiniCssTextPluginÉèÖÃ options:{ publicPath --> '../../' }
+		b.ExtractTextPlugin.extractçš„publicPath --> '../../'
+		c.MiniCssTextPluginè®¾ç½® options:{ publicPath --> '../../' }
 
-		File, URLÅäÖÃoptions.publicPath¸ßÓÚextract.options
+		File, URLé…ç½®options.publicPathé«˜äºextract.options
 */
 use: ExtractTextPlugin.extract({
 	fallback: 'vue-style-loader',
 	use: ['css-loader', 'sass-loader'],
-	publicPath: '../../'												//TODO: Èô´ò°üÉèÖÃÏà¶ÔÂ·¾¶£¬css²å¼şĞèÉèÖÃÒıÓÃÍ¼Æ¬Â·¾¶
+	publicPath: '../../'												//TODO: è‹¥æ‰“åŒ…è®¾ç½®ç›¸å¯¹è·¯å¾„ï¼Œcssæ’ä»¶éœ€è®¾ç½®å¼•ç”¨å›¾ç‰‡è·¯å¾„
 })
 new ExtractTextPlugin({
 	filename: 'css/[name].[contenthash].css',		//util.assertPath('css/[name].[contenthash].css')
 	allChunks: true															//TODO 
 }}
-//ÌáÈ¡¶à¸öÑùÊ½
+//æå–å¤šä¸ªæ ·å¼
 var extractVue = new ExtractTextPlugin('style/[name].css')
 var extractSass = new ExtractTextPlugin('style/[name].css')
 
@@ -243,48 +246,50 @@ new MiniCssExtractPlugin({
 })
 
 /**
- ¶àÒ³Ãæ´ò°üÍ¬Ò»¸öÑùÊ½:
- Ğè¸÷Èë¿ÚÒıÈëÑùÊ½base.css, common.css  -> style.css
+ å¤šé¡µé¢æ‰“åŒ…åŒä¸€ä¸ªæ ·å¼:
+ éœ€å„å…¥å£å¼•å…¥æ ·å¼base.css, common.css  -> style.css
  new ExtractTextPlugin('style.css')
 
- //Err:Ã¿¸öÈë¿ÚÒ»¸öÑùÊ½£¬¹²ÓĞÑùÊ½»á±»ÖØ¸´´ò°ü
+ //Err:æ¯ä¸ªå…¥å£ä¸€ä¸ªæ ·å¼ï¼Œå…±æœ‰æ ·å¼ä¼šè¢«é‡å¤æ‰“åŒ…, å¤šå…¥å£æ‰“åŒ…åŒä¸€åç§°æ ·å¼ä¼šå‡ºé”™
  new MiniCssExtractPlugin({
 	filename: '[name].css'
  })
 */
 
-//Í¼Æ¬×ÊÔ´ -- ´ò°üÊ±webpack½«background urlÄÚÈİÌæ»»³ÉÅäÖÃÎÄ¼şÖĞoptionsÖ¸¶¨µÄÂ·¾¶, Í¬Ê±½«Í¼Æ¬ÎÄ¼ş¸´ÖÆµ½optionsÖ¸¶¨µÄÂ·¾¶ÏÂ
-rules: {
+//å›¾ç‰‡èµ„æº -- æ‰“åŒ…æ—¶webpackå°†background urlå†…å®¹æ›¿æ¢æˆé…ç½®æ–‡ä»¶ä¸­optionsæŒ‡å®šçš„è·¯å¾„, åŒæ—¶å°†å›¾ç‰‡æ–‡ä»¶å¤åˆ¶åˆ°optionsæŒ‡å®šçš„è·¯å¾„ä¸‹
+rules: [
+ {
 	test: /\.(jpe?g|png|gif)$/,
 	loader: 'url-loader',
 	options: {
 		limit: 8192,
-		//publicPath: 'http://cdn.static.com',		//ÉèÖÃCDNÂ·¾¶
+		//publicPath: 'http://cdn.static.com',		//è®¾ç½®CDNè·¯å¾„
 		publicPath: '../images/',
-		outputPath: util.assertPath('images'),		//Í¼Æ¬´ò°üºó´æ·ÅµÄÄ¿Â¼  --> Ïà¶ÔÓÚdistÂ·¾¶ÏÂÄ¿Â¼
+		outputPath: util.assertPath('images'),		//å›¾ç‰‡æ‰“åŒ…åå­˜æ”¾çš„ç›®å½•  --> ç›¸å¯¹äºdistè·¯å¾„ä¸‹ç›®å½•
 		name: 'img/[name].[hash:7].[ext]'					//util.assertPath('img/[name].[hash:7].[ext]')
 	}
-}
+ }
+]
 new CopyWebpackPlugin([{
 	from: path.resolve(__dirname, '../static'),
 	to: 'static'																//config.build.assetsSubDirectory
 }])
 
 
-html-url-loader, html-withimg-loader					//ÉèÖÃhtmlÖĞÍ¼Æ¬Â·¾¶
+html-url-loader, html-withimg-loader					//è®¾ç½®htmlä¸­å›¾ç‰‡è·¯å¾„
 
-image-webpack-loader													//Ñ¹ËõÍ¼Æ¬
+image-webpack-loader													//å‹ç¼©å›¾ç‰‡
 
 
 
-//¾ø¶ÔÂ·¾¶--> /¡¢Ïà¶ÔÂ·¾¶ --> ./
+//ç»å¯¹è·¯å¾„--> /ã€ç›¸å¯¹è·¯å¾„ --> ./
 1. /static				 
 2. static/img/logo.png
-3. srcÄ¿Â¼	Ê¹ÓÃÏà¶ÔÒıÓÃ
+3. srcç›®å½•	ä½¿ç”¨ç›¸å¯¹å¼•ç”¨
 
 
 //FixMe: 
-1.@import url('../asserts/style.css')		//Ö»ÄÜ³éÈ¡µ½µ±Ç°chunk
-2.import '../assert/style.css'					//Í¨¹ıCommonsChunkPluginÉèÖÃµ¼³öµ½¹«¹²ÑùÊ½ÖĞ£¬/\.(css|less|scss)$/.test(module.resource) && count>=2
+1.@import url('../asserts/style.css')		//åªèƒ½æŠ½å–åˆ°å½“å‰chunk
+2.import '../assert/style.css'					//é€šè¿‡CommonsChunkPluginè®¾ç½®å¯¼å‡ºåˆ°å…¬å…±æ ·å¼ä¸­ï¼Œ/\.(css|less|scss)$/.test(module.resource) && count>=2
 
 
