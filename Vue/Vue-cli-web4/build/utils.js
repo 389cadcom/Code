@@ -61,6 +61,10 @@ exports.cssLoaders = function (options) {
     less: generateLoaders('less'),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
+    /* scss: generateLoaders('sass').concat({
+      loader: 'sass-resources-loader',
+      options: { resources: path.resolve(__dirname, '../src/assets/sass/_variable.scss') }        //string, arr
+    }), */
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }
@@ -104,6 +108,8 @@ exports.createNotifierCallback = () => {
 const glob = require('glob')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const roots = path.resolve(__dirname, '../src/pages/')
+
+console.log(glob.sync(roots + '/*/'))
 
 exports.getEntries = function(){
   var homes = glob.sync(roots + '/*.js');
