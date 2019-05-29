@@ -49,6 +49,7 @@ exports.cssLoaders = function (options) {
         use: loaders,
         fallback: 'vue-style-loader'
       })
+      //return ['vue-style-loader', MiniCssExtractPlugin.loader, ...loaders]
     } else {
       return ['vue-style-loader'].concat(loaders)
     }
@@ -109,7 +110,8 @@ const glob = require('glob')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const roots = path.resolve(__dirname, '../src/pages/')
 
-console.log(glob.sync(roots + '/*/'))
+console.log(glob.sync(roots + '/*.js'))             //如何获取当前目录及子目录
+console.log(glob.sync(roots + '/*/**/*.js'))        //如何获取当前目录及子目录
 
 exports.getEntries = function(){
   var homes = glob.sync(roots + '/*.js');
