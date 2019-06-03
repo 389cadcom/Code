@@ -6,6 +6,7 @@
         "browsers": ["ie >=9"]			
       },
       "useBuiltIns": "usage",
+			"corejs": 2,
       "debug": true
     }]
   ],

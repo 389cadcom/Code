@@ -1,48 +1,74 @@
-/* 设置babel的cacheDirectory为true(打包性能提升很明显)
-var options = {
-    presets: ['es2015', 'react', 'stage-0'],
-    plugins: ['transform-runtime', 'add-module-exports', 'typecheck', "transform-decorators-legacy"],
-    cacheDirectory: true
-}
+//@babel/preset-env
 
-*/
+"@babel/helper-module-imports": "^7.0.0",
+"@babel/helper-plugin-utils": "^7.0.0",
+"@babel/plugin-proposal-async-generator-functions": "^7.2.0",						  //ES18
+"@babel/plugin-proposal-json-strings": "^7.2.0",
+"@babel/plugin-proposal-object-rest-spread": "^7.4.4",										//ES18--对象护展
+"@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
+"@babel/plugin-proposal-unicode-property-regex": "^7.4.4",								//ES18--
+"@babel/plugin-syntax-async-generators": "^7.2.0",
+"@babel/plugin-syntax-json-strings": "^7.2.0",
+"@babel/plugin-syntax-object-rest-spread": "^7.2.0",
+"@babel/plugin-syntax-optional-catch-binding": "^7.2.0",
+"@babel/plugin-transform-arrow-functions": "^7.2.0",
+"@babel/plugin-transform-async-to-generator": "^7.4.4",										//ES17--异步函数
+"@babel/plugin-transform-block-scoped-functions": "^7.2.0",
+"@babel/plugin-transform-block-scoping": "^7.4.4",
+"@babel/plugin-transform-classes": "^7.4.4",
+"@babel/plugin-transform-computed-properties": "^7.2.0",
+"@babel/plugin-transform-destructuring": "^7.4.4",
+"@babel/plugin-transform-dotall-regex": "^7.4.4",													//ES18
+"@babel/plugin-transform-duplicate-keys": "^7.2.0",
+"@babel/plugin-transform-exponentiation-operator": "^7.2.0",							//ES16--幂运算
+"@babel/plugin-transform-for-of": "^7.4.4",
+"@babel/plugin-transform-function-name": "^7.4.4",
+"@babel/plugin-transform-literals": "^7.2.0",
+"@babel/plugin-transform-member-expression-literals": "^7.2.0",
+"@babel/plugin-transform-modules-amd": "^7.2.0",
+"@babel/plugin-transform-modules-commonjs": "^7.4.4",
+"@babel/plugin-transform-modules-systemjs": "^7.4.4",
+"@babel/plugin-transform-modules-umd": "^7.2.0",
+"@babel/plugin-transform-named-capturing-groups-regex": "^7.4.4",					//ES18--正则命名组
+"@babel/plugin-transform-new-target": "^7.4.4",
+"@babel/plugin-transform-object-super": "^7.2.0",
+"@babel/plugin-transform-parameters": "^7.4.4",
+"@babel/plugin-transform-property-literals": "^7.2.0",
+"@babel/plugin-transform-regenerator": "^7.4.4",
+"@babel/plugin-transform-reserved-words": "^7.2.0",
+"@babel/plugin-transform-shorthand-properties": "^7.2.0",
+"@babel/plugin-transform-spread": "^7.2.0",
+"@babel/plugin-transform-sticky-regex": "^7.2.0",
+"@babel/plugin-transform-template-literals": "^7.4.4",
+"@babel/plugin-transform-typeof-symbol": "^7.2.0",
+"@babel/plugin-transform-unicode-regex": "^7.4.4",
 
- //匿名对象---对象里的属性拼在一起，组成对象变量名
 
-
-//默认只转换语法，不转换新的API
-1.babel-core							//核心API，调用Babel的API进行转码，就要使用babel-core模块
-
-2.babel-node							//REPL环境、直接执行行脚本  如：babel-node src/test.js
-
-3.babel-doctor
-
-4.babel-polyfill						//为当前环境提供一个垫片
-
-5.babel-runtime	(_extend, callback)     //提取模块复用工具函数,提供工具函数,减少重复代码	_extend()， _classCallCheck()工具函数
-//babel-plugins-transform-runtime
-
-6.babel-register						//改写require命令, 用import代替require，import的优点可以引入所需方法或者变量，不需要加载整个模块，提高了性能
-
-
-
-//编译
-babel es6.js  --preset es2015
-
-babel es6.js -o es5.js												//--out-file
-
-babel src -d lib															//--out-dir 
-
-babel index.js main.js -o es5.js --compact		// 转义es5, 组合一个文件
-
-
-//执行脚本 node  babel-node
-node  test.js, 
-babel-node test.js
-
-//babel-node	REPL环境
-Modules aren't supported in the REPL
-
-//正确:	直接执行脚本文件
-babel-node module.js;
-
+//babel-preset-env
+"babel-plugin-check-es2015-constants": "^6.22.0",
+"babel-plugin-syntax-trailing-function-commas": "^6.22.0",
+"babel-plugin-transform-async-to-generator": "^6.22.0",
+"babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+"babel-plugin-transform-es2015-block-scoped-functions": "^6.22.0",
+"babel-plugin-transform-es2015-block-scoping": "^6.23.0",
+"babel-plugin-transform-es2015-classes": "^6.23.0",
+"babel-plugin-transform-es2015-computed-properties": "^6.22.0",
+"babel-plugin-transform-es2015-destructuring": "^6.23.0",
+"babel-plugin-transform-es2015-duplicate-keys": "^6.22.0",
+"babel-plugin-transform-es2015-for-of": "^6.23.0",
+"babel-plugin-transform-es2015-function-name": "^6.22.0",
+"babel-plugin-transform-es2015-literals": "^6.22.0",
+"babel-plugin-transform-es2015-modules-amd": "^6.22.0",
+"babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
+"babel-plugin-transform-es2015-modules-systemjs": "^6.23.0",
+"babel-plugin-transform-es2015-modules-umd": "^6.23.0",
+"babel-plugin-transform-es2015-object-super": "^6.22.0",
+"babel-plugin-transform-es2015-parameters": "^6.23.0",
+"babel-plugin-transform-es2015-shorthand-properties": "^6.22.0",
+"babel-plugin-transform-es2015-spread": "^6.22.0",
+"babel-plugin-transform-es2015-sticky-regex": "^6.22.0",
+"babel-plugin-transform-es2015-template-literals": "^6.22.0",
+"babel-plugin-transform-es2015-typeof-symbol": "^6.23.0",
+"babel-plugin-transform-es2015-unicode-regex": "^6.22.0",
+"babel-plugin-transform-exponentiation-operator": "^6.22.0",
+"babel-plugin-transform-regenerator": "^6.22.0",
