@@ -32,7 +32,7 @@ chunkFilename 按需加载（异步）模块的时候，也就是路由懒加载，这样的文件是没有被列
 [hash]			每次修改任何一个文件，所有文件名的hash至都将改变		//默认20位
 [chunkhash]	只有被修改了的文件的文件名，hash值修改
 
-//css用chunkhash 修改了js，css文件名的hash值确实没变，但修改css文件的话，会发现css文件名的chunkhash值居然没变化
+//css用chunkhash 修改了js，css文件名的hash值确实有变，但修改css文件的话，会发现css文件名的chunkhash值居然没变化
 [contenthash]   //ExtractTextWebpackPlugin@3x, 文件内容算出的8位 hash
 
 js		-- chunkhash				//根据chunks--js里的不同内容进行生成
@@ -104,3 +104,23 @@ $("span.pie").peity("pie", {
 	fill: ["#1ab394", "#d7d7d7", "#ffffff"]
 })
 */
+
+
+// @1
+use: [{
+	loader: 'expose-loader',
+	options: '$'
+	}, {
+	loader: 'expose-loader',
+	options: 'jQuery'
+}]
+// @2
+externals: {
+	jquery: 'jQuery'
+},
+// @3
+new webpack.ProvidePlugin({
+	$: 'jquery',
+	jQuery: 'jquery',
+	'window.jQuery': 'jquery'
+}),

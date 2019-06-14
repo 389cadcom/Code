@@ -19,7 +19,7 @@
   判断是否包括一个键上面：obj[key]     set.has(key)
   
   Array.from()将Set结构转为数组
-  Array.from(set, val=>val*2)		   //TODO
+  Array.from(set, val=>val*2)		   //TODO 转换成新数组--使用map方法
 
   并集： new Set([...set1, ...set2])
   交集:  new Set([...set1].filter(val=>set2.has(val)))
@@ -43,7 +43,7 @@
 
 
   与其数据结构转换：
-  1.多维数组    [...map]			new Map(arrs)
+  1.二维数组    [...map]			new Map(arrs)
   2.对象	    obj[key] = val;				//键都是字符串  for(let [key, val] of map)
 				map.set(key, obj[key])		//for(let key of Object.keys(obj))
   3.JSON

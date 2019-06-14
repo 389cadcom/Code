@@ -3,9 +3,6 @@ npm-check
 npm outdated
 
 
-uglify-js@2, uglify-js@3 == uglify-es
-
-
 app, vendor, manifest区别
 /*
 虽然已经分离了第三方库,每次修改编译都会改变vendor的hash值，导致浏览器缓存失效。

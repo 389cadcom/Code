@@ -23,6 +23,16 @@ async function test() {
 		console.log(err);
 	}
 }
+
+//延迟返回值
+async function asyncReturn(val, ms){
+	await new Promise((resolve, reject)=>{
+		setTimeout(resolve, ms)
+	})
+	
+	return val;
+}
+
 //并发执行
 async function testAll(){
 	let p1 = sleep(1000);

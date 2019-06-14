@@ -1,4 +1,4 @@
-//10.20  JSX   Babel在 JSX转换需用到React.createElement
+//10.20  JSX   Babel在 JSX转换需用到React.createElement(el, attrs, ...elem)
 表达式、 -->加减乘除、三元 、数组运算
 样式、   -->cameCase, 样式不能写在组件上，写在JSX中 <h1 className='hi' style = {{fontSize:'12px'}}
 注释     -->{/**/}  jsx			//  /**/
