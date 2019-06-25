@@ -10,7 +10,7 @@ contexts.keys().forEach(item => {
 
 /**
 state,		 this.$store.state.count
-getters																					(state, getters)
+getters		 this.$store.getters.findBy()         (state, getters)
 mutations  this.$store.commit('method', arg)		(state, arg)
 actions		 this.$store.dispatch('mthod', arg)	  ({commit}, arg) => commit('method')  context | dispatch, commit, getters, state
 
@@ -79,6 +79,11 @@ export default {
       count0: state => state.count						 //重新定义变量名
     }),
     ...mapState(['count']),										 //同名变量属性
+
+		//为了使用 this 不能使用箭头函数
+		countPlus(state) {
+		  return state.count + this.localCount;
+		}
 
     arr(){
       return this.$store.getters.dos           //FIXME: getter

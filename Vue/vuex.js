@@ -14,16 +14,28 @@ new Vuex.Store({
 		}
 	},
 	mutations: {
-		userInfo(state, res){
+		userInfo(state, res){						//state, res
 			state.user = res
 		}
 	},
 	actions: {
-		getUser({commit}){
+		getUser({commit}, payload){							//context | dispatch, commit, getters, state
 			axios.get('url').then(res=>{
 				var data = res.data;
 				commit('userInfo', data)
 			})
 		}
 	}
+})
+
+/*
+state,		 this.$store.state.count
+getters		 this.$store.getters.findBy()         (state, getters)
+mutations  this.$store.commit('method', arg)		(state, arg)
+actions		 this.$store.dispatch('mthod', arg)	  ({commit}, arg) => commit('method')  
+
+*/
+
+store = new Vuex({
+	modules: { a: moduleA}					//$store.state.a.count
 })

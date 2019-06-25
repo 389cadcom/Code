@@ -1,4 +1,4 @@
-//react
+//imr  react
 imr→	import React from 'react'
 imrd→	import ReactDOM from 'react-dom'
 imrc→	import React, { Component } from 'react'
@@ -11,27 +11,32 @@ impt→	import PropTypes from 'prop-types'
 imrr→	import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 
-rconst→	constructor(props) with this.state     //构造函数
+//构造函数  con
+rconst→	constructor(props) with this.state     
 rconc→	constructor(props, context) with this.state
  
 ren→	render() { return( ) }										//渲染  
-est→	this.state = { }
+est→	this.state = { }													//定义类属性state = {}
 sst→	this.setState({ })
 ssf→	this.setState((state, props) => return { })
 
-//cp, cs 解构
-props→	this.props.propName
-state→	this.state.stateName
+met→  methodName     //方法名箭头函数
+bnd→								 //函数绑定this
 
-//r开头--生成组件
+//cp, cs 解构
+cp→	  this.props.propName
+cs→	  this.state.stateName
+
+//r开头生成--类组件
 rcc  → export default class									   //组合生成组件
+rccp →  export default class
 rce  → export class ; export default;
 rcep → import react, component, prop-types
-rccp →  export default class
 
+//生成--函数组件
 rfc  → export default function(){}
 rfce → export default c
-rfcp →
+rfcp →												  prop-types
 
 cwm→	componentWillMount = () => { }					 //生命周期
 cdm→	componentDidMount = () => { }
@@ -45,7 +50,7 @@ gdsfp→	static getDerivedStateFromProps(nextProps, prevState) { }
 gsbu→	getSnapshotBeforeUpdate = (prevProps, prevState) => { }
 
 
-//ES6 base
+//ES6 base  im  ex
 //import 默认、模块、别名
 imp→	import moduleName from 'module'
 imd→	import { destructuredModule } from 'module'
@@ -58,8 +63,10 @@ exp→	export default moduleName
 exd→	export { destructuredModule } from 'module'
 exa→	export { originalName as aliasName} from 'module'
 
-enf→	export const functionName = (params) => { }
-edf→	export default (params) => { }
+//导出函数
+enf→	export const functionName = (params) => { }		//export name function
+edf→	export default (params) => { }                //export default function
+
 
 //for
 for
@@ -67,17 +74,17 @@ fre→	arrayName.forEach(element => { }
 fof→	for(let itemName of objectName { }
 fin→	for(let itemName in objectName { }
 
-dob→	const {propName} = objectToDescruct			//解构
+//解构
+dob→	const {propName} = objectToDescruct			
 dar→	const [propName] = arrayToDescruct
 
 //function
 fn→   function methodName (arguments) { }
-nfn→	const functionName = (params) => { }
-
+nfn→	const functionName = (params) => { }		//namedFunction
+met→  method = (params)=>{}										//定义箭头函数
 
 //class
 con→   constructor(){ }
-met→	methodName = (params) => { }
 pge→   get propertyName() {return value;}
 pse→   set propertyName(value) {}
 
@@ -85,8 +92,9 @@ pse→   set propertyName(value) {}
 prom→	  return new Promise((resolve, reject) => {});
 thenc→  .then((res) => {).catch((err) 
 
+//定时器
 sti→	setInterval(() => { }, intervalTime
-sto→	setTimeout(() => { }, delayTime
+sto→	setTimeout(() => { },  delayTime
 
 
 //ES
