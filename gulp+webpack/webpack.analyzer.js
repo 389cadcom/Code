@@ -3,6 +3,17 @@
  * 
  * imports-loader, exports-loader
  */
+(function(modules){
+	//用于缓存已加载模块的组
+	var installedModules = []
+
+	//用于加载模块的require函数
+	function __webpack_require__(moduleId){ }
+
+	//加载入口模块(初始模块id=0)
+	return __webpack_require__(0)
+	
+})([...])
 
 
 //Runtime webpackBootstrap
@@ -12,24 +23,32 @@
 
 	// 定义加载依赖函数
 	function __webpack_require__(moduleId) {
-		if(installedModules[moduleId]) {
-			return installedModules[moduleId].exports;
+
+		// 检查缓存中是否有该模块，若有，则直接返回
+		if (installedModules[moduleId]) {
+			return installedModules[moduleId].exports
 		}
-		// Create a new module (and put it into the cache)
+
+		// 初始化一个新模块，并且保存到缓存中
 		var module = installedModules[moduleId] = {
-			i: moduleId,
-			l: false,
-			exports: {}
-		};
+			i: moduleId,	// 模块名
+			l: false,			// 布尔值，表示该模块是否加载完毕
+			exports: {}		// 模块的输出对象，包含了模块输出的各个接口
+		}
 
-		// Execute the module function
-		// 通过call执行模块函数
-		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+		// 执行模块函数，并传入三个实参：模块本身、模块的输出对象、加载函数，同时定义 this-->module.exports 值为模块的输出对象
+		modules[moduleId].call(
+			module.exports,
+			module,
+			module.exports,
+			__webpack_require__
+		)
 
-		// Flag the module as loaded
-		module.l = true;
+		// 标记模块为已加载状态
+		module.l = true
 
-		return module.exports;
+		// 返回模块的输出对象
+		return module.exports
 	}
 
 
@@ -41,7 +60,7 @@
 
 	// define getter function for harmony exports
 	__webpack_require__.d = function(exports, name, getter) {
-		if(!__webpack_require__.o(exports, name)) {
+		if(!__webpack_require__.o(exports, name)) {								//用于判断输出对象上是否已存在同名的输出接口
 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 		}
 	};

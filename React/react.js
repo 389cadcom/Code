@@ -1,5 +1,22 @@
-react-update-on
+//异步选型 redux-saga, redux-thunk
 
+const {history, location, match} = this.props
+history:
+	action, push, replace, go, goBack, goForward | location, length, listen
+location:
+	pathname, search, hash, state 
+/*
+	<Link to={location} />
+	<NaviveLink to={location} />
+	<Redirect to={location />
+	history.push(location)
+	history.replace(location)
+*/
+match:
+	path, url, params, isExact   //嵌套的<Route>, 嵌套的 <Link>
+
+
+react-update-on
 react-transition-group
 
 

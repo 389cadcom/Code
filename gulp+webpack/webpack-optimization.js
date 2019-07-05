@@ -44,6 +44,26 @@ splitChunks: {
 
 	来自node_module模块 默认小于30k不会抽取为公共文件，包括css和js; 会被打包到具体使用它的页面 bundle
 */
+// 为了方便阅读理解打包后的代码，关闭代码压缩和模块合并
+minimize: false,
+concatenateModules: false
+
+//uglifyJs-导出不压缩
+optimization: {
+	minimizer: [
+		new UglifyJsPlugin({
+			uglifyOptions: {
+				compress: false,
+				mangle: false,
+				output: {
+					beautify: true,
+					comments: false
+				}
+			}
+		})
+	],
+},
+
 
 optimization: {
 	minimize: true,																	// [new UglifyJsPlugin({...})]

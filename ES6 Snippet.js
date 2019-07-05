@@ -27,16 +27,17 @@ bnd→								 //函数绑定this
 cp→	  this.props.propName
 cs→	  this.state.stateName
 
-//r开头生成--类组件
+//r开头生成--类组件   rcc, rfc, rafc | rce, rfce,
 rcc  → export default class									   //组合生成组件
-rccp →  export default class
+rccp →  export default class    prop-types
 rce  → export class ; export default;
-rcep → import react, component, prop-types
+rcep → import react, component, prop-types  --> static propTypes
 
 //生成--函数组件
-rfc  → export default function(){}
-rfce → export default c
-rfcp →												  prop-types
+rfc  → export default function(){}						//直接导出
+rfce → export default test										//定义再导出
+rafc → const name = ()=>({})									//先定义常量，再导出
+rfcp → export default,  prop-types
 
 cwm→	componentWillMount = () => { }					 //生命周期
 cdm→	componentDidMount = () => { }
@@ -67,6 +68,11 @@ exa→	export { originalName as aliasName} from 'module'
 enf→	export const functionName = (params) => { }		//export name function
 edf→	export default (params) => { }                //export default function
 
+//箭头函数
+anfn →
+nfn  →																					//定义常量箭头函数
+met  →  method = (params)=>{}										//定义箭头函数属性
+fn   →   function methodName (arguments) { }
 
 //for
 for
@@ -78,10 +84,6 @@ fin→	for(let itemName in objectName { }
 dob→	const {propName} = objectToDescruct			
 dar→	const [propName] = arrayToDescruct
 
-//function
-fn→   function methodName (arguments) { }
-nfn→	const functionName = (params) => { }		//namedFunction
-met→  method = (params)=>{}										//定义箭头函数
 
 //class
 con→   constructor(){ }

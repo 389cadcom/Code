@@ -69,6 +69,22 @@ new webpack.DefinePlugin({
 	}
 })
 
+//uglifyJs-导出不压缩
+optimization: {
+	minimizer: [
+		new UglifyJsPlugin({
+			uglifyOptions: {
+				compress: false,
+				mangle: false,
+				output: {
+					beautify: true,
+					comments: false
+				}
+			}
+		})
+	],
+},
+
 //4.压缩代码
 new UglifyJsPlugin({
 	beautify: true,
