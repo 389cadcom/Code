@@ -7,21 +7,10 @@ imrpc→	import React, { PureComponent } from 'react'
 imrpcp→	import React, { PureComponent } from 'react' & import PropTypes from 'prop-types'
 imrm→	import React, { memo } from 'react'
 imrmp→	import React, { memo } from 'react' & import PropTypes from 'prop-types'
+
 impt→	import PropTypes from 'prop-types'
 imrr→	import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-
-//构造函数  con
-rconst→	constructor(props) with this.state     
-rconc→	constructor(props, context) with this.state
- 
-ren→	render() { return( ) }										//渲染  
-est→	this.state = { }													//定义类属性state = {}
-sst→	this.setState({ })
-ssf→	this.setState((state, props) => return { })
-
-met→  methodName     //方法名箭头函数
-bnd→								 //函数绑定this
 
 //cp, cs 解构
 cp→	  this.props.propName
@@ -30,7 +19,7 @@ cs→	  this.state.stateName
 //r开头生成--类组件   rcc, rfc, rafc | rce, rfce,
 rcc  → export default class									   //组合生成组件
 rccp →  export default class    prop-types
-rce  → export class ; export default;
+rce  → export class ; export default;					 //导出当前及默认
 rcep → import react, component, prop-types  --> static propTypes
 
 //生成--函数组件
@@ -39,7 +28,21 @@ rfce → export default test										//定义再导出
 rafc → const name = ()=>({})									//先定义常量，再导出
 rfcp → export default,  prop-types
 
-cwm→	componentWillMount = () => { }					 //生命周期
+
+//构造函数  con
+rconst→	constructor(props) with this.state			//1.构造函数
+rconc→	constructor(props, context) with this.state
+
+met→  methodName     //方法名箭头函数						//2.箭头属性方式
+bnd→								 //函数绑定this																
+
+ren→	render() { return( ) }										//3.渲染  
+est→	this.state = { }													//0.定义类属性state = {}
+sst→	this.setState({ })												//4.设置状态
+ssf→	this.setState((state, props) => return { })
+
+
+cwm→	componentWillMount = () => { }					 //5.生命周期
 cdm→	componentDidMount = () => { }
 cwr→	componentWillReceiveProps = (nextProps) => { } DEPRECATED!!!
 scu→	shouldComponentUpdate = (nextProps, nextState) => { }
@@ -68,11 +71,20 @@ exa→	export { originalName as aliasName} from 'module'
 enf→	export const functionName = (params) => { }		//export name function
 edf→	export default (params) => { }                //export default function
 
+//导出类
+ecl→  export default class													//exports default class
+ece→  export default class name extends base				//exports default class extends
+
+
 //箭头函数
-anfn →
-nfn  →																					//定义常量箭头函数
 met  →  method = (params)=>{}										//定义箭头函数属性
-fn   →   function methodName (arguments) { }
+anfn →																					//箭头匿名函数
+afn	 →	function(params) { }										//匿名函数
+
+nfn  →																					//定义常量箭头函数
+fn   →  function methodName (params) { }				//普通函数
+iife
+
 
 //for
 for
@@ -120,10 +132,6 @@ rc	 removeChild
 classList.toggle, remove, add
 
 
-iife
-fn
-afn	 匿名fn
-
 si   setInterval
 sto   setTimeout
 apply
@@ -132,6 +140,7 @@ pr	 prototype
 tc	 textContent
 ih	 innerHTML
 
+//JSON
 us	 'use strict'
 js   JSON.stringify
 jp   JSON.parse

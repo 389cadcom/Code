@@ -99,7 +99,7 @@ instance.interceptors.request.use( config => {
           setTimeout(function () {
             tokenTime++;
             resolve()
-          }, 500);
+          }, 1000);
         } else {
           tokenLock = true;
           var params = {

@@ -25,6 +25,9 @@ for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 
 3.forEach((item, i)=>{}), 需使用索引值使用，但不能用(break, continue);   return false; 跳出当前条件
 
+//提取数组对象值
+var arr = [{name:'a'},{name:'b'},{name:'c'},]
+Array.from(arr, ({name})=> name)		// ['a', 'b', 'c']
 
 
 //数据处理: 业务中处理数据结构--数组、对象JS方法

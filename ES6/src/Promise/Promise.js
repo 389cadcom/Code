@@ -4,6 +4,7 @@
  * 
  * 1.都为resolve, 返回值组成一个数组，传递给p的回调函数
  * 2.其中一个reject, 则第一个reject返回的值，传给p的回调函数
+ * 3.resolve传入Promise对象，则直接解释内部的Promise.resolve
  */
 
 //Promise与Generator结合使用

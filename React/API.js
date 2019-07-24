@@ -1,3 +1,7 @@
+1.React在初始化和更新的时候会触发的钩子函数？
+2.父组件在更新状态的时候父组件与子组件的生命周期顺序是怎么执行的？
+
+
 //npx create-reate-app  Demo
 //React API 挂载、更新、卸载   类字段提案的说明
 //类组件、
@@ -13,6 +17,7 @@ createFactory, createRef
 
 //16.6+  React.memo  lazy
 //16.7   生命周期方法，只能用类组件
+
 
 //ReactDOM
 ReactDOM.render

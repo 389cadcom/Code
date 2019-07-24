@@ -14,7 +14,7 @@ new Vuex.Store({
 		}
 	},
 	mutations: {
-		userInfo(state, res){						//state, res
+		userInfo(state, payload){						//state, payload
 			state.user = res
 		}
 	},
@@ -36,6 +36,6 @@ actions		 this.$store.dispatch('mthod', arg)	  ({commit}, arg) => commit('method
 
 */
 
-store = new Vuex({
+store = new Vuex.Store({
 	modules: { a: moduleA}					//$store.state.a.count
 })

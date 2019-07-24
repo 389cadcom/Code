@@ -52,6 +52,8 @@ AxiosPlugin.install = function (Vue, opts) {
 
 export default AxiosPlugin;
 
+
+Vue.use(AxiosPlugin)
 /*
 使用例子:
 this.$http.post(url, qs.stringify(data), {
