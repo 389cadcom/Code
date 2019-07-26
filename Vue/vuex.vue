@@ -1,4 +1,4 @@
-//TODO require.context 动态载入注册页面
+//TODO require.context 动态全局注册组件页面
 let contexts = require.context('../pages/', false, /\.vue$/)
 console.log(invest);
 

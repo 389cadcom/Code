@@ -18,6 +18,7 @@
 require.ensure([], function(){/*require('loadsh')*/ })
 
 me = () => import(/*webpackChunkName: "me" */ './page/me.vue')		//vue-router路由懒加载
+Vue.component(Me, me)
 
 window.addEventListener('click', ()=>{
 	import(/* webpackChunkName: 'styles'*/ './common')							//异步加载css

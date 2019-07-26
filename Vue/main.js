@@ -12,7 +12,30 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
-// 非父子组件传值公交车
+//自动注册全局组件
+const requireComponent = require.context('./components', false, /\.vue$/)
+requireComponent.keys().forEach( fileName => {
+  var componentConfig = requireComponent(fileName)
+  var componentName = fileName.replace(/^\.\/|\.vue/g, '')
+
+  Vue.component(componentName, componentConfig.default || componentConfig)
+})
+
+//自动注册Vuex
+const requireModule = require.context('./modules', false, /\.js$/)
+const modules = {}
+requireModule.keys().forEach( fileName => {
+	var moduleName = fileName.replace(/^\.\/|\.js$/, '')
+		modules[moduleName] = {
+			namespaced: true,
+			...requireModule[moduleName].default
+	  }
+})
+
+
+
+// 非父子组件传值--中央事件总线  this.$root.$emit()  $on()   
+//注：<keep-alive v-if="!$route.meta.keepAlive"> 执行beforeDestroy生命周期, this.$bus.$off('name')
 Vue.prototype.$bus = new Vue()
 
 new Vue({
