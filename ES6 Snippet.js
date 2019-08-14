@@ -1,4 +1,4 @@
-//imr  react
+//imrc imrcp  imrd  imrr
 imr→	import React from 'react'
 imrd→	import ReactDOM from 'react-dom'
 imrc→	import React, { Component } from 'react'
@@ -24,7 +24,7 @@ rcep → import react, component, prop-types  --> static propTypes
 
 //生成--函数组件
 rfc  → export default function(){}						//直接导出
-rfce → export default test										//定义再导出
+rfce → fn export default test									//定义再导出
 rafc → const name = ()=>({})									//先定义常量，再导出
 rfcp → export default,  prop-types
 
@@ -129,6 +129,7 @@ ae	 addEventListener    --re
 ac	 appendChild
 rc	 removeChild
 
+[ca] classList.add
 classList.toggle, remove, add
 
 

@@ -139,6 +139,26 @@ instance.interceptors.response.use( data => {
     Vue.$vux.loading.hide()
     return data;
   }, error => {
+		if(error && error.response){
+			switch(error.response.status){
+				case 400:
+					error.message = '错误请求';
+					break;
+				case 401:
+					error.message = '未授权，请重新登录';
+					break;
+				case 403:
+					error.message = '拒绝请求';
+					break;
+				case 404:
+					error.message = '请求错误，未找到该资源';
+					break;
+				case 405:
+					error.message = '请求方法未允许';
+					break;
+			}
+		}
+
     var conf = error.config;
     if(!conf || !conf.retry) return Promise.reject(error);
 

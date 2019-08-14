@@ -1,3 +1,14 @@
+// router key组件刷新 -- 
+/lists/a,  /lists/b 数据没有更新 vue-router"智能地"发现这是同一个组件，然后它就决定要复用这个组件
+
+解决方案一：监听$route的变化来初始化数据 this.id != this.$route.params.id
+解决方案二：给router-view添加一个唯一的key，这样即使是公用组件，只要url变化了，就一定会重新创建这个组件
+				<router-view :key="$route.fullpath"></router-view>
+/*
+注：一般应用在子路由里面，这样才可以不避免大量重绘, app.vue根目录添加这个属性，那么每次点击改变地址都会重绘
+*/
+
+
 /*
  VueRouter: router  router.beforeEach()   this.$router.push() 
 

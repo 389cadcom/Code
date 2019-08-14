@@ -1,3 +1,22 @@
+//8.8 --> webpack.config.js  使用内存dist中的index.html文件
+
+output: {
+	path: path.resolve(__dirname, 'dist'),
+	publicPath: '/',
+	filename: 'js/[name].js'
+}
+devServer: {
+	historyApiFallback: true,
+	open: true,
+	hot: true,
+	progress: true,
+	inline: true,
+	overlay: true,
+	noInfo: true,
+	publicPath: '/'
+}
+
+
 //检查包的版本信息--
 npm-check
 npm outdated

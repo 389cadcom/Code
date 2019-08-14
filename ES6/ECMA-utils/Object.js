@@ -1,3 +1,12 @@
+//2019-8 有条件对象属性
+var sex = ''
+var params = {
+  name: 'lonve',
+  age: 3,
+  ... sex && {sex:sex}
+}
+
+
 //判断类型
 Object.prototype.toString.call()
 ({}).toString.call(arr).match(/\s(\[a-zA-Z]+)/)	// 

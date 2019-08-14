@@ -42,15 +42,17 @@ methods: {
 	}
 }
 
-//绑定v-on="$listener"
+//组件包装、事件属性穿透问题, 绑定v-on="$listener" v-bind="$attrs"
 <!--input type="text"
 		@focus="$emit('focus')"
 		@click="$emit('click')"
 		@blur="$emit('blur')"
 		@hover="$emit('hover')"
 /-->
-<input v-on="$listeners" type="text"/>
 
+Vue.component('InputEvent', {
+	template: `<input v-on="$listeners" v-bind="$attrs" type="text"/>`
+})
 
 //keep-alive缓存问题解决
 //方案一
@@ -91,6 +93,27 @@ beforeRouteLeave(to, from, next) {
 		to.meta.keepAlive = false;
  }
  next();
+}
+
+//keep-alive 实例化高德地图
+export default {
+	data(){
+		return { map: null }
+	},
+	mounted(){
+		this.amap = new AMap("container", {
+      center: [117.373948,24.510122],
+			resizeEnable: true,
+      zoom: 13
+		})
+	},
+	//数据加载完成
+	activated(){
+		this.getData()		
+	},
+	deactivated(){
+		this.amap.clearMap()	
+	}
 }
 
 
@@ -171,13 +194,13 @@ new Vue({
 		},
 		'obj.age'(){}
 	},
-	created: function(){			//dom未被解析
+	created: function(){			//dom未被解析, $el属性不可见
 	
 	},
 	mounted: function(){			//dom解析完成
 	
 	},
-	activated(){							//keep-alive 二次触发
+	activated(){							//keep-alive			第二次触发
 		if(document.body.scrollTop){
 			document.body.scrollTop = sessionStorage.getItem('top')
 		}else{

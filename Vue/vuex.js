@@ -1,3 +1,13 @@
+/*
+	vmapstate, vmapgetters, vmapmutations, vmapactions
+
+	vcommit, vdispatch
+
+	vstore | 2, vgetter, vmutation, vaction, vmodule
+
+	vstore-import
+*/
+
 new Vuex.Store({
 	state: {
 		todos: [
