@@ -120,3 +120,6 @@ var base64 = dataURI.replace(/^[^,]+,/, '');			//iVBC        [^,]--Æ¥ÅäÎ´°üº¬µÄÈ
 //12.Æ¥Åähtml±êÇ©
 var imgReg = /<video.*?(?:>|\/>)/gi							//Æ¥Åävideo±êÇ©
 var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i		//Æ¥ÅävideoÎÄ±¾ÖĞsrcÄÚÈİ
+
+//13 Ç§·ÖÎ»¸ô·û
+str.replace(/\B(?=(\d{3})+$)/g,',');

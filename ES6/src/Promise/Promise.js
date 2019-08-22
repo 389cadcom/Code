@@ -15,7 +15,7 @@ function getPromise(){
 }
 var g = function* (){
 	try{
-		var foo = yield getPromise();
+		var foo = yield getPromise();			//value--promise
 		console.log(foo);
 	}catch(e){
 		console.log(e)
@@ -48,53 +48,12 @@ var run = function(generator){
 //run(g)
 
 
-function getJSON(url) {
-    var promise = new Promise(function(resolve, reject) {
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('get', url);
-        xhr.onreadystatechange = handler;
-        xhr.responseType = 'json';
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.send();
-
-        function handler(res) {
-            if (xhr.readyState !== 4) {
-                return;
-            }
-            if (xhr.status == 200) {
-                resolve(xhr.response)
-            } else {
-                reject(new Error(xhr.statusText));
-            }
-        }
-    })
-    return promise;
+//async声明的函数本质是返回Promise对象
+const demo = async function () {
+    return Promise.resolve('我是Promise');
+    // 等同于 return '我是Promise'
+    // 等同于 return new Promise((resolve,reject)=>{ resolve('我是Promise') })
 }
-
-var promies = [1, 2].filter(id => {
-    return getJSON('../libs/' + id + '.json');
+demo.then(result=>{
+    console.log(result) // 这里拿到返回值
 })
-
-//async函数
-/*
-1.async函数返回一个Promise对象
-2.async函数内部抛出错误，会导致返回的Promise对象变为reject状态
- */
-fetch('https://tc39.github.io/ecma262/').then(response=>{
-	return response.json();
-}).then(s=>{
-	console.log(s)
-})
-
-async function getTitle(url) {
-  let response = await fetch(url);					//Promise
-  let html = await response.text();					//Promise
-
-  return html.match(/<title>([\s\S]+)<\/title>/i)[1];
-}
-getTitle('https://tc39.github.io/ecma262/').then(v=>{
-  console.log(v)
-})
-
-
