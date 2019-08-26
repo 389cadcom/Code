@@ -97,8 +97,8 @@ Reflect.ownKeys()
 
 //Îå¡¢import, export, module	  
 exportÒªÃ´·ÅÔÚÉùÃ÷±äÁ¿Ç°£¬ÒªÃ´¸úÒ»×éÒªµ¼³öµÄ±äÁ¿ÔÚÒ»Æğ
-export ±ØĞëÓëÄ£¿éÄÚ²¿µÄ±äÁ¿½¨Á¢Ò»Ò»¶ÔÓ¦¹ØÏµ
 /*
+export ±ØĞëÓëÄ£¿éÄÚ²¿µÄ±äÁ¿½¨Á¢Ò»Ò»¶ÔÓ¦¹ØÏµ
 Ã»ÓĞÖ¸¶¨¶ÔÍâµÄ½Ó¿Ú								Ö¸¶¨¶ÔÍâ½Ó¿ÚÎªdefault»ò±äÁ¿
 
 ±¨´í£º														ÕıÈ·£º	
@@ -112,7 +112,7 @@ export ±ØĞëÓëÄ£¿éÄÚ²¿µÄ±äÁ¿½¨Á¢Ò»Ò»¶ÔÓ¦¹ØÏµ
   export f;												export {f}£¬ export default f
 */
 //ÕıÈ·
-export var a = 1;   export 1;
+export var a = 1;   export default 1;
 export {a}					export default a;
 
 export function fn(){};					export {fn}
@@ -120,7 +120,7 @@ export default function(){}			export default function fn(){}   //ÊÓÍ¬ÄäÃûº¯Êı¼ÓÔ
 
 export default  ±¾ÖÊÊÇÊä³öÒ»¸ö½Ğ×ödefaultµÄ±äÁ¿»ò·½·¨£¬ÏµÍ³ÔÊĞíÄãÈ¡ÈÎÒâÃû×Ö
 
-//defaultµÄ±äÁ¿, ²»ÄÜ¸ú±äÁ¿ÉùÃ÷Óï¾ä  var, let, const
+//defaultÒÑÊÇ±äÁ¿, ËùÒÔ²»ÄÜ¸ú±äÁ¿ÉùÃ÷Óï¾ä  var, let, const
 
 Àà£º
 export default class{}

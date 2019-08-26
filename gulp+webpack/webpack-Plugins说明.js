@@ -208,7 +208,10 @@ new MiniCssExtractPlugin({
 })
 
 
-//webpack打包资源引用(相对路径、绝对路径)
+/**
+	webpack打包资源引用(相对路径、绝对路径)
+	引用相对路径资源、背景图片
+*/
 publicPath, outputPath
 
 
@@ -218,8 +221,6 @@ output:{
 	//publicPath: '',
 	filename: 'js/[name].[chunkhash].js'				//util.assertPath('js/[name].[chunkhash].js')
 }
-
-
 
 //TODO 样式引用图片  相对路径打包-- 
 /**
@@ -305,7 +306,7 @@ image-webpack-loader													//压缩图片
 
 
 //FixMe: 
-1.@import url('../asserts/style.css')		//只能抽取到当前chunk
+1.@import '../asserts/style.css'				//只能抽取到当前chunk
 2.import '../assert/style.css'					//通过CommonsChunkPlugin设置导出到公共样式中，/\.(css|less|scss)$/.test(module.resource) && count>=2
 
 

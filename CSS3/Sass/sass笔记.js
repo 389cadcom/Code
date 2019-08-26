@@ -28,6 +28,7 @@
 //应用于@keyframes
 .animate{
 	animation: move 3s infinite;
+
 	@at-root{
 		@keyframes move{
 			from{}
@@ -39,7 +40,7 @@
 //处理media, keyframes内容 @content
 @mixin tablet {											 多值参数 $variables...
   @media (max-width:767px){
-	@content;
+		@content;
   }
 }
 @include tablet {
