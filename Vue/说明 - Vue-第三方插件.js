@@ -23,4 +23,6 @@ requireComponent.keys().forEach( fileName => {
   var component = requireComponent(fileName)
   var componentName = fileName.replace(/^\.\//, '').replace('.vue', '')
   console.log(componentName, component.default);
+
+	Vue.component(componentName, componentConfig.default || componentConfig)
 })

@@ -53,7 +53,7 @@ https.createServer(options, app).listen(443);
 */
 
 
-//Request ->  url, method, headers继承自Node http
+//Request ->  url, method, headers继承自Node http --> EventEmitter
 req.app
 req.route
 req.subdomains			//域名的子域名数组
@@ -80,17 +80,18 @@ req.accepts()			//HTTP头部,指定的内容类型是否被接受
 req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages
 
 
-//Response响应请求		writeHead, write, end继承自Node http
+//Response响应请求		writeHead, setHeader, write, end继承自Node http
 res.app
 res.locals				//只在这次请求的生命周期中有效，视图渲染中使用
 	
-res.set()				//设置http头部字段, 重置之前设置的头
-res.append()			//追加指定HTTP头
-res.get()				//获取指定
+res.header()
+res.set()				    //设置http头部字段, 重置之前设置的头
+res.append()			  //追加指定HTTP头
+res.get()				    //获取指定
 res.location()			//只设置响应的Location HTTP头，不设置状态码或者close response
 
 res.redirect()			//重定向，响应的Location HTTP头，并且设置状态码302
-res.type()				//设置Content-Type的MIME类型
+res.type()					//设置Content-Type的MIME类型
 
 res.cookie()			//domain / expires / httpOnly / maxAge / path / secure / signed
 res.clearCookie()

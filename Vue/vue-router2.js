@@ -82,6 +82,15 @@ this.$router.push('/')
 this.$router.replace('/home')
 this.$router.go(-1)
 
+if(to.meta.requireAuth && !userId){
+	next({
+		path: '/login',
+		replace:true,
+		query: {redirect: to.path}
+	})
+}else{
+	next()
+}
 */
 vue传参方式有：query、params+动态路由传参
 

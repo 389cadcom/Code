@@ -13,7 +13,7 @@
 <body>
 
 <script>
-//TODO Ajax设置头部、请求头部，赋值前必须已经调用了open()打开了一个URL
+//TODO Ajax设置请求头部、获取响应头部，赋值前必须已经调用了open()打开了一个URL
 /*var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(ret){
 	if(xhr.status == 200 && xhr.readyState == 4){
@@ -21,8 +21,8 @@ xhr.onreadystatechange = function(ret){
 	}
 }
 //xhr.open('GET', 'http://10.206.16.118:3000/api/?name=yu')
-xhr.open('POST', 'http://10.206.16.118:3000/api/')
-//xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");	//xhr.send("name=yu")
+xhr.open('POST', 'http://10.206.16.118:3000/api/')														//xhr.send("name=yu")		
+//xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");	
 var form = document.getElementById("info");
 var data = new FormData();
 data.append("name", document.getElementById("name").value);

@@ -12,10 +12,10 @@ process: env.Path, argv, cwd(), module.exports, exports.x
 
 //2.Buffer缓存区, 十六进制整数数组 0x41,  编码: utf8, ascii, hex, base64  String.fromCharCode(122), charCodeAt()
 Buffer.from, 
-alloc(size, fill), 
+Buffer.alloc(size, fill), 
 
 //创建缓冲区，写入缓冲区  write, slice, concat, compare
-var buf = Buffer.alloc(255)
+var buf = Buffer.alloc(255), Buffer.from('Hi')
 buf.write(str, offset, len)			  //返回写入字符长
 
 
@@ -51,7 +51,7 @@ fs:			//node-xlsx
 	readFile(url, encoding, cb), writeFile(url, data, {encoding:'utf8'}, cb)	//将文件完整读入缓存区
 
 	r: read(fd, buf, 0, buf.length, 0, (err, bytes)={}) 	//不断地将文件中的一小块内容读入缓存区--buffer
-	w: write()
+	w: write(fd, buf, 0, buf.length, 0, (err, bytes)={})
 	fs.open(path, 'flag', (err, fd)=>{})
 	close, mkdir, readdir, rmdir
 

@@ -22,6 +22,7 @@ mysql
 mongoose
  
 markdown
-excel-parser    //node读取excel
+excel-parser    //node读取excel  
 ejsexcel        //.xls读取不了
+node-xlsx
 node-xlrd

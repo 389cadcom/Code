@@ -9,7 +9,7 @@ url.parse(href)
 ©¦          ©¦  ©¦                     ©¦   hostname   ©¦ port ©¦ pathname ©¦     search     ©¦       ©¦
 ©¦          ©¦  ©¦                     ©¦              ©¦      ©¦          ©À©¤©Ð©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È       ©¦
 ©¦          ©¦  ©¦                     ©¦              ©¦      ©¦          ©¦ ©¦    query     ©¦       ©¦
-"  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash "
+©¦  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash ©¦
 ©¦          ©¦  ©¦          ©¦          ©¦   hostname   ©¦ port ©¦          ©¦                ©¦       ©¦
 ©¦          ©¦  ©¦          ©¦          ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©È          ©¦                ©¦       ©¦
 ©¦ protocol ©¦  ©¦ username ©¦ password ©¦        host         ©¦          ©¦                ©¦       ©¦
@@ -40,7 +40,7 @@ headers{
 }
 
 Request{
-    Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/;q=0.8
+  Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/;q=0.8
 	Accept-Encoding:gzip, deflate, sdch
 	Accept-Language:zh-CN,zh;q=0.8
 	Cache-Control:no-cache
