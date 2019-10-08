@@ -15,8 +15,8 @@ Object.keys(filters).forEach(key => {
 //自动注册全局组件
 const requireComponent = require.context('./components', false, /\.vue$/)
 requireComponent.keys().forEach( fileName => {
-  var componentConfig = requireComponent(fileName)
-  var componentName = fileName.replace(/^\.\/|\.vue/g, '')
+  var componentConfig = requireComponent(fileName)												  //componentConfig.default.name	
+  var componentName = fileName.replace(/^\.\/|\.vue/g, '')									//当前路径与文件扩展后缀名
 
   Vue.component(componentName, componentConfig.default || componentConfig)
 })

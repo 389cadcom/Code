@@ -169,6 +169,8 @@ function sendHTML(path, req, res){
     res.write(data);
     res.end();
   })
+	var stream = fs.createReadStream(path);
+	stream.pipe(res)			//pipe自动帮助我们监听data和end事件, 每一小段数据都将源源不断的发送到客户端
 }
 
 server.on('error', function(err){
