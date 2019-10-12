@@ -2,6 +2,7 @@ export default {
 	format(){
 		
 	},
+	//msº∆À„
 	getRunTime(time) {
 		time    = String(time).padEnd(13, '0')*1 - Date.now();
 		var day = Math.floor(time / 1000 / 60 / 60 / 24);
@@ -15,6 +16,13 @@ export default {
 			minute: String(minute).padStart(2, '0'),
 			second: String(second).padStart(2, '0')
 		}
+	},
+	//√Îº∆À„
+	getTime(time){
+		var day     = Math.floor(time / 60 / 60 / 24);
+    var hour    = Math.floor(time / 60 / 60 % 24);
+    var minutes = Math.floor(time / 60 % 60);
+    var seconds = Math.floor(time % 60);
 	},
   goodTime (str) {
     let now      = new Date().getTime()

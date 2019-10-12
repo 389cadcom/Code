@@ -93,6 +93,27 @@ app.post('/post', (req, res)=>{
   res.send({name:1})  
 })
 
+/*
+//下载  输入流
+//res.download(path)
+let readStream = fs.createReadStream(path); 
+res.writeHead(200, {
+	'Content-Type': 'application/force-download',
+	'Content-Disposition': 'attachment; filename=name.png'
+});
+readStream.pipe(res);
+
+
+fs.readFile(__dirname + '/data.txt', function (err, data) {
+ res.writeHead(200,{
+		 'Content-Type': 'application/octet-stream',
+		 'Content-Disposition': 'attachment; filename=data.txt',
+		 'Accept-Length': 1024,
+ });
+ res.end(data);
+});
+*/
+
 var server = app.listen(3000, '10.206.16.118', ()=>{
     var address = server.address().address;
     var port    = server.address().port;

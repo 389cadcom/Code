@@ -65,38 +65,43 @@ HTTP/版本号 状态码 状态描述
 空行
 body
 
+//安全、传输、客户端、缓存、实体、杂项
+req.get('accept')
+res.writeHeads(200, {}), res.setHead()
+res.set(), res.header(), res.append(), res.type()
+
 
 //Eg: https://www.tuicool.com/articles/uuUb6ja
 //Request Headers 请求首部字段
-accept							//客户端能够处理的媒体类型		text/html
-accept-charset					//客户端能够支持的字符集		GB2312
-accept-encoding					//客户端能够支持的内容编码格式  gzip, deflate
-accept-language					//客户端能够支持的语言	        zh-cn, en
-user-angent						//发起请求的浏览器和代理名称等信息发送给服务端	navigator.userAgent
+accept							   	// 客户端能够处理的媒体类型		text/html
+accept-charset	 				// 客户端能够支持的字符集		GB2312
+accept-encoding 				// 客户端能够支持的内容编码格式  gzip, deflate
+accept-language 				// 客户端能够支持的语言	        zh-cn, en
+user-angent				 			// 发起请求的浏览器和代理名称等信息发送给服务端	navigator.userAgent
 
-referer							//请求是从哪个页面发起的		document.referer
-X-Requested-With				//ajax请求
+referer							   	// 请求是从哪个页面发起的		document.referer
+X-Requested-With 				// ajax请求
 
 //Response Headers 响应首部字段
-Accept-Ranges					//告知客户端自己能够处理范围请求: bytes, none
-age								//告知客户端，源服务器（而不是缓存服务器）在多久之前创建了响应
-etag							//实体资源的标识
-server							//当前使用的HTTP服务器应用程序的相关信息
+Accept-Ranges 					// 告知客户端自己能够处理范围请求: bytes, none
+age								   		// 告知客户端，源服务器（而不是缓存服务器）在多久之前创建了响应
+etag							   		// 实体资源的标识
+server							 		// 当前使用的HTTP服务器应用程序的相关信息
 
 //实体首部字段
 allow
 content-encoding				//告知客户端，服务器对资源内容的编码
 content-language				//告知客户端，服务器对资源使用的自然语言
 content-length					//告知客户端资源长度
-content-type					//告知客户资源的媒体类型
+content-type						//告知客户资源的媒体类型
 content-encoding				//告知客户资源的编码格式
-expries							//告知客户端资源的失效日期。可用于对缓存的处理
-last-modifies					//告知客户端资源最后一次修改的时间。
+expries									//告知客户端资源的失效日期。可用于对缓存的处理
+last-modifies						//告知客户端资源最后一次修改的时间。
 
 //通用报文字段
-date							//创建HTTP报文日期和时间
-cache-control					//控制缓存行为 max-age=2592000 --> 60*60*24*30
-connection						//管理持久连接，设置其值为Keep-Alive可实现长连接。
+date										//创建HTTP报文日期和时间
+cache-control						//控制缓存行为 max-age=2592000 --> 60*60*24*30
+connection							//管理持久连接，设置其值为Keep-Alive可实现长连接。
 Transfer-Encoding				//规定了传输报文主题时使用的传输编码，如Transfer-Encoding: chunked
 
 //响应状态码

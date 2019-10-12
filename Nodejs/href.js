@@ -1,57 +1,126 @@
 /* 
-½âÎö:
+è§£æ:
 url.parse(href)
-©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-©¦                                            href                                             ©¦
-©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ğ©¤©¤©Ğ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ğ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ğ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ğ©¤©¤©¤©¤©¤©¤©¤©È
-©¦ protocol ©¦  ©¦        auth         ©¦        host         ©¦           path            ©¦ hash  ©¦
-©¦          ©¦  ©¦                     ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ğ©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ğ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È       ©¦
-©¦          ©¦  ©¦                     ©¦   hostname   ©¦ port ©¦ pathname ©¦     search     ©¦       ©¦
-©¦          ©¦  ©¦                     ©¦              ©¦      ©¦          ©À©¤©Ğ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È       ©¦
-©¦          ©¦  ©¦                     ©¦              ©¦      ©¦          ©¦ ©¦    query     ©¦       ©¦
-©¦  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash ©¦
-©¦          ©¦  ©¦          ©¦          ©¦   hostname   ©¦ port ©¦          ©¦                ©¦       ©¦
-©¦          ©¦  ©¦          ©¦          ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©È          ©¦                ©¦       ©¦
-©¦ protocol ©¦  ©¦ username ©¦ password ©¦        host         ©¦          ©¦                ©¦       ©¦
-©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È          ©¦                ©¦       ©¦
-©¦   origin    ©¦                     ©¦       origin        ©¦ pathname ©¦     search     ©¦ hash  ©¦
-©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©È
-©¦                                            href                                             ©¦
-©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                                            href                                             â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ protocol â”‚  â”‚        auth         â”‚        host         â”‚           path            â”‚ hash  â”‚
+â”‚          â”‚  â”‚                     â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤       â”‚
+â”‚          â”‚  â”‚                     â”‚   hostname   â”‚ port â”‚ pathname â”‚     search     â”‚       â”‚
+â”‚          â”‚  â”‚                     â”‚              â”‚      â”‚          â”œâ”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤       â”‚
+â”‚          â”‚  â”‚                     â”‚              â”‚      â”‚          â”‚ â”‚    query     â”‚       â”‚
+â”‚  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash â”‚
+â”‚          â”‚  â”‚          â”‚          â”‚   hostname   â”‚ port â”‚          â”‚                â”‚       â”‚
+â”‚          â”‚  â”‚          â”‚          â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”¤          â”‚                â”‚       â”‚
+â”‚ protocol â”‚  â”‚ username â”‚ password â”‚        host         â”‚          â”‚                â”‚       â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤          â”‚                â”‚       â”‚
+â”‚   origin    â”‚                     â”‚       origin        â”‚ pathname â”‚     search     â”‚ hash  â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚                                            href                                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
-²ÎÊı½âÎö:
+å‚æ•°è§£æ:
 querystring.stringify({age:1, name:'yu'})
 querystring.parse('age=1&name=yu')
 */
 
 
+/*
+ req.headers,  req.get('accept')
 
-headers{
-  host: 'localhost:3000',
+ */
+//cookie, å®‰å…¨ã€ä¼ è¾“ã€ç¼“å­˜ã€å®¢æˆ·ç«¯ã€å®ä½“ã€æ‚é¡¹
+Request { 
+	host: 'localhost:3000',
   connection: 'keep-alive',
-  pragma: 'no-cache',
-  'cache-control': 'no-cache',
-  accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+
+  'cache-control': 'max-age=0',
   'upgrade-insecure-requests': '1',
-  'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
-  'accept-encoding': 'gzip, deflate, sdch',
-  'accept-language': 'zh-CN,zh;q=0.8',
-  cookie: 'SID=s%3AwbtOKr7pp5GD8vZztL6pGvgOAzg1LTQH.BwM%2BgWVfVZ%2B0eJQn1akr%2Bz%2BR5Ve8Y%2FhqQtdtZgJg%2FV8' 
+  'user-agent':
+   'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'sec-fetch-mode': 'navigate',
+  'sec-fetch-user': '?1',
+  accept: 'text/html,application/xhtml+xml,application/xml;q=0.8,application/signed-exchange;v=b3',
+  'sec-fetch-site': 'none',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
+  'if-none-match': 'W/"cf-sMq3uu/Hzh7Qc54TveG8DxiBA2U"' 
 }
+Cookie: access=WX--oy4fd0rnjn86yEOECio0MnmzxJrM; phone=13275015015; JSESSIONID=160C45297F012EA9705FCF6CA4052919
 
-Request{
-  Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/;q=0.8
-	Accept-Encoding:gzip, deflate, sdch
-	Accept-Language:zh-CN,zh;q=0.8
-	Cache-Control:no-cache
-	Connection:keep-alive
-	Cookie:SID=s%3AwbtOKr7pp5GD8vZztL6pGvgOAzg1LTQH.BwM%2BgWVfVZ%2B0eJQn1akr%2Bz%2BR5Ve8Y%2FhqQtdtZgJg%2FV8
-	Host:localhost:3000
-	Pragma:no-cache
-	Upgrade-Insecure-Requests:1
-	User-Agent:Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36
-}
+//å®‰å…¨
+Upgrade-Insecure-Requests: 1
+Origin: http://wx.hfsic.com
 
+//ä¼ è¾“
+Host: wx.hfsic.com
+Connection: keep-alive
+
+//å®¢æˆ·ç«¯
+User-Agent:  MicroMessenger/6.7.3.1360(0x2607033D) NetType/WIFI Language/zh_CN Process/tools
+Accept: application/xml;q=0.9,image/webp,image/apng,image/wxpic,image/sharpp,image/apng,image/tpg,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en-US;q=0.9
+
+//ç¼“å­˜
+If-None-Match: "5d9c3fab-331"
+If-Modified-Since: Tue, 08 Oct 2019 07:50:03 GMT
+
+//å®ä½“
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+
+//æ‚é¡¹
+accessToken: 7798687e-798a-404e-89fc-64b5e5cc31c8
+nonce: nCas4NhsMqrAdiKX5HR61D8Ps5bDMXLd
+timestamp: 1570583569049
+sign: F2D5A86703782FAD7C9B190BA198BC31
+Referer: http://wx.hfsic.com/special
+
+
+/**
+	res.writeHeads(200, {}), res.setHead()
+	res.set(multi), res.header(), res.append(), res.type()
+
+	res.header("Access-Control-Allow-Origin",  req.headers.origin || '*');
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization,X-Requested-With");
+  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Credentials", true);			
+  res.header("X-Powered-By",' 3.2.1')
+  res.header("Content-Type", "application/json;charset=utf-8");
+*/
+//å®‰å…¨ã€ä¼ è¾“ã€ç¼“å­˜ã€å®ä½“ã€æ‚é¡¹
 Response {
-
+	Connection: keep-alive
+	'Content-Length': 5
+	'Content-Type': application/json; charset=utf-8
+	Date: Wed, 09 Oct 2019 01:19:05 GMT
+	ETag: W/"5-5UDN0TKLKyHimpVAXDAbkxO3w0Y"
+	'X-Powered-By': Express
 }
+//å®‰å…¨
+Access-Control-Allow-Origin: http://wx.hfsic.com
+Access-Control-Allow-Credentials: true								//å¯ä»¥å¸¦cookies
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+
+//ä¼ è¾“
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+//ç¼“å­˜
+Date: Wed, 09 Oct 2019 01:12:46 GMT
+Expires: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+
+//å®ä½“
+Content-Type: application/json;charset=UTF-8
+'Content-Length': 5
+
+//æ‚é¡¹
+Server: nginx/1.13.3
+
