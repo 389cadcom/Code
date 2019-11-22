@@ -60,6 +60,8 @@ Array.from(arr, ({name})=> name)		// ['a', 'b', 'c']
 	var arr= [{name:'yu', nums: 1}, {name:'cd', nums: 8}]
 	arr.reduce((total, curr)=> total + curr.nums, 0)
 
+	obj = arr.reduce((prev, curr)=> {...prev, [curr]:''}, {})			// 数组转对象, 二维数组--> Object.fromEntries()
+
 
 //6.对象、数组添加新元素, 动态元素----新增属性覆盖原来同名属性
 	{...obj, sex:'male', ...o, [var1]: 'variable'}
@@ -93,6 +95,8 @@ Array.from(arr, ({name})=> name)		// ['a', 'b', 'c']
 var flatten = arr => {
 		return arr.reduce( (flat, curr)=> flat.concat(Array.isArray(curr)? flatten(curr) : curr ), [])
 	}
+//数组转对象
+var obj = arr.reduce((prev, curr)=> {...prev, [curr]:''}, {})
 
 
 //11.二维键值对数组转为对象

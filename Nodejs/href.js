@@ -26,8 +26,10 @@ querystring.parse('age=1&name=yu')
 
 
 /*
- req.headers,  req.get('accept')
-
+ req.headers,  req.get('accept')				//req--> headers, method, url, httpVersion
+ 
+ res.writeHead(), res.setHeader()			//res--> writeHeader(), write(), end(), res.statusCode = 200
+ res.set(), res.type
  */
 //cookie, 安全、传输、缓存、客户端、实体、杂项
 Request { 

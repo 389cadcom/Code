@@ -40,7 +40,7 @@ handler = (e) => {}													//2.箭头函数定义, 隐式传递event对象
 //绑定this传递参数
 onClick = { this.handler.bind(this, arg) }  //3.bind方式传入this: 事件对象e要排在所传递参数的后面 handler(name, e){}  隐式传递event对象
 onClick = { (e) => this.handler(e) }				//4.箭头函数绑定: 事件对象e必须显式传递
-onClick = { this.handler }									//TODO  未绑定this--当前对象, 非react
+onClick = { this.handler }									//TODO  未绑定this--当前对象, this非react
 
 
 //10.24 组件API  容器组件定义state更新修改数据, 子组件只能通过props传递数据
@@ -57,11 +57,12 @@ any, element, node, shape, instanceOf
 
 //10.30 生命周期
 componentWillMount()
-componentDidMount()
+componentDidMount()														//
 
-componentWillRectiveProps()
+componentWillRectiveProps()										//每当一个组件接收到一组新的props; this.props, this.nextProps
 
-shouldComponentUpdate(newProps, newState)			//接收新props或state时被调用, 初始或forceUpdate不被调用
+shouldComponentUpdate(newProps, newState)			//接收新props或state时被调用; 方法返回 false, 则不会WillUpdate(), render(), DidUpdate()
+																							//初始化渲染的时候，这个方法不会被调用
 componentWillUpdate(nextProps, nextState)
 componentDidUpdate(prevProps, prevState)
 

@@ -17,7 +17,7 @@ cp→	  this.props.propName
 cs→	  this.state.stateName
 
 //r开头生成--类组件   rcc, rfc, rafc | rce, rfce,
-rcc  → export default class									   //组合生成组件
+rcc  → export default class									   //组合生成组件    ecl, ece
 rccp →  export default class    prop-types
 rce  → export class ; export default;					 //导出当前及默认
 rcep → import react, component, prop-types  --> static propTypes
@@ -31,7 +31,6 @@ rfcp → export default,  prop-types
 
 //构造函数  con
 rconst→	constructor(props) with this.state			//1.构造函数
-rconc→	constructor(props, context) with this.state
 
 met→  methodName     //方法名箭头函数						//2.箭头属性方式
 bnd→								 //函数绑定this																

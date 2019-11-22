@@ -1,22 +1,18 @@
 //1.同源策略限制
 协议、域名、端口其中一个不相同，就属于跨域
-不能获取Cookie、LocalStorage; 不能获取DOM节点; 不能进行一般要Ajax通信
+不能获取Cookie、LocalStorage; 不能获取DOM节点; 不能进行一般Ajax通信
 
 //2.JSONP跨域--动态加载script标签来完成目标url的请求，不好确认是否请求失败，script 标签的 onerror 事件还未得到浏览器广泛的支持
 script, img, iframe标签不受同源策略限制
 
 //3.CORS 跨域-- 与后端进行 Ajax 通信时, 通过自定义 HTTP 头部设置从而决定请求或响应是否生效
+{
+	'Access-Control-Allow-Origin':'http://localhost:8081',
+	'Access-Control-Allow-Credentials': 'true'							//withCredentials: true
+}
 
-//application/json, application/x-www-form-urlencoded,  multipart/formdata
-
-1.Content-Type: 'text/plain;charset=utf-8'		
-//Request Payload   xhr默认方式	  encodeURIComponent(key) = encodeURIComponent(data[key]) 
-2.application/x-www-form-urlencoded				//Form Data			jq默认方式
-3.application/json												//Query String Parameters
-4.enctype="multipart/form-data"						//上传文件
 
 //ajax与浏览的get请求, 浏览器会添加默认的请求头 'text/html, application/xhtml+xml; q=0.9,image/webp'
-//xhr
 var xhr = new XMLHttpRequest();
 xhr.open('post', 'http://127.0.0.1');
 xhr.setRequestHeader("Content-type", "application/json");
@@ -34,40 +30,37 @@ xhr.send(formData)
 //jq--前端
 $.ajax({
 	url: 'http://127.0.0.1',
-//	method:'post',
-//	headers: {'Content-Type':'application/json', 'Accept': "application/json; charset=utf-8",},
+	method:'post',
+	headers: {
+		'Accept': "application/json; charset=utf-8",
+		'Content-Type':'application/json', 
+	},
 	contentType: 'application/json',
 	data: JSON.stringify({name:'yufeng'}),
+	dataType: 'json',
 	success: function(){
 		
 	}
 })
 
 
-//URL结构
-scheme: 表示协议，如Http, Https, Ftp等；		//location.protocol
-host:   表示所访问资源所在的主机名：如：www.baidu.com;
-port:   表示端口号，默认为80；
-path:   表示所访问的资源在目标主机上的储存路径；
-query:  表示查询条件；
-
-
 //报文格式 (Fiddler抓包--Inspector Raw选项)
 //1.请求报文格式
-请求方法 URL HTTP/版本号
+方法 URL HTTP/版本号
 请求首部字段...
-空行
+
 body(post请求参数方式)
 
 //2.响应报文格式
 HTTP/版本号 状态码 状态描述
 响应首部字段...
-空行
+
 body
 
 //安全、传输、客户端、缓存、实体、杂项
 req.get('accept')
-res.writeHeads(200, {}), res.setHead()
+res.writeHeads(200, {}), res.setHeader()
+
 res.set(), res.header(), res.append(), res.type()
 
 
@@ -94,7 +87,6 @@ content-encoding				//告知客户端，服务器对资源内容的编码
 content-language				//告知客户端，服务器对资源使用的自然语言
 content-length					//告知客户端资源长度
 content-type						//告知客户资源的媒体类型
-content-encoding				//告知客户资源的编码格式
 expries									//告知客户端资源的失效日期。可用于对缓存的处理
 last-modifies						//告知客户端资源最后一次修改的时间。
 

@@ -2,7 +2,32 @@ enctype="application/x-www-form-urlencoded"
 enctype="multipart/form-data"
 enctype="application/json"
 
+//content-type
+blob = new Blob(['value=123'], {type:'applicatin/x-www-form-urlencoded'})
+fd   = new FormData(); fd.append('value', 123)
+params = new URLSearchParams({value: 123})
+
+
 //Node + Express + post请求
+function Axios(config){
+	if(typeof config === 'string'){
+		config = arguments[1] || {}
+	}else{
+		config = config || {}
+	}
+
+	config = Object.assign({}, defaults, {})
+}
+
+//post, put, patch   delete, get, head, options
+Axios.prototype[method] = function(url, data, config) {			
+	Object.assign(config, {
+		method,
+		url,
+		data
+	})
+	return this.request(config)
+}
 
 
 //请求数据的三种方式区别， 默认请求方式  
@@ -22,7 +47,7 @@ Query string parameters
 	//node接收：req.query, req.params
 
 //Post方式
-Form Data								//Content-Type: application/x-www-form-urlencoded
+表单Key-Value						  //Content-Type: application/x-www-form-urlencoded
 	1.form ->post						//post提交表单
 	2.$.post()							//post发送数据方式
 
@@ -50,7 +75,7 @@ Form Data								//Content-Type: application/x-www-form-urlencoded
 
 
 //Post上传 multipart/form-data
-Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-data"
+文件上传流媒体					//Content-Type: multipart/form-data    enctype="multipart/form-data"
 	form ->file						//表单上传控件方式
 	axios({								//axios--formdata数据
 		method: 'post',
@@ -61,7 +86,6 @@ Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-
 	let params = new FormData();
   params.append('file', files[0], 'image.png')
 	//Request Header  -- Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryp3gmLrKfayrJbBUh
-	//注：Request Payload的请求正文格式是json格式的字符串
 
 	var fd = new FormData($('#form')[0])				//<form>标签添加enctype="multipart/form-data"
 	
@@ -79,17 +103,20 @@ Form Data								//Content-Type: multipart/form-data    enctype="multipart/form-
 		},
 	})
 
-	//node流方式接收数据
+	//node流方式接收数据							bodyParser req.files
 	var str = ''
 	req.on('data', chunk => {
 		str += chunk;
 	})
 
 
+//注：Request Payload的请求正文格式是json格式的字符串
 //以JSON方式传入服务端   Content-Type: application/json
 Request Payload					
-	1.axios({method:'post', url:url})	        //axios post默认传参方式
-	2.wx.request()					//微信请求方式
+	1.axios({												//axios post默认传参方式
+		method:'post', url:url
+	})	        
+	2.wx.request()									//微信请求方式
 
 	3.//jq传递json
 	$.ajax({
@@ -100,16 +127,6 @@ Request Payload
 			'content-type': 'application/json'
 		}
 	})
-
-//例
-fetch(url,{
-  method: 'post',
-  headers: {
-    'content-type':'application/json'				//fetch默认为text/plain
-  },
-  body: JSON.strinfiy({age: 10})
-})
-
 
 //TODO---API
 //FormData:						append delete get getAll has set keys values forEach entries
@@ -124,8 +141,16 @@ var params = new URLSearchParams();														//表单：application/x-www-fo
 
 
 
-//Fetch  默认Request Payload, 设置请求头部Form Data
-fetch({
+//Fetch  请设置请求头部Form Data
+fetch(url,{												//fetch默认为text/plain, 参数是Request Payload形式
+  method: 'post',
+  headers: {
+    'content-type':'application/json'				
+  },
+  body: JSON.strinfiy({age: 10})
+})
+
+	fetch({
   url: url,
   method: 'POST',
   headers:{

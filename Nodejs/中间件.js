@@ -1,20 +1,21 @@
-//解析
+//瑙ｆ瀽
 body-parser:
-	bodyParser.json();						//application/json
+	bodyParser.json();											//application/json
 	bodyParser.urlencoded({extend: false})	//application/x-www-form-urlencoded
 
-//注：https://github.com/expressjs/body-parser
+//娉細https://github.com/expressjs/body-parser
 busboy and connect-busboy
 multiparty
 connect-multiparty							//multipart/form-data  formData.append();
 formidable
-multer										//multipart/form-data 上传数据 req.files
+multer													//multipart/form-data 涓婁紶鏁版嵁 req.files
 
 
-//node常用模块
-fs-extra        //fs-promise丢用
-iconv-lite      //中文解码
-content-type    //headers类型处理
+//node甯哥敤妯″潡
+fs-extra        //fs-promise涓㈢敤
+iconv-lite      //涓枃瑙ｇ爜
+content-type    //headers绫诲瀷澶勭悊 ContentType.parse(req.headers['content-type']);
+jschardet				//璇嗗埆缂栫爜   jschardet.detect(buf)
  
 sqlite3
 sqlite          //ES7 + sqlite
@@ -22,7 +23,27 @@ mysql
 mongoose
  
 markdown
-excel-parser    //node读取excel  
-ejsexcel        //.xls读取不了
+excel-parser    //node璇诲彇excel  
+ejsexcel        //.xls璇诲彇涓嶄簡
 node-xlsx
 node-xlrd
+
+
+
+
+Express 3									Express 4
+express.bodyParser				body-parser + multer
+express.compress					compression
+express.cookieSession			cookie-session
+express.cookieParser			cookie-parser
+express.logger						morgan
+express.session						express-session
+express.favicon						serve-favicon
+express.responseTime			response-time
+express.errorHandler			errorhandler
+express.methodOverride		method-override
+express.timeout						connect-timeout
+express.vhost							vhost
+express.csrf							csurf
+express.directory					serve-index
+express.static						serve-static

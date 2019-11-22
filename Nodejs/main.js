@@ -11,13 +11,14 @@ app.use(express.static('res'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+//注意 * 不能满足带有cookie的访问,Origin 必须是全匹配
 //设置跨域访问
 app.use(require('cors')());
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin",  req.headers.origin || '*');
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization,X-Requested-With");
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Credentials", true);			//可以带cookies
+  res.header("Access-Control-Allow-Credentials", true);			//允许带有cookie访问
   res.header("X-Powered-By",' 3.2.1')
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
@@ -114,9 +115,52 @@ fs.readFile(__dirname + '/data.txt', function (err, data) {
 });
 */
 
-var server = app.listen(3000, '10.206.16.118', ()=>{
-    var address = server.address().address;
-    var port    = server.address().port;
 
-    console.log("地址: %s:%s", address, port);
+/*----------------------请求头部--10.15--------------*/
+//TODO 跨域设置
+app.get('/get-cookie', (req, res)=>{
+  console.log('get:', req.query)
+  req.session.time = Date.now()
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8081')
+  res.header('Access-Control-Allow-Credentials', 'true')
+  res.json({result:'ok'})
+})
+
+//Ajax--若header里面包含自定义字段，浏览器是会先发一次options请求
+//请求通过，则继续发送正式的post请求，不通过则返回错误 ---  Request header field content-type is not allowed 
+app.options('/post', (req, res) => {
+  console.log(req.headers)
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8081')
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization,X-Requested-With");
+  res.header('Access-Control-Allow-Credentials', 'true')
+
+  if (req.session.time) {
+    res.json({ result: 'ok' })
+  } else {
+    res.json({ result: 'error' })
+  }
+})
+//正式发送的post请求
+app.post('/post', (req, res) => {
+  console.log(req.headers['content-type'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8081')
+
+  res.json({ result: 'ok' })
+})
+
+//前端设置跨域,请求自动带上cookie
+axios.defaults.withCredentials = true
+
+$.ajax({
+	url: '',
+	type: 'post',
+	dataType : 'json',
+	crossDomain: true,						//跨域设置
+	xhrFields: {									//跨域请求自动带上cookie
+		withCredentials: true
+	},
+	headers: {										//传递json类型参数
+		'Accept': "application/json; charset=utf-8",
+		'Content-Type':'application/json'
+	}
 })

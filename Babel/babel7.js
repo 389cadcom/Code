@@ -1,3 +1,9 @@
+//babel-plugin-transform-decorators-legacy  静态属性、私有属性、方法、装饰器
+@withRouter
+class App extend Component{
+
+}
+
 //babel-upgrade
 
 @babel/core 
@@ -90,7 +96,7 @@ babel-plugin-transform-runtime：
 
 //实践
 1.动态加载 import(/*webpackChunkName: 'lodash'*/ 'lodash')
-  需安装  babel-plugin-syntax-dynamic-import							//动态语法  @babel/preset-stage-3
+  需安装   babel-plugin-syntax-dynamic-import							//动态语法  @babel/preset-stage-3
 
 2.在老版本浏览器使用 import()需polyfill(如：es6-promise 或 promise-polyfill),来shim Promise
 
@@ -113,6 +119,9 @@ if (!window.Promise) {
 	@babel/plugin-transform-regenerator
 	@babel/plugin-transform-runtime
 	@babel/runtime
+
+	transform-async-to-generator
+	transform-async-to-module-method
 
 
 //plugins说明

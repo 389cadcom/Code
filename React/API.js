@@ -1,9 +1,12 @@
-1.React在初始化和更新的时候会触发的钩子函数？
-2.父组件在更新状态的时候父组件与子组件的生命周期顺序是怎么执行的？
+1.React在初始化和更新的时候会触发的钩子函数？ 
+						constructor, willMount,  render, (sub), didMounted  | sub->update  app->update  render
 
+2.父组件在更新状态的时候父组件与子组件的生命周期顺序是怎么执行的？ 
+																				render, willReceiveProps, shouldComponentUpdate, willUpdate, didUpdate 
+																				getDerivedStateFormProps, getSnapshotBeforeUpdate
 
 //npx create-reate-app  Demo
-//React API 挂载、更新、卸载   类字段提案的说明
+//React API 挂载、更新、卸载   类字段提案的说明 static
 //类组件、
 React.Component
 

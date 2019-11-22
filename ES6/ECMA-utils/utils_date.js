@@ -24,6 +24,7 @@ export default {
     var minutes = Math.floor(time / 60 % 60);
     var seconds = Math.floor(time % 60);
 	},
+	//dateDiff
   goodTime (str) {
     let now      = new Date().getTime()
     let oldTime  = new Date(str).getTime()
@@ -58,6 +59,7 @@ export default {
     }
     return result
   },
+	
 	getTime1(){
 		//return +new Date() || Date.now()	
 		return new Date().setHours(0, 0, 0, 0)

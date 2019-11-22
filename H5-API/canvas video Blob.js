@@ -6,6 +6,10 @@ muted="muted"  自动播放属性
 	<source :src="$api.path + '/' + item.imgUrl"/>
 </video>
 
+//10.21   ArrayBuffer-->TypeArray-->Blob
+
+
+
 
 //图片转换
 1. urlToImage()				//img.src

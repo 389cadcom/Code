@@ -97,7 +97,7 @@ Object.prototype.hasOwnProperty('hasOwnProperty')
 String.prototype.hasOwnProperty('substr')
 
 
-//检查是否是原型方法
+//检查是否是原型方法--父类方法
 function isPrototypeVal(obj, key){
 	return key in obj && !obj.hasOwnProperty(key);
 }
@@ -115,7 +115,8 @@ Reflect.ownKeys(obj)
  desc  == {value: "A", writable: false, enumerable: false, configurable: false}
  desc1 == { get:function(){}, set:function(){}, enumerable: false, configurable: false}
 
- Object.keys()只遍历对象的自有成员，for...in把对象继承成员也获取了，只要此成员的[[Enumerable]]为true，与obj.hasOwnProperty()使用
+ Object.keys()只遍历对象的自有成员，
+ for...in把对象继承成员也获取了只要此成员的[[Enumerable]]为true，与obj.hasOwnProperty()使用
 */
 
 1.value：				此成员的值，不论是基础数据类型还是对象、函数；缺省为undefined

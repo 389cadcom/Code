@@ -104,23 +104,42 @@ export 必须与模块内部的变量建立一一对应关系
 报错：														正确：	
 1.export default var a = 1;       var a = 1; export default a;  export {a}
   var a = 1;
-	export a;												export var a = 1;
+	export a;												export var a = 1;    export {a}
 
-2.export 1;												export default 1;      将后面的值, 赋给default变量; 
+2.export 1;												export default 1;    将后面的值, 赋给default变量; 
 
 3.function f(){} 
   export f;												export {f}， export default f
 */
+
 //正确
-export var a = 1;   export default 1;
-export {a}					export default a;
+export var a = 1;								export default 1;
+export {a}											export default a;
 
 export function fn(){};					export {fn}
 export default function(){}			export default function fn(){}   //视同匿名函数加载
 
+//default已是变量, 所以不能跟变量声明语句  var, let, const
 export default  本质是输出一个叫做default的变量或方法，系统允许你取任意名字
 
-//default已是变量, 所以不能跟变量声明语句  var, let, const
+//default解释
+//导入
+import a from './d';
+// 等效于，或者说就是下面这种写法的简写，是同一个意思
+import {default as a} from './d';
+
+//导出
+export default function() {}
+// 等效于：
+function a() {};
+export {a as default};
+
+
+// import d from './d'
+const  d = require('./d').default    //define(function(require, exports, module){  })
+
+let { default:component } = xxx
+
 
 类：
 export default class{}
