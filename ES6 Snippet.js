@@ -12,10 +12,6 @@ impt→	import PropTypes from 'prop-types'
 imrr→	import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 
-//cp, cs 解构
-cp→	  this.props.propName
-cs→	  this.state.stateName
-
 //r开头生成--类组件   rcc, rfc, rafc | rce, rfce,
 rcc  → export default class									   //组合生成组件    ecl, ece
 rccp →  export default class    prop-types
@@ -28,6 +24,10 @@ rfce → fn export default test									//定义再导出
 rafc → const name = ()=>({})									//先定义常量，再导出
 rfcp → export default,  prop-types
 
+
+//cp, cs 解构
+cp→	  this.props.propName
+cs→	  this.state.stateName
 
 //构造函数  con
 rconst→	constructor(props) with this.state			//1.构造函数

@@ -1,3 +1,4 @@
+//Koa 将其填入Response Header中的Set-Cookie
 ctx.cookies.set(name, value, { expires: new Date(Date.now() + 9000), httpOnly: true })
 ctx.cookies.set(name, value, { maxAge: 9000, httpOnly: true })
 
@@ -16,40 +17,85 @@ ctx.cookies.set(name, value, { maxAge: 9000, httpOnly: true })
 //Node原生方法
 req.method, req.url, req.
 
-res.statusCode, res.writeHead(), res.setHeader() res.write(), res.end()
+res.writeHead(), res.setHeader() res.write(), res.end()
 
 /****************************Koa***********************/
-//Node: crx.req, ctx.res.on('data'),  ctx.request.body
+//Node: crx.req, ctx.res.on('data'), | ctx.request.body, ctx.response
 
 ctx.header
 ctx.is('html'), ctx.get('user-agent'), ctx.accepts(), ctx.acceptsEncodings()
 ctx.is('urlencoded')
 
-ctx.hostname, ctx.host, ctx.origin, ctx.ip, ctx.protocol, socket
-ctx.path, ctx.href, ctx.url
+ctx.headers
+ctx.method
+ctx.query
+ctx.querystring
 
-ctx.query, ctx.querystring, ctx.params
+ctx.url
+ctx.originalUrl
+ctx.origin
+ctx.href
+ctx.path
+ctx.host
+ctx.hostname
+ctx.protocol
+ctx.ip
+ctx.ips
+ctx.is()
+ctx.get()
+
+ctx.accepts()
+ctx.acceptsEncodings()
+ctx.acceptsCharsets()
+ctx.acceptsLanguages()
 
 
 //ctx.response
-ctx.type, ctx.set(), ctx.append(), ctx.remove()
-ctx.status, ctx.langth, 
+ctx.type, ctx.set(), ctx.append(), ctx.remove(), ctx.body, ctx.redirect(), ctx.attachment()
 
-ctx.body, ctx.redirect(), ctx.attachment()
+ctx.status=
+ctx.length=
+ctx.type=
+ctx.message=
+ctx.headerSent
 
-//cookie   Koa 将其填入Response Header中的Set-Cookie
-ctx.cookies.get, ctx.cookies.set
+ctx.body=
+ctx.redirect()
+ctx.attachment()
+
+ctx.set()
+ctx.append()
+ctx.remove()
+ctx.lastModified=
+ctx.etag=
 
 ctx.throw(406, 'json, html, or text only');
 
 
-
 /****************************Express***********************/
-req.protocol, req.host, req.hostname, req.path
+//1.Node http
+    res.writeHead(), setHeader(), res.write(), res.end()
+    req.url, method, headers
+    
+//2.Express响应
+	res.statusCode = 200, res.status(200).json({})  
+	res.get()                             //获取设置值
+	res.set(),  append(), header({})			//向应头
+	res.type(), redirect(), cookie()
+	res.send(), sendFile(), render(), json(), jsonp(), download(), links()
 
-req.headers, req.get, req.accepts(), 
+	sendStatus(200)  === res.status(200).send('ok')
+	sendStatus(403)  === res.status(403).send('Forbidden')
+	sendStatus(404)  === res.status(404).send('Not Found')
+	sendStatus(500)  === res.status(500).send('Internal Server Error')
 
-req.query, req.body. req.params
+//3.Express请求 
+	req.query, body, params, cookie
+	req.host,  hostname/ip, protocol, 
+	req.originalUrl = baseUrl + path
+
+	req.is(), get(), accepts(), acceptsEncoding, acceptsLanguages
+	req.headers
 
 //cookie
 req.cookies,  res.cookie(name, value), res.clearCookie('') | req.signedCookies
@@ -62,8 +108,3 @@ if(req.session.islogin){
 	res.locals.islogin = req.session.islogin;
 }
 */
-
-res.header(), res.set(), res.append(), res.type()
-
-res.status(200)
-res.send(), res.sendFile(), res.render(), res.json(), res.attachment(), res.download()

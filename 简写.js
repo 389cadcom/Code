@@ -1,3 +1,7 @@
+//
+
+
+//字符截取
 "★★★★★✰✰✰✰✰".substring(5-3, 10-3)
 
 //简写
@@ -103,7 +107,7 @@ var rate = 1;
 
 
 //12.柯里化
-let add = a => b => a + b
+let add = a => b => a + b   add(a)(b)
 
 let is = p => v => o => o.hasOwnProperty(p) && o[p] == v;	//判断一对象属性值
 
@@ -120,19 +124,6 @@ var a = {
 }
 if(a == 1 && a==2 && a==3){
 	console.log("Hi");
-}
-//with??
-with({
-  get a() {
-    return Math.floor(Math.random()*4);
-  }
-}){
-  for(var i=0;i<1000;i++){
-    if (a == 1 && a == 2 && a == 3){
-      console.log("after "+(i+1)+" trials, it becomes true finally!!!");
-      break;
-    }
-  }
 }
 
 //非数字或者数字字符串的内容变成 0呢
@@ -204,6 +195,8 @@ function sleep(milli){
 	while(Date.now() < start + milli);
 }
 
+const delay = (ms=500) => new Promise((resolve, reject)=> setTimeout(resolve, ms))
+
 
 //简单实现合并对象, 不定个参数   TODO: Object.assgin({})
 funtion merge(root){
@@ -219,11 +212,10 @@ funtion merge(root){
 var merged=merge({name:'shokc'},{city:"shenzhen", name:'shokc'})
 
 
-
+//判断对象类型
 function type(o){
-    var s = Object.prototype.toString.call(o);
-    //console.log(s.match(/\[object (.*?)\]/))
-    return s.match(/\[object (.*?)\]/)[1].toLowerCase();        //正则匹配
+	var s = Object.prototype.toString.call(o);
+	return s.match(/\[object (.*?)\]/)[1].toLowerCase();					//正则匹配, 分组
 }
 
 //在type函数基础上，加上专门判断某种类型数据
@@ -237,6 +229,7 @@ function type(o){
 	'Date',
 	'Boolean',
 	'Function',
+	'AsyncFunction',
 	'RegExp',
 	'Error'
 ].forEach( t => {

@@ -9,7 +9,7 @@
 */
 
 
-//1.跳出for循环,    forEach遍历数组的时候是无法 break 中断的, 可以用return;跳出当前值
+//1.跳出for循环,    forEach遍历数组的时候是无法 break 中断的, 可以用return;跳出当前值, throw Error('终止')
 var arr = [1,2,3]		
 arr.foo = 'foo'
 for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
@@ -108,9 +108,27 @@ var obj = arr.reduce((prev, curr)=> {...prev, [curr]:''}, {})
 	}, {})
 
 	arr.reduce()
+//12.数组中每个元素出现的次数
+var arr = ['a1', 'a3', 'a1', 'a5',  'a7', 'a1', 'a3', 'a4', 'a2', 'a1'];
+arr.reduce((account, curr)=>{
+	if(account[curr]){
+		account[curr]++
+	}else{
+		account[curr] = 1	
+	}
+	return account;
+}, {})
+
+//去重
+arr.reduce((account, curr)=>{
+	if(!account.includes(curr)){
+		account.push(curr)
+	}
+	return account;
+}, [])
 
 
-//12.包含--过滤在另一个数组存在的项
+//13.包含--过滤在另一个数组存在的项
 	arr.filter( item => {
 		if(arys.includes(item)){		//arys.indexOf(item) > -1
 			
@@ -118,7 +136,7 @@ var obj = arr.reduce((prev, curr)=> {...prev, [curr]:''}, {})
 	})
 
 
-//13.分组--对数组对象分组
+//14.分组--对数组对象分组
 function arrToGroup(results){
 	var map = {}, arr = [];
 	for(var item of results){

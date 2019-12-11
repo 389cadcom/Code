@@ -8,6 +8,31 @@ express -e --css=sass
 node请求路径解析：
 obj = url.parse(req.url, true); query = qs.parse(obj.query)
 if('/api/get' == obj.pathname)
+
+
+
+1.Node http
+	res.writeHead(), setHeader(), res.write(), res.end()
+	req.url, method, headers
+	
+2.Express响应
+	res.statusCode = 200, res.status(200).json({})  
+	res.get()                             //获取设置值
+	res.set(),  append(), header({})
+	res.type(), redirect(), cookie()
+	res.send(), sendFile(), render(), json(), jsonp(), download(), links()
+
+	sendStatus(200)  === res.status(200).send('ok')
+	sendStatus(403)  === res.status(403).send('Forbidden')
+	sendStatus(404)  === res.status(404).send('Not Found')
+	sendStatus(500)  === res.status(500).send('Internal Server Error')
+
+3.Express请求 
+	req.query, body, params, cookie
+	req.host,  hostname/ip, protocol, 
+	req.originalUrl = baseUrl + path
+
+	req.is(), get(), accepts(), acceptsEncoding, acceptsLanguages
 */
 
 //Router	-->	  roter = express.Router() 创建模块化、可挂载的路由句柄
@@ -33,7 +58,7 @@ app.get
 app.param				//给路由参数添加回调触发器  'users/:id' --> param('id')
 
 app.set()				//env, trust proxy, view, view engine
-app.engine()			//注册模板引擎 1.app.set('views', )	2.app.engine('.html', ejs.renderFile); 是ejs.__express的别名; 3.app.set('view engine', 'html')
+app.engine()		//注册模板引擎 1.app.set('views', )	2.app.engine('.html', ejs.renderFile); 是ejs.__express的别名; 3.app.set('view engine', 'html')
 app.get()
 
 app.enable()/disable    //调用app.set('foo', false)和调用app.disable('foo')是等价 
@@ -70,13 +95,13 @@ req.protocol
 req.hostname / req.ip
 req.host
 
-req.baseUrl				//路由实例挂载的Url				route.get('/', fn) -> app.use('/route', route)  ==> /route
+req.baseUrl						//路由实例挂载的Url				route.get('/', fn) -> app.use('/route', route)  ==> /route
 req.path
-req.originalUrl			//是req.baseUrl和req.path组合
+req.originalUrl				//是req.baseUrl和req.path组合
 
-req.is()				//Content-Type的参数type给定的MIME type
-req.get()				//获取指定请求头部
-req.accepts()			//HTTP头部,指定的内容类型是否被接受
+req.is()							//Content-Type的参数type给定的MIME type
+req.get()							//获取指定请求头部
+req.accepts()					//HTTP头部,指定的内容类型是否被接受
 req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages
 
 
