@@ -110,21 +110,21 @@ var obj = arr.reduce((prev, curr)=> {...prev, [curr]:''}, {})
 	arr.reduce()
 //12.数组中每个元素出现的次数
 var arr = ['a1', 'a3', 'a1', 'a5',  'a7', 'a1', 'a3', 'a4', 'a2', 'a1'];
-arr.reduce((account, curr)=>{
-	if(account[curr]){
-		account[curr]++
+arr.reduce((accum, curr)=>{
+	if(accum[curr]){
+		accum[curr]++
 	}else{
-		account[curr] = 1	
+		accum[curr] = 1	
 	}
-	return account;
+	return accum;
 }, {})
 
 //去重
-arr.reduce((account, curr)=>{
-	if(!account.includes(curr)){
-		account.push(curr)
+arr.reduce((accum, curr)=>{
+	if(!accum.includes(curr)){
+		accum.push(curr)
 	}
-	return account;
+	return accum;
 }, [])
 
 

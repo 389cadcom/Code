@@ -1,4 +1,19 @@
-//babel-plugin-transform-decorators-legacy  静态属性、私有属性、方法、装饰器
+@babel/plugin-proposal-decorators							
+@babel/plugin-transform-decorators-legacy		
+
+//@babel/preset-env@7.7.4
+{
+	plugins: [
+		"@babel/plugin-proposal-async-generator-functions",
+		"@babel/plugin-proposal-dynamic-import",
+		"@babel/plugin-syntax-async-generators",
+		"@babel/plugin-syntax-dynamic-import"
+	]
+}
+
+
+
+//babel-plugin-transform-decorators-legacy  装饰器  @babel/plugin-proposal-decorators
 @withRouter
 class App extend Component{
 
@@ -163,14 +178,21 @@ transform-decorators-legacy							//ES7 装饰器
 
 
 //es2018  --es9
-babel-plugin-class-properties           //class 的静态属性转化
+babel-plugin-transform-class-properties           //class 的静态属性转化
 
 
-//babel@7  取消 babel-preset-stage
+//babel@7  取消 babel-preset-stage   
+//说明: https://github.com/babel/babel/blob/master/packages/babel-preset-stage-0/README.md
+@babel/plugin-proposal-decorators 的声明必须优先于 @babel/plugin-proposal-class-properties
 
 //Stage-X(0/1/2/3/4) 五个阶段: 设想/展示、建议/征求、草案、候选、定案
 /*
-		// Stage 1
+{
+  "plugins": [
+    // Stage 0
+    "@babel/plugin-proposal-function-bind",
+
+    // Stage 1
     "@babel/plugin-proposal-export-default-from",
     "@babel/plugin-proposal-logical-assignment-operators",
     ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
@@ -188,8 +210,10 @@ babel-plugin-class-properties           //class 的静态属性转化
     // Stage 3
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-syntax-import-meta",
-    ["@babel/plugin-proposal-class-properties", { "loose": false }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
     "@babel/plugin-proposal-json-strings"
+  ]
+}
 */
 
 

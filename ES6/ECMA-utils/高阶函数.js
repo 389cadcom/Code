@@ -60,3 +60,20 @@ $input.addEventListener('input', throttle((e)=>{
 	var val = e.target.value;
 	console.log(val)
 },500), false)
+
+
+
+//@mixin
+const mixin = function(obj, mixins){
+    const newObj = obj;
+
+    newObj.prototype = Object.create(obj.prototype);
+
+    for(let prop in mixins){
+        if(mixins.hasOwnProperty(prop)){
+            newObj.prototype[prop] = mixins[prop];
+        }
+    }
+
+    return newObj;
+}

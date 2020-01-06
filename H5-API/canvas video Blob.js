@@ -81,3 +81,18 @@ function dataURLtoBlob(data){
 //window.atob()：base64解码，ASCII转base64编码
 
 //window.btoa()：base64转码，base64转ASCII
+
+
+//后台传回流文件, 前端如何实现文件下载
+.then(response => {
+   const blob = new Blob([response]);
+   const downloadElement = document.createElement("a");
+   const href = window.URL.createObjectURL(blob);
+   const name = params.fileName;
+   downloadElement.href = href;
+   downloadElement.download = name;
+   document.body.appendChild(downloadElement);
+   downloadElement.click();
+   document.body.removeChild(downloadElement);
+   window.URL.revokeObjectURL(href);
+})

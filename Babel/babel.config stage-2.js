@@ -89,3 +89,7 @@ babel-plugin-transform-async-generator-functions: "^6.24.1",				//@babel/preset-
 babel-plugin-transform-async-to-generator: "^6.24.1",								//@babel/preset-env实现
 babel-plugin-transform-exponentiation-operator: "^6.24.1",	
 babel-plugin-transform-object-rest-spread: "^6.22.0"								//@babel/preset-env实现
+
+
+//regeneratorRuntime is not defined报错, 解析async/await等es7语法，需要babel进行转换
+//需引入@babel/plugin-tranform-runtime  @babel/runtime

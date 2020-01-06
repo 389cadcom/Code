@@ -85,6 +85,21 @@ optimization: {
 	],
 },
 
+//terser -ES6压缩
+optimization: {
+	minimize: true,
+	minimizer: [
+		new TerserWebpackPlugin({
+			test: /\.js(\?.*)?$/i,
+			terserOptions: {
+				mangle: false,
+				output: {
+					beautify: true
+				}
+			}
+		})
+	]
+}
 //4.压缩代码
 new UglifyJsPlugin({
 	beautify: true,
