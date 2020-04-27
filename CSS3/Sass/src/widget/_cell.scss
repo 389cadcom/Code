@@ -1,0 +1,47 @@
+.weui-cells{
+  @at-root{
+    &__title {
+      margin-top: 16px;
+      & + .weui-cells{
+        margin-top: 0;
+      }
+    }
+    &__tips{
+      color: gray;
+    }
+  }
+  margin: 16px;
+}
+.weui-cell{
+  &__bd{ flex: 1; word-wrap: break-word; word-break: break-all; }
+  &__ft{}
+
+  &_access{}
+  &_active{}
+  &_link{}
+}
+
+// &__label, &__avatar{ }
+// &__title, &__value{ }
+// &__more, &__time{ }
+.list{
+  &__item{
+    display: flex;
+    &:not(:last-child){
+      margin-bottom: 10px;
+    }
+  }
+
+  &__avatar{
+    width: 90px;
+    height: 90px;
+    margin-right: 10px;
+  }
+  &__content{}
+
+  &__tips{
+    .source{}
+    .time{}
+  }
+
+}

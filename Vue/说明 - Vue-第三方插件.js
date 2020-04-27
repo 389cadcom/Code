@@ -26,3 +26,14 @@ requireComponent.keys().forEach( fileName => {
 
 	Vue.component(componentName, componentConfig.default || componentConfig)
 })
+
+	
+//¿¡º”‘ÿ
+Vue.use(VueLazyload, {
+	error: '',
+	loading: '',
+	preLoad: 1,
+	attempt: 1
+})
+
+<img v-lazy='item.img'

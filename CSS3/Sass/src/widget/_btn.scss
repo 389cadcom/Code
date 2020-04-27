@@ -1,0 +1,30 @@
+button, input{
+  &.weui-btn{
+    -webkit-appearance: none;
+    border-width: 0;
+    outline: 0;
+    &:focus { outline: 0 }
+    &_inline,&_mini{
+      width: auto;
+    }
+  }
+}
+
+// .#{$namespace}btn{
+.weui-btn{
+  &_default{
+    &:not(.weui-btn_disabled):visited{}
+  }
+  &_primary{}
+  &_wran{}
+  &_plain{}
+  &_loading{}
+
+  &_disabled{}
+  &_inline, &_mini{}
+
+  
+  &:not(.weui-btn_mini) + &:not(.weui-btn_mini){
+    margin-top: 15px;
+  }
+}

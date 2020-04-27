@@ -1,83 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" href="res/css/index.css">
 </head>
+<script>
+// document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+!function(win, doc) {
+	var n = doc.documentElement,
+		d = win.devicePixelRatio || 1;
+
+	function i() {
+		var e = n.clientWidth / 3.75;
+		n.style.fontSize = e + "px"
+	}
+
+	(function fn(){
+		doc.body ? doc.body.style.fontSize = "16px" : doc.addEventListener("DOMContentLoaded", fn);
+		i();
+		win.addEventListener("resize", i);
+		win.addEventListener("pageshow", function(e) {
+			win.persisted && i()
+		})
+	})();
+
+	if(d >= 2){
+		var o = doc.createElement("body"),
+			a = doc.createElement("div");
+			a.style.border = ".5px solid transparent";
+			o.appendChild(a)
+			n.appendChild(o)
+			if(1 === a.offsetHeight){
+				n.classList.add("hairlines")
+				n.removeChild(o)
+			}
+	}
+}(window, document)
+</script>
 <style>
-body{ margin:0; font-style: italic; font-family: sans; }
-.container{ display: flex; flex-direction: column; }
-.container > *{ text-align: center; min-height: 100px;}
-main{ background: #ccc;  }
-.left-aside{ background: skyblue;  }
-.right-aside{ background: tomato;}
-header,footer{ background: #888; }
-
-.wraper{display: flex; }
-.left-aside,.right-aside{flex: 0 0 5rem;}
-
-main{flex: 1 1 5rem;}
-
-/*PC排版定义*/
-@media all and (min-width: 768px){
-/*   .container{flex-flow: row wrap;}
-  header,footer{flex: 0 0 100%;}
-  header{order: 0;}
-  footer{order: 4;}
-  .left-aside{order: 1;}
-  .right-aside{order: 3;}
-  .left-aside,.right-aside{flex: 0 0 10em;}
-  main{order: 2; flex: 1;} */
+@media screen and (min-width:321px){
+	html{font-size: 16px !important;}
+	body{
+		font-size:15px
+	}
 }
-@media (max-width:767px){
-  .wraper{flex-direction: column;}
-  main{order: -1}
+@media screen and (min-width:414px){
+	html{font-size: 18px !important;}
+	body{
+		font-size:18px
+	}
 }
+p{border: 1px solid red; font-size: 1rem}
+ul{border: 1px solid red; height: 200px; width: 100%; margin: 0; padding:0;}
+ul>li{list-style: none; margin: 0; padding: 0;}
 </style>
+
 <body>
+
 <div class="container">
-  <header>#header</header>
-  <div class="wraper">
-    <aside class="left-aside">#aside1</aside>
-    <main>#main</main>
-    <aside class="right-aside">#aside2</aside>
-  </div>
-  <footer>#footer</footer>
+	<p class="pth prh">无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。</p>
+	<p class="pvh">无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。</p>
 </div>
+<br>
+<div class="flexbox three">
+	<div class="flexbox__avatar">头像</div>
+	<div class="flexbox__title">title</div>
+	<div class="flexbox__time">time</div>
+</div>
+<div class="container">
+	<div class="list"></div>
+	<div class="list"></div>
+	<div class="list"></div>
+	<div class="list"></div>
+	<div class="list"></div>
+	<div class="list"></div>
+	<!-- <div class="list"></div> -->
+</div>
+
 <style>
-.grid{display: flex; flex-flow: row wrap; margin-top: 10px;}
-.row{display: flex; flex: 0 100%; flex-flow: row wrap;}
-.col{box-sizing: border-box; padding: 5px; flex: 0 0 100%;}
-div[class^='col'] div{background:#ddd}
-
-@media (min-width:768px){
-
-.col-10{flex:0 0 100%;}
-.col-9{flex:0 0 90%;}
-.col-8{flex:0 0 80%;}
-.col-7{flex:0 0 70%;}
-.col-6{flex:0 0 60%;}
-.col-5{flex:1 1 50%;}
-.col-4{flex:0 0 40%;}
-.col-3{flex:0 0 30%;}
-.col-2{flex:0 0 20%;}
-.col-1{flex:0  10%;}
-  
+.flexbox{
+	display: flex;
+	/* justify-content: space-between; */
+	align-items: center;
+}
+.flexbox li:first-child{width: 100px}
+.flexbox li:nth-child(2){flex: 1}
+.flexbox li:last-child{
+	width: 100px;
+	text-align: right;
+	align-self: flex-start
 }
 </style>
-<div class="grid">
-  <div class="row">
-    <div class="col"><div>full</div></div>
-  </div>
-  <div class="row">
-    <div class="col col-2"><div>2/10</div></div>
-    <div class="col col-8"><div>8/10</div></div>
-  </div>
-  <div class="row">
-    <div class="col col-5"><div>5/10</div></div>
-    <div class="col col-5"><div>5/10</div></div>
-  </div>
+<ul class="flexbox">
+	<li>flex1</li>
+	<li>flex2</li>
+	<li>flex3</li>
+</ul>
+<style>
+.box{
+	vertical-align: top;
+	margin: 10px;
+	padding: 10px;
+	width: 100px;
+	height: 100px;
+	background: #ccc;
+	border-radius: 10%;
+	box-shadow: 0 5px 1px #fff inset
+			, 0 -5px 1px #888 inset
+			, 5px 0 1px #aaa inset
+			, -5px 0 1px #aaa inset;
+	display: inline-flex;
+	flex-flow: row wrap;
+}
+.dot{
+	width:30px;
+  height:30px;
+	background: #222;
+	border-radius:50%;
+	box-shadow: 1px 4px 1px #000 inset
+			, -1px -3px 3px #444 inset;
+}
+.box1{
+	justify-content: center;
+	align-items: center;
+}
+.box2,.box3{
+	justify-content: space-between;
+}
+.box2 .dot:last-child{align-self: flex-end}
+.box3 .dot:last-child{align-self: flex-end}
+.box3 .dot:nth-child(2){align-self: center}
+
+.box4{
+	flex-flow: column;
+	justify-content: space-between;
+}
+.column{
+	display: flex;
+	justify-content: space-between;
+}
+.box5 .column:nth-child(2){
+	justify-content: center;
+}
+.box6{
+	flex-direction: row;
+	justify-content: space-between;
+}
+.box6 .column{
+	flex-direction: column;
+}
+</style>
+<div class="box box1">
+	<div class="dot"></div>
 </div>
+<div class="box box2">
+	<div class="dot"></div>
+	<div class="dot"></div>
+</div>
+<div class="box box3">
+	<div class="dot"></div>
+	<div class="dot"></div>
+	<div class="dot"></div>
+</div>
+<div class="box box4">
+	<div class="column">
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+	<div class="column">
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+</div>
+<div class="box box4 box5">
+	<div class="column">
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+	<div class="column">
+		<div class="dot"></div>
+	</div>
+	<div class="column">
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+</div>
+<div class="box box6">
+	<div class="column">
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+	<div class="column">
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+</div>
+
+<!-- <div id="client"></div> -->
+<i class="icon-accessory"></i>
 </body>
+<script>
+/* 	var box = document.getElementById('client');
+	box.innerHTML = document.body.clientWidth */
+</script>
 </html>

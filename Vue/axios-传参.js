@@ -1,3 +1,5 @@
+//axios.post(url,data,{responseType: 'blob'})   二进制流
+
 //同部 ->内部then -> 外部then
 Promise.resolve(
   new Promise((resolve,reject) => {

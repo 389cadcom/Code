@@ -1,0 +1,13 @@
+//weui-aaa__bbb-bbb_ccc-ccc 模杠为连接符, 双下划线区分block__elem, 单下划线连接modify
+//el-aaa__bbb-bbb--ccc-ccc 模杠为连接符, 双下划线区分block__elem, --连接modify
+$namespace: 'el-';
+$element-separator: '__';
+$modifier-separator: '--';
+$state-prefix: 'is-';
+
+@mixin b($block){
+	$B: $namespace + $block !global;
+	.#{$B}{
+		@content;
+	}
+}

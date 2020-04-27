@@ -1,6 +1,6 @@
-//装饰器-decorator必要插件
-"@babel/plugin-proposal-decorators"
-"@babel/plugin-proposal-class-properties"
+//装饰器-decorator必要插件   decorators必需在class-properties之前
+"@babel/plugin-proposal-decorators"							//{legacy: true}
+"@babel/plugin-proposal-class-properties"				//{loose: true}
 	
 
 @vue/cli-plugin-babel/preset -->  @vue/babel-preset-app

@@ -32,6 +32,14 @@ splitChunks: {
 	reuseExistingChunk: 						表示可以使用已经存在的块，即如果满足条件的块已经存在就使用已有的，不再创建一个新的块。
  }
 }
+//动态命名
+name (module) {
+	// get the name. E.g. node_modules/packageName/not/this/part.js
+	// or node_modules/packageName
+	const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+	// npm package names are URL-safe, but some servers don't like @ symbols
+	return `npm.${packageName.replace('@', '')}`
+}
 
 	async  : 1 只会抽取异步导入的模块如: const $ = () => import('jquery'), 同步引入模块被并入口文件中
 
@@ -95,12 +103,12 @@ optimization: {
 				name: 'vendor',
 				chunks: 'initial',
 				priority: -10,
-				test: /[\\/]node_modules[\\/]/,
+				test: /node_modules[\\/]/,
 			},
 			vux: {                                      //在node_modules基础上继续分离
 				name: 'vux-UI',
 				priority: 10,															//权重要大于 vendor 和 app 不然会被打包进 vendor 或者 app
-				test: /node_modules\/vux/,
+				test: /node_modules[\\/]vux/,
 			},
 			commons: {                                  //抽取公用 自定义与第三方 (注意：不是初始时使用--App, Home中组件使用)
 				name: 'commons',

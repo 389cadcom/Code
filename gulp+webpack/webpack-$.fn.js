@@ -67,7 +67,7 @@ a).cdn方式引入，全局$可用，eslint会报错('$' is not defined) //注意: 不能放在</bo
 b).cdn方式引入，import $ from 'jquery' | require('jquery')
 //umd方式引入第三方插件 $.fn.green  ,jquery未被识别
 externals: {
-	jquery: 'jQuery'		//把导入语句里的 jquery 替换成运行环境里的全局变量 jQuery, webpackJsonp中引入module.exports = jQuery;
+	jquery: 'jQuery'		//把导入语句里的 jquery 替换成运行环境里的全局变量 jQuery, webpackJsonp 模块中引入module.exports = jQuery;
 }
 
 //若入引入本地文件，则不能定义externals(排除定义的库打包入build.js)
@@ -108,15 +108,15 @@ $("span.pie").peity("pie", {
 
 // @1
 use: [{
-	loader: 'expose-loader',
-	options: '$'
+		loader: 'expose-loader',
+		options: '$'
 	}, {
-	loader: 'expose-loader',
-	options: 'jQuery'
+		loader: 'expose-loader',
+		options: 'jQuery'
 }]
 // @2
 externals: {
-	jquery: 'jQuery'
+	jquery: 'jQuery'				
 },
 // @3
 new webpack.ProvidePlugin({

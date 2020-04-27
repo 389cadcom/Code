@@ -1,0 +1,66 @@
+@import "function";
+// @import "../common/var";
+
+/* BEM
+ -------------------------- */
+
+@mixin b($block) {
+  $B: $namespace + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin e($element) {
+  $E: $element !global;
+  $selector: &;
+  $currentSelector: "";
+
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector + "." + $B + $element-separator + $unit + ","};
+  }
+  // @debug $currentSelector;                  //.el-message__header, .el-message__body, 编译时去掉最后一个逗号
+  @debug $selector;  
+  @debug hitAllSpecialNestRule($selector);  //false
+
+  @if hitAllSpecialNestRule($selector) {    
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + ","};
+  }
+  
+  //.el-message--active,.el-message .modify--active
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}

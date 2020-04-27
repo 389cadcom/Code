@@ -7,7 +7,12 @@
 
 	vstore-import
 */
-
+/**
+	1.把多个组件的共享状态抽取，以一个全局单例模式管理
+	2.state存取多个组共享的数据
+	3.mutation:通过mutation对象中方法，改变state中的数据--this.$store.commit('method')触发
+	4.action: 异步操作后提交mutation更改数据--this.$store.dispatch('ajax')
+*/
 new Vuex.Store({
 	state: {
 		todos: [

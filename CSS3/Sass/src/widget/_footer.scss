@@ -1,0 +1,17 @@
+.weui-footer{
+  &_fixed-button{}
+
+  &__links{ }
+  &__link{ }
+
+  &__text{}
+}
+
+.weui-loadmore{
+  @at-root{
+    &_dot{}
+    &_line{}
+  }
+
+  &__tips{}
+}

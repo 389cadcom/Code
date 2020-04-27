@@ -1,10 +1,18 @@
 //sass -i	进入sass shell编辑环境
-//live sass compile
 
 //插值、默认参数、rest参数、Each...in、list、 Map、@extend
 
 //type-of: string, boolean, number, null, color, list, map
 
+
+# 1.weui:   weui-aa__bb-bb_cc-cc    横杠为连接符, 双下划线区分block__elem, _单下划线连接modify
+# 2.element el-button--default
+# 3.vant    vant-button--info
+
+$namespace: 'el-';
+$elem-separator: '__';
+$modify-separator: '__';
+$state-prefix: 'is-';
 
 
 //运算符前后需空隔, 不然编译会报错 $i: $i - 1;

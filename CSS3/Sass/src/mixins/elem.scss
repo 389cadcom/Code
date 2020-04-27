@@ -1,0 +1,16 @@
+@import './config';
+@import './function';
+@import './mixin';
+
+@include b(message){
+  margin-top: 10px;
+  @include e((header,body--other)){
+    font-size: 20px;
+  }
+  @include m('active'){
+    color: red;
+    @include e(primary){
+      color: blue;
+    }
+  }
+}

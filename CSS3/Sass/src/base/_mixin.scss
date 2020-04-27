@@ -1,0 +1,124 @@
+//文本缩略--单行父级或当前需设宽度
+%ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+@mixin ellipsis($width:100%){
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: $width;
+}
+@mixin multi($line: 2) {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $line;
+}
+
+@mixin mask($color: rgba(0, 0, 0, .65)) {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: $color;
+}
+
+//小三角形
+@mixin arrow($dir: left, $color: orange, $width: 8px) {
+	width: 0; height: 0;
+
+	@if $dir == left or $dir == right {
+		border-top: $width solid transparent;
+		border-bottom: $width solid transparent;
+	}
+	@if($dir == top or $dir == bottom){
+		border-left: $width solid transparent;
+		border-right: $width solid transparent;
+		border-#{$vertical}: $width solid $color;
+	}
+	border-#{$dir}: $width solid $color;
+}
+//小三角形
+@mixin triangle($dir: left, $color: red, $size: 8px){
+	border: $size solid transparent;
+	border-#{$dir}-width: 0;
+
+	@if $dir==left or $dir == right {
+		$horizontal: if($dir==left, right, left);
+		border-#{$horizontal}-color: $color;
+	}
+	@if $dir == top or $dir == bottom {
+		$vertical: if($dir==top, bottom, top);
+		border-#{$vertical}-color: $color;
+	}
+}
+
+//带边小箭头
+@mixin carte($dir: bottom, $border: #f00, $fill: #ccc, $size: 10px) {
+	i{
+    @include triangle($dir, $border, $size);
+    bottom: -10px;
+    &, &::after{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &:after{
+      content: "";
+      @include triangle($dir, $fill, $size);
+      bottom: 1px;
+    }
+  }
+}
+
+@mixin placeholder($color, $size) {
+	::placeholder{
+		color: $color;
+		font-size: $size;
+	}
+}
+
+@mixin table($bordeCcolor:gray){
+	width: 100%;
+	margin-bottom: 10px;
+	border-spacing: 0;
+	border-collapse: collapse;
+	& th, & td{
+		border: 1px solid $bordeCcolor;
+	} 
+}
+
+//居中
+%middle {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+@mixin middle($width: null, $height: null) {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	// @if type-of($width) == 'null' and type-of($height) == 'null' {
+	@if not $width and not $height {
+		transform: translate(-50%, -50%);
+	} 
+	@else if not $width {
+    height: $height;
+		margin-top: -($height / 2);
+		transform: translateX(-50%);
+	} 
+	@else if not $height {
+    width: $width;
+		margin-left: -($width / 2);
+		transform: translateY(-50%);
+	} 
+	@else {
+		width: $width;
+		height: $height;
+		margin: -($width / 2) #{0 0} - ($height / 2);   //容措方式
+	}
+}

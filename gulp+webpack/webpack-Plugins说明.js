@@ -1,3 +1,19 @@
+//用terser-webpack-plugin替换掉uglifyjs-webpack-plugin解决uglifyjs不支持es6语法问题
+webpack用来预处理模块的, webpack默认只支持.js, 处理其他类型的内容会预先使用loader处理模块
+
+/**
+ * 设置相对路径：css中不用使用/static/images/logo.png路径
+ *
+ * 1.output.publicPath设置
+ * 2.url-loader options.outputPath
+ * 3.MiniCssExtractPlugin.filename
+ */
+
+
+//compression-webpack-plugin
+若webpack是3.x版本以下的，请安装compression-webpack-plugin的1.x版本
+
+
 new webpack.IgnorePlugin(/\.\/src\/jquery.js/)		
 //忽略打包文件(路径为require中加载的路径), 使用script引入
 
@@ -69,12 +85,17 @@ new webpack.DefinePlugin({
 	}
 })
 
-//uglifyJs-导出不压缩
+//uglifyJs-导出不压缩、生产环境清除console.log
 optimization: {
 	minimizer: [
 		new UglifyJsPlugin({
 			uglifyOptions: {
-				compress: false,
+				//compress: false,
+				compress: {
+					warnings: false,
+					drop_debugger: true,	//自动删除debugger
+					drop_console: true		//自动删除console.log
+				},
 				mangle: false,
 				output: {
 					beautify: true,
@@ -85,13 +106,17 @@ optimization: {
 	],
 },
 
-//terser -ES6压缩
+
+//terser-webpack-plugin -ES6压缩
 optimization: {
 	minimize: true,
 	minimizer: [
 		new TerserWebpackPlugin({
 			test: /\.js(\?.*)?$/i,
 			terserOptions: {
+				compress: {
+					drop_console: true
+				},
 				mangle: false,
 				output: {
 					beautify: true
@@ -100,6 +125,21 @@ optimization: {
 		})
 	]
 }
+//Vue-cli3清除console
+module.exports = {
+	configureWebpack: config => {
+		config.optimization = {
+			minimizer: [
+				new TerserPlugin({
+					terserOptions: {
+						compress: {drop_console: true}
+					}
+				})
+			]
+		}
+	}
+}
+
 //4.压缩代码
 new UglifyJsPlugin({
 	beautify: true,
@@ -231,11 +271,43 @@ publicPath, outputPath
 
 
 //导出资源路径：js, css, img	   filename, name
+//step 1
 output:{
-	path: util.assertPath('dist'),
 	//publicPath: '',
+	path: util.assertPath('dist'),
 	filename: 'js/[name].[chunkhash].js'				//util.assertPath('js/[name].[chunkhash].js')
 }
+//step 2
+{
+	test: /\.(jpg|png|gif)/
+	loader: 'url-loader',
+	options: {
+		limit: 5000,
+		name: '[name].[hash:6].[ext]',
+		publicPath: 'static/images'
+	}
+}
+//step 3
+{
+	test: /\.scss/,
+	use: [
+		{
+			loader: MiniCssExtractPlugin.loader,
+			options: {
+				publicPath: '../../'
+			}
+		},
+		'css-loader', 'sass-loader'
+	]
+}
+//step 4
+plugins: [
+	new MiniCssExtractPlugin({
+		filename: 'static/css/style.css'
+	})
+]
+
+
 
 //TODO 样式引用图片  相对路径打包-- 
 /**

@@ -1,0 +1,130 @@
+@mixin when($state) {
+	@at-root {
+		&.#{$state}{
+			@content;
+		}
+	}
+}
+
+.flexbox{
+	display: flex;
+	
+	@include when(space-between){
+		justify-content: space-between
+	}
+	@include when(space-around){
+		justify-content: space-around
+	}
+	@include when(align-middle){
+		align-items: center;
+	}
+	@include when(align-bottom){
+		align-items: flex-end;
+	}
+
+	&__avatar, &__time{
+		flex: 0 0 80px;
+	}
+	&__time{
+		margin-left: auto;
+		text-align: right;
+	}
+}
+
+.align-flex{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .list{
+    height: 120px;
+    width: 120px;
+    margin-bottom: 10px;
+    background: skyblue;
+    /* &:not(:nth-child(4n)) {
+      margin-right: calc(4% / 3);
+    } */
+    /* &:last-child:nth-child(4n-1){
+      margin-right: calc(24% + 4%/3);
+    }
+    &:last-child:nth-child(4n-2){
+      margin-right: calc(48% + 8%/3);
+    } */
+    /* &:last-child{
+      margin-right: auto;
+    } */
+  }
+  &::after{
+    content: "";
+    flex: auto;
+  }
+}
+
+.list{
+  &__item{
+    display: flex;
+    padding-bottom: 10px;
+    &:not(:last-child){
+      border-bottom: 1px solid red;
+      margin-bottom: 10px;
+    }
+  }
+  //一大图
+  &__image-large{
+
+  }
+  //左右分栏 左小图
+  &__thumb, &__label{
+    width: 90px;
+    height: 90px;
+    margin-right: 10px;
+  }
+  &_right{
+    flex: 1;
+  }
+  //三图分栏 三小图
+  &_images{ 
+    flex: 1;
+    &:nth-child(2){
+      margin: 0 5px;
+    }
+  }
+  //五图
+  &__five-images{
+    display: flex;
+    flex-wrap: wrap;
+    .img-item:first-child{
+      flex: 0 0 66.2%;      //66.6%再调整
+      margin-bottom: 4px;
+    }
+    .img-item:not(:first-child){
+      min-width: 30%;
+      flex: 1;
+    }
+    .img-item:nth-child(4){
+      margin: 0 4px;
+    }
+  }
+
+  //标题、标签、描述、地址、其他
+  &__title{
+    @include ellipsis;
+  }
+  &__tips{
+
+  }
+  &__desc{
+    font-size: 13px;
+  }
+  &__info{
+    display: flex;
+    justify-content: space-between;
+    .addr, .author{
+      color: #ddd;
+      font-size: 12px;
+    }
+    .time, .date{
+      text-align: right;
+      min-width: 68px;
+    }
+  }
+}

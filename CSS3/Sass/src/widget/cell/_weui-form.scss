@@ -1,0 +1,16 @@
+.weui-form{
+  @at-root{
+    &__text-area{}
+    &__control-area{}
+    &__tips-area{}
+    &__opr-area{}
+    &__extra-area{}
+  }
+
+  &__title{}
+  &__desc{}
+  &__tips{}
+  &__info{}
+  &__info-item{}
+  &__info-meta{}
+}

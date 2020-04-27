@@ -1,196 +1,210 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-<title></title>
-<!-- <link rel="stylesheet" href="css/index.css"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/2.3.0/weui.css">
+  <!-- <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.css"> -->
+  <link rel="stylesheet" href="res/css/index.css">
 </head>
-<script>
-// document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
-!function(win, doc) {
-	var n = doc.documentElement,
-		d = win.devicePixelRatio || 1;
-
-	function i() {
-		var e = n.clientWidth / 3.75;
-		n.style.fontSize = e + "px"
-	}
-
-	(function fn(){
-		doc.body ? doc.body.style.fontSize = "16px" : doc.addEventListener("DOMContentLoaded", fn);
-		i();
-		win.addEventListener("resize", i);
-		win.addEventListener("pageshow", function(e) {
-			win.persisted && i()
-		})
-	})();
-
-	if(d >= 2){
-		var o = doc.createElement("body"),
-			a = doc.createElement("div");
-			a.style.border = ".5px solid transparent";
-			o.appendChild(a)
-			n.appendChild(o)
-			if(1 === a.offsetHeight){
-				n.classList.add("hairlines")
-				n.removeChild(o)
-			}
-	}
-}(window, document)
-</script>
 <style>
-@media screen and (min-width:321px){
-	html{font-size: 16px !important;}
-	body{
-		font-size:15px
-	}
+.weui-flex__item{
+  margin: 5px;
+  background-color: #fff;
+  border-radius: 2px;
+  text-align: center;
 }
-@media screen and (min-width:414px){
-	html{font-size: 18px !important;}
-	body{
-		font-size:18px
-	}
-}
-p{border: 1px solid red; font-size: 1rem}
-ul{border: 1px solid red; height: 200px; width: 100%; margin: 0; padding:0;}
-ul>li{list-style: none; margin: 0; padding: 0;}
 </style>
 
-<body>
+<body style="background-color: #ddd;">
+<div class="arrow">
+  <i></i>
+</div>
+<section class="section">
+  <button class="weui-btn weui-btn_primary weui-btn_loading">
+    <i class="weui-loading"></i> btn
+  </button>
+  <button class="weui-btn weui-btn_primary weui-btn_inline">btn</button>
+  <button class="weui-btn weui-btn_block weui-btn_primary">btn</button>
+  <a href="#" class="weui-btn weui-btn_primary weui-btn_mini">小</a> 
+  <a href="#" class="weui-btn weui-btn_warn weui-btn_mini">小</a> 
+  <a href="#" class="weui-btn weui-btn_default weui-btn_mini">小</a> 
+</section>
+<section class="section">
+  <div class=" weui-flex">
+    <div class="weui-flex__item">1</div>
+  </div>
+  <div class="weui-flex">
+    <div class="weui-flex__item">1</div>
+    <div class="weui-flex__item">1</div>
+    <div class="weui-flex__item">1</div>
+  </div>
+</section>
+<section class="section weui-grids">
+  <a href="#" class="weui-grid">
+    <div class="weui-grid__icon"> <img src="./res/img/grid.png"> </div>
+    <p class="weui-grid__label">grid1</p>
+  </a>
+  <a href="#" class="weui-grid">
+    <div class="weui-grid__icon"> <img src="./res/img/grid.png"> </div>
+    <p class="weui-grid__label">grid1</p>
+  </a>
+  <a href="#" class="weui-grid">
+    <div class="weui-grid__icon"> <img src="./res/img/grid.png"> </div>
+    <p class="weui-grid__label">grid1</p>
+  </a>
+  <a href="#" class="weui-grid">
+    <div class="weui-grid__icon"> <img src="./res/img/grid.png"> </div>
+    <p class="weui-grid__label">grid1</p>
+  </a>
+</section>
 
-<div class="container">
-	<p class="pth prh">无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。</p>
-	<p class="pvh">无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。无关的内容会被删除。</p>
-</div>
-<br>
-<style>
-.flexbox{
-	display: flex;
-	/* justify-content: space-between; */
-	align-items: center;
-}
-.flexbox li:first-child{width: 100px}
-.flexbox li:nth-child(2){flex: 1}
-.flexbox li:last-child{
-	width: 100px;
-	text-align: right;
-	align-self: flex-start
-}
-</style>
-<ul class="flexbox">
-	<li>flex1</li>
-	<li>flex2</li>
-	<li>flex3</li>
-</ul>
-<style>
-.box{
-	vertical-align: top;
-	margin: 10px;
-	padding: 10px;
-	width: 100px;
-	height: 100px;
-	background: #ccc;
-	border-radius: 10%;
-	box-shadow: 0 5px 1px #fff inset
-			, 0 -5px 1px #888 inset
-			, 5px 0 1px #aaa inset
-			, -5px 0 1px #aaa inset;
-	display: inline-flex;
-	flex-flow: row wrap;
-}
-.dot{
-	width:30px;
-  height:30px;
-	background: #222;
-	border-radius:50%;
-	box-shadow: 1px 4px 1px #000 inset
-			, -1px -3px 3px #444 inset;
-}
-.box1{
-	justify-content: center;
-	align-items: center;
-}
-.box2,.box3{
-	justify-content: space-between;
-}
-.box2 .dot:last-child{align-self: flex-end}
-.box3 .dot:last-child{align-self: flex-end}
-.box3 .dot:nth-child(2){align-self: center}
+<section class="section">
+  <div class="weui-cells__title">title</div>
+  <div class="weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__hd">
+        <i class="weui-success"></i>
+      </div>
+      <div class="weui-cell__bd">body</div>
+      <div class="weui-cell__ft">footer</div>
+    </div>
+    <div class="weui-cell weui-cell_active">
+      <div class="weui-cell__hd">
+        <i class="weui-icon-success weui-icon_msg"></i>
+      </div>
+      <div class="weui-cell__bd">
+        <p>标题文字标题文字标题文字标题文字标题文字标题文字标题文字标题文字</p>
+      </div>
+      <div class="weui-cell__ft">footer</div>
+    </div>
+    <div class="weui-cell weui-cell_primary">
+      <div class="weui-cell__hd">
+        <img src="./res//img/img.jpg" width="50px" style="margin-right: 10px;">
+      </div>
+      <div class="weui-cell__bd">
+        bodybodybodybodybodybodybodybodybodybodybodybodybodybody
+        <!-- <p>标题文字标题文字标题文字标题文字标题文字标题文字标题文字标题文字</p> -->
+      </div>
+      <div class="weui-cell__ft">footer</div>
+    </div>
+  </div>
+  <div class="weui-cells__tips">tips</div>
+</section>
+<section class="section"  style="background-color: #fff;">
+  <div class="weui-loadmore">
+    <i class="weui-loading"></i>
+    <p class="weui-loadmore__tips">加载中...</p>
+  </div>
+  <div class="weui-loadmore weui-loadmore_line">
+    <p class="weui-loadmore__tips">加载中...</p>
+  </div>
+  <div class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+    <span class="weui-loadmore__tips"></span>  
+  </div>
+</section>
 
-.box4{
-	flex-flow: column;
-	justify-content: space-between;
-}
-.column{
-	display: flex;
-	justify-content: space-between;
-}
-.box5 .column:nth-child(2){
-	justify-content: center;
-}
-.box6{
-	flex-direction: row;
-	justify-content: space-between;
-}
-.box6 .column{
-	flex-direction: column;
-}
-</style>
-<div class="box box1">
-	<div class="dot"></div>
-</div>
-<div class="box box2">
-	<div class="dot"></div>
-	<div class="dot"></div>
-</div>
-<div class="box box3">
-	<div class="dot"></div>
-	<div class="dot"></div>
-	<div class="dot"></div>
-</div>
-<div class="box box4">
-	<div class="column">
-		<div class="dot"></div>
-		<div class="dot"></div>
-	</div>
-	<div class="column">
-		<div class="dot"></div>
-		<div class="dot"></div>
-	</div>
-</div>
-<div class="box box4 box5">
-	<div class="column">
-		<div class="dot"></div>
-		<div class="dot"></div>
-	</div>
-	<div class="column">
-		<div class="dot"></div>
-	</div>
-	<div class="column">
-		<div class="dot"></div>
-		<div class="dot"></div>
-	</div>
-</div>
-<div class="box box6">
-	<div class="column">
-		<div class="dot"></div>
-		<div class="dot"></div>
-		<div class="dot"></div>
-	</div>
-	<div class="column">
-		<div class="dot"></div>
-		<div class="dot"></div>
-		<div class="dot"></div>
-	</div>
-</div>
+<section class="section" style="background-color: #fff;">
+  <div class="weui-form__text-area">
+    <h1 class="weui-form__title">表单结构</h1>
+    <p class="weui-form__desc">展示表单页面的信息结构样式, 分别由头部区域/控件区域/提示区域/操作区域和底部信息区域组成。</p>
+  </div>
+  <div class="weui-form__control-area">
+    <div class="weui-cells__title">标题</div>
+    <div class="weui-cells">
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label for="" class="weui-label">用户名：</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input type="text" class="weui-input" placeholder="请输入">
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label for="" class="weui-label">用户名：</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input type="text" class="weui-input" placeholder="请输入">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-form__tips-area">
+    <p class="weui-form__tips"> 表单页提示，居中对齐 </p>
+  </div>
+  <div class="weui-form__opr-area">
+    <button class="weui-btn weui-btn_primary">提交</button>
+  </div>
+  <div class="weui-form__extra-area">
+    <div class="weui-footer">
+      <p class="weui-footer__links">
+        <a href="#" class="weui-footer__link">link1</a>
+        <a href="#" class="weui-footer__link">link1</a>
+        <a href="#" class="weui-footer__link">link1</a>
+      </p>
+      <div class="weui-footer__text">2008-2016 weui.io</div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="weui-panel">
+    <div class="weui-panel__hd">图片组件</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd">
+          <i class="weui-icon-success weui-icon_msg"></i>
+        </div>
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">标题一</h4>
+          <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+        </div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">标题一</h4>
+          <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+          <div class="weui-media-box__info">
+            <span class="weui-media-box__info__meta">来源</span>
+            <span class="weui-media-box__info__meta">时间</span>
+            <span class="weui-media-box__info__meta weui-media-box__info__meta_extra">其他</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weui-panel__ft">
+      <a href="" class="weui-cell weui-cell_active weui-cell_access weui-cell_link">
+        <div class="weui-cell__bd">查看更多</div>
+        <div class="weui-cell__ft"></div>
+      </a>
+    </div>
+  </div>
+  <div class="weui-panel">
+    <div class="weui-media-box weui-media-box_small-appmsg">
+      <div class="weui-cells">
+        <div class="weui-cell weui-cell_active weui-cell_access">
+          <div class="weui-cell__hd"><img src="./res/img/grid.png" width="30px" style="padding-right:15px"/></div>
+          <div class="weui-cell__bd">标题一</div>
+          <div class="weui-cell__ft"></div>
+        </div>
+        <div class="weui-cell weui-cell_active weui-cell_access">
+          <div class="weui-cell__hd"><img src="./res/img/grid.png" width="30px" style="padding-right:15px"/></div>
+          <div class="weui-cell__bd">标题一</div>
+          <div class="weui-cell__ft"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- <div id="client"></div> -->
-<i class="icon-accessory"></i>
+<section class="weui-footer">
+  <div class="weui-footer__links">
+    <a href="#" class="weui-footer__link">link1</a>
+    <a href="#" class="weui-footer__link">link1</a>
+    <a href="#" class="weui-footer__link">link1</a>
+  </div>
+  <p class="weui-footer__text">Copyright © 2008-2016 weui.io</p>
+</section>
 </body>
-<script>
-/* 	var box = document.getElementById('client');
-	box.innerHTML = document.body.clientWidth */
-</script>
 </html>

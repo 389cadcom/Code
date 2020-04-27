@@ -25,6 +25,16 @@ for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 
 3.forEach((item, i)=>{}), 需使用索引值使用，但不能用(break, continue);   return false; 跳出当前条件
 
+
+//过滤空的参数值
+const trimParams = (params) => {
+  var arr = Object.keys(params).filter(key => params[key].toString())
+  var data = arr.reduce((prev, curr)=>{
+    return {...prev, [curr]: params[curr]}
+  }, {})
+  return data
+}
+
 //提取数组对象值
 var arr = [{name:'a'},{name:'b'},{name:'c'},]
 Array.from(arr, ({name})=> name)		// ['a', 'b', 'c']
