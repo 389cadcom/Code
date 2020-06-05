@@ -170,3 +170,12 @@ function arrToGroup(results){
 	})
 	return arr;
 }
+
+//15.分组数组转为对象
+var arr= [[1,2], [3, 4]]
+
+arr.map(item => {
+	var [x, y] = item
+	return {x, y}
+})
+arr.map( (x, y)=>({x, y}))

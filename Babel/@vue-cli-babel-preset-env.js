@@ -2,8 +2,13 @@
 "@babel/plugin-proposal-decorators"							//{legacy: true}
 "@babel/plugin-proposal-class-properties"				//{loose: true}
 	
+module.exports = {
+  presets: ["@vue/cli-plugin-babel/preset"]
+}
 
 @vue/cli-plugin-babel/preset -->  @vue/babel-preset-app
+																	@babel/core
+
 	"@babel/core": "^7.8.4",
 	"@babel/helper-compilation-targets": "^7.8.4",
 	"@babel/helper-module-imports": "^7.8.3",

@@ -236,6 +236,13 @@ new webpack.LoaderOptionsPlugin({
 	}
 })
 
+//热更新失效
+loader: MiniCssExtractPlugin.loader,
+options: {
+		hmr: process.env.NODE_ENV === 'development',
+		reloadAll: true
+}
+
 //8.ExtractTextWebpackPlugin, 如果filename定义同一个名(style.css), 后打包会覆盖前面的样式
 ExtractTextPlugin.extract({
 	use: ['css-loader'],
