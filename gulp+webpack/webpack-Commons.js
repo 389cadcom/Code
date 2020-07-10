@@ -121,3 +121,10 @@ plugins: [
     }
   })
 ]
+
+//获取参数
+module.exports = (env, argv)=>{
+	console.log(process.env.NODE_ENV)
+	console.log(argv.BASE_URL)
+	return webpackBase
+}

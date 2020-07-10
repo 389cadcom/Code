@@ -48,7 +48,6 @@ Request {
   'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
   'if-none-match': 'W/"cf-sMq3uu/Hzh7Qc54TveG8DxiBA2U"' 
 }
-Cookie: access=WX--oy4fd0rnjn86yEOECio0MnmzxJrM; phone=13275015015; JSESSIONID=160C45297F012EA9705FCF6CA4052919
 
 //安全
 Upgrade-Insecure-Requests: 1

@@ -17,7 +17,7 @@ $el, $options, $data, $props
 
 $parent, $childern, $root, $attrs
 
-$refs, $slots
+$refs, $slots												//for循环中可定义同名ref, 其他定义会覆盖原先同名的ref
 
 //实例方法(数据，事件，生命周期)
 $watch, $set, $delete

@@ -83,6 +83,25 @@ deactivated () {
 	</keep-alive>
 	<router-view v-if="!$route.meta.keepAlive"></router-view>			//不需缓存页面
 </div>
+
+<transition-group tag="div" :name="'slide-' + direction">
+	<router-view :key="1" :data="direction" v-if="$route.meta.keepAlive" class="router-view" />
+	<div :key="$route.fullPath" class="router-view" v-if="!$route.meta.keepAlive" >
+	<keep-alive>
+		<router-view :data="direction" class="router-view" />
+	</keep-alive>
+	</div>
+</transition-group>
+
+//TODO 2020-5-12 缓存中的vuex direction没有时时更新
+<transition :key="$route.fullPath" :name="'slide-' + direction">
+	<keep-alive>
+		<router-view v-if="!$route.meta.keepAlive" class="router-view" />
+	</keep-alive>
+</transition>
+<transition  :key="$route.fullPath" :name="'slide-' + direction">
+	<router-view v-if="$route.meta.keepAlive" class="router-view" />
+</transition>
 */
 
 //方案四  回首页刷新
@@ -194,10 +213,13 @@ new Vue({
 		},
 		'obj.age'(){}
 	},
-	created: function(){			//dom未被解析, $el属性不可见
+	created: function(){			//数据已初始化,但dom未被解析 $el属性不可见
 	
 	},
-	mounted: function(){			//dom解析完成
+	beforeMount(){						//开始执行挂载,$el属性可见, 数据未绑定到html
+	
+	},
+	mounted: function(){			//dom解析完成, 数据已绑定
 	
 	},
 	activated(){							//keep-alive			第二次触发

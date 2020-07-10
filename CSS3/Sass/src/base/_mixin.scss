@@ -37,7 +37,6 @@
 	@if($dir == top or $dir == bottom){
 		border-left: $width solid transparent;
 		border-right: $width solid transparent;
-		border-#{$vertical}: $width solid $color;
 	}
 	border-#{$dir}: $width solid $color;
 }

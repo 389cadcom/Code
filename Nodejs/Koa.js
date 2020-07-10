@@ -14,13 +14,31 @@ ctx.cookies.set(name, value, { maxAge: 9000, httpOnly: true })
 	overwrite 一个布尔值，表示是否覆盖以前设置的同名的 cookie (默认是 false). 如果是 true, 在同一个请求中设置相同名称的所有 Cookie（不管路径或域）是否在设置此Cookie 时从 Set-Cookie 标头中过滤掉。
 */
 
-//Node原生方法
-req.method, req.url, req.
+//Node原生方法-- 绕过Koa的 response处理是 不被支持
+req.method, req.url, 
 
-res.writeHead(), res.setHeader() res.write(), res.end()
+res.statusCode=404, res.writeHead(), res.setHeader() res.write(), res.end()
 
 /****************************Koa***********************/
-//Node: crx.req, ctx.res.on('data'), | ctx.request.body, ctx.response
+/*
+	koa:  ctx.request, ctx.response
+	node: ctx.req, ctx.res
+
+	koa-router -> router.get('/', (ctx, next)=>{})
+*/
+app.env, proxy
+app.use()
+app.keys							//cookie
+app.context.db = db()
+
+app.listen											//http.createServer(app.callback()).listen(3000)
+app.on('error', (err, ctx)=>{})
+
+
+ctx.state, 
+ctx.app, 
+ctx.cookies.get
+
 
 ctx.header
 ctx.is('html'), ctx.get('user-agent'), ctx.accepts(), ctx.acceptsEncodings()

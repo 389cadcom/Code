@@ -97,8 +97,7 @@ plugins: [
 
 //8.webpack-dev-server					当入口的js文件被修改，则会自动更新数据并刷新浏览器，使用style-loader将样式添加到js文件中
 devServer: {
-	// --告诉服务器从哪里提供内容。这只有在您想要提供静态文件时才需要。例如图片？？
-	contentBase: path.join(__dirname, 'dist'),			//优于publicPath
+	contentBase: path.join(__dirname, 'dist'),			// webpack 去哪里找“额外的静态资源”, 优于publicPath
 	// contentBase: false,
 	// --告诉服务器观看由devServer.contentBase选项提供的文件。文件更改将触发整个页面重新加载。
 	watchContentBase: true,

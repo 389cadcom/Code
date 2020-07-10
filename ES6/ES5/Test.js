@@ -1,4 +1,10 @@
-var f = new Function('a','b', 'return a+b');
-
-console.log(f.name);
+Response{
+	__proto__: {
+		arrayBuffer,
+		blob,
+		json,
+		text,
+		formData,
+	}
+}
 

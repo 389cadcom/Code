@@ -15,6 +15,11 @@ arr.foo = 'foo'
 for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 	if(i==2) break;
 }
+//顺序执行多个Promise
+arr.reduce( (p1, p2) => {
+  return p.then(_ => p2)
+});
+
 
 //遍历
 0.for	 i, arr[i] 获取索引，当前值 可用 break, continue;

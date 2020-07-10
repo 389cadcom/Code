@@ -1,4 +1,8 @@
-//FormData --  异步上传二进制文件
+//JSON															application/json											@requestBody
+//URLSearchParams										application/x-www-form-urlencoded			@requestParams			req.query, req.body, req.params
+//FormData --  异步上传二进制文件		multipart/form-data											
+
+
 https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/Using_FormData_Objects
 
 //FileList, File, FileReader, URL.createObjectURL, Blob, 
@@ -55,6 +59,15 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/Using_FormData_Objects
 
 
 //Blob 分片上传
+async function chunkedUpload(chunkSize = 1024) {
+  for (let start = 0; start < file.size; start += chunkSize) {
+    const chunk = file.slice(start, start + chunkSize + 1);
+    const fd = new FormData();
+    fd.append("data", chunk);
+
+    await fetch(url, { method: "post", body: fd }).then((res) => res.text())
+  }
+}
 
 
 //Download
@@ -101,6 +114,7 @@ xhr.send(null);                    			//发送请求
 
 var xhr = new XMLHttpRequest();
 xhr.open("POST", "url");
+xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
 xhr.sendAsBinary(binaryString)
 
