@@ -15,10 +15,15 @@ arr.foo = 'foo'
 for(let i of arr){   //for...in   obj.hasOwnProperty 排除原型方法 i, arr[i]
 	if(i==2) break;
 }
-//顺序执行多个Promise
-arr.reduce( (p1, p2) => {
-  return p.then(_ => p2)
-});
+//0.按顺序执行多个Promise
+function chainPromise(arr, input){
+  return arr.reduce((promise1, promise2)=> {
+    return promise1.then(promise2)
+  }, Promise.resolve(input))
+}
+
+chainPromise(arr, 1).then(console.log)
+
 
 
 //遍历

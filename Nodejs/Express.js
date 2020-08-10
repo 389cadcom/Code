@@ -58,7 +58,7 @@ app.get
 app.param				//给路由参数添加回调触发器  'users/:id' --> param('id')
 
 app.set()				//env, trust proxy, view, view engine
-app.engine()		//注册模板引擎 1.app.set('views', )	2.app.engine('.html', ejs.renderFile); 是ejs.__express的别名; 3.app.set('view engine', 'html')
+app.engine()		//注册模板引擎 1.app.set('views', path.join(__dirname, './views'))	2.app.set('view engine', 'ejs')  3.app.engine('.html', ejs.renderFile); 是ejs.__express的别名; 
 app.get()
 
 app.enable()/disable    //调用app.set('foo', false)和调用app.disable('foo')是等价 
@@ -69,12 +69,13 @@ app.params()
 app.path()				//req.baseUrl
 app.listen()			//(port, [hostname], [backlog], [callback])
 /*
-app.listen = function() {
-    var server = http.createServer(this);
-    return server.listen.apply(server, arguments);
-};
 http.createServer(app).listen(80);
 https.createServer(options, app).listen(443);
+
+app.listen = function() {
+  var server = http.createServer(this);
+  return server.listen.apply(server, arguments);
+};
 */
 
 
