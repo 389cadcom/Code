@@ -1,3 +1,11 @@
+//样式
+:class="{active: isActive}" 
+
+:class="[isActive ? 'active1': 'active2']"
+
+:style="{color:'red', fontSize: '12px'}"
+
+
 //当注册组件（或者 props）时，可以使用 kebab-case ，camelCase ，或 TitleCase
 //因HTML不区分大小写，驼峰式全局组件或props属性，需转为短横线式
 

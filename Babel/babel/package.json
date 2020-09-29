@@ -3,15 +3,36 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "babel": "babel src/index.js -o dist/index.js",
+    "build": "webpack"
+  },
   "dependencies": {
+    "antd": "^4.6.6",
+    "cookies": "^0.8.0",
+    "fs-extra": "^9.0.1",
+    "lodash-es": "^4.17.15",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "vant": "^2.10.8",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-proposal-decorators": "^7.10.1",
-    "@babel/preset-env": "^7.10.2"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "build": "babel index.js -o dist/index.js"
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-import": "^1.13.0",
+    "css-loader": "^4.3.0",
+    "html-webpack-plugin": "^4.5.0",
+    "less": "^3.12.2",
+    "less-loader": "^7.0.1",
+    "mini-css-extract-plugin": "^0.11.2",
+    "webpack": "^4.44.2",
+    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-cli": "^3.3.12"
   },
   "keywords": [],
   "author": "",

@@ -26,13 +26,15 @@ reg = /<script>(.|\s)+/
 
 \d	 =>   [0-9]							数字
 \D	 =>		[^0-9]						非数字
-\s	 =>   [\n\r\t\f\x0B]		空白字符--换行、回车、制表、换页
-\S	 =>		[^\t\n\r\f\x0B]		非空白字符
+\s	 =>   [\n\r\t\f\v]			空白字符--换行、回车、制表、换页
+\S	 =>		[^\t\n\r\f\v]			非空白字符,  字母、数字、下划线、特殊字符
 \w	 =>		[a-zA-Z0-9_]			单词字符--字母、数字、下划线
 \W	 =>		[^a-zA-Z0-9_]			非单词字符
 
-\b	 =>		[^a-zA-Z0-9_]			单词边界，指[a-zA-Z_0-9]之外的字符
+\b	 =>		[^a-zA-Z0-9_]			单词边界，指[a-zA-Z_0-9]之外的字符				
 \B	 =>		[^a-zA-Z0-9_]			非单词边界
+
+"12w-eefd&efrew".match(/\b\w+\b/g)														 //匹配的东西前端或未端不能为英文字母阿拉伯字数字或下横线
 
 
 .		 =>   [^\n\r]						除换行与回车外所有字符						//谨慎使用“.” 运算符，因为通常类或反义字符类
@@ -67,7 +69,7 @@ a[^b-d]									//在中括号中，^被用作表达式的否定
 {n, }							{n,}?						{n,}+				最少n次
 
 /<.+?>/						//匹配<和>内包含的任何一个或多个字符
-/<[^<>]>/					//匹配<和>中包含的一次或多次除<或>以外的任何字符
+/<[^<>]+>/				//匹配<和>中包含的一次或多次除<或>以外的任何字符
 
 
 //7.分组、捕获--存储分组的特殊值  RegExp.$1, RegExp.$2     反向引用 \1  \2
@@ -78,6 +80,7 @@ a(?<foo>bc)					//?<foo>给小组命名
 
 trim = /^\s*(.*?)\s*$/			// '  abc  '.replace(/^\s*(.*?)\s*$/, '$1')   '  abc  '.replace(/^\s*|\s*$/g, '')
 
+//置换
 '1234 5678'.replace(/(\d{4})\s*(\d{4})/, '$2 $1')			//'5678 1234'
 
 
@@ -89,13 +92,6 @@ reg = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/	// 分组命名
 a(?:bc)*			//禁用捕获组--不保存$1, $2
 ?!						//排除					
 	
-?=						//先行断言  ?!
-?<=						//后行断言  ?<!
-	
-//否定运算符!
-?!
-?<!
-
 
 //大小字母
 /^[A-Za-z]+$/					//全由大、小写字母组合
@@ -110,8 +106,21 @@ a(?:bc)*			//禁用捕获组--不保存$1, $2
 '1234 5678'.replace(/(?:\d{4})\s*(\d{4})/, '$2 $1')	//'$2 5678'
 
 
-//匹配去除HTML标签
-"<a href='xxx'>地楼</b> >华安</a>".replace(/<(?:.|\s)*?>/g, '')
+//获取html标签
+/<(.*)>.*<\/\1>/
+
+//html处理
+//点击 <a href="id">华安地楼</a>
+reg = /<a id=["|'](.*?)["|']>(.*?)<\/a>/g     //s1, s2
+
+"<a href='xxx'>地楼</b> >华安</a>".replace(/<(?:.|\s)*?>/g, '')										//去除所有标签
+
+var html = "<p><a href='xxx'>lonve</a></p><hr/><p>by <em>保留指定标签</em></p>";	//排除指定标签		
+html.replace(/<(?!hr)(?:.|\s)*?>/ig,"")				//保留hr标签
+html.replace(/<(?=a)(?:.|\s)*?>/ig,"")				//去除a标签
+html.replace(/style=["|'](*?)["|']/,"")				//去除style样式
+
+
 
 
 //先符合子表达式的条件
@@ -125,16 +134,22 @@ str = 'happy happily'
 s = str.match(/happ(?=ily)/)											  //获得以 happ 开头的副词--happily
 s = str.match(/happ(?!=ily)/)												//过滤所有以 happ 开头的副词, 负前向查找--happ
 
+str = 'abcdefg'
+reg = /abc(?=def)/																	//向前先行断言--匹配一个位置，index=3 这个位置的后面就是括号内的子模式
+reg1 = /(?=abcdef)abc/															//向后先行断言--找到一个位置后，以这个位置开始匹配
+
 
 
 //后瞻--后行断言 ES2018实现								以(?<=reg)符合这个子表达式的位置出发开始查找--限制条件
+
+reg = /<(.*)>.*<\/\1>/
 
 str = '<title>document</title>'
 reg = /(?<=<title>).*(?=<\/title>)/				//后行断言(?<=<title>)、先行断言(?=<\/title>)
 str.match(reg)
 
+//匹配所有标签、排除
 '<div><h2>title</h2><p>content</p></div>'
-//匹配标签、排除
 reg = /(?<=<)[a-z0-9](?=>)/g															 //['div', 'h2', 'p']
 reg = /(?<=<)[^<>/](?=>)/g	
 
@@ -143,16 +158,10 @@ reg = /(?<=<)[^<>/](?=>)/g
 
 '实打实的'.replace(/(?<=.).(?=.)/g, '*')				//先行断言,  后发断言   '实**的'
 
-nickname.replace(/^(.).+(.|\s)$/, '$1**$2')
+nickname.replace(/^(.).+(.|\s)$/, '$1**$2')			//反向引用
 
 
-new Array(str.length).join('*') + str.substr(-1)
-
-
-//千分号
-str.split('').reverse().join('').replace(/(\d{3})/g, '$1,').split('').reverse().join('').substr(1)
-
-str.replace(/\d{1,3}(?=(\d{3}+$))/g, '$1,')								//
+str.charAt() + new Array(str.length).join('*') + str.substr(-1)
 
 
 //将参数转为对象， 对象转参数见--> 数组 Object.keys().map((key)=> k + '=' + params[k])
@@ -161,7 +170,7 @@ var reg = /([^?=&]+)=([^&]*)/gi, o = {};
 url.replace(reg, (str, a, b)=>{
   o[a] = b;
 })
-console.log(o)
+
 
 var ary = url.match(reg)
 var o = ary.reduce((prev, curr)=>{
@@ -178,18 +187,18 @@ var o = ary.reduce((prev, curr)=>{
 
 //11.
 dataURI = 'data:image/png;base64,iVBC'
-var type = dataURI.match(/data:([^;]+)/)[1];			//image/png
-var base64 = dataURI.replace(/^[^,]+,/, '');			//iVBC        [^,]--匹配未包含的任意字符
+var type   = dataURI.match(/data:([^;]+)/)[1];			//image/png
+var base64 = dataURI.replace(/^[^,]+,/, '');			  //iVBC        [^,]--匹配未包含的任意字符
 
 
 //12.匹配html标签
-var imgReg = /<video.*?(?:>|\/>)/gi							//匹配video标签
-var srcReg = /src=['|"]?([^'|"]*)['"]?/i				//匹配video文本中src内容
+var imgReg = /<video.*?(?:>|\/>)/gi									//匹配video标签
+var srcReg = /src=['|"]?([^'|"]*)['"]?/i						//匹配video文本中src内容
 
-html.replace(/<(.|\s)*?>/g, '')								//去除html标签
+html.replace(/<(.|\s)*?>/g, '')											//去除html标签
 var html = "<p><a href='http://www.cnblogs.com/rubylouvre/'>Ruby Louvre</a>by <em>司徒正美</em></p>";
-reg1 = /<(.|\s)*?>/														//惰性--只匹配最少字符
-reg1 = /<(.|\s)+>/g														//贪婪-匹配全部html
+reg1 = /<(.|\s)*?>/																	//惰性--只匹配最少字符
+reg1 = /<(.|\s)+>/g																	//贪婪-匹配全部html
 
 
 //13 千分位隔符
@@ -201,4 +210,9 @@ reg = /(\d{1,3})(?=(\d{3})+$)/g							//str.replace(reg, '$1,')
 reg = /\B(?=(\d{3})+$)/g
 
 
-str.split('').reverse().join('').replace(/(\d{3})/g, '$1,').replace(/,$/,'').split('').reverse().join('')			//replace(/,$/,"")去除最后一个,
+//千分号
+var result = val.split('').reverse().join('').replace(/(\d{3})/g, '$1,').replace(/,$/, '').split('').reverse().join('')  //小数点不能匹配
+
+str.replace(/\d{1,3}(?=(\d{3}+(\.\d+)?$))/g, '$1,')								//子条件后面必须跟着三位数或小数
+
+

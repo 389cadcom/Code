@@ -1,0 +1,36 @@
+.users {
+  display: flex;
+  padding: 2.5rem 16px;
+  margin-bottom: $gutter;
+  background-image: $linear;
+  border-radius: 6px;
+  .author {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 0.9rem;
+  }
+  .flex {
+    width: 100%;
+    margin-left: 12px;
+  }
+  .flex-col {
+    color: #fff;
+  }
+  h3 {
+    font-weight: normal;
+    font-size: 1rem;
+  }
+  .users__name {
+    min-width: 64px;
+    max-width: 156px;
+    @include ellipsis;
+  }
+  .head {
+    position: relative;
+    .vip {
+      position: absolute;
+      right: -5px;
+      bottom: 1px;
+    }
+  }
+}

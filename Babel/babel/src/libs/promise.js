@@ -1,0 +1,1 @@
+export const five = Promise.resolve(5);

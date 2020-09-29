@@ -1,0 +1,9 @@
+{
+  "name": "pkg",
+  "type": "module",
+  "main": "./index.cjs",
+  "exports": {
+    "import": "./wrapper.mjs",
+    "require": "./index.cjs"
+  }
+}

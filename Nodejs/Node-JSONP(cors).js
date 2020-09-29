@@ -11,6 +11,20 @@
 	readStream.pipe(res);
 */
 
+//node中间件代理
+const { createProxyMiddleware } = require('http-proxy-middleware')
+app.use(
+	'/api',
+	createProxyMiddleware({
+		target: 'url',
+		pathRewrite: {
+			'^/api': ''
+		},
+		changeOrigin: true
+	})
+)
+
+
 //跨域 Express
 app.use(function (req, res, next) {
 		res.append()																		  //之后app.set()函数将重置前面设置的值
