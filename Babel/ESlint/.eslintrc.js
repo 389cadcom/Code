@@ -15,7 +15,13 @@ module.exports = {
     sourceType: 'module',
   },
   // extends: ['eslint:recommended'],
-  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  parser: '@typescript-eslint/parser',
+  extends: [
+    // 'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+  ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'default-case': 'error',
@@ -25,5 +31,6 @@ module.exports = {
     'no-use-before-define': 'error',
     // 变量定义但被使用
     'no-unused-vars': 'off',
+    // '@typescript-eslint/no-unused-vars': 'off',
   },
 }

@@ -5,7 +5,6 @@ switch (i) {
   case 0:
     console.log(i)
     break
-
   default:
     break
 }
