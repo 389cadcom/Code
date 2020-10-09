@@ -53,7 +53,7 @@ export default {
       guides: [],
     }
   },
-  mixins: [require("../bak")],
+  mixins: [require("../bak"],
   async mounted() {
     $wxsdk.setConfig()
     var result = await this.$api.getBanners({ clientSide: 3 })
