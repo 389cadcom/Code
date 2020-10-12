@@ -34,3 +34,20 @@ module.exports = {
     // '@typescript-eslint/no-unused-vars': 'off',
   },
 }
+
+/*
+配置eslint-plgin-prettier选项
+
+'prettier/prettier': 0,
+'prettier/prettier': [
+	'error',
+	{
+		singleQuote: true,
+		trailingComma: 'es5',
+		endOfLine: 'auto',
+		bracketSpacing: true,
+		semi: false,
+	},
+],
+'prettier/prettier/no-unused-vars': 2,
+*/
