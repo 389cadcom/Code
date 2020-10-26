@@ -1,15 +1,15 @@
 module.exports = {
   presets: [
-    ['@babel/preset-env', {modules: false},
+    ['@babel/preset-env', {modules: false}],
     '@babel/preset-react',
   ],
   plugins: [
-    // ['import', { libraryName: 'vant', libraryDirectory: 'es', style: true }, 'vant'],
+    // ['import', { libraryName: 'lodash', libraryDirectory: '', 'camel2DashComponentName': false }],
     ['import', { libraryName: 'antd', libraryDirectory: 'lib', style: true }, 'antd'],
+    // ['import', { libraryName: 'vant', libraryDirectory: 'es', style: true }, 'vant'],
     
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
-    // 让系统支持可选链
     '@babel/plugin-proposal-optional-chaining',
   ],
-};
+}

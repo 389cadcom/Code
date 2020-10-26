@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <!-- <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script> -->
+    
+    <% htmlWebpackPlugin.options.cdn.js.forEach(item => { %>
+      <script src="<%= item %>"></script>
+    <% }) %>
   </head>
   <body>
     <div id="app"></div>
-    <% htmlWebpackPlugin.options.cdn.js.forEach(item => { %>
-    <script src="<%= item %>"></script>
-    <% }) %>
   </body>
 </html>

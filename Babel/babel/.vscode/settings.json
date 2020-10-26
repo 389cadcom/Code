@@ -18,7 +18,7 @@
   "[vue]": {
     "editor.defaultFormatter": "octref.vetur"
   },
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.formatOnPaste": true,
   "html.format.indentInnerHtml": true,
   "vetur.format.defaultFormatterOptions": {
@@ -27,5 +27,4 @@
       "semi": true
     }
   },
-  "eslint.enable": true,
 }

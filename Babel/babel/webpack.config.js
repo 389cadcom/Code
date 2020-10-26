@@ -3,8 +3,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-var url = 'https://cdn.bootcdn.net/ajax/libs/'
+const { NODE_ENV, PORT, npm_config_port, VUE_APP_BASE_API, ANALYZE } = process.env
+const defaultSetting = require('./src/setting')
+const { cdnUrl, title, outputDir } = defaultSetting
+
+//CDN处理 vue.global.js
+var url = cdnUrl || 'https://cdn.bootcdn.net/ajax/libs/'
+
 const CDN = {
+  css:[],
   js: [
     `${url}vue/2.6.12/vue.min.js`,
     `${url}vue-router/3.0.3/vue-router.min.js`,
@@ -15,6 +22,14 @@ const CDN = {
     `${url}react-dom/16.9.0/umd/react-dom.development.js`,
   ],
 }
+const externals = {
+  vue: 'Vue',
+  'vue-router': 'VueRouter',
+  vuex: 'Vuex',
+  axios: 'axios',
+  react: 'React',
+  'react-dom': 'ReactDOM'
+}
 
 const resolve = dir => path.resolve(__dirname, dir)
 module.exports = {
@@ -24,8 +39,8 @@ module.exports = {
   },
   output: {
     path: resolve('dist'),
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/chunk.[name].js',
     // libraryTarget: 'commonjs2'
   },
   module: {
@@ -57,21 +72,17 @@ module.exports = {
       },
     ],
   },
-  externals: {
-    vue: 'Vue',
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
+  externals: externals,
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      title: 'webpack plugin',
+      title: title || 'webpack plugin',
       cdn: CDN,
     }),
     new MiniCssExtractPlugin({
       filename: 'css/style.css',
     }),
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin(),
   ],
   //为了方便阅读理解打包后的代码，关闭代码压缩和模块合并
   optimization: {
@@ -79,21 +90,33 @@ module.exports = {
     concatenateModules: false,
     splitChunks: {
       chunks: 'all',
-      minSize: 100,
+      // minSize: 100,
+      minChunks: 1,
       cacheGroups: {
-        libs: {
-          name: 'libs',
+        common: {
+          name: 'common',
           // test: /[\\/]node_modules[\\/](jquery|vue|vue-router)[\\/]/,
           test: /[\\/]node_modules[\\/]/,
           priority: 10,
-          reuseExistingChunk: true,
+          chunks: 'initial',
         },
-        default: {
-          name: 'default',
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
+        libs: {
+          name: 'lodash',
+          test: /[\\/]node_modules[\\/]lodash(.*)/,
+          priority: 20,
         },
+        antd: {
+          name: 'antd',
+          test: /[\\/]node_modules[\\/]antd(.*)/,
+          priority: 15,
+        },
+        /* commons: {
+          name: 'chunk-commons',
+          test: resolve('src/components'), // can customize your rules
+          minChunks: 3, //  minimum common number
+          priority: 5,
+          reuseExistingChunk: true,
+        }, */
       },
     },
   },
